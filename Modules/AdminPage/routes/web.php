@@ -15,5 +15,5 @@ use Modules\AdminPage\Http\Controllers\AdminPageController;
 */
 
 Route::group([], function () {
-    Route::resource('adminpage', AdminPageController::class)->names('adminpage');
+    Route::resource('admin', AdminPageController::class)->names('adminpage');
 });
