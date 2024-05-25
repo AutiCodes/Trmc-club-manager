@@ -3,14 +3,14 @@ import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
     build: {
-        outDir: '../../public/build-user',
+        outDir: '../../public/build-users',
         emptyOutDir: true,
         manifest: true,
     },
     plugins: [
         laravel({
             publicDirectory: '../../public',
-            buildDirectory: 'build-user',
+            buildDirectory: 'build-users',
             input: [
                 __dirname + '/resources/assets/sass/app.scss',
                 __dirname + '/resources/assets/js/app.js'
@@ -21,6 +21,6 @@ export default defineConfig({
 });
 
 //export const paths = [
-//    'Modules/User/resources/assets/sass/app.scss',
-//    'Modules/User/resources/assets/js/app.js',
+//    'Modules/Users/resources/assets/sass/app.scss',
+//    'Modules/Users/resources/assets/js/app.js',
 //];

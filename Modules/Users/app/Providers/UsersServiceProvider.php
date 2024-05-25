@@ -1,15 +1,15 @@
 <?php
 
-namespace Modules\User\Providers;
+namespace Modules\Users\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class UserServiceProvider extends ServiceProvider
+class UsersServiceProvider extends ServiceProvider
 {
-    protected string $moduleName = 'User';
+    protected string $moduleName = 'Users';
 
-    protected string $moduleNameLower = 'user';
+    protected string $moduleNameLower = 'users';
 
     /**
      * Boot the application events.

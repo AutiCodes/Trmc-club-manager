@@ -2,5 +2,6 @@
     "Home": true,
     "Admin": true,
     "User": true,
-    "Form": true
+    "Form": true,
+    "Users": true
 }
