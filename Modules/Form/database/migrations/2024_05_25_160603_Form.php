@@ -11,7 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('form_submission', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('rdw_number');
+            $table->timestamp('created');
+            $table->integer('lipo_count');
+            $table->integer('model_type');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('form_submission');
     }
 };

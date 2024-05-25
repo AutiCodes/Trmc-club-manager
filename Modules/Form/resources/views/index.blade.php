@@ -46,7 +46,8 @@
 
       <!-- BEGIN FLIGHT SUBMISSION FORM --> 
       <div class="container mt-4 mb-4">
-        <form class="col-lg-6 offset-lg-3 pt-4 pb-4">
+        <form class="col-lg-6 offset-lg-3 pt-4 pb-4" action="{{ route('form.store') }}" method="POST">
+          @csrf
           <div class="justify-content-center">
             <!-- TOP TEXT AND IMAGE -->
             <img src="/media/images/field.jpg" class="img-fluid rounded mt-3">
@@ -103,7 +104,7 @@
           <span id="captcha" style="color:red"></span> <!-- this will show captcha errors -->
 
           <!-- SEND FORM BUTTON -->
-          <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#exampleModalCenter">Verzenden</button>
+          <button type="submit" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#exampleModalCenter">Verzenden</button>
         </form>
         <!-- END FLIGHT SUBMISSION FORM -->
       </div>

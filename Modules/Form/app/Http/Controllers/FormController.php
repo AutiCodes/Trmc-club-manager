@@ -30,7 +30,7 @@ class FormController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //
+        return var_dump($request);
     }
 
     /**
