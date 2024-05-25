@@ -76,66 +76,68 @@
       <!-- Table last flights -->
       <div class="container">
         <h1 class="mt-4 text-white">Laatste 5 vluchten</h1>
-        <table class="table table-striped table-hover text-white ml-2 mr-2">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">RDW nr</th>
-              <th scope="col">Naam</th>
-              <th scope="col">Datum</th>
-              <th scope="col">Tijd</th>
-              <th scope="col">Aantal lipo's</th>
-              <th scope="col">Model type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">30</th>
-              <td>2342423</td>
-              <td>Kelvin de Reus</td>
-              <td>25-05-2024</td>
-              <td>14:58</td>
-              <td>3</td>
-              <td>300W</td>
-            </tr>
-            <tr>
-              <th scope="row">29</th>
-              <td>2342423</td>
-              <td>Kelvin de Reus</td>
-              <td>25-05-2024</td>
-              <td>14:58</td>
-              <td>3</td>
-              <td>300W</td>
-            </tr>
-            <tr>
-              <th scope="row">28</th>
-              <td>2342423</td>
-              <td>Kelvin de Reus</td>
-              <td>25-05-2024</td>
-              <td>14:58</td>
-              <td>3</td>
-              <td>300W</td>
-            </tr>
-            <tr>
-              <th scope="row">27</th>
-              <td>2342423</td>
-              <td>Kelvin de Reus</td>
-              <td>25-05-2024</td>
-              <td>14:58</td>
-              <td>3</td>
-              <td>300W</td>
-            </tr>
-            <tr>
-              <th scope="row">26</th>
-              <td>2342423</td>
-              <td>Kelvin de Reus</td>
-              <td>25-05-2024</td>
-              <td>14:58</td>
-              <td>3</td>
-              <td>300W</td>
-            </tr>                        
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover text-white ml-2 mr-2">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">RDW nr</th>
+                <th scope="col">Naam</th>
+                <th scope="col">Datum</th>
+                <th scope="col">Tijd</th>
+                <th scope="col">Aantal lipo's</th>
+                <th scope="col">Model type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">30</th>
+                <td>2342423</td>
+                <td>Kelvin de Reus</td>
+                <td>25-05-2024</td>
+                <td>14:58</td>
+                <td>3</td>
+                <td>300W</td>
+              </tr>
+              <tr>
+                <th scope="row">29</th>
+                <td>2342423</td>
+                <td>Kelvin de Reus</td>
+                <td>25-05-2024</td>
+                <td>14:58</td>
+                <td>3</td>
+                <td>300W</td>
+              </tr>
+              <tr>
+                <th scope="row">28</th>
+                <td>2342423</td>
+                <td>Kelvin de Reus</td>
+                <td>25-05-2024</td>
+                <td>14:58</td>
+                <td>3</td>
+                <td>300W</td>
+              </tr>
+              <tr>
+                <th scope="row">27</th>
+                <td>2342423</td>
+                <td>Kelvin de Reus</td>
+                <td>25-05-2024</td>
+                <td>14:58</td>
+                <td>3</td>
+                <td>300W</td>
+              </tr>
+              <tr>
+                <th scope="row">26</th>
+                <td>2342423</td>
+                <td>Kelvin de Reus</td>
+                <td>25-05-2024</td>
+                <td>14:58</td>
+                <td>3</td>
+                <td>300W</td>
+              </tr>                        
+            </tbody>
+          </table>
+        </div>
       </div>
 
 
