@@ -1,4 +1,5 @@
 {
     "Frontend": true,
-    "AdminPage": true
+    "AdminPage": true,
+    "User": true
 }
