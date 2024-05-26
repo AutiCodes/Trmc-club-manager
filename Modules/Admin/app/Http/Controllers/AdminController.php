@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function index()
     {
         // Get form submissions
-        $formSubmissions = Form::orderBy('id', 'DESC');
+        $formSubmissions = Form::orderBy('id', 'desc')->get();
 
         return view('admin::index', ['formSubmissions' => $formSubmissions]);
     }

@@ -81,7 +81,6 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">RDW nr</th>
                 <th scope="col">Naam</th>
                 <th scope="col">Datum</th>
                 <th scope="col">Tijd</th>
@@ -90,51 +89,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">30</th>
-                <td>2342423</td>
-                <td>Kelvin de Reus</td>
-                <td>25-05-2024</td>
-                <td>14:58</td>
-                <td>3</td>
-                <td>300W</td>
-              </tr>
-              <tr>
-                <th scope="row">29</th>
-                <td>2342423</td>
-                <td>Kelvin de Reus</td>
-                <td>25-05-2024</td>
-                <td>14:58</td>
-                <td>3</td>
-                <td>300W</td>
-              </tr>
-              <tr>
-                <th scope="row">28</th>
-                <td>2342423</td>
-                <td>Kelvin de Reus</td>
-                <td>25-05-2024</td>
-                <td>14:58</td>
-                <td>3</td>
-                <td>300W</td>
-              </tr>
-              <tr>
-                <th scope="row">27</th>
-                <td>2342423</td>
-                <td>Kelvin de Reus</td>
-                <td>25-05-2024</td>
-                <td>14:58</td>
-                <td>3</td>
-                <td>300W</td>
-              </tr>
-              <tr>
-                <th scope="row">26</th>
-                <td>2342423</td>
-                <td>Kelvin de Reus</td>
-                <td>25-05-2024</td>
-                <td>14:58</td>
-                <td>3</td>
-                <td>300W</td>
-              </tr>                        
+              @foreach($formSubmissions as $submission)
+                <tr>
+                  <th scope="row">{{ $submission->id }}</th>
+                  <td>{{ $submission->name }}</td>
+                  <td>{{ $submission->date }}</td>
+                  <td>{{ $submission->time }}</td>
+                  <td>{{ $submission->lipo_count }}</td>
+                  <td>{{ $submission->model_type }}</td>
+                </tr>           
+              @endforeach
             </tbody>
           </table>
         </div>
