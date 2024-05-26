@@ -35,8 +35,8 @@ class FormController extends Controller
         // Form validation
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:25'],
-            'date' => ['required', 'string', 'max:12'],
-            'time' => ['required', 'string', 'max:6'],
+            'date' => ['required', 'max:12'],
+            'time' => ['required', 'max:6'],
             'lipo_count_select' => ['required', 'int', 'max:10'],
             'plane_type_select' => ['required', 'int', 'max:5'],
         ]);
