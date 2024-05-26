@@ -1,3 +1,6 @@
+<!-- 
+In development by KelvinCodes for TRMC.nl
+-->
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
@@ -46,7 +49,24 @@
 
       <!-- BEGIN FLIGHT SUBMISSION FORM --> 
       <div class="container mt-4 mb-4">
-        <form class="col-lg-6 offset-lg-3 pt-4 pb-4" action="{{ route('form.store') }}" method="POST">
+        <!-- Error or success reporting -->
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <h1>Oeps!</h1>
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        @if (session()->has('success'))
+          <div class="alert alert-success" role="alert">
+              {{ session('success') }}
+          </div>
+        @endif
+        <!-- End error or success reporting -->
+        <form class="col-lg-6 offset-lg-3 pt-4 pb-4" id="plane_submittion" action="{{ route('form.store') }}" method="POST">
           @csrf
           <div class="justify-content-center">
             <!-- TOP TEXT AND IMAGE -->
@@ -55,7 +75,7 @@
             <!-- NAME -->
             <div class="form-group">
               <label for="name" class="text-white font-weight-bold">Naam modelvlieger:</label>
-              <input type="text" class="form-control" id="name" placeholder="Voornaam Achternaam" required oninput="requiredHideViewer(this)">
+              <input type="text" class="form-control" name="name" id="name" placeholder="Voornaam Achternaam" required oninput="requiredHideViewer(this)">
               <p class="text-danger" id="name_required" style="display: block;">Naam is vereist!</p>
             </div>
             <!-- DATE -->
@@ -73,36 +93,37 @@
             <!-- PLANE TYPE -->
             <div class="form-group">
               <label for="plane_type_select" class="text-white font-weight-bold">Type model (electro uitsluitend)</label>
-              <select class="form-control" id="plane_type_select" required onchange="requiredHideViewer(this)">
+              <select class="form-control" id="plane_type_select" name="plane_type_select" required onchange="requiredHideViewer(this)">
                 <option disabled selected>Selecteer</option>
-                <option>Gemotoriseerd Modelvliegtuig</option>
-                <option>Modelzweefvliegtuig</option>
-                <option>Helikopter</option>
-                <option>Drone</option>
+                <option value=1>Gemotoriseerd Modelvliegtuig</option>
+                <option value=2>Modelzweefvliegtuig</option>
+                <option value=3>Helikopter</option>
+                <option value=4>Drone</option>
               </select>
               <p class="text-danger" id="plane_type_select_required" style="display: block;">Type model is vereist!</p>
             </div>
             <!-- LIPO COUNT -->
             <div class="form-group">
               <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
-              <select class="form-control" id="lipo_count_select" required onchange="requiredHideViewer(this)">
+              <select class="form-control" id="lipo_count_select" name="lipo_count_select" q  required onchange="requiredHideViewer(this)">
                 <option disabled selected>Selecteer</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
               </select>
               <p class="text-danger" id="lipo_count_select_required" style="display: block;">Lipo aantal is vereist!</p>
             </div>
           </div>
           <!-- reCAPTCHA -->
+          <!--
           <div class="g-recaptcha pb-3" id="rcaptcha" data-sitekey="6Ldwq90pAAAAAJuxavmVQjPKHSpGYoRRx5aUhn9x"></div>
-          <span id="captcha" style="color:red"></span> <!-- this will show captcha errors -->
-
+          <span id="captcha" style="color:red"></span> 
+          -->
           <!-- SEND FORM BUTTON -->
           <button type="submit" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#exampleModalCenter">Verzenden</button>
         </form>

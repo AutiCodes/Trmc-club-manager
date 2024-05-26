@@ -28,9 +28,18 @@ class FormController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        return var_dump($request);
+        // Form validation
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:25'],
+            'date' => ['required', 'string', 'max:12'],
+            'time' => ['required', 'string', 'max:6'],
+            'plane_type_select' => ['required', 'int', 'max:1'],
+            'lipo_count_select' => ['required', 'int', 'max:1'],
+        ]);
+
+        return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
     }
 
     /**
