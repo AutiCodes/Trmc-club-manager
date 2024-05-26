@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('form_submission', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('rdw_number');
-            $table->timestamp('created');
+            $table->string('date');
+            $table->string('time');
             $table->integer('lipo_count');
             $table->integer('model_type');
             $table->timestamps();

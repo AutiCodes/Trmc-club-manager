@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Form\Models\Form;
 
 class FormController extends Controller
 {
@@ -14,6 +15,7 @@ class FormController extends Controller
      */
     public function index()
     {
+        // Return form view
         return view('form::index');
     }
 
@@ -35,10 +37,19 @@ class FormController extends Controller
             'name' => ['required', 'string', 'max:25'],
             'date' => ['required', 'string', 'max:12'],
             'time' => ['required', 'string', 'max:6'],
-            'plane_type_select' => ['required', 'int', 'max:1'],
-            'lipo_count_select' => ['required', 'int', 'max:1'],
+            'lipo_count_select' => ['required', 'int', 'max:10'],
+            'plane_type_select' => ['required', 'int', 'max:5'],
         ]);
 
+        // Saving form in DB
+        Form::create([
+            'name' => $validated['name'],
+            'date' => $validated['date'],
+            'time' => $validated['time'],
+            'lipo_count' => $validated['lipo_count_select'],
+            'model_type' => $validated['plane_type_select'],
+        ]);
+        
         return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
     }
 
