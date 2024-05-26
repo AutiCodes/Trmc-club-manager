@@ -129,6 +129,29 @@ In development by KelvinCodes for TRMC.nl
         </form>
         <!-- END FLIGHT SUBMISSION FORM -->
       </div>
+
+
+      <!-- Getting help text --> 
+      <p class="text-white text-center">Hulp nodig? <a class="text-danger" data-toggle="modal" data-target="#helpModal">Klik hier</a></p>
+      <!-- Modal -->
+      <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="helpModalLabel">Hulp krijgen</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Lukt iets niet of zie je een fout? App of bel dan gerust met: Kelvin de Reus 0618014626
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
+            </div>
+          </div>
+        </div>
+      </div>
 		</main>
 
 
