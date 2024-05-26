@@ -7,7 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Form\Models\Form;
-
+use Spatie\LaravelPdf\Facades\Pdf;
 
 class AdminController extends Controller
 {

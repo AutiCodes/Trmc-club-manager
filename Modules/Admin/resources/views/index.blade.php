@@ -173,7 +173,7 @@
             Exporteren naar PDF
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Alle vluchten voor de gemeente</a>
+            <a class="dropdown-item" href="/pdf">Alle vluchten voor de gemeente</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Alle vluchten voor TRMC</a>
           </div>
