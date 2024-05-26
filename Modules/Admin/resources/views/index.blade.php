@@ -56,17 +56,17 @@
           <!-- Total flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Totaal:</h3>
-            <h1 class="text-white">30</h1>
+            <h1 class="text-white">{{ $FlightsTotal }}</h1>
           </div>
           <!-- This week flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Deze week:</h3>
-            <h1 class="text-white">15</h1>
+            <h1 class="text-white">{{ $FlightsThisWeek }}</h1>
           </div>
           <!-- Today flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Vandaag:</h3>
-            <h1 class="text-white">3</h1>
+            <h1 class="text-white">{{ $FlightsToday }}</h1>
           </div>                    
         </div>
         <!-- End total cards -->
@@ -93,8 +93,8 @@
                 <tr>
                   <th scope="row">{{ $submission->id }}</th>
                   <td>{{ $submission->name }}</td>
-                  <td>{{ $submission->date }}</td>
-                  <td>{{ $submission->time }}</td>
+                  <td>{{ explode(' ', $submission->date_time)[0] }}</td>
+                  <td>{{ explode(' ', $submission->date_time)[1] }}</td>
                   <td>{{ $submission->lipo_count }}</td>
                   <td>{{ $submission->model_type }}</td>
                 </tr>           

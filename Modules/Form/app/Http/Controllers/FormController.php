@@ -44,8 +44,7 @@ class FormController extends Controller
         // Saving form in DB
         Form::create([
             'name' => $validated['name'],
-            'date' => $validated['date'],
-            'time' => $validated['time'],
+            'date_time' => $validated['date'] . ' ' . $validated['time'],
             'lipo_count' => $validated['lipo_count_select'],
             'model_type' => $validated['plane_type_select'],
         ]);

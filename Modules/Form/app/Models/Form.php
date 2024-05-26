@@ -16,8 +16,7 @@ class Form extends Model
      */
     protected $fillable = [
         'name',
-        'date',
-        'time',
+        'date_time',
         'lipo_count',
         'model_type',
     ];

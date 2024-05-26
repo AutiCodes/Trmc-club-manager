@@ -18,8 +18,16 @@ class AdminController extends Controller
     {
         // Get form submissions
         $formSubmissions = Form::orderBy('id', 'desc')->get();
+        $FlightsTotal = Form::count();
+        $FlightsThisWeek = Form::whereDate('date_time', '>=',  now()->subWeek())->count();
+        $FlightsToday = Form::whereDate('date_time', '>=',  now()->subDay())->count();
 
-        return view('admin::index', ['formSubmissions' => $formSubmissions]);
+        return view('admin::index', [
+            'FlightsTotal' => $FlightsTotal,
+            'formSubmissions' => $formSubmissions,
+            'FlightsThisWeek' => $FlightsThisWeek,
+            'FlightsToday' => $FlightsToday,
+        ]);
     }
 
     /**
