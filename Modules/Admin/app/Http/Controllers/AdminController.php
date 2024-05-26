@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Form\Models\Form;
+
 
 class AdminController extends Controller
 {
@@ -14,7 +16,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin::index');
+        // Get form submissions
+        $formSubmissions = Form::orderBy('id', 'DESC');
+
+        return view('admin::index', ['formSubmissions' => $formSubmissions]);
     }
 
     /**
