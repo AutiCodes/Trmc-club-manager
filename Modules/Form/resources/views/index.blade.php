@@ -67,40 +67,60 @@ In development by KelvinCodes for TRMC.nl
             <!-- TOP TEXT AND IMAGE -->
             <img src="/media/images/field.jpg" class="img-fluid rounded mt-3">
             <h2 class="text-white text-center pt-3 pb-3">Registratie aanvang modelvliegen TRMC</h2>
+            
             <!-- NAME -->
             <div class="form-group">
               <label for="name" class="text-white font-weight-bold">Naam modelvlieger:</label>
               <input type="text" class="form-control" name="name" id="name" placeholder="Voornaam Achternaam" required oninput="requiredHideViewer(this)">
               <p class="text-danger" id="name_required" style="display: block;">Naam is vereist!</p>
             </div>
+            
             <!-- DATE -->
             <div class="form-group">
               <label for="date" class="text-white font-weight-bold">Selecteer een datum:</label>
               <input type="date" id="date" name="date" class="form-control" required onchange="requiredHideViewer(this)">  
               <p class="text-danger" id="date_required" style="display: block;">Datum is vereist!</p>
             </div>					
+
             <!-- TIME -->
             <div class="form-group">
               <label for="time" class="text-white font-weight-bold">Selecteer een tijd:</label>
               <input type="time" id="time" name="time" class="form-control" required onchange="requiredHideViewer(this)">  
               <p class="text-danger" id="time_required" style="display: block;">Tijd is vereist!</p>
             </div>
-            <!-- PLANE TYPE -->
-            <div class="form-group">
-              <label for="plane_type_select" class="text-white font-weight-bold">Type model (electro uitsluitend)</label>
-              <select class="form-control" id="plane_type_select" name="plane_type_select" required onchange="requiredHideViewer(this)">
-                <option disabled selected>Selecteer</option>
-                <option value=1>Gemotoriseerd Modelvliegtuig</option>
-                <option value=2>Modelzweefvliegtuig</option>
-                <option value=3>Helikopter</option>
-                <option value=4>Drone</option>
-              </select>
-              <p class="text-danger" id="plane_type_select_required" style="display: block;">Type model is vereist!</p>
+
+            <!-- PLANE TYPE(S) -->
+            <div class="form-group">	
+            <label for="check" class="text-white font-weight-bold">Selecteer de modellen waarmee je gaat vliegen:</label>
+              @foreach($models as $model)
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="{{ $model->model_id }}" id="{{ $model->name }}" name="{{ $model->name }}">
+                  <label class="form-check-label text-white" for="{{ $model->name }}">
+                    {{ $model->name }}
+                  </label>
+                </div>
+              @endforeach
+              <p class="text-danger" id="lipo_count_select_required" style="display: block;">Model type is vereist!</p>
             </div>
+
+            <!-- Power -->
+            <div class="form-group">	
+            <label for="check" class="text-white font-weight-bold">Selecteer de vermogen(s) waarmee je gaat vliegen:</label>
+              @foreach($power as $power)
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="{{ $power->power_id }}" id="{{ $power->name }}" name="{{ $power->name }}">
+                  <label class="form-check-label text-white" for="{{ $power->name }}">
+                    {{ $power->name }}
+                  </label>
+                </div>
+              @endforeach
+
+              <p class="text-danger" id="lipo_count_select_required" style="display: block;">Vermogen is vereist!</p>
+            </div>            
             <!-- LIPO COUNT -->
             <div class="form-group">
               <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
-              <select class="form-control" id="lipo_count_select" name="lipo_count_select" q  required onchange="requiredHideViewer(this)">
+              <select class="form-control" id="lipo_count_select" name="lipo_count_select"  required onchange="requiredHideViewer(this)">
                 <option disabled selected>Selecteer</option>
                 <option value=1>1</option>
                 <option value=2>2</option>

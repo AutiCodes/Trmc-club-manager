@@ -19,6 +19,30 @@ return new class extends Migration
             $table->integer('model_type');
             $table->timestamps();
         });
+
+        Schema::create('model_type', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('model_id');
+            $table->timestamps();
+        });       
+
+        Schema::create('power_type', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('power_id');
+            $table->timestamps();
+        });          
+
+        Schema::create('form_submission_model_type', function (Blueprint $table) {
+            $table->unsignedBigInteger('form_submission_id');
+            $table->unsignedBigInteger('model_id');
+        });
+
+        Schema::create('form_submission_power_type', function (Blueprint $table) {
+            $table->unsignedBigInteger('form_submission_id');
+            $table->unsignedBigInteger('power_id');
+        });        
     }
 
     /**

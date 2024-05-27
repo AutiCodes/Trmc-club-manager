@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Form\Models\Form;
+use Illuminate\Support\Facades\DB;
 
 class FormController extends Controller
 {
@@ -15,8 +16,12 @@ class FormController extends Controller
      */
     public function index()
     {
+        // Get models from DB
+        $models = DB::table('model_type')->get();
+        $power = DB::table('power_type')->get();
+
         // Return form view
-        return view('form::index');
+        return view('form::index', compact('models', 'power'));	
     }
 
     /**
