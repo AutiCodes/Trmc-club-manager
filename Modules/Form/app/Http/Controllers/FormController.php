@@ -42,19 +42,27 @@ class FormController extends Controller
             'name' => ['required', 'string', 'max:25'],
             'date' => ['required', 'max:12'],
             'time' => ['required', 'max:6'],
-            'lipo_count_select' => ['required', 'int', 'max:10'],
-            'power_type_select' => ['required', 'int', 'max:5'],
-            'model_type' => ['required'],
+            'model_type' => ['required'],	
         ]);
 
         foreach($validated['model_type'] as $model) {
-            // Saving form in DB
-            Form::create([
-                'name' => $validated['name'],
-                'date_time' => $validated['date'] . ' ' . $validated['time'],
-                'lipo_count' => $validated['lipo_count_select'],
-                'model_type' => $validated['model_type'],
-            ]);
+            // TODO ENUM
+            switch ($model) {
+                case '1':
+                    //
+                    break;
+                case '2':
+                    //
+                    break;
+                case '3':	
+                    //
+                    break;
+                case '4':
+                    //
+                    break;
+                default:
+                    return redirect(route('form.index'))->with('error', 'Er is iets fout gegaan!');
+            }
         };
 
         return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
