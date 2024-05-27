@@ -89,35 +89,36 @@ In development by KelvinCodes for TRMC.nl
               <p class="text-danger" id="time_required" style="display: block;">Tijd is vereist!</p>
             </div>
 
-            <!-- PLANE TYPE(S) -->
-            <div class="form-group">	
-            <label for="check" class="text-white font-weight-bold">Selecteer de modellen waarmee je gaat vliegen:</label>
-              @foreach($models as $model)
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="{{ $model->model_id }}" id="{{ $model->name }}" name="{{ $model->name }}">
-                  <label class="form-check-label text-white" for="{{ $model->name }}">
-                    {{ $model->name }}
-                  </label>
-                </div>
-              @endforeach
-              <p class="text-danger" id="lipo_count_select_required" style="display: block;">Model type is vereist!</p>
+            <!-- MODEL COUNT -->
+            <div class="form-group">
+              <label for="lipo_count_select" class="text-white font-weight-bold">Hoeveel modellen heb je meegenomen?</label>
+              <select class="form-control" id="model_count" name="model_count" required onchange="modelCount(this)">
+                <option disabled selected>Selecteer</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+              </select>
+              <p class="text-danger" id="model_count_required" style="display: block;">Model aantal is vereist!</p>
             </div>
 
-            <!-- Power -->
-            <div class="form-group">	
-            <label for="check" class="text-white font-weight-bold">Selecteer de vermogen(s) waarmee je gaat vliegen:</label>
-              @foreach($power as $power)
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="{{ $power->power_id }}" id="{{ $power->name }}" name="{{ $power->name }}">
-                  <label class="form-check-label text-white" for="{{ $power->name }}">
-                    {{ $power->name }}
-                  </label>
-                </div>
-              @endforeach
-
-              <p class="text-danger" id="lipo_count_select_required" style="display: block;">Vermogen is vereist!</p>
-            </div>            
-            <!-- LIPO COUNT -->
+            <!-- MODEL 1 --> 
+            <div class="bg-dark" id="model_1" style="display: none;">	
+              <p class="text-white font-weight-bold">Model 1:</p>
+              <div class="form-group">
+                <label for="lipo_count_select" class="text-white font-weight-bold">Welk model is het?</label>
+                <select class="form-control" id="model_type" name="model_type" required onchange="requiredHideViewer(this)">
+                  <option disabled selected>Selecteer</option>
+                  <option value=1>Gemotoriseerd modelvliegtuig</option>
+                  <option value=2>Modelzweefvliegtuig</option>
+                  <option value=3>Helicopter</option>
+                  <option value=4>Drone</option>
+                </select>
+                <p class="text-danger" id="model_type_required" style="display: block;">Model type is vereist!</p>
+              </div>
+            </div>
+            <!-- LIPO COUNT 
             <div class="form-group">
               <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
               <select class="form-control" id="lipo_count_select" name="lipo_count_select"  required onchange="requiredHideViewer(this)">
@@ -134,6 +135,7 @@ In development by KelvinCodes for TRMC.nl
               <p class="text-danger" id="lipo_count_select_required" style="display: block;">Lipo aantal is vereist!</p>
             </div>
           </div>
+          -->
           <!-- reCAPTCHA -->
           <!--
           <div class="g-recaptcha pb-3" id="rcaptcha" data-sitekey="6Ldwq90pAAAAAJuxavmVQjPKHSpGYoRRx5aUhn9x"></div>
@@ -199,6 +201,24 @@ In development by KelvinCodes for TRMC.nl
           return;
         }	
         document.getElementById(e.id + '_required').style.visibility = "visible";
+      }
+
+      function modelCount(e) {
+
+        // Show/hide appopiate divs
+        if (e.value == 1) {
+          document.getElementById('model_1').style.display = "hidden";
+          console.log('model 1');
+        }
+
+        // Hide required text
+        if(e.value != ''){
+          document.getElementById(e.id + '_required').style.visibility = "hidden";
+          return;
+        }	
+        document.getElementById(e.id + '_required').style.visibility = "visible";
+
+
       }
     </script>
 
