@@ -179,7 +179,8 @@
 
       <!-- Footer -->
       <footer class="footer text-center">
-        <p class="text-white">Copyright &copy; TRMC & Kelvin de Reus 2024</p>
+        <p class="text-white">Copyright &copy; TRMC 2024</p>
+        <p class="text-white">Hosting & development door Kelvin de Reus</p>
       </footer>
 		</main>
 
