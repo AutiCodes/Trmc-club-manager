@@ -179,9 +179,13 @@
           </div>
         </div>
       </div>
-
-
       <!-- END ADMIN PAGE -->
+
+      
+      <!-- Footer -->
+      <footer class="footer text-center">
+        <p class="text-white">Copyright &copy; TRMC & Kelvin de Reus 2024</p>
+      </footer>
 		</main>
 
 
