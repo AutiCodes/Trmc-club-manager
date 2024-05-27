@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Form\Models\Form;
 use Illuminate\Support\Facades\DB;
+use Modules\Form\Enums\ModelTypeEnum;
 
 class FormController extends Controller
 {
@@ -37,28 +38,39 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        // Form validation
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:25'],
             'date' => ['required', 'max:12'],
             'time' => ['required', 'max:6'],
             'model_type' => ['required'],	
         ]);
-
+        
         foreach($validated['model_type'] as $model) {
-            // TODO ENUM
-            switch ($model) {
-                case '1':
-                    //
+            $modelInt = intval($model);
+            switch ($modelInt) {
+                case ModelTypeEnum::PLANE:
+                    $validated = $request->validate([
+                        'power_type_select_plane' => ['required', 'int', 'max:4'],
+                        'lipo_count_select_plane' => ['required', 'int', 'max:8'],
+                    ]);
                     break;
-                case '2':
-                    //
+                case ModelTypeEnum::GLIDER:
+                    $validated = $request->validate([
+                        'power_type_select_glider' => ['required', 'int', 'max:4'],
+                        'lipo_count_select_glider' => ['required', 'int', 'max:8'],
+                    ]);
                     break;
-                case '3':	
-                    //
+                case ModelTypeEnum::HELICOPTER:	
+                    $validated = $request->validate([
+                        'power_type_select_helicopter' => ['required', 'int', 'max:4'],
+                        'lipo_count_select_helicopter' => ['required', 'int', 'max:8'],
+                    ]);
                     break;
-                case '4':
-                    //
+                case ModelTypeEnum::DRONE:
+                    $validated = $request->validate([
+                        'power_type_select_drone' => ['required', 'int', 'max:4'],
+                        'lipo_count_select_drone' => ['required', 'int', 'max:8'],
+                    ]);
                     break;
                 default:
                     return redirect(route('form.index'))->with('error', 'Er is iets fout gegaan!');
