@@ -14,9 +14,8 @@
 	<body>
 		<main>
 			<!-- NAVBAR -->
-      <!--
 			<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-				<a class="navbar-brand text-white" href="#">
+				<a class="navbar-brand text-white" href="/">
 					<img src="/media/images/TRMC_LOGO_PNG.ico" width="30" height="30" class="d-inline-block align-top" alt="">
 					TRMC vlucht manager
 				</a>
@@ -25,33 +24,31 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
-						<li class="nav-item active">
-							<a class="nav-link text-white" href="/index.html">Home</a>
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/">Home</a>
 						</li>
-						<li class="nav-item active">
-							<a class="nav-link text-white" href="/form.html">Vlucht aanmelden</a>
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/aanmeld-formulier">Vlucht aanmelden</a>
 						</li>
-						<li class="nav-item active">
-							<a class="nav-link text-white" href="/admin.html">Admin pagina</a>
-						</li>      
-						<li class="nav-item active">
-							<a class="nav-link text-white" href="/login.html">Login pagina</a>
-						</li>                        
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/admin">Admin pagina</a>
+						</li>                     
 					</ul>
 				</div>
 			</nav>
-      -->
 			<!-- END NAVBAR -->
+      
 
-      <!-- Homepage -->
-      <div class="container">
-        <h1 class="text-white text-center mt-4">Vlucht manager home</h1>
-        <p class="text-white text-center">Wordt aan gewerkt</p>
-        <p class="text-white text-center">Ga ondertussen naar de aanmeld form: <a href="/aanmeld-formulier">Klik hier</a></p>
-        <p class="text-white text-center">Ga ondertussen naar de admin pagina: <a href="/admin">Klik hier</a></p>
-        <p class="text-white text-center">Ga ondertussen naar de login pagina: <a href="/login">Klik hier</a></p>
-
+      <div class="container text-center mt-4 mb-4">
+        <h2 class="text-white">Aan deze site wordt nog gewerkt!</h2>
+        <img src="/media/images/WorkInProgressPNG.png" alt="" class="img-fluid rounded" width="50%" height="auto">\
       </div>
+
+
+      <!-- Footer -->
+      <footer class="footer text-center">
+        <p class="text-white">Copyright &copy; TRMC & Kelvin de Reus 2024</p>
+      </footer>
 		</main>
 
 

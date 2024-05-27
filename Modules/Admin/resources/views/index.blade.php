@@ -16,9 +16,8 @@
 	<body>
 		<main>
 			<!-- NAVBAR -->
-      <!--
 			<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-				<a class="navbar-brand text-white" href="#">
+				<a class="navbar-brand text-white" href="/">
 					<img src="/media/images/TRMC_LOGO_PNG.ico" width="30" height="30" class="d-inline-block align-top" alt="">
 					TRMC vlucht manager
 				</a>
@@ -27,22 +26,18 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
-						<li class="nav-item active">
-							<a class="nav-link text-white" href="/index.html">Home</a>
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/">Home</a>
 						</li>
-						<li class="nav-item active">
-							<a class="nav-link text-white" href="/form.html">Vlucht aanmelden</a>
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/aanmeld-formulier">Vlucht aanmelden</a>
 						</li>
-						<li class="nav-item active">
-							<a class="nav-link text-white" href="/admin.html">Admin pagina</a>
-						</li>      
-						<li class="nav-item active">
-							<a class="nav-link text-white" href="/login.html">Login pagina</a>
-						</li>                        
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/admin">Admin pagina</a>
+						</li>                     
 					</ul>
 				</div>
 			</nav>
-      -->
 			<!-- END NAVBAR -->
 
 
@@ -181,7 +176,7 @@
       </div>
       <!-- END ADMIN PAGE -->
 
-      
+
       <!-- Footer -->
       <footer class="footer text-center">
         <p class="text-white">Copyright &copy; TRMC & Kelvin de Reus 2024</p>
