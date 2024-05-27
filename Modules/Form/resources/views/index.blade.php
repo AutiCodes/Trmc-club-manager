@@ -89,53 +89,166 @@ In development by KelvinCodes for TRMC.nl
               <p class="text-danger" id="time_required" style="display: block;">Tijd is vereist!</p>
             </div>
 
-            <!-- MODEL COUNT -->
+            <!-- WHAT MODELS -->
             <div class="form-group">
-              <label for="lipo_count_select" class="text-white font-weight-bold">Hoeveel modellen heb je meegenomen?</label>
-              <select class="form-control" id="model_count" name="model_count" required onchange="modelCount(this)">
-                <option disabled selected>Selecteer</option>
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-              </select>
-              <p class="text-danger" id="model_count_required" style="display: block;">Model aantal is vereist!</p>
+              <label for="time" class="text-white font-weight-bold">Met welke modellen wil je gaan vliegen?</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value=1 id="CheckboxPlane" name="model_type[]" onclick="checkBoxes(this)">
+                <label class="form-check-label text-white" for="CheckboxPlane">
+                  Gemotoriseerd modelvliegtuig
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value=2 id="CheckboxGlider" name="model_type[]" onclick="checkBoxes(this)">
+                <label class="form-check-label text-white" for="CheckboxGlider">
+                  Modelzweefvliegtuig
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value=3 id="CheckBoxHelicopter" name="model_type[]" onclick="checkBoxes(this)">
+                <label class="form-check-label text-white" for="CheckBoxHelicopter">
+                  Helicopter
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value=4 id="CheckboxDrone" name="model_type[]" onclick="checkBoxes(this)">
+                <label class="form-check-label text-white" for="CheckboxDrone">
+                  Drone
+                </label>
+              </div>    
+              <p class="text-danger" id="model_type_required" style="display: block;">Model type(s) is vereist!</p>
             </div>
 
-            <!-- MODEL 1 --> 
-            <div class="bg-dark" id="model_1" style="display: none;">	
-              <p class="text-white font-weight-bold">Model 1:</p>
+
+            <div id="CheckboxPlane_div" style="display: none;" class="bg-dark rounded pl-2 pr-2">
+              <h3 class="text-white">Modelvliegtuig</h3>
+              <!-- POWER TYPE -->
               <div class="form-group">
-                <label for="lipo_count_select" class="text-white font-weight-bold">Welk model is het?</label>
-                <select class="form-control" id="model_type" name="model_type" required onchange="requiredHideViewer(this)">
+                <label for="power_type_select" class="text-white font-weight-bold">Met welke klasse ga je vliegen (de grootste selecteren)</label>
+                <select class="form-control" id="power_type_select" name="power_type_select" required onchange="requiredHideViewer(this)">
                   <option disabled selected>Selecteer</option>
-                  <option value=1>Gemotoriseerd modelvliegtuig</option>
-                  <option value=2>Modelzweefvliegtuig</option>
-                  <option value=3>Helicopter</option>
-                  <option value=4>Drone</option>
+                  <option value=1>< 300W</option>
+                  <option value=2>300W-1200W</option>
+                  <option value=3>1200W-3000W</option>
                 </select>
-                <p class="text-danger" id="model_type_required" style="display: block;">Model type is vereist!</p>
+                <p class="text-danger" id="power_type_select_required" style="display: block;">Klasse is vereist!</p>
+              </div>
+              <!-- LIPO COUNT --> 
+              <div class="form-group">
+                <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
+                <select class="form-control" id="lipo_count_select" name="lipo_count_select"  required onchange="requiredHideViewer(this)">
+                  <option disabled selected>Selecteer</option>
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  <option value=4>4</option>
+                  <option value=5>5</option>
+                  <option value=6>6</option>
+                  <option value=7>7</option>
+                  <option value=8>8</option>
+                </select>
+                <p class="text-danger" id="lipo_count_select_required" style="display: block;">Lipo aantal is vereist!</p>
               </div>
             </div>
-            <!-- LIPO COUNT 
-            <div class="form-group">
-              <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
-              <select class="form-control" id="lipo_count_select" name="lipo_count_select"  required onchange="requiredHideViewer(this)">
-                <option disabled selected>Selecteer</option>
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-                <option value=6>6</option>
-                <option value=7>7</option>
-                <option value=8>8</option>
-              </select>
-              <p class="text-danger" id="lipo_count_select_required" style="display: block;">Lipo aantal is vereist!</p>
+
+
+            <div id="CheckboxGlider_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
+              <h3 class="text-white">Modelzweefvliegtuig</h3>
+              <!-- POWER TYPE -->
+              <div class="form-group">
+                <label for="power_type_select" class="text-white font-weight-bold">Met welke klasse ga je vliegen (de grootste selecteren)</label>
+                <select class="form-control" id="power_type_select" name="power_type_select" required onchange="requiredHideViewer(this)">
+                  <option disabled selected>Selecteer</option>
+                  <option value=1>< 300W</option>
+                  <option value=2>300W-1200W</option>
+                  <option value=3>1200W-3000W</option>
+                </select>
+                <p class="text-danger" id="power_type_select_required" style="display: block;">Klasse is vereist!</p>
+              </div>
+              <!-- LIPO COUNT --> 
+              <div class="form-group">
+                <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
+                <select class="form-control" id="lipo_count_select" name="lipo_count_select"  required onchange="requiredHideViewer(this)">
+                  <option disabled selected>Selecteer</option>
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  <option value=4>4</option>
+                  <option value=5>5</option>
+                  <option value=6>6</option>
+                  <option value=7>7</option>
+                  <option value=8>8</option>
+                </select>
+                <p class="text-danger" id="lipo_count_select_required" style="display: block;">Lipo aantal is vereist!</p>
+              </div>
             </div>
+            
+
+            <div id="CheckBoxHelicopter_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
+              <h3 class="text-white">Helicopter</h3>
+              <!-- POWER TYPE -->
+              <div class="form-group">
+                <label for="power_type_select" class="text-white font-weight-bold">Met welke klasse ga je vliegen (de grootste selecteren)</label>
+                <select class="form-control" id="power_type_select" name="power_type_select" required onchange="requiredHideViewer(this)">
+                  <option disabled selected>Selecteer</option>
+                  <option value=1>< 300W</option>
+                  <option value=2>300W-1200W</option>
+                  <option value=3>1200W-3000W</option>
+                </select>
+                <p class="text-danger" id="power_type_select_required" style="display: block;">Klasse is vereist!</p>
+              </div>
+              <!-- LIPO COUNT --> 
+              <div class="form-group">
+                <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
+                <select class="form-control" id="lipo_count_select" name="lipo_count_select"  required onchange="requiredHideViewer(this)">
+                  <option disabled selected>Selecteer</option>
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  <option value=4>4</option>
+                  <option value=5>5</option>
+                  <option value=6>6</option>
+                  <option value=7>7</option>
+                  <option value=8>8</option>
+                </select>
+                <p class="text-danger" id="lipo_count_select_required" style="display: block;">Lipo aantal is vereist!</p>
+              </div>              
+            </div>
+            
+
+            <div id="CheckboxDrone_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
+              <h3 class="text-white">Drone</h3>
+              <!-- POWER TYPE -->
+              <div class="form-group">
+                <label for="power_type_select" class="text-white font-weight-bold">Met welke klasse ga je vliegen (de grootste selecteren)</label>
+                <select class="form-control" id="power_type_select" name="power_type_select" required onchange="requiredHideViewer(this)">
+                  <option disabled selected>Selecteer</option>
+                  <option value=1>< 300W</option>
+                  <option value=2>300W-1200W</option>
+                  <option value=3>1200W-3000W</option>
+                </select>
+                <p class="text-danger" id="power_type_select_required" style="display: block;">Klasse is vereist!</p>
+              </div>
+              <!-- LIPO COUNT --> 
+              <div class="form-group">
+                <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
+                <select class="form-control" id="lipo_count_select" name="lipo_count_select"  required onchange="requiredHideViewer(this)">
+                  <option disabled selected>Selecteer</option>
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  <option value=4>4</option>
+                  <option value=5>5</option>
+                  <option value=6>6</option>
+                  <option value=7>7</option>
+                  <option value=8>8</option>
+                </select>
+                <p class="text-danger" id="lipo_count_select_required" style="display: block;">Lipo aantal is vereist!</p>
+              </div>
+            </div>           
+
           </div>
-          -->
+          
           <!-- reCAPTCHA -->
           <!--
           <div class="g-recaptcha pb-3" id="rcaptcha" data-sitekey="6Ldwq90pAAAAAJuxavmVQjPKHSpGYoRRx5aUhn9x"></div>
@@ -203,22 +316,14 @@ In development by KelvinCodes for TRMC.nl
         document.getElementById(e.id + '_required').style.visibility = "visible";
       }
 
-      function modelCount(e) {
-
-        // Show/hide appopiate divs
-        if (e.value == 1) {
-          document.getElementById('model_1').style.display = "hidden";
-          console.log('model 1');
-        }
-
-        // Hide required text
-        if(e.value != ''){
-          document.getElementById(e.id + '_required').style.visibility = "hidden";
-          return;
-        }	
-        document.getElementById(e.id + '_required').style.visibility = "visible";
-
-
+      function checkBoxes(e) {
+        if (e.checked) {
+          document.getElementById(e.id + '_div').style.display = "block";
+          document.getElementById('model_type_required').style.visibility = "hidden";
+        } else {
+          document.getElementById(e.id + '_div').style.display = "none";
+          document.getElementById('model_type_required').style.visibility = "visible";
+          }
       }
     </script>
 

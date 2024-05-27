@@ -43,17 +43,20 @@ class FormController extends Controller
             'date' => ['required', 'max:12'],
             'time' => ['required', 'max:6'],
             'lipo_count_select' => ['required', 'int', 'max:10'],
-            'plane_type_select' => ['required', 'int', 'max:5'],
+            'power_type_select' => ['required', 'int', 'max:5'],
+            'model_type' => ['required'],
         ]);
 
-        // Saving form in DB
-        Form::create([
-            'name' => $validated['name'],
-            'date_time' => $validated['date'] . ' ' . $validated['time'],
-            'lipo_count' => $validated['lipo_count_select'],
-            'model_type' => $validated['plane_type_select'],
-        ]);
-        
+        foreach($validated['model_type'] as $model) {
+            // Saving form in DB
+            Form::create([
+                'name' => $validated['name'],
+                'date_time' => $validated['date'] . ' ' . $validated['time'],
+                'lipo_count' => $validated['lipo_count_select'],
+                'model_type' => $validated['model_type'],
+            ]);
+        };
+
         return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
     }
 
