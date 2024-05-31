@@ -17,12 +17,8 @@ class FormController extends Controller
      */
     public function index()
     {
-        // Get models from DB
-        $models = DB::table('model_type')->get();
-        $power = DB::table('power_type')->get();
-
         // Return form view
-        return view('form::index', compact('models', 'power'));	
+        return view('form::index');	
     }
 
     /**
