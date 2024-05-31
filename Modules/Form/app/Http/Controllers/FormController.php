@@ -34,6 +34,7 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
+        // TODO better validation
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:25'],
             'date' => ['required', 'max:12'],
@@ -42,35 +43,7 @@ class FormController extends Controller
         ]);
         
         foreach($validated['model_type'] as $model) {
-            $modelInt = intval($model);
-            switch ($modelInt) {
-                case ModelTypeEnum::PLANE:
-                    $validated = $request->validate([
-                        'power_type_select_plane' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_plane' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                case ModelTypeEnum::GLIDER:
-                    $validated = $request->validate([
-                        'power_type_select_glider' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_glider' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                case ModelTypeEnum::HELICOPTER:	
-                    $validated = $request->validate([
-                        'power_type_select_helicopter' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_helicopter' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                case ModelTypeEnum::DRONE:
-                    $validated = $request->validate([
-                        'power_type_select_drone' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_drone' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                default:
-                    return redirect(route('form.index'))->with('error', 'Er is iets fout gegaan!');
-            }
+            
         };
 
         return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
