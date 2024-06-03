@@ -233,8 +233,37 @@
       <!-- END ADMIN PAGE -->
 
 
-      <!-- GET HELP -->
+      <!-- HELP ICON -->
+      <a class="help_icon text-white mr-3 " data-toggle="modal" data-target="#helpModal" >
+        <img class="img-fluid" src="/media/images/help.ico" alt="help" style="width: 50px;"></img>
+      </a>
 
+
+      <!-- HELP MODAL -->
+      <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="helpModalLabel">Hulp</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- -->
+              <h4>Uitleg voor het gebruiken van de admin pagina:</h4>
+              <p>wip</p>
+              <!-- -->
+              <span aria-hidden="true"></span>
+              <h4>Errors en contact:</h4>
+              <p>Is er een error of lukt iets niet? Neem dan contact met ons op via prive@kelvincodes.nl of bel Kelvin de Reus: <a href="tel:123-456-7890">123-456-7890</a></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
       <!-- Footer -->
@@ -261,6 +290,18 @@
         background-color: #ffffff;
       }
 
+      .help_icon {
+          position: fixed;
+          bottom:0;
+          right: 0;
+          padding: 10px;
+      }
+
+      input[type="checkbox"] {
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+      }
     </style>
     <!-- Temp JS -->
 	</body>

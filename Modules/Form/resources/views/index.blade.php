@@ -1,5 +1,6 @@
 <!-- 
-In development by KelvinCodes for TRMC.nl
+In development by: Kelvin de Reus aka KelvinCodes
+For: TRMC
 -->
 <!DOCTYPE html>
 <html lang="nl">
@@ -263,7 +264,7 @@ In development by KelvinCodes for TRMC.nl
         <!-- END FLIGHT SUBMISSION FORM -->
       </div>
 
-
+      <!-- HELP ICON -->
       <a class="help_icon text-white mr-3 " data-toggle="modal" data-target="#helpModal" >
         <img class="img-fluid" src="/media/images/help.ico" alt="help" style="width: 50px;"></img>
       </a>
