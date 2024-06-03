@@ -94,28 +94,32 @@ In development by KelvinCodes for TRMC.nl
               <label for="time" class="text-white font-weight-bold">Met welke modellen wil je gaan vliegen?</label>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value=1 id="CheckboxPlane" name="model_type[]" onclick="checkBoxes(this)">
-                <label class="form-check-label text-white" for="CheckboxPlane">
+                <label class="form-check-label text-white font-weight-bold ml-1" for="CheckboxPlane">
                   Gemotoriseerd modelvliegtuig
                 </label>
               </div>
+              <hr>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value=2 id="CheckboxGlider" name="model_type[]" onclick="checkBoxes(this)">
-                <label class="form-check-label text-white" for="CheckboxGlider">
+                <label class="form-check-label text-white font-weight-bold ml-2" for="CheckboxGlider">
                   Modelzweefvliegtuig
                 </label>
               </div>
+              <hr>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value=3 id="CheckBoxHelicopter" name="model_type[]" onclick="checkBoxes(this)">
-                <label class="form-check-label text-white" for="CheckBoxHelicopter">
+                <label class="form-check-label text-white font-weight-bold ml-2" for="CheckBoxHelicopter">
                   Helicopter
                 </label>
               </div>
+              <hr>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value=4 id="CheckboxDrone" name="model_type[]" onclick="checkBoxes(this)">
-                <label class="form-check-label text-white" for="CheckboxDrone">
+                <label class="form-check-label text-white font-weight-bold ml-2" for="CheckboxDrone">
                   Drone
                 </label>
               </div>    
+              <hr>
               <p class="text-danger" id="model_type_required" style="display: block;">Model type(s) is vereist!</p>
             </div>
 
@@ -258,7 +262,7 @@ In development by KelvinCodes for TRMC.nl
         </form>
         <!-- END FLIGHT SUBMISSION FORM -->
       </div>
-w
+
 
       <a class="help_icon text-white mr-3 " data-toggle="modal" data-target="#helpModal" >
         <img class="img-fluid" src="/media/images/help.ico" alt="help" style="width: 50px;"></img>
@@ -330,7 +334,21 @@ w
           bottom:0;
           right: 0;
           padding: 10px;
-        }
+      }
+
+      input[type="checkbox"] {
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+      }
+
+      hr {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        background-color: #ffffff;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
     </style>
     <!-- Temp JS -->
     <script>
