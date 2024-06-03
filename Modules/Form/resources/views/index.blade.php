@@ -258,31 +258,51 @@ In development by KelvinCodes for TRMC.nl
         </form>
         <!-- END FLIGHT SUBMISSION FORM -->
       </div>
+w
+
+      <a class="help_icon text-white mr-3 " data-toggle="modal" data-target="#helpModal" >
+        <img class="img-fluid" src="/media/images/help.ico" alt="help" style="width: 50px;"></img>
+      </a>
 
 
-      <!-- Getting help text --> 
-      <p class="text-white text-center">Hulp nodig? <a class="text-danger" data-toggle="modal" data-target="#helpModal">Klik hier</a></p>
-      <!-- Modal -->
+      <!-- HELP MODAL -->
       <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="helpModalLabel">Hulp krijgen</h5>
+
+              <h5 class="modal-title" id="helpModalLabel">Hulp</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body">
-              Lukt iets niet of zie je een fout? App of bel dan gerust met: Kelvin de Reus 0618014626
+              <!-- -->
+              <h4>Uitleg voor het invullen van het formulier:</h4>
+              <p>Het formulier is gemaakt om je te helpen om een vlucht te plannen. Het formulier bevat een aantal vragen die je moet beantwoorden om een vlucht te plannen. De vragen zijn als volgt:</p>
+              <p>1. Wat is uw naam? (Vul uw voor en achternaam in)</p>
+              <p>2. Wat is uw vliegdatum? (De datum waarop u gaat vliegen)</p>
+              <p>3. Wat is uw vliegtijd? (De tijd waarop u gaat vliegen)</p>
+              <p>4. Met welke modellen gaat u vliegen? (meerdere zijn mogelijk. Vul voor ieder model de klassen in lipo aantal in.)</p>
+
+              <p class="text-danger">Let er goed op dat alles goed is ingevuld! De rode letters geven aan wat nog ingevuld moet worden</p>
+
+              <!-- -->
+              <span aria-hidden="true"></span>
+              <h4>Errors en contact:</h4>
+              <p>Lukt het aanmelden nog niet of komt er een error? Neem dan contact met ons op via prive@kelvincodes.nl of bel Kelvin de Reus: <a href="tel:123-456-7890">123-456-7890</a></p>
+
             </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
             </div>
           </div>
         </div>
       </div>
-
-      
+  
+  
       <!-- Footer -->
       <footer class="footer text-center">
         <p class="text-white">Copyright &copy; TRMC 2024</p>
@@ -304,6 +324,13 @@ In development by KelvinCodes for TRMC.nl
       body, html {
         background-color: #2f3031;
       }
+
+      .help_icon {
+          position: fixed;
+          bottom:0;
+          right: 0;
+          padding: 10px;
+        }
     </style>
     <!-- Temp JS -->
     <script>
@@ -324,6 +351,11 @@ In development by KelvinCodes for TRMC.nl
           document.getElementById('model_type_required').style.visibility = "visible";
           }
       }
+
+      // Enabling tooltips everywhere
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
     </script>
 
 	</body>
