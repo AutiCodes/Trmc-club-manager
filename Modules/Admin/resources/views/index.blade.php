@@ -79,11 +79,12 @@
                 <th scope="col">Naam</th>
                 <th scope="col">Datum</th>
                 <th scope="col">Tijd</th>
-                <th scope="col">Aantal lipo's</th>
-                <th scope="col">Model type</th>
+                <th scope="col">Aantal lipo's (totaal)</th>
+                <th scope="col">Model type(s)</th>
               </tr>
             </thead>
             <tbody>
+              <!--
               @foreach($formSubmissions as $submission)
                 <tr>
                   <th scope="row">{{ $submission->id }}</th>
@@ -94,6 +95,40 @@
                   <td>{{ $submission->model_type }}</td>
                 </tr>           
               @endforeach
+              -->
+              <!-- TEMP -->
+              <tr>
+                <th scope="row">2</th>
+                <td>Kelvin de Reus</td>
+                <td>03-06-2024</td>
+                <td>10:33</td>
+                <td>5</td>
+                <td>Vliegtuig, helicopter</td>
+                </tr>  
+            </tbody>
+
+            <tbody>
+              <!--
+              @foreach($formSubmissions as $submission)
+                <tr>
+                  <th scope="row">{{ $submission->id }}</th>
+                  <td>{{ $submission->name }}</td>
+                  <td>{{ explode(' ', $submission->date_time)[0] }}</td>
+                  <td>{{ explode(' ', $submission->date_time)[1] }}</td>
+                  <td>{{ $submission->lipo_count }}</td>
+                  <td>{{ $submission->model_type }}</td>
+                </tr>           
+              @endforeach
+              -->
+              <!-- TEMP -->
+              <tr>
+                <th scope="row">1</th>
+                <td>Naam hier</td>
+                <td>03-06-2024</td>
+                <td>11:33</td>
+                <td>3</td>
+                <td>Vliegtuig, drone</td>
+                </tr>  
             </tbody>
           </table>
         </div>
