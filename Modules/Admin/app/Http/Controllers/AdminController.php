@@ -7,7 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Form\Models\Form;
-use Spatie\LaravelPdf\Facades\Pdf;
+use Storage;
 
 class AdminController extends Controller
 {
@@ -77,4 +77,27 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function downloadFlightsGov()
+    {
+        $fileName = 'vluchten-trmc-gem-' . date('Y-m-d-H-i-s') . '.txt';
+        $file = Storage::put($fileName, 'Hoi!');
+
+        if (!$file) {
+            return redirect()->back()->with('error', 'Er is iets fout gegaan! Foutcode: Kon bestand niet opslaan.');
+        }
+
+        return response()->download(storage_path('app/'. $fileName));
+    }
+
+    public function downloadFlightsTRMC()
+    {
+        $file = Storage::put('vluchten-trmc-' . date('Y-m-d-H-i-s') . '.txt', 'Hoi!');
+
+        if (!$file) {
+            return redirect()->back()->with('error', 'Er is iets fout gegaan! Foutcode: Kon bestand niet opslaan.');
+        }
+
+        return response()->download(storage_path('app/test.txt'));
+    }    
 }

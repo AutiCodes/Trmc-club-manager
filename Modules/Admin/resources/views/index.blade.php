@@ -51,17 +51,17 @@
           <!-- Total flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Totaal:</h3>
-            <h1 class="text-white">{{ $FlightsTotal }}</h1>
+            <h1 class="text-white"><!--{{ $FlightsTotal }}-->4</h1>
           </div>
           <!-- This week flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Deze week:</h3>
-            <h1 class="text-white">{{ $FlightsThisWeek }}</h1>
+            <h1 class="text-white"><!--{{ $FlightsThisWeek }}-->2</h1>
           </div>
           <!-- Today flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Vandaag:</h3>
-            <h1 class="text-white">{{ $FlightsToday }}</h1>
+            <h1 class="text-white"><!--{{ $FlightsToday }}-->0</h1>
           </div>                    
         </div>
         <!-- End total cards -->
@@ -98,11 +98,11 @@
               -->
               <!-- TEMP -->
               <tr>
-                <th scope="row">2</th>
+                <th scope="row">3</th>
                 <td>Kelvin de Reus</td>
                 <td>03-06-2024</td>
                 <td>10:33</td>
-                <td>5</td>
+                <td class="text-center">3</td>
                 <td>Vliegtuig, helicopter</td>
                 </tr>  
             </tbody>
@@ -122,22 +122,43 @@
               -->
               <!-- TEMP -->
               <tr>
-                <th scope="row">1</th>
+                <th scope="row">2</th>
                 <td>Naam hier</td>
                 <td>03-06-2024</td>
                 <td>11:33</td>
-                <td>3</td>
-                <td>Vliegtuig, drone</td>
+                <td class="text-center">6</td>
+                <td>Vliegtuig, Zweefvliegtuig, drone</td>
+                </tr>  
+            </tbody>
+
+            <tbody>
+              <!--
+              @foreach($formSubmissions as $submission)
+                <tr>
+                  <th scope="row">{{ $submission->id }}</th>
+                  <td>{{ $submission->name }}</td>
+                  <td>{{ explode(' ', $submission->date_time)[0] }}</td>
+                  <td>{{ explode(' ', $submission->date_time)[1] }}</td>
+                  <td>{{ $submission->lipo_count }}</td>
+                  <td>{{ $submission->model_type }}</td>
+                </tr>           
+              @endforeach
+              -->
+              <!-- TEMP -->
+              <tr>
+                <th scope="row">1</th>
+                <td>Naam hier 2</td>
+                <td>05-06-2024</td>
+                <td>12:33</td>
+                <td class="text-center">1</td>
+                <td>Vliegtuig</td>
                 </tr>  
             </tbody>
           </table>
         </div>
       </div>
 
-
-
-
-      
+    
       <!-- Graph container -->
       <div class="container">
         <h1 class="text-white mt-4">Grafieken</h1>
@@ -200,16 +221,20 @@
 
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle bg-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Exporteren naar PDF
+            Exporteer vluchten
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/pdf">Alle vluchten voor de gemeente</a>
+            <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor de gemeente</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Alle vluchten voor TRMC</a>
+            <a class="dropdown-item" href="#">Alle vluchten (laatste 365 dagen) voor TRMC</a>
           </div>
         </div>
       </div>
       <!-- END ADMIN PAGE -->
+
+
+      <!-- GET HELP -->
+
 
 
       <!-- Footer -->
