@@ -35,6 +35,7 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
+        // TODO better validation
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:25'],
             'date' => ['required', 'max:12'],
@@ -49,6 +50,7 @@ class FormController extends Controller
         ]);
 
         foreach($validated['model_type'] as $model) {
+<<<<<<< HEAD
             $modelInt = intval($model);
             switch ($modelInt) {
                 case 1:
@@ -89,6 +91,9 @@ class FormController extends Controller
                 default:
                     return redirect(route('form.index'))->with('error', 'Er is iets fout gegaan!');
             }
+=======
+            
+>>>>>>> 9fb6975e5c75e015b8031b18d31924b02100658d
         };
 
         return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
