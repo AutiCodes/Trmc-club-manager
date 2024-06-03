@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('form', function (Blueprint $table) {
+        Schema::create('model', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->datetime('date_time');
+            $table->integer('model_type');
+            $table->integer('class');
+            $table->integer('lipo_count');
             $table->timestamps();
-        });      
+        });
     }
 
     /**
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('form');
+        Schema::dropIfExists('model');
     }
 };

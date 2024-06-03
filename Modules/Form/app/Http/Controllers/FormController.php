@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Form\Models\Form;
+use Modules\Form\Models\PlaneModel;
 use Illuminate\Support\Facades\DB;
 use Modules\Form\Enums\ModelTypeEnum;
 
@@ -17,12 +18,8 @@ class FormController extends Controller
      */
     public function index()
     {
-        // Get models from DB
-        $models = DB::table('model_type')->get();
-        $power = DB::table('power_type')->get();
-
         // Return form view
-        return view('form::index', compact('models', 'power'));	
+        return view('form::index');	
     }
 
     /**
@@ -45,28 +42,45 @@ class FormController extends Controller
             'model_type' => ['required'],	
         ]);
         
+        // Insert form
+        $form = Form::create([
+            'name' => $validated['name'],
+            'date_time' => $validated['date']. " ". $validated['time'],
+        ]);
+
         foreach($validated['model_type'] as $model) {
             $modelInt = intval($model);
             switch ($modelInt) {
-                case ModelTypeEnum::PLANE:
+                case 1:
                     $validated = $request->validate([
-                        'power_type_select_plane' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_plane' => ['required', 'int', 'max:8'],
+                        'power_type_select_plane' => ['required'],
+                        'lipo_count_select_plane' => ['required'],
                     ]);
+
+                    // Insert plane type
+                    $model = planeModel::create([
+                        'model_type' => ModelTypeEnum::PLANE,
+                        'class' => $validated['power_type_select_plane'],
+                        'lipo_count' => $validated['lipo_count_select_plane'],
+                    ]);
+
+                    // Attach to form
+                    $form->models()->attach($planeModel);
+
                     break;
-                case ModelTypeEnum::GLIDER:
+                case 2:
                     $validated = $request->validate([
                         'power_type_select_glider' => ['required', 'int', 'max:4'],
                         'lipo_count_select_glider' => ['required', 'int', 'max:8'],
                     ]);
                     break;
-                case ModelTypeEnum::HELICOPTER:	
+                case 3:	
                     $validated = $request->validate([
                         'power_type_select_helicopter' => ['required', 'int', 'max:4'],
                         'lipo_count_select_helicopter' => ['required', 'int', 'max:8'],
                     ]);
                     break;
-                case ModelTypeEnum::DRONE:
+                case 4:
                     $validated = $request->validate([
                         'power_type_select_drone' => ['required', 'int', 'max:4'],
                         'lipo_count_select_drone' => ['required', 'int', 'max:8'],
