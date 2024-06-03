@@ -232,6 +232,10 @@
       body, html {
         background-color: #2f3031;
       }
+      .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+        background-color: #ffffff;
+      }
+
     </style>
     <!-- Temp JS -->
 	</body>
