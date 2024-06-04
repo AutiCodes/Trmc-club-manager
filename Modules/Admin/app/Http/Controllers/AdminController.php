@@ -10,6 +10,7 @@ use Modules\Form\Models\Form;
 use Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
+use Modules\Users\Models\Member;
 
 class AdminController extends Controller
 {
@@ -20,10 +21,12 @@ class AdminController extends Controller
     {
         // Get form submissions
         $formSubmissions = Form::orderBy('id', 'desc')->get();
+        $members = Member::orderBy('created_at', 'desc')->get();
         return view('admin::index', [
             'formSubmissions' => 10,
             'FlightsThisWeek' => 5,
             'FlightsToday' => 2,
+            'members' => $members,
         ]);
     }
 

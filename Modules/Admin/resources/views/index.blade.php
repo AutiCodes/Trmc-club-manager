@@ -44,7 +44,6 @@
 			<!-- END NAVBAR -->
 
 
-      <!-- BEGIN ADMIN PAGE -->
       <!-- Total container-->
       <div class="container">
         <!-- Total -->
@@ -54,7 +53,7 @@
           <!-- Total flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Totaal:</h3>
-            <h1 class="text-white">4</h1>
+            <h1 class="text-white">3</h1>
           </div>
           <!-- This week flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
@@ -126,6 +125,23 @@
       </div>
 
     
+      <!-- Administratie -->
+      <div class="container mb-4">
+        <h1 class="text-white mt-2">Administratie</h1>
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle bg-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Exporteer vluchten
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor de gemeente</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor TRMC</a>
+          </div>
+        </div>
+      </div>
+
+      
       <!-- Graph container -->
       <div class="container">
         <h1 class="text-white mt-4">Grafieken</h1>
@@ -182,26 +198,37 @@
       </div>
 
 
-      <!-- Administratie -->
-      <div class="container mb-4">
-        <h1 class="text-white mt-4">Administratie</h1>
 
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle bg-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Exporteer vluchten
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor de gemeente</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor TRMC</a>
-          </div>
+      <!-- Table members -->
+      <div class="container">
+        <h1 class="mt-4 text-white">Leden</h1>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover text-white ml-2 mr-2">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Naam</th>
+                <th scope="col">RDW nummer</th>
+                <th scope="col">Tijd aangemaakt</th>
+              </tr>
+            </thead>
+            @foreach($members as $member)
+              <tbody>
+                <tr>
+                  <th scope="row">{{ $member->id }}</th>
+                  <td>{{ $member->name }}</td>
+                  <td>{{ $member->rdw_number }}</td>
+                  <td>{{ $member->created_at }}</td>
+                  </tr>  
+              </tbody>
+            @endforeach
+          </table>
         </div>
       </div>
-      <!-- END ADMIN PAGE -->
 
 
       <!-- HELP ICON -->
-      <a class="help_icon text-white mr-3 " data-toggle="modal" data-target="#helpModal" >
+      <a class="help_icon text-white mr-3" data-toggle="modal" data-target="#helpModal" >
         <img class="img-fluid" src="/media/images/help.ico" alt="help" style="width: 50px;"></img>
       </a>
 
@@ -234,7 +261,7 @@
 
 
       <!-- Footer -->
-      <footer class="footer text-center">
+      <footer class="footer text-center mt-3">
         <p class="text-white">Copyright &copy; TRMC 2024</p>
         <p class="text-white">Hosting & development door Kelvin de Reus</p>
       </footer>
