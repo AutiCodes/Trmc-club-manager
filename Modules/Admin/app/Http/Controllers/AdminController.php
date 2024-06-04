@@ -21,7 +21,6 @@ class AdminController extends Controller
         // Get form submissions
         $formSubmissions = Form::orderBy('id', 'desc')->get();
         return view('admin::index', [
-            'FlightsTotal' => $FlightsTotal,
             'formSubmissions' => 10,
             'FlightsThisWeek' => 5,
             'FlightsToday' => 2,
@@ -84,63 +83,63 @@ class AdminController extends Controller
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
             </head>
             <h1>Twente Radio Modelvlieg Club</h1>
-            <hr>
+            <hr c>
             <h2>Vluchten 2024:</h2>
 
             <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Nummer</th>
-                <th scope="col">RDW nummer</th>
-                <th scope="col">Datum</th>
-                <th scope="col">Tijd</th>
-                <th scope="col">Model type(s)</th>
-                <th scope="col">Aantal vluchten</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">5</th>
-                <td>342352345325</td>
-                <td>4-6-2024</td>
-                <td>10:00</td>
-                <td>Vliegtuig</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>342352345325</td>
-                <td>4-6-2024</td>
-                <td>10:00</td>
-                <td>Vliegtuig, Helicopter</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>342352345325</td>
-                <td>4-6-2024</td>
-                <td>10:00</td>
-                <td>Vliegtuig, Helicopter</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>342352345325</td>
-                <td>4-6-2024</td>
-                <td>10:00</td>
-                <td>Vliegtuig, Helicopter</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>342352345325</td>
-                <td>4-6-2024</td>
-                <td>10:00</td>
-                <td>Vliegtuig, Helicopter</td>
-                <td>4</td>
-              </tr>                            
-            </tbody>
-          </table>
+                <thead>
+                <tr>
+                    <th scope="col">Nummer</th>
+                    <th scope="col">RDW nummer</th>
+                    <th scope="col">Datum</th>
+                    <th scope="col">Tijd</th>
+                    <th scope="col">Model type(s)</th>
+                    <th scope="col">Aantal vluchten</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>342352345325</td>
+                    <td>4-6-2024</td>
+                    <td>10:00</td>
+                    <td>Vliegtuig</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>342352345325</td>
+                    <td>4-6-2024</td>
+                    <td>10:00</td>
+                    <td>Vliegtuig, Helicopter</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>342352345325</td>
+                    <td>4-6-2024</td>
+                    <td>10:00</td>
+                    <td>Vliegtuig, Helicopter</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>342352345325</td>
+                    <td>4-6-2024</td>
+                    <td>10:00</td>
+                    <td>Vliegtuig, Helicopter</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>342352345325</td>
+                    <td>4-6-2024</td>
+                    <td>10:00</td>
+                    <td>Vliegtuig, Helicopter</td>
+                    <td>4</td>
+                </tr>                            
+              </tbody>
+            </table>
             
             <footer class="text-center">
                 <p>PDF gegenereerd op '. Carbon::now(). ' door Kelvin de Reus</p>
