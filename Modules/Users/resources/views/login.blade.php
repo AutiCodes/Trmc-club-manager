@@ -43,7 +43,7 @@
 
 
       <!-- LOGIN -->
-      <div class="container bg-dark mt-4">
+      <div class="container bg-dark mt-4 w-25">
         <h3 class="text-white text-center pt-3">Login TRMC vluchtmanager</h3>
         <img src="/media/images/TRMC_LOGO_PNG.ico" class="rounded mx-auto d-block" alt="Responsive image">
 
