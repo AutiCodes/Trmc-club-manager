@@ -13,11 +13,13 @@ class User extends Model
     /**
      * The attributes that are mass assignable.
      * @var string name, email, password
+     * @var int is_admin
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     protected static function newFactory(): UserFactory
