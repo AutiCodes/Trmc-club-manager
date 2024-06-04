@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Users\Http\Controllers\UsersController;
 use Modules\Users\Http\Controllers\AuthenticationController;
+use Modules\Users\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,8 @@ Route::group([], function () {
 
 Route::group([], function () {
     Route::resource('authenticatie', AuthenticationController::class)->names('authenticatie');
+});
+
+Route::group([], function () {
+    Route::resource('leden', MemberController::class)->names('members');
 });
