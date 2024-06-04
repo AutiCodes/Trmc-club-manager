@@ -10,6 +10,7 @@ use Modules\Form\Models\Form;
 use Modules\Form\Models\PlaneModel;
 use Illuminate\Support\Facades\DB;
 use Modules\Form\Enums\ModelTypeEnum;
+use Modules\Users\Models\Member;
 
 class FormController extends Controller
 {
@@ -19,8 +20,10 @@ class FormController extends Controller
      */
     public function index()
     {
+        // Get current members
+        $members = Member::orderby('name', 'DESC')->get();
         // Return form view
-        return view('form::index');	
+        return view('form::index', ['members' => $members]);	
     }
 
     /**

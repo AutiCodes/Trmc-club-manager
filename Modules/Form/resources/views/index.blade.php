@@ -14,6 +14,12 @@ For: TRMC
 	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	  <!-- tab icon -->
 	  <link rel="icon" href="/media/images/TRMC_LOGO_PNG.ico" type="image/x-icon">
+
+    <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
   </head>
 	<body>
 		<main>      
@@ -72,20 +78,26 @@ For: TRMC
             <img src="/media/images/field.jpg" class="img-fluid rounded mt-3">
             <h2 class="text-white text-center pt-3 pb-3">Registratie aanvang modelvliegen TRMC</h2>
             
+            <script>
+              $(document).ready(function () {
+                $('select').selectize({
+                    sortField: 'text'
+                });
+              });
+            </script>
+
             <!-- NAME -->
             <div class="form-group">
               <label for="name" class="text-white font-weight-bold">Naam modelvlieger:</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="Voornaam Achternaam" required oninput="requiredHideViewer(this)">
-              <p class="text-danger" id="name_required" style="display: block;">Naam is vereist!</p>
+              <select id="name" placeholder="Voornaam Achternaam" required onChange="requiredHideViewer(this)">
+              <option value="">Selecteer een naam</option>
+              @foreach ($members as $member)
+                <option value="{{ $member->id }}">{{ $member->name }}</option>
+              @endforeach
+            </select>              
+            <p class="text-danger" id="name_required" style="display: block;">Naam is vereist!</p>
             </div>
-            
-            <!-- NAME -->
-            <div class="form-group">
-              <label for="RDW" class="text-white font-weight-bold">RDW nummer modelvlieger (niet nodig als je naam er al in staat):</label>
-              <input type="text" class="form-control" name="RDW" id="RDW" placeholder="RDW nummer" required oninput="requiredHideViewer(this)">
-              <p class="text-danger" id="RDW_required" style="display: block;">RDW nummer is vereist!</p>
-            </div>
-
+        
             <!-- DATE -->
             <div class="form-group">
               <label for="date" class="text-white font-weight-bold">Selecteer een datum:</label>
@@ -332,7 +344,8 @@ For: TRMC
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Google reCCHAPTA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 
     <!-- Temp styleing -->
     <style>
@@ -364,7 +377,7 @@ For: TRMC
     <!-- Temp JS -->
     <script>
       function requiredHideViewer(e) {
-        if(e.value != ''){
+        if(e.value != '') {
           document.getElementById(e.id + '_required').style.visibility = "hidden";
           return;
         }	
@@ -385,6 +398,13 @@ For: TRMC
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       })
+
+      $(document).ready(function () {
+      $('select').selectize({
+          sortField: 'text'
+      });
+  });
+
     </script>
 
 	</body>
