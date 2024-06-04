@@ -87,6 +87,7 @@ For: TRMC
             </script>
 
             <!-- NAME -->
+            <p class="text-white">Staat je naam er nog niet in? Klik dan <a href="{{ route('members.create') }}">hier</a> om je in te schrijven.</p>
             <div class="form-group">
               <label for="name" class="text-white font-weight-bold">Naam modelvlieger:</label>
               <select id="name" placeholder="Voornaam Achternaam" required onChange="requiredHideViewer(this)">
