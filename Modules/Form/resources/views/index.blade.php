@@ -79,6 +79,13 @@ For: TRMC
               <p class="text-danger" id="name_required" style="display: block;">Naam is vereist!</p>
             </div>
             
+            <!-- NAME -->
+            <div class="form-group">
+              <label for="RDW" class="text-white font-weight-bold">RDW nummer modelvlieger (niet nodig als je naam er al in staat):</label>
+              <input type="text" class="form-control" name="RDW" id="RDW" placeholder="RDW nummer" required oninput="requiredHideViewer(this)">
+              <p class="text-danger" id="RDW_required" style="display: block;">RDW nummer is vereist!</p>
+            </div>
+
             <!-- DATE -->
             <div class="form-group">
               <label for="date" class="text-white font-weight-bold">Selecteer een datum:</label>
