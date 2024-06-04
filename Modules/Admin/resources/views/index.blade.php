@@ -35,6 +35,9 @@
 						<li class="nav-item">
 							<a class="nav-link text-white" href="/admin">Admin pagina</a>
 						</li>                     
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/authenticatie">Login pagina</a>
+						</li>              
 					</ul>
 				</div>
 			</nav>
