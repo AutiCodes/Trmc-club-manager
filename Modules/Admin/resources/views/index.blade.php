@@ -54,17 +54,17 @@
           <!-- Total flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Totaal:</h3>
-            <h1 class="text-white"><!--{{ $FlightsTotal }}-->4</h1>
+            <h1 class="text-white">4</h1>
           </div>
           <!-- This week flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Deze week:</h3>
-            <h1 class="text-white"><!--{{ $FlightsThisWeek }}-->2</h1>
+            <h1 class="text-white">2</h1>
           </div>
           <!-- Today flights -->
           <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
             <h3 class="text-white mt-2">Vandaag:</h3>
-            <h1 class="text-white"><!--{{ $FlightsToday }}-->0</h1>
+            <h1 class="text-white">0</h1>
           </div>                    
         </div>
         <!-- End total cards -->
@@ -87,18 +87,6 @@
               </tr>
             </thead>
             <tbody>
-              <!--
-              @foreach($formSubmissions as $submission)
-                <tr>
-                  <th scope="row">{{ $submission->id }}</th>
-                  <td>{{ $submission->name }}</td>
-                  <td>{{ explode(' ', $submission->date_time)[0] }}</td>
-                  <td>{{ explode(' ', $submission->date_time)[1] }}</td>
-                  <td>{{ $submission->lipo_count }}</td>
-                  <td>{{ $submission->model_type }}</td>
-                </tr>           
-              @endforeach
-              -->
               <!-- TEMP -->
               <tr>
                 <th scope="row">3</th>
@@ -111,18 +99,6 @@
             </tbody>
 
             <tbody>
-              <!--
-              @foreach($formSubmissions as $submission)
-                <tr>
-                  <th scope="row">{{ $submission->id }}</th>
-                  <td>{{ $submission->name }}</td>
-                  <td>{{ explode(' ', $submission->date_time)[0] }}</td>
-                  <td>{{ explode(' ', $submission->date_time)[1] }}</td>
-                  <td>{{ $submission->lipo_count }}</td>
-                  <td>{{ $submission->model_type }}</td>
-                </tr>           
-              @endforeach
-              -->
               <!-- TEMP -->
               <tr>
                 <th scope="row">2</th>
@@ -135,18 +111,6 @@
             </tbody>
 
             <tbody>
-              <!--
-              @foreach($formSubmissions as $submission)
-                <tr>
-                  <th scope="row">{{ $submission->id }}</th>
-                  <td>{{ $submission->name }}</td>
-                  <td>{{ explode(' ', $submission->date_time)[0] }}</td>
-                  <td>{{ explode(' ', $submission->date_time)[1] }}</td>
-                  <td>{{ $submission->lipo_count }}</td>
-                  <td>{{ $submission->model_type }}</td>
-                </tr>           
-              @endforeach
-              -->
               <!-- TEMP -->
               <tr>
                 <th scope="row">1</th>
@@ -229,7 +193,7 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor de gemeente</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Alle vluchten (laatste 365 dagen) voor TRMC</a>
+            <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor TRMC</a>
           </div>
         </div>
       </div>
