@@ -10,25 +10,30 @@ use Modules\Form\Models\Form;
 use Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
+use Modules\Users\Models\Member;
 
 class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @return View
      */
     public function index()
     {
-        // Get form submissions
         $formSubmissions = Form::orderBy('id', 'desc')->get();
+        $members = Member::orderBy('created_at', 'desc')->get();
+
         return view('admin::index', [
             'formSubmissions' => 10,
             'FlightsThisWeek' => 5,
             'FlightsToday' => 2,
+            'members' => $members,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
+     * @return View
      */
     public function create()
     {
@@ -75,6 +80,11 @@ class AdminController extends Controller
         //
     }
 
+    /**
+     * Generates a PDF with all flights from the database
+     * and loads it in the browser
+     * @return PDF
+     */
     public function downloadFlightsGov()
     {
         $pdf = PDF::loadHTML(
@@ -151,17 +161,7 @@ class AdminController extends Controller
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             '
         );
+
         return $pdf->stream('vluchten.pdf');
     }
-
-    public function downloadFlightsTRMC()
-    {
-        $file = Storage::put('vluchten-trmc-' . date('Y-m-d-H-i-s') . '.txt', 'Hoi!');
-
-        if (!$file) {
-            return redirect()->back()->with('error', 'Er is iets fout gegaan! Foutcode: Kon bestand niet opslaan.');
-        }
-
-        return response()->download(storage_path('app/test.txt'));
-    }    
 }
