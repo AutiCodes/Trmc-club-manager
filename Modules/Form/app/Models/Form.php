@@ -15,6 +15,7 @@ class Form extends Model
     
     /**
      * The attributes that are mass assignable.
+     * @var string name, email, password
      */
     protected $fillable = [
         'name',
