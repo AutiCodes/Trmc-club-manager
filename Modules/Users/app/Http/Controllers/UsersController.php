@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Hash;
+use Modules\Users\Models\User;
 
 class UsersController extends Controller
 {
@@ -24,7 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users::create');
+        return view('users::add_user');
     }
 
     /**
@@ -34,7 +36,23 @@ class UsersController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required','string','max:40', 'unique:Users'],
+            'username' => ['required','string','max:40', 'unique:Users'],
+            'password' => ['required','string','max:40'],
+        ]);
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'username' => $validated['username'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        if (!$user) {
+            return redirect(route('admin.index'))->with('error', 'Er is iets fout gegaan!');
+        } 
+
+        return redirect(route('admin.index'))->with('success', 'Gebruiker toegevoegd!');
     }
 
     /**
