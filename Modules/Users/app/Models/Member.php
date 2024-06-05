@@ -5,6 +5,8 @@ namespace Modules\Users\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Users\Database\Factories\MemberFactory;
+use Modules\Form\Models\Form;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Member extends Model
 {
@@ -20,8 +22,11 @@ class Member extends Model
         'rdw_number',
     ];
 
-    protected static function newFactory(): MemberFactory
+    /**
+     * Form to member relationship
+     */
+    public function form(): belongsToMany
     {
-        //return MemberFactory::new();
+        return $this->belongsToMany(Form::class);
     }
 }

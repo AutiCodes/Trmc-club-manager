@@ -7,10 +7,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Form\Models\Form;
-use Modules\Form\Models\PlaneModel;
 use Illuminate\Support\Facades\DB;
 use Modules\Form\Enums\ModelTypeEnum;
 use Modules\Users\Models\Member;
+use Modules\Form\Models\SubmittedModel;
 
 class FormController extends Controller
 {
@@ -48,56 +48,74 @@ class FormController extends Controller
             'date' => ['required', 'max:12'],
             'time' => ['required', 'max:6'],
             'model_type' => ['required'],	
+            'power_type_select' => ['integer'],
+            'lipo_count_select' => ['integer'],
         ]);
         
-        // Insert form
         $form = Form::create([
             'name' => $validated['name'],
             'date_time' => $validated['date']. " ". $validated['time'],
         ]);
 
+        // Attach form to member with relationship
+        $form->members()->attach($form->id);
+
+        // Add submitted models to model table
         foreach($validated['model_type'] as $model) {
-            $modelInt = intval($model);
-            switch ($modelInt) {
-                case 1:
-                    $validated = $request->validate([
-                        'power_type_select_plane' => ['required'],
-                        'lipo_count_select_plane' => ['required'],
-                    ]);
+            if ($model == 1) {
+                $validated = $request->validate([
+                    'power_type_select_plane' => ['required', 'integer', 'max:4'],
+                    'lipo_count_select_plane' => ['required', 'integer', 'max: 8'],
+                ]);
 
-                    // Insert plane type
-                    $model = planeModel::create([
-                        'model_type' => ModelTypeEnum::PLANE,
-                        'class' => $validated['power_type_select_plane'],
-                        'lipo_count' => $validated['lipo_count_select_plane'],
-                    ]);
-
-                    // Attach to form
-                    $form->models()->attach($planeModel);
-
-                    break;
-                case 2:
-                    $validated = $request->validate([
-                        'power_type_select_glider' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_glider' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                case 3:	
-                    $validated = $request->validate([
-                        'power_type_select_helicopter' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_helicopter' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                case 4:
-                    $validated = $request->validate([
-                        'power_type_select_drone' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_drone' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                default:
-                    return redirect(route('form.index'))->with('error', 'Er is iets fout gegaan!');
+                $model = SubmittedModel::create([
+                    'model_type' => 1,
+                    'class' => $validated['power_type_select_plane'],
+                    'lipo_count' => $validated['lipo_count_select_plane'],
+                ]);
             }
-        };
+
+            elseif ($model == 2) {
+                $validated = $request->validate([
+                    'power_type_select_glider' => ['required', 'integer', 'max:4'],
+                    'lipo_count_select_glider' => ['required', 'integer', 'max: 8'],
+                ]);
+
+                $model = SubmittedModel::create([
+                    'model_type' => $model,
+                    'class' => $validated['power_type_select_glider'],
+                    'lipo_count' => $validated['lipo_count_select_glider'],
+                ]);                
+            }
+
+            elseif ($model == 3) {
+                $validated = $request->validate([
+                    'power_type_select_helicopter' => ['required', 'integer', 'max:4'],
+                    'lipo_count_select_helicopter' => ['required', 'integer', 'max: 8'],
+                ]);
+
+                $model = SubmittedModel::create([
+                    'model_type' => $model,
+                    'class' => $validated['power_type_select_helicopter'],
+                    'lipo_count' => $validated['lipo_count_select_helicopter'],
+                ]);                
+            }
+
+            elseif ($model == 4) {
+                $validated = $request->validate([
+                    'power_type_select_drone' => ['required', 'integer', 'max:4'],
+                    'lipo_count_select_drone' => ['required', 'integer', 'max: 8'],
+                ]);
+
+                $model = SubmittedModel::create([
+                    'model_type' => $model,
+                    'class' => $validated['power_type_select_drone'],
+                    'lipo_count' => $validated['lipo_count_select_drone'],
+                ]);
+            }
+            // Attach submitted models to submitted form
+            $form->submittedModels()->attach($form->id);
+        }
 
         return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
     }
