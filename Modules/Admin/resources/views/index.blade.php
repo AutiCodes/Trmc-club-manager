@@ -38,11 +38,29 @@
 						<li class="nav-item">
 							<a class="nav-link text-white" href="/authenticatie">Login pagina</a>
 						</li>              
+						<li class="nav-item">
+							<a class="nav-link text-white" href="{{ route('users.create') }}">Voeg een admin toe pagina</a>
+						</li>              
 					</ul>
 				</div>
 			</nav>
 			<!-- END NAVBAR -->
 
+      @if ($errors->any())
+          <div class="alert alert-danger">
+            <h1>Oeps!</h1>
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        @if (session()->has('success'))
+          <div class="alert alert-success" role="alert">
+              {{ session('success') }}
+          </div>
+        @endif
 
       <!-- Total container-->
       <div class="container">
