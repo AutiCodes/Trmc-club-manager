@@ -27,6 +27,6 @@ class Member extends Model
      */
     public function form(): belongsToMany
     {
-        $this->belongsToMany(Form::class);
+        return $this->belongsToMany(Form::class);
     }
 }
