@@ -90,7 +90,7 @@ For: TRMC
             <p class="text-white">Staat je naam er nog niet in? Klik dan <a href="{{ route('members.create') }}">hier</a> om je in te schrijven.</p>
             <div class="form-group">
               <label for="name" class="text-white font-weight-bold">Naam modelvlieger:</label>
-              <select id="name" placeholder="Voornaam Achternaam" required onChange="requiredHideViewer(this)">
+              <select id="name" name="name" placeholder="Voornaam Achternaam" required onChange="requiredHideViewer(this)">
               <option value="">Selecteer een naam</option>
               @foreach ($members as $member)
                 <option value="{{ $member->id }}">{{ $member->name }}</option>

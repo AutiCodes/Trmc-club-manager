@@ -5,8 +5,8 @@ namespace Modules\Form\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Form\Database\Factories\FormFactory;
+use Modules\Users\Models\Member;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Modules\Form\Models\PlaneModel;
 
 class Form extends Model
 {
@@ -22,8 +22,8 @@ class Form extends Model
         'date_time',
     ];
 
-    public function models(): BelongsToMany
+    public function members(): BelongsToMany
     {
-        return $this->belongsToMany(PlaneModel::class, 'form_model');
+        return $this->belongsToMany(Member::class);
     }
 }

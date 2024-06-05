@@ -50,14 +50,15 @@ class FormController extends Controller
             'model_type' => ['required'],	
         ]);
         
-        // Insert form
         $form = Form::create([
             'name' => $validated['name'],
             'date_time' => $validated['date']. " ". $validated['time'],
         ]);
+        
+        // Get user
+        $user = 
 
-            }
-        };
+        $form->members()->attach($form->id);
 
         return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
     }
