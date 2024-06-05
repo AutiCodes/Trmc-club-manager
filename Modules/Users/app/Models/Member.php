@@ -22,6 +22,9 @@ class Member extends Model
         'rdw_number',
     ];
 
+    /**
+     * Form to member relationship
+     */
     public function form(): belongsToMany
     {
         $this->belongsToMany(Form::class);

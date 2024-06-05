@@ -22,6 +22,9 @@ class Form extends Model
         'date_time',
     ];
 
+    /**
+     * Form to member relationship
+     */
     public function members(): BelongsToMany
     {
         return $this->belongsToMany(Member::class);
