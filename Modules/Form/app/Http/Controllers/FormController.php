@@ -54,10 +54,8 @@ class FormController extends Controller
             'name' => $validated['name'],
             'date_time' => $validated['date']. " ". $validated['time'],
         ]);
-        
-        // Get user
-        $user = 
 
+        // Attach form to member with relationship
         $form->members()->attach($form->id);
 
         return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
