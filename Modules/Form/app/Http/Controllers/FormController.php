@@ -56,46 +56,6 @@ class FormController extends Controller
             'date_time' => $validated['date']. " ". $validated['time'],
         ]);
 
-        foreach($validated['model_type'] as $model) {
-            $modelInt = intval($model);
-            switch ($modelInt) {
-                case 1:
-                    $validated = $request->validate([
-                        'power_type_select_plane' => ['required'],
-                        'lipo_count_select_plane' => ['required'],
-                    ]);
-
-                    // Insert plane type
-                    $model = planeModel::create([
-                        'model_type' => ModelTypeEnum::PLANE,
-                        'class' => $validated['power_type_select_plane'],
-                        'lipo_count' => $validated['lipo_count_select_plane'],
-                    ]);
-
-                    // Attach to form
-                    $form->models()->attach($planeModel);
-
-                    break;
-                case 2:
-                    $validated = $request->validate([
-                        'power_type_select_glider' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_glider' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                case 3:	
-                    $validated = $request->validate([
-                        'power_type_select_helicopter' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_helicopter' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                case 4:
-                    $validated = $request->validate([
-                        'power_type_select_drone' => ['required', 'int', 'max:4'],
-                        'lipo_count_select_drone' => ['required', 'int', 'max:8'],
-                    ]);
-                    break;
-                default:
-                    return redirect(route('form.index'))->with('error', 'Er is iets fout gegaan!');
             }
         };
 
