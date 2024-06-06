@@ -97,47 +97,25 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Naam</th>
-                <th scope="col">Datum</th>
-                <th scope="col">Tijd</th>
-                <th scope="col">Aantal lipo's (totaal)</th>
-                <th scope="col">Model type(s)</th>
+                <th scope="col">Datum en tijd</th>
+                <th scope="col">Model type(s) met lipo aantallen en vermogens</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- TEMP -->
-              <tr>
-                <th scope="row">3</th>
-                <td>Kelvin de Reus</td>
-                <td>03-06-2024</td>
-                <td>10:33</td>
-                <td class="text-center">3</td>
-                <td>Vliegtuig, helicopter</td>
-                </tr>  
-            </tbody>
-
-            <tbody>
-              <!-- TEMP -->
-              <tr>
-                <th scope="row">2</th>
-                <td>Naam hier</td>
-                <td>03-06-2024</td>
-                <td>11:33</td>
-                <td class="text-center">6</td>
-                <td>Vliegtuig, Zweefvliegtuig, drone</td>
-                </tr>  
-            </tbody>
-
-            <tbody>
-              <!-- TEMP -->
-              <tr>
-                <th scope="row">1</th>
-                <td>Naam hier 2</td>
-                <td>05-06-2024</td>
-                <td>12:33</td>
-                <td class="text-center">1</td>
-                <td>Vliegtuig</td>
-                </tr>  
-            </tbody>
+            @foreach ($formSubmissions as $formSubmission)
+              <tbody>
+                <tr>
+                  <th scope="row">{{ $formSubmission->id }}</th>
+                  <td>{{ $formSubmission->member[0]->name }}</td>
+                  <td>{{ $formSubmission->date_time }}</td>
+                  <td>
+                    @foreach ($formSubmission->submittedModels as $model)
+                      <p class="mt-0 mb-0">
+                        Model {{ $loop->iteration }}: {{$model->model_type}}. Lipo aantal: {{ $model->lipo_count }}. Model-vermogen: {{ $model->class }}
+                      </p>
+                    @endforeach 
+                  </td>
+              </tbody>
+            @endforeach
           </table>
         </div>
       </div>
@@ -160,11 +138,10 @@
       </div>
 
       
-      <!-- Graph container -->
+      <!-- Graph container 
       <div class="container">
         <h1 class="text-white mt-4">Grafieken</h1>
         <div class="row">
-          <!-- Graph 1 -->
           <div class="col-sm bg-dark rounded ml-2 mr-2 mt-2">
             <p class="text-white">Vluchten laatste 30 dagen</p>
             <canvas id="ChartOne" style="width:100%;max-width:700px"></canvas>
@@ -188,7 +165,7 @@
               });
             </script>
           </div>
-          <!-- Graph 2 -->
+
           <div class="col-sm bg-dark rounded ml-2 mr-2 mt-2">
             <p class="text-white">Top 5 leden met de meeste vluchten</p>
             <canvas id="ChartTwo" style="width:100%;max-width:700px"></canvas>
@@ -214,7 +191,7 @@
           </div>
         </div>
       </div>
-
+      -->
 
 
       <!-- Table members -->

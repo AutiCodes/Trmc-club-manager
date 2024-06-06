@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Form\Database\Factories\FormFactory;
 use Modules\Users\Models\Member;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 use Modules\Form\Models\SubmittedModel;
 
 class Form extends Model
@@ -25,10 +27,11 @@ class Form extends Model
 
     /**
      * Form to member relationship
+     * TODO: Use BelongsTo instead BelongsToMany
      */
-    public function members(): BelongsToMany
+    public function member(): BelongsToMany
     {
-        return $this->belongsToMany(Member::class);
+        return $this->belongsToMany(Member::class, 'form_member');
     }
 
     /**
@@ -38,4 +41,8 @@ class Form extends Model
     {
         return $this->belongsToMany(SubmittedModel::class, 'form_model');
     }
+
+    /**
+     * Get 
+     */
 }

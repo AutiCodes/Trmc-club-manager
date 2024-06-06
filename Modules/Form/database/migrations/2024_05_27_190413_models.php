@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('model', function (Blueprint $table) {
             $table->id();
-            $table->integer('model_type');
-            $table->integer('class');
+            $table->string('model_type');
+            $table->string('class');
             $table->integer('lipo_count');
             $table->timestamps();
         });

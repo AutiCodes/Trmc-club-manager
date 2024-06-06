@@ -155,9 +155,9 @@ For: TRMC
                 <label for="power_type_select_plane" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
                 <select class="form-control" id="power_type_select_plane" name="power_type_select_plane" onchange="requiredHideViewer(this)">
                   <option disabled selected>Selecteer</option>
-                  <option value=1>< 300W</option>
-                  <option value=2>300W-1200W</option>
-                  <option value=3>1200W-3000W</option>
+                  <option value="<300W">< 300W</option>
+                  <option value="300W-1200W">300W-1200W</option>
+                  <option value="1200W-3000W">1200W-3000W</option>
                 </select>
                 <p class="text-danger" id="power_type_select_plane_required" style="display: block;">Klasse is vereist!</p>
               </div>
@@ -187,9 +187,9 @@ For: TRMC
                 <label for="power_type_select_glider" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
                 <select class="form-control" id="power_type_select_glider" name="power_type_select_glider" onchange="requiredHideViewer(this)">
                   <option disabled selected>Selecteer</option>
-                  <option value=1>< 300W</option>
-                  <option value=2>300W-1200W</option>
-                  <option value=3>1200W-3000W</option>
+                  <option value="<300W">< 300W</option>
+                  <option value="300W-1200W">300W-1200W</option>
+                  <option value="1200W-3000W">1200W-3000W</option>
                 </select>
                 <p class="text-danger" id="power_type_select_glider_required" style="display: block;">Klasse is vereist!</p>
               </div>
@@ -219,9 +219,9 @@ For: TRMC
                 <label for="power_type_select_helicopter" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
                 <select class="form-control" id="power_type_select_helicopter" name="power_type_select_helicopter" onchange="requiredHideViewer(this)">
                   <option disabled selected>Selecteer</option>
-                  <option value=1>< 300W</option>
-                  <option value=2>300W-1200W</option>
-                  <option value=3>1200W-3000W</option>
+                  <option value="<300W">< 300W</option>
+                  <option value="300W-1200W">300W-1200W</option>
+                  <option value="1200W-3000W">1200W-3000W</option>
                 </select>
                 <p class="text-danger" id="power_type_select_helicopter_required" style="display: block;">Klasse is vereist!</p>
               </div>
@@ -251,9 +251,9 @@ For: TRMC
                 <label for="power_type_select_drone" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
                 <select class="form-control" id="power_type_select_drone" name="power_type_select_drone" onchange="requiredHideViewer(this)">
                   <option disabled selected>Selecteer</option>
-                  <option value=1>< 300W</option>
-                  <option value=2>300W-1200W</option>
-                  <option value=3>1200W-3000W</option>
+                  <option value="<300W">< 300W</option>
+                  <option value="300W-1200W">300W-1200W</option>
+                  <option value="1200W-3000W">1200W-3000W</option>
                 </select>
                 <p class="text-danger" id="power_type_select_drone_required" style="display: block;">Klasse is vereist!</p>
               </div>
