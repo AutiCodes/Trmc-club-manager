@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/rcmodels",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\RcModels\\": "app/",
+            "Modules\\RcModels\\Database\\Factories\\": "database/factories/",
+            "Modules\\RcModels\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\RcModels\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "RcModels",
+    "alias": "rcmodels",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\RcModels\\Providers\\RcModelsServiceProvider"
+    ],
+    "files": []
+}
