@@ -97,47 +97,26 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Naam</th>
-                <th scope="col">Datum</th>
-                <th scope="col">Tijd</th>
+                <th scope="col">Datum en tijd</th>
                 <th scope="col">Aantal lipo's (totaal)</th>
                 <th scope="col">Model type(s)</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- TEMP -->
-              <tr>
-                <th scope="row">3</th>
-                <td>Kelvin de Reus</td>
-                <td>03-06-2024</td>
-                <td>10:33</td>
-                <td class="text-center">3</td>
-                <td>Vliegtuig, helicopter</td>
-                </tr>  
-            </tbody>
-
-            <tbody>
-              <!-- TEMP -->
-              <tr>
-                <th scope="row">2</th>
-                <td>Naam hier</td>
-                <td>03-06-2024</td>
-                <td>11:33</td>
-                <td class="text-center">6</td>
-                <td>Vliegtuig, Zweefvliegtuig, drone</td>
-                </tr>  
-            </tbody>
-
-            <tbody>
-              <!-- TEMP -->
-              <tr>
-                <th scope="row">1</th>
-                <td>Naam hier 2</td>
-                <td>05-06-2024</td>
-                <td>12:33</td>
-                <td class="text-center">1</td>
-                <td>Vliegtuig</td>
-                </tr>  
-            </tbody>
+            @foreach ($formSubmissions as $formSubmission)
+              <tbody>
+                <tr>
+                  <th scope="row">{{ $formSubmission->id }}</th>
+                  <td>{{ $formSubmission->member[0]->name }}</td>
+                  <td>{{ $formSubmission->date_time }}</td>
+                  <td class="text-center">3</td>
+                  <td>
+                    @foreach ($formSubmission->submittedModels as $model)
+                      Model: {{$model->model_type}}, lipo's: {{ $model->lipo_count }}.
+                    @endforeach 
+                  </td>
+                  </tr>  
+              </tbody>
+            @endforeach
           </table>
         </div>
       </div>

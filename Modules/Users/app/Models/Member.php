@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Member extends Model
 {
     use HasFactory;
-    protected $table ='Members';
+    protected $table = 'Members';
     /**
      * The attributes that are mass assignable.'
      * @var string name

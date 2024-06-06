@@ -11,6 +11,7 @@ use Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
 use Modules\Users\Models\Member;
+use Modules\Form\Models\SubmittedModels;
 
 class AdminController extends Controller
 {
@@ -20,14 +21,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $formSubmissions = Form::orderBy('id', 'desc')->get();
-        $members = Member::orderBy('created_at', 'desc')->get();
+        $formSubmissions = Form::orderBy('id', 'desc')
+                                ->with('member')
+                                ->with('submittedModels')
+                                ->get();
+
+        $allMembers = Member::orderBy('created_at', 'desc')->get();
 
         return view('admin::index', [
-            'formSubmissions' => 10,
+            'formSubmissions' => $formSubmissions,
             'FlightsThisWeek' => 5,
             'FlightsToday' => 2,
-            'members' => $members,
+            'members' => $allMembers,
         ]);
     }
 

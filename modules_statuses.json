@@ -3,5 +3,6 @@
     "Admin": true,
     "User": true,
     "Form": true,
-    "Users": true
+    "Users": true,
+    "Models": true
 }

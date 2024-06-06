@@ -58,10 +58,11 @@ class FormController extends Controller
         ]);
 
         // Attach form to member with relationship
-        $form->members()->attach($form->id);
+        $form->member()->attach($form->id);
 
         // Add submitted models to model table
         foreach($validated['model_type'] as $model) {
+            // TODO: Use Enum and switch case
             if ($model == 1) {
                 $validated = $request->validate([
                     'power_type_select_plane' => ['required', 'integer', 'max:4'],
@@ -114,7 +115,7 @@ class FormController extends Controller
                 ]);
             }
             // Attach submitted models to submitted form
-            $form->submittedModels()->attach($form->id);
+            $form->submittedModels()->attach($model->id);
         }
 
         return redirect(route('form.index'))->with('success', 'Je vlucht is aangemeld!');
