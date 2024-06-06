@@ -36,8 +36,8 @@ class MemberController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required','string','max:40', 'unique:Members'],	
-            'rdw_number' => ['required', 'integer', 'unique:Members'],
+            'name' => ['required', 'string', 'max:40', 'unique:Members'],	
+            'rdw_number' => ['required', 'integer', 'unique:Members', 'digits:10'],
         ]);
 
         $member = Member::create([
