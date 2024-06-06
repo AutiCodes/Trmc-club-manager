@@ -59,7 +59,7 @@ class FormController extends Controller
         ]);
 
         // Attach form to member with relationship
-        $form->member()->attach($validated['name']);
+        $form->member()->attach(intval($validated['name']));
 
         // Add submitted models to model table
         foreach($validated['model_type'] as $model) {
