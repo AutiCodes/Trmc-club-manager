@@ -98,8 +98,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Naam</th>
                 <th scope="col">Datum en tijd</th>
-                <th scope="col">Aantal lipo's (totaal)</th>
-                <th scope="col">Model type(s)</th>
+                <th scope="col">Model type(s) met lipo aantallen en vermogens</th>
               </tr>
             </thead>
             @foreach ($formSubmissions as $formSubmission)
@@ -108,13 +107,13 @@
                   <th scope="row">{{ $formSubmission->id }}</th>
                   <td>{{ $formSubmission->member[0]->name }}</td>
                   <td>{{ $formSubmission->date_time }}</td>
-                  <td class="text-center">3</td>
                   <td>
                     @foreach ($formSubmission->submittedModels as $model)
-                      Model: {{$model->model_type}}, lipo's: {{ $model->lipo_count }}.
+                      <p class="mt-0 mb-0">
+                        Model {{ $loop->iteration }}: {{$model->model_type}}. Lipo aantal: {{ $model->lipo_count }}. Model-vermogen: {{ $model->class }}
+                      </p>
                     @endforeach 
                   </td>
-                  </tr>  
               </tbody>
             @endforeach
           </table>
@@ -139,11 +138,10 @@
       </div>
 
       
-      <!-- Graph container -->
+      <!-- Graph container 
       <div class="container">
         <h1 class="text-white mt-4">Grafieken</h1>
         <div class="row">
-          <!-- Graph 1 -->
           <div class="col-sm bg-dark rounded ml-2 mr-2 mt-2">
             <p class="text-white">Vluchten laatste 30 dagen</p>
             <canvas id="ChartOne" style="width:100%;max-width:700px"></canvas>
@@ -167,7 +165,7 @@
               });
             </script>
           </div>
-          <!-- Graph 2 -->
+
           <div class="col-sm bg-dark rounded ml-2 mr-2 mt-2">
             <p class="text-white">Top 5 leden met de meeste vluchten</p>
             <canvas id="ChartTwo" style="width:100%;max-width:700px"></canvas>
@@ -193,7 +191,7 @@
           </div>
         </div>
       </div>
-
+      -->
 
 
       <!-- Table members -->

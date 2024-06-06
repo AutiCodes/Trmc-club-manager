@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\Form\Enums\ModelTypeEnum;
 use Modules\Users\Models\Member;
 use Modules\Form\Models\SubmittedModel;
+use Illuminate\Validation\Rule;
 
 class FormController extends Controller
 {
@@ -58,32 +59,32 @@ class FormController extends Controller
         ]);
 
         // Attach form to member with relationship
-        $form->member()->attach($form->id);
+        $form->member()->attach($validated['name']);
 
         // Add submitted models to model table
         foreach($validated['model_type'] as $model) {
             // TODO: Use Enum and switch case
             if ($model == 1) {
                 $validated = $request->validate([
-                    'power_type_select_plane' => ['required', 'integer', 'max:4'],
+                    'power_type_select_plane' => ['required', 'string', 'max:24'], // TODO: Fix check if in array (Rule::in)
                     'lipo_count_select_plane' => ['required', 'integer', 'max: 8'],
                 ]);
 
                 $model = SubmittedModel::create([
-                    'model_type' => 1,
-                    'class' => $validated['power_type_select_plane'],
+                    'model_type' => 'Vliegtuig',
+                    'class' => $validated['power_type_select_plane'], 
                     'lipo_count' => $validated['lipo_count_select_plane'],
                 ]);
             }
 
             elseif ($model == 2) {
                 $validated = $request->validate([
-                    'power_type_select_glider' => ['required', 'integer', 'max:4'],
+                    'power_type_select_glider' => ['required', 'string', 'max:24'],
                     'lipo_count_select_glider' => ['required', 'integer', 'max: 8'],
                 ]);
 
                 $model = SubmittedModel::create([
-                    'model_type' => $model,
+                    'model_type' => 'Zweefvliegtuig',
                     'class' => $validated['power_type_select_glider'],
                     'lipo_count' => $validated['lipo_count_select_glider'],
                 ]);                
@@ -91,12 +92,12 @@ class FormController extends Controller
 
             elseif ($model == 3) {
                 $validated = $request->validate([
-                    'power_type_select_helicopter' => ['required', 'integer', 'max:4'],
+                    'power_type_select_helicopter' => ['required', 'string', 'max:24'],
                     'lipo_count_select_helicopter' => ['required', 'integer', 'max: 8'],
                 ]);
 
                 $model = SubmittedModel::create([
-                    'model_type' => $model,
+                    'model_type' => 'Helicopter',
                     'class' => $validated['power_type_select_helicopter'],
                     'lipo_count' => $validated['lipo_count_select_helicopter'],
                 ]);                
@@ -104,12 +105,12 @@ class FormController extends Controller
 
             elseif ($model == 4) {
                 $validated = $request->validate([
-                    'power_type_select_drone' => ['required', 'integer', 'max:4'],
+                    'power_type_select_drone' => ['required', 'string', 'max:24'],
                     'lipo_count_select_drone' => ['required', 'integer', 'max: 8'],
                 ]);
 
                 $model = SubmittedModel::create([
-                    'model_type' => $model,
+                    'model_type' => 'Drone',
                     'class' => $validated['power_type_select_drone'],
                     'lipo_count' => $validated['lipo_count_select_drone'],
                 ]);
