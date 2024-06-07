@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Users\Entities\User;
+use Auth;
+use Session;
 
 class AuthenticationController extends Controller
 {
@@ -13,7 +16,7 @@ class AuthenticationController extends Controller
      * Display a listing of the resource.
      * @return View
      */
-    public function index()
+    public function loginPage()
     {
         return view('users::login');
     }
@@ -27,7 +30,16 @@ class AuthenticationController extends Controller
      */
     public function login(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'username' => ['required', 'string'],
+            'password' => ['required', 'string'],
+        ]);
+
+        if (Auth::attempt($validated)) {
+            return redirect('/authenticatie')->with('error', 'Login is verkeerd!');
+        }
+
+        return redirect(route('admin.index'));
     }
 
     /**

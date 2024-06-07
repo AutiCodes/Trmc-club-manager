@@ -9,7 +9,7 @@ use Modules\Users\Database\Factories\UserFactory;
 class User extends Model
 {
     use HasFactory;
-    protected $table = 'Users';
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +21,6 @@ class User extends Model
         'username',
         'email',
         'password',
-        'is_admin',
     ];
 
     protected static function newFactory(): UserFactory
