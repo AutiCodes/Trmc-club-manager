@@ -319,7 +319,7 @@ For: TRMC
               <!-- -->
               <span aria-hidden="true"></span>
               <h4>Errors en contact:</h4>
-              <p>Lukt het aanmelden nog niet of komt er een error? Neem dan contact met ons op via prive@kelvincodes.nl of bel Kelvin de Reus: <a href="tel:123-456-7890">123-456-7890</a></p>
+              <p>Lukt het aanmelden nog niet of komt er een error? Neem dan contact met ons op via Email: <a href="mailto:webmaster@kelvincodes.nl">webmaster@kelvincodes.nl</a></p>
 
             </div>
 
