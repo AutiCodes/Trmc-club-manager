@@ -58,7 +58,7 @@
         @endif
 
       <!-- Add new member -->
-      <div class="container bg-dark mt-4 w-25">
+      <div class="container bg-dark mt-4 w-25-sm">
         <img src="/media/images/TRMC_LOGO_PNG.ico" class="rounded mx-auto d-block" alt="Responsive image">
         <h3 class="text-white text-center pt-3">Voeg jezelf toe aan de vlucht manager</h3>
         <form action="{{ route('members.store') }}" method="POST">
