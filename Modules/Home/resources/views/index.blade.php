@@ -41,7 +41,7 @@
 
       <div class="container text-center mt-4 mb-4">
         <h2 class="text-white">Aan deze site wordt nog gewerkt!</h2>
-        <img src="/media/images/WorkInProgressPNG.png" alt="" class="img-fluid rounded" width="50%" height="auto">\
+        <img src="/media/images/in_construction.png" alt="" class="img-fluid rounded" width="50%" height="auto">\
       </div>
 
 
