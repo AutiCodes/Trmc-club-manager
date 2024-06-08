@@ -245,7 +245,7 @@
               <!-- -->
               <span aria-hidden="true"></span>
               <h4>Errors en contact:</h4>
-              <p>Is er een error of lukt iets niet? Neem dan contact met ons op via prive@kelvincodes.nl of bel Kelvin de Reus: <a href="tel:123-456-7890">123-456-7890</a></p>
+              <p>Is er een error of lukt iets niet? Neem dan contact met ons op via Email: <a href="mailto:webmaster@kelvincodes.nl">webmaster@kelvincodes.nl</a></p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
