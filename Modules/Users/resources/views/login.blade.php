@@ -13,51 +13,22 @@
   </head>
 	<body>
 		<main>
-			<!-- NAVBAR -->
-			<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-				<a class="navbar-brand text-white" href="/">
-					<img src="/media/images/TRMC_LOGO_PNG.ico" width="30" height="30" class="d-inline-block align-top" alt="">
-					TRMC vlucht manager
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav">
-						<li class="nav-item">
-							<a class="nav-link text-white" href="/">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white" href="/aanmeld-formulier">Vlucht aanmelden</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white" href="/admin">Admin pagina</a>
-						</li>                     
-						<li class="nav-item">
-							<a class="nav-link text-white" href="/authenticatie">Login pagina</a>
-						</li>                          
-					</ul>
-				</div>
-			</nav>
-			<!-- END NAVBAR -->
-
-
       <!-- LOGIN -->
       <div class="container bg-dark mt-4 w-25">
         <h3 class="text-white text-center pt-3">Login TRMC vluchtmanager</h3>
         <img src="/media/images/TRMC_LOGO_PNG.ico" class="rounded mx-auto d-block" alt="Responsive image">
 
-        <form>
+        <form action="/authenticatie-login-post" method="POST">
+          @csrf
           <div class="form-group">
-            <label for="exampleInputEmail1" class="text-white">Email adres</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="voorbeeld@email.nl" required>
+            <label for="username" class="text-white">Email adres</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="username" placeholder="" required>
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1" class="text-white">Wachtwoord</label>
-            <input type="password" class="form-control mb-2" id="exampleInputPassword1" placeholder="Wachtwoord" required>
+            <label for="password" class="text-white">Wachtwoord</label>
+            <input type="password" class="form-control mb-2" id="password" name="password" placeholder="Wachtwoord" required>
             <a href="#" class="pt-2">Klik hier om je wachtwoord te resetten</a>
-
           </div>
           <!--
           <div class="form-check">

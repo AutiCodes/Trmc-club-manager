@@ -21,7 +21,8 @@ Route::group([], function () {
 });
 
 Route::group([], function () {
-    Route::resource('authenticatie', AuthenticationController::class)->names('authenticatie');
+    Route::post('authenticatie-login-post', [AuthenticationController::class, 'login']);
+    Route::get('authenticatie-login', [AuthenticationController::class, 'loginPage']);
 });
 
 Route::group([], function () {
