@@ -27,15 +27,27 @@ class AdminController extends Controller
                                 ->with('submittedModels')
                                 ->get();
 
-        $allMembers = Member::orderBy('created_at', 'desc')->get();
-        $countTotalFlights = DB::table('model')
-                                ->select(DB::raw('SUM(lipo_count) as total_flights'))
+        $totalFlightCount = DB::table('model')
+                                ->select(DB::raw('SUM(lipo_count) AS total_flights'))
                                 ->first();
+
+        $thisWeekFlightsCount = DB::table('model')
+                                ->select(DB::raw('SUM(lipo_count) AS flightsThisWeek'))
+                                ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+                                ->first();
+
+        $todayFlightCount = DB::table('model')
+                                ->select(DB::raw('SUM(lipo_count) AS flightsToday'))
+                                ->whereDate('created_at', Carbon::today())
+                                ->first();
+
+        $allMembers = Member::orderBy('created_at', 'desc')->get();
 
         return view('admin::index', [
             'formSubmissions' => $formSubmissions,
-            'FlightsThisWeek' => 5,
-            'FlightsToday' => 2,
+            'totalFlights' => $totalFlightCount,
+            'flightsThisWeek' => $thisWeekFlightsCount,
+            'flightsToday' => $todayFlightCount,
             'members' => $allMembers,
         ]);
     }
