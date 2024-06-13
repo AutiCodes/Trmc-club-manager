@@ -108,9 +108,9 @@ class AdminController extends Controller
                                 ->get();        
         
         $countTotalFlights = DB::table('model')
-                                ->select(DB::raw('SUM(lipo_count) as total_flights'))
+                                ->select(DB::raw('SUM(lipo_count) AS total_flights'))
                                 ->first();
-
+        
         //TODO fix getting current signed in user
         $pdf = PDF::loadView('admin::pdf', [
             'flights' => $flights,
