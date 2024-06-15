@@ -63,23 +63,6 @@
     </div>
 
 
-    <!-- Administratie -->
-    <div class="container mb-4">
-      <h1 class="text-white mt-2">Administratie</h1>
-
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle bg-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Exporteer vluchten
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor de gemeente</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor TRMC</a>
-        </div>
-      </div>
-    </div>
-
-
     <!-- Table members -->
     <div class="container">
       <h1 class="mt-4 text-white">Leden</h1>
