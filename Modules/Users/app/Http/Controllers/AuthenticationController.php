@@ -35,8 +35,8 @@ class AuthenticationController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (Auth::attempt($validated)) {
-            return redirect('/authenticatie')->with('error', 'Login is verkeerd!');
+        if (!Auth::attempt($validated)) {
+            return redirect('/authenticatie-login')->with('error', 'Login is verkeerd!');
         }
 
         return redirect(route('admin.index'));
