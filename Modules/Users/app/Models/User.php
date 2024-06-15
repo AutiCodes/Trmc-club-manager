@@ -9,7 +9,7 @@ use Modules\Users\Database\Factories\UserFactory;
 class User extends Model
 {
     use HasFactory;
-    protected $table = 'users';
+    protected $table = 'Users';
 
     /**
      * The attributes that are mass assignable.

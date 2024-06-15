@@ -13,6 +13,11 @@
   </head>
 	<body>
 		<main>
+      @if (session()->has('error'))
+        <div class="alert alert-success" role="alert">
+          {{ session('error') }}
+        </div>
+      @endif
       <!-- LOGIN -->
       <div class="container bg-dark mt-4 w-25">
         <h3 class="text-white text-center pt-3">Login TRMC vluchtmanager</h3>
@@ -69,4 +74,4 @@
     </script>
 
 	</body>
-</html>
+</html>l>
