@@ -12,12 +12,18 @@
       <li class="nav-item">
         <a class="nav-link text-white" href="/">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/">Vluchten overzicht</a>
-      </li>            
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Vluchten
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Overzicht</a>
+          <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor de gemeente</a>
+        </div>
+      </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="/">Leden/bestuur overzicht</a>
-      </li>      
+      </li>
       <!-- TODO: align right -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
