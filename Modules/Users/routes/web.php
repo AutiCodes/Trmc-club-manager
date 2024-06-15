@@ -23,6 +23,8 @@ Route::group([], function () {
 Route::group([], function () {
     Route::post('authenticatie-login-post', [AuthenticationController::class, 'login']);
     Route::get('authenticatie-login', [AuthenticationController::class, 'loginPage']);
+    Route::get('authenticatie-uitloggen', [AuthenticationController::class, 'logout']);
+
 });
 
 Route::group([], function () {
