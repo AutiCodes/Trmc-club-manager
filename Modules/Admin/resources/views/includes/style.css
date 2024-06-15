@@ -1,10 +1,4 @@
-@extends('admin::layouts.master')
-
-@section('title', 'test')
-
-
-<style>
-    body, html {
+body, html {
   background-color: #2f3031;
 }
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
@@ -23,4 +17,3 @@ input[type="checkbox"] {
   height: 1.2rem;
   border-radius: 50%;
 }
-</style>

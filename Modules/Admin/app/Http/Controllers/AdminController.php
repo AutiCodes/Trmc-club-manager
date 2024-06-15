@@ -43,7 +43,7 @@ class AdminController extends Controller
 
         $allMembers = Member::orderBy('created_at', 'desc')->get();
 
-        return view('admin::index', [
+        return view('admin::pages.index', [
             'formSubmissions' => $formSubmissions,
             'totalFlights' => $totalFlightCount,
             'flightsThisWeek' => $thisWeekFlightsCount,
