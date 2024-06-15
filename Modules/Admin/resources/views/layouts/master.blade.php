@@ -39,7 +39,6 @@
     </div>
   @endif
 
-
   @yield('content')
 
   @include('admin::includes.footer')

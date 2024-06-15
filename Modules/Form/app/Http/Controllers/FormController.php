@@ -24,7 +24,7 @@ class FormController extends Controller
         // Get current members
         $members = Member::orderby('name', 'DESC')->get();
         // Return form view
-        return view('form::index', ['members' => $members]);	
+        return view('form::pages.reg_new_flight', ['members' => $members]);	
     }
 
     /**
