@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 
-@section('title', 'Admin home')
+@section('title', 'Admin vluchten beheren')
 
 @section('content')
   <main>
