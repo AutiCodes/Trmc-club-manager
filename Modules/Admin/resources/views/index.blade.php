@@ -33,11 +33,14 @@
 							<a class="nav-link text-white" href="/aanmeld-formulier">Vlucht aanmelden</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-white" href="/admin">Admin pagina</a>
+							<a class="nav-link text-white" href="/admin">Admin</a>
 						</li>                     
 						<li class="nav-item">
-							<a class="nav-link text-white" href="/authenticatie-login">Login pagina</a>
+							<a class="nav-link text-white" href="/authenticatie-login">Login</a>
 						</li>              
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/authenticatie-uitloggen">Log jezelf uit</a>
+						</li>                          
 						<li class="nav-item">
 							<a class="nav-link text-white" href="{{ route('users.create') }}">Voeg een admin toe pagina</a>
 						</li>              
