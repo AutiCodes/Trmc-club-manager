@@ -13,8 +13,19 @@ return new class extends Migration
     {
         Schema::create('Members', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('rdw_number')->unique();
+            $table->integer('nr')->unique()->nullable();
+            $table->bigInteger('KNVvl')->unique()->nullable();
+            $table->string('name')->unique();
+            $table->string('first_name')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->date('birthdate')->nullable();
+            $table->string('address')->nullable();
+            $table->string('postcode')->nullable();
+            $table->string('city')->nullable();
+            $table->string('phone')->nullable();
+            $table->integer('club_status')->nullable();
+            $table->string('rdw_number')->unique();
+            $table->integer('instruct')->nullable();
             $table->timestamps();
         });
     }

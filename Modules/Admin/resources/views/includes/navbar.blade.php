@@ -22,7 +22,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="/">Leden/bestuur overzicht</a>
+        <a class="nav-link text-white" href="{{ route('members.index') }}">Leden/bestuur overzicht</a>
       </li>
       <!-- TODO: align right -->
       <li class="nav-item dropdown">

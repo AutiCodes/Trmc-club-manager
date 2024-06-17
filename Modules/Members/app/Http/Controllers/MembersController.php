@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Members\Models\Member;
 
 class MembersController extends Controller
 {
@@ -15,7 +16,9 @@ class MembersController extends Controller
      */
     public function index()
     {
-        return view('users::index');
+        $members = Member::orderBy('name', 'asc')->get();
+
+        return view('members::pages.index', compact('members'));
     }
 
     /**
@@ -24,7 +27,7 @@ class MembersController extends Controller
      */
     public function create()
     {
-        return view('users::new_member');
+        return view('members::new_member');
     }
 
     /**
@@ -54,7 +57,7 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        return view('users::show');
+        return view('members::show');
     }
 
     /**
@@ -64,7 +67,7 @@ class MembersController extends Controller
      */
     public function edit($id)
     {
-        return view('users::edit');
+        return view('members::edit');
     }
 
     /**
@@ -85,3 +88,4 @@ class MembersController extends Controller
     {
         //
     }
+}
