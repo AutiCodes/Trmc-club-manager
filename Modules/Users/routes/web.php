@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Users\Http\Controllers\UsersController;
 use Modules\Users\Http\Controllers\AuthenticationController;
-use Modules\Users\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +24,4 @@ Route::group([], function () {
     Route::get('authenticatie-login', [AuthenticationController::class, 'loginPage'])->name('login');
     Route::get('authenticatie-uitloggen', [AuthenticationController::class, 'logout']);
 
-});
-
-Route::group([], function () {
-    Route::resource('leden', MemberController::class)->names('members');
 });

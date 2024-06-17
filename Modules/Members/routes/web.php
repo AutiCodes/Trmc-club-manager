@@ -15,5 +15,6 @@ use Modules\Members\Http\Controllers\MembersController;
 */
 
 Route::group([], function () {
-    Route::resource('members', MembersController::class)->names('members');
+    Route::resource('leden', MembersController::class)->names('members');
 });
+

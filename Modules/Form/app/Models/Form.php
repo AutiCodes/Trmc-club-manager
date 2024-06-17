@@ -5,7 +5,7 @@ namespace Modules\Form\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Form\Database\Factories\FormFactory;
-use Modules\Users\Models\Member;
+use Modules\Members\Models\Member;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Form\Models\SubmittedModel;
