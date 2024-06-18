@@ -15,7 +15,7 @@ use Modules\Users\Http\Controllers\AuthenticationController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UsersController::class)->names('users');
 });
 
@@ -23,5 +23,4 @@ Route::group([], function () {
     Route::post('authenticatie-login-post', [AuthenticationController::class, 'login']);
     Route::get('authenticatie-login', [AuthenticationController::class, 'loginPage'])->name('login');
     Route::get('authenticatie-uitloggen', [AuthenticationController::class, 'logout']);
-
 });

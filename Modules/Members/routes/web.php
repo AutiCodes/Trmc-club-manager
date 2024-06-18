@@ -14,7 +14,7 @@ use Modules\Members\Http\Controllers\MembersController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('leden', MembersController::class)->names('members');
 });
 
