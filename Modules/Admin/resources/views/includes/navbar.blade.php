@@ -17,7 +17,7 @@
           Vluchten
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Overzicht</a>
+          <a class="dropdown-item" href="{{ route('admin.index') }}">Overzicht</a>
           <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor de gemeente</a>
         </div>
       </li>
@@ -30,9 +30,6 @@
           <a class="dropdown-item" href="{{ route('members.create') }}">Lid/bestuur toevoegen</a>
         </div>
       </li>         
-      <li class="nav-item">
-        <a class="nav-link text-white" href="{{ route('members.index') }}">Leden/bestuur overzicht</a>
-      </li>
       <!-- TODO: align right -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
