@@ -18,8 +18,18 @@ class Member extends Model
      * @var integer rdw_number
      */
     protected $fillable = [
+        'KNVvl',
         'name',
+        'first_name',
+        'email',
+        'birthdate',
+        'address',
+        'postcode',
+        'city',
+        'phone',
+        'club_status',
         'rdw_number',
+        'instruct',
     ];
 
     /**

@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Members\Models\Member;
+use Carbon\Carbon;
 
 class MembersController extends Controller
 {
@@ -38,16 +39,34 @@ class MembersController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:40', 'unique:Members'],	
+            'name' => ['required', 'string', 'max:40', 'unique:Members'],
+            'birthdate' => ['required', 'date'],
+            'address' => ['required', 'string', 'max:100'],
+            'postcode' => ['required', 'string', 'max:10'],
+            'city' => ['required', 'string', 'max:50'],
+            'phone' => ['required', 'string', 'max:15'],
             'rdw_number' => ['required', 'integer', 'unique:Members', 'digits:10'],
+            'knvvl' => ['required', 'integer', 'unique:Members'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:Members'],
+            'club_status' => ['required', 'integer', 'max:3'],
+            'instruct' => ['required', 'integer', 'max:1'],
         ]);
 
         $member = Member::create([
             'name' => $validated['name'],
+            'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
+            'address' => $validated['address'],
+            'postcode' => $validated['postcode'],
+            'city' => $validated['city'],
+            'phone' => $validated['phone'],
             'rdw_number' => $validated['rdw_number'],
+            'KNVvl' => $validated['knvvl'],
+            'email' => $validated['email'],
+            'club_status' => $validated['club_status'],
+            'instruct' => $validated['instruct'],
         ]);
 
-        return redirect('aanmeld-formulier')->with('success', 'Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken!');
+        return redirect(route('members.index'))->with('success', 'Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken!');
     }
 
     /**
