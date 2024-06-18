@@ -17,7 +17,6 @@
                     <tr>
                     <th><span>Vol. naam</span></th>
                     <th><span>KNVvl</span></th>
-                    <th><span>Voornaam</span></th>
                     <th><span>Geboortedatum</span></th>
                     <th><span>Adres</span></th>
                     <th class="text-center"><span>Club status</span></th>
@@ -33,27 +32,35 @@
                     <tr>
                       <!-- User -->
                       <td>
-                        <a href="#" class="user-link">Voorbeeld de, P</a>
+                        <a href="#" class="user-link">{{ $member->name }}</a>
                       </td>
                       <!-- KNVvl -->
-                      <td>21421124</td>
-                      <!-- Firstname -->
-                      <td>Pieter</td>
+                      <td>{{ $member->KNVvl }}</td>
                       <!-- Birthday -->
-                      <td>01/02/2000</td>
+                      <td>{{ $member->birthdate }}</td>
                       <!-- Living address -->
-                      <td>Voorbeeldadres 32 8172IY Enschede</td>
+                      <td>{{ $member->address }}</td>
                       <!-- Club status -->
-                      <td class="text-center">
-                        <span class="badge badge-pill badge-primary" style="font-size: 1rem;">Lid</span>
-                      </td>
+                      @if ($member->club_status == \Modules\Members\Enums\ClubStatus::ASPIRANT_MEMBER->value)
+                        <td class="text-center">
+                          <span class="badge badge-pill badge-info" style="font-size: 1rem;">Aspirant lid</span>
+                        </td>
+                      @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::MEMBER->value)
+                        <td class="text-center">
+                          <span class="badge badge-pill badge-primary" style="font-size: 1rem;">Lid</span>
+                        </td>
+                      @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::MANAGEMENT->value)
+                        <td class="text-center">
+                          <span class="badge badge-pill badge-warning" style="font-size: 1rem;">Bestuur</span>
+                        </td>
+                      @endif
                       <!-- RDW number -->
-                      <td>efw34212</td>                    
+                      <td>{{ $member->rdw_number }}</td>                    
                       <!-- Phone number -->
-                      <td>06123456790</td>
+                      <td>{{ $member->phone }}</td>
                       <!-- Email -->
                       <td>
-                        <a href="#">email@provider.nl</a>
+                        <a href="#">{{ $member->email }}</a>
                       </td>
                       <!-- View, edit, delete buttons -->
                       <td style="width: 20%;">
