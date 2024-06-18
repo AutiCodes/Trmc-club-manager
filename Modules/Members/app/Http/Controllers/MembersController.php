@@ -76,7 +76,7 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        return view('members::show');
+        return "boobs";
     }
 
     /**
@@ -86,7 +86,9 @@ class MembersController extends Controller
      */
     public function edit($id)
     {
-        return view('members::edit');
+        $member = Member::findOrFail($id);
+
+        return view('members::pages.edit_member', compact('member'));
     }
 
     /**
@@ -96,7 +98,35 @@ class MembersController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:40'],
+            'birthdate' => ['required', 'date'],
+            'address' => ['required', 'string', 'max:100'],
+            'postcode' => ['required', 'string', 'max:10'],
+            'city' => ['required', 'string', 'max:50'],
+            'phone' => ['required', 'string', 'max:15'],
+            'rdw_number' => ['required', 'integer', 'digits:10'],
+            'knvvl' => ['required', 'integer'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'club_status' => ['required', 'integer', 'max:3'],
+            'instruct' => ['required', 'integer', 'max:1'],
+        ]);
+
+        $member = Member::findOrFail($id)->update([
+            'name' => $validated['name'],
+            'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
+            'address' => $validated['address'],
+            'postcode' => $validated['postcode'],
+            'city' => $validated['city'],
+            'phone' => $validated['phone'],
+            'rdw_number' => $validated['rdw_number'],
+            'KNVvl' => $validated['knvvl'],
+            'email' => $validated['email'],
+            'club_status' => $validated['club_status'],
+            'instruct' => $validated['instruct'],
+        ]);
+
+        return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        
     }
 
     /**

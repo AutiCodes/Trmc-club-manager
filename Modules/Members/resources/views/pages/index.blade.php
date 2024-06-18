@@ -70,7 +70,7 @@
                             <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                           </span>
                         </a>
-                        <a href="#" class="table-link text-info">
+                        <a href="{{ route('members.edit', $member->id) }}" class="table-link text-info">
                           <span class="fa-stack" style="font-size: 1rem;">	
                             <i class="fa fa-square fa-stack-2x"></i>
                             <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
