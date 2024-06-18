@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 use Modules\Form\Models\Form;
 use Illuminate\Support\Facades\DB;
 use Modules\Form\Enums\ModelTypeEnum;
-use Modules\Users\Models\Member;
+use Modules\Members\Models\Member;
 use Modules\Form\Models\SubmittedModel;
 use Illuminate\Validation\Rule;
 

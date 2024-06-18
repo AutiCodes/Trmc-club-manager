@@ -14,7 +14,7 @@ use Modules\Admin\Http\Controllers\AdminController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin', AdminController::class)->names('admin');
     
 Route::get('/downloadFlightsGov', [AdminController::class, 'downloadFlightsGov']);

@@ -10,7 +10,7 @@ use Modules\Form\Models\Form;
 use Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
-use Modules\Users\Models\Member;
+use Modules\Members\Models\Member;
 use Modules\Form\Models\SubmittedModels;
 use DB;
 

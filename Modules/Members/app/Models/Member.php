@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Users\Models;
+namespace Modules\Members\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,8 +18,19 @@ class Member extends Model
      * @var integer rdw_number
      */
     protected $fillable = [
+        'id',
+        'KNVvl',
         'name',
+        'first_name',
+        'email',
+        'birthdate',
+        'address',
+        'postcode',
+        'city',
+        'phone',
+        'club_status',
         'rdw_number',
+        'instruct',
     ];
 
     /**
