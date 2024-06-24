@@ -16,7 +16,7 @@
         <a class="nav-link text-white" href="/aanmeld-formulier">Vlucht aanmelden</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="/admin">Admin pagina</a>
+        <a class="nav-link text-white" href="/admin">Voor het bestuur</a>
       </li>                     
     </ul>
   </div>
