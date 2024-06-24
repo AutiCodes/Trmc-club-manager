@@ -26,9 +26,8 @@
         <form action="/authenticatie-login-post" method="POST">
           @csrf
           <div class="form-group">
-            <label for="username" class="text-white">Email adres</label>
+            <label for="username" class="text-white">Gebruikersnaam</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="username" placeholder="" required>
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
           </div>
           <div class="form-group">
             <label for="password" class="text-white">Wachtwoord</label>
