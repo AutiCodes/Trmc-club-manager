@@ -10,13 +10,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link text-white" href="/">Home</a>
+        <a class="nav-link text-white" href="{{ route('home.index') }}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="/aanmeld-formulier">Vlucht aanmelden</a>
+        <a class="nav-link text-white" href="{{ route('form.index') }}">Vlucht aanmelden</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="/admin">Voor het bestuur</a>
+        <a class="nav-link text-white" href="{{ route('admin.index') }}">Voor het bestuur</a>
       </li>                     
     </ul>
   </div>
