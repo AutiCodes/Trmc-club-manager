@@ -20,7 +20,6 @@ class SubmittedModel extends Model
     protected $fillable = [
         'id',
         'model_type',
-        'class',
         'lipo_count',
     ];
 
