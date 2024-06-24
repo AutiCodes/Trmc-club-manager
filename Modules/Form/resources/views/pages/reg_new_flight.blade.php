@@ -50,6 +50,7 @@
               <option value="{{ $member->id }}">{{ $member->name }}</option>
             @endforeach
           </select>              
+          <small id="name" class="form-text text-muted">Staat je naam er niet tussen? Contacteer dan het bestuur om je naam toe te voegen</small>
           <p class="text-danger" id="name_required" style="display: block;">Naam is vereist!</p>
           </div>
       
