@@ -105,17 +105,6 @@
           <!-- PLANE -->
           <div id="CheckboxPlane_div" style="display: none;" class="bg-dark rounded pl-2 pr-2">
             <h3 class="text-white">Modelvliegtuig</h3>
-            <!-- POWER TYPE -->
-            <div class="form-group">
-              <label for="power_type_select_plane" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
-              <select class="form-control" id="power_type_select_plane" name="power_type_select_plane" onchange="requiredHideViewer(this)">
-                <option disabled selected>Selecteer</option>
-                <option value="<300W">< 300W</option>
-                <option value="300W-1200W">300W-1200W</option>
-                <option value="1200W-3000W">1200W-3000W</option>
-              </select>
-              <p class="text-danger" id="power_type_select_plane_required" style="display: block;">Klasse is vereist!</p>
-            </div>
             <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select_plane" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
@@ -137,17 +126,6 @@
           <!-- GLIDER -->
           <div id="CheckboxGlider_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
             <h3 class="text-white">Modelzweefvliegtuig</h3>
-            <!-- POWER TYPE -->
-            <div class="form-group">
-              <label for="power_type_select_glider" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
-              <select class="form-control" id="power_type_select_glider" name="power_type_select_glider" onchange="requiredHideViewer(this)">
-                <option disabled selected>Selecteer</option>
-                <option value="<300W">< 300W</option>
-                <option value="300W-1200W">300W-1200W</option>
-                <option value="1200W-3000W">1200W-3000W</option>
-              </select>
-              <p class="text-danger" id="power_type_select_glider_required" style="display: block;">Klasse is vereist!</p>
-            </div>
             <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select_glider" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
@@ -169,17 +147,6 @@
           <!-- HELICOPTER -->
           <div id="CheckBoxHelicopter_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
             <h3 class="text-white">Helicopter</h3>
-            <!-- POWER TYPE -->
-            <div class="form-group">
-              <label for="power_type_select_helicopter" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
-              <select class="form-control" id="power_type_select_helicopter" name="power_type_select_helicopter" onchange="requiredHideViewer(this)">
-                <option disabled selected>Selecteer</option>
-                <option value="<300W">< 300W</option>
-                <option value="300W-1200W">300W-1200W</option>
-                <option value="1200W-3000W">1200W-3000W</option>
-              </select>
-              <p class="text-danger" id="power_type_select_helicopter_required" style="display: block;">Klasse is vereist!</p>
-            </div>
             <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select_helicopter" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
@@ -201,17 +168,6 @@
           <!-- DRONE -->
           <div id="CheckboxDrone_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
             <h3 class="text-white">Drone</h3>
-            <!-- POWER TYPE -->
-            <div class="form-group">
-              <label for="power_type_select_drone" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
-              <select class="form-control" id="power_type_select_drone" name="power_type_select_drone" onchange="requiredHideViewer(this)">
-                <option disabled selected>Selecteer</option>
-                <option value="<300W">< 300W</option>
-                <option value="300W-1200W">300W-1200W</option>
-                <option value="1200W-3000W">1200W-3000W</option>
-              </select>
-              <p class="text-danger" id="power_type_select_drone_required" style="display: block;">Klasse is vereist!</p>
-            </div>
             <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
