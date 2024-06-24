@@ -36,7 +36,7 @@
           Welkom {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Wijzig je profiel</a>
+          <a class="dropdown-item" href="{{ route('users.edit', auth()->user()->id) }}">Wijzig je profiel</a>
           <a class="dropdown-item" href="/authenticatie-uitloggen">Log jezelf uit</a>
         </div>
       </li>                                      
