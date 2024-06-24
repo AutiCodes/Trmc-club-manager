@@ -8,10 +8,11 @@
     <div class="row">	
       <!-- Text -->
       <div class="col-sm text-center text-white">
-      <h3>Welkom bij de TRMC vlucht manager!</h3>
+      <h3>Welkom bij de TRMC club manager!</h3>
       <p>
-          Dit is een website voor het aanmelden en het beheren van vluchten op het veld van TRMC.
-          Deze website is nog vol in ontwikkeling. Het is dus mogelijk dat sommige functionaliteiten nog niet perfect zijn.
+          Dit is een website voor het aanmelden en het beheren van vluchten op het veld van TRMC. 
+          Voor het bestuur is dit ook de plek om leden te beheren, toe te voegen etc!
+          Deze website is nog wel vol in ontwikkeling. Het is dus mogelijk dat sommige functionaliteiten nog niet perfect zijn.
       </p>
       <hr>
       <p class="font-weight-bold">
