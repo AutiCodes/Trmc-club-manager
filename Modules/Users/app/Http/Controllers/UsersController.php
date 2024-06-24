@@ -26,7 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users::add_user');
+        return view('users::pages.add_user');
     }
 
     /**
@@ -72,7 +72,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('users::edit');
+        return view('users::pages.edit_profile');
     }
 
     /**
@@ -83,7 +83,23 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required','string','max:40', 'unique:Users'],
+            'username' => ['required','string','max:40', 'unique:Users'],
+            'password' => ['required','string','max:40'],
+        ]);
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'username' => $validated['username'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        if (!$user) {
+            return redirect(route('admin.index'))->with('error', 'Er is iets fout gegaan!');
+        } 
+
+        return redirect(route('admin.index'))->with('success', 'Gebruiker toegevoegd!');
     }
 
     /**
