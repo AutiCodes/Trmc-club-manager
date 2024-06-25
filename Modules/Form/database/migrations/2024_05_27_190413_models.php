@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('model', function (Blueprint $table) {
             $table->id();
             $table->string('model_type');
+            $table->string('class');
             $table->integer('lipo_count');
             $table->timestamps();
         });
