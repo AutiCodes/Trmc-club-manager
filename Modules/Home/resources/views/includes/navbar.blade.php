@@ -1,5 +1,5 @@
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-dark">
   <a class="navbar-brand text-white" href="/">
     <img src="/media/images/TRMC_LOGO_PNG.ico" width="30" height="30" class="d-inline-block align-top" alt="">
     TRMC club manager

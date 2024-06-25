@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<!-- Page title -->
-    <title>RC vliegtuig manager</title>
+    <title>TRMC club manager</title>
 	  <!-- Bootstrap CSS -->
 	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	  <!-- tab icon -->
@@ -19,11 +19,16 @@
         </div>
       @endif
       <!-- LOGIN -->
+<<<<<<< HEAD
       <div class="container bg-dark mt-4">
         <h3 class="text-white text-center pt-3">Login TRMC vluchtmanager</h3>
+=======
+      <div class="container bg-dark mt-4 mb-4">
+        <h3 class="text-white text-center pt-3">Login TRMC club manager</h3>
+>>>>>>> 4c2f54cf5968fecba21cef83d347d0e67fead9f9
         <img src="/media/images/TRMC_LOGO_PNG.ico" class="rounded mx-auto d-block" alt="Responsive image">
 
-        <form action="/authenticatie-login-post" method="POST">
+        <form class="col-lg-6 offset-lg-3 pt-4 pb-4" action="/authenticatie-login-post" method="POST">
           @csrf
           <div class="form-group">
             <label for="username" class="text-white">Gebruikersnaam</label>

@@ -12,6 +12,7 @@ use Modules\Form\Enums\ModelTypeEnum;
 use Modules\Members\Models\Member;
 use Modules\Form\Models\SubmittedModel;
 use Illuminate\Validation\Rule;
+use Modules\Members\Enums\ClubStatus;
 
 class FormController extends Controller
 {
@@ -22,7 +23,10 @@ class FormController extends Controller
     public function index()
     {
         // Get current members
-        $members = Member::orderby('name', 'DESC')->get();
+        $members = Member::orderby('name', 'DESC')
+                            ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)
+                            ->get();
+
         // Return form view
         return view('form::pages.reg_new_flight', ['members' => $members]);	
     }
@@ -51,7 +55,13 @@ class FormController extends Controller
             'model_type' => ['required'],	
             'power_type_select' => ['integer'],
             'lipo_count_select' => ['integer'],
+            'rechapcha_custom' => ['integer', 'required'],
         ]);
+
+        // Check if rechapcha is correct, if not do nothing and return error
+        if ($validated['rechapcha_custom'] != env('RECAPTCHA_CUSTOM_VALUE')) {
+            return back()->with('error', 'Oh oh ik denk dat je een robot bent! Bliep bloop probeer het opnieuw!');
+        }
         
         $form = Form::create([
             'name' => $validated['name'],

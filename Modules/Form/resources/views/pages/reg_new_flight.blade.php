@@ -20,6 +20,11 @@
           </ul>
         </div>
       @endif
+      @if (session()->has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+      @endif
       @if (session()->has('success'))
         <div class="alert alert-success" role="alert">
             {{ session('success') }}
@@ -232,6 +237,11 @@
         </div>
         
         <!-- reCAPTCHA -->
+        <div class="form-group">
+          <label for="text" class="Text-white font-weight-bold">Geheime vraag om te kiekn of je geen bot bent</label>
+          <input type="text" class="form-control" id="rechapcha_custom" name="rechapcha_custom" placeholder="Wat is 2 + 2?">
+        </div>
+
         <!--
         <div class="g-recaptcha pb-3" id="rcaptcha" data-sitekey="6Ldwq90pAAAAAJuxavmVQjPKHSpGYoRRx5aUhn9x"></div>
         <span id="captcha" style="color:red"></span> 
