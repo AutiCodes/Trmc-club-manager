@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
 use Modules\Members\Models\Member;
 use Modules\Form\Models\SubmittedModels;
 use DB;
+use Modules\Members\Enums\ClubStatus;
 
 class AdminController extends Controller
 {
@@ -41,7 +42,9 @@ class AdminController extends Controller
                                 ->whereDate('created_at', Carbon::today())
                                 ->first();
 
-        $allMembers = Member::orderBy('created_at', 'desc')->get();
+        $allMembers = Member::orderBy('created_at', 'desc')
+                                ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)
+                                ->get();
 
         return view('admin::pages.index', [
             'formSubmissions' => $formSubmissions,
