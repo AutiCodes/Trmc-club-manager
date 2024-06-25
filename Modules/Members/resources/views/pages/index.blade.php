@@ -10,9 +10,24 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="main-box no-header clearfix">
+
+          <div class="w-25 float-left mb-4 ml-4">
+            <input type="text" id="name_search" onkeyup="nameFilter()" placeholder="Zoek naam" class="form-control rounded">
+          </div>
+
+          <div class="w25 float-right mb-4 mr-4">
+            <select class="form-control form-control-lg" id="clubstatus_filter" onchange="clubStatusFilter()">
+              <option value="All" selected>Alle club statussen</option>
+              <option value="Aspirantlid">Aspirant lid</option>
+              <option value="Lid">Lid</option>
+              <option value="Bestuur">Bestuur</option>
+              <option value="Donateur">Donateur</option>
+            </select>
+          </div>
+          
           <div class="main-box-body clearfix">
             <div class="table-responsive">
-              <table class="table user-list">
+              <table class="table user-list" id="MembersTable">
                 <thead>
                     <tr>
                     <th><span>Vol. naam</span></th>
@@ -165,4 +180,53 @@ a:hover{
 text-decoration:none;
 }
 </style>
+
+<script>
+  function nameFilter() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("name_search");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("MembersTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+
+  function clubStatusFilter() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("clubstatus_filter");
+    table = document.getElementById("MembersTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[4];
+
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        console.log(input.value.replace(/\s/g,''), txtValue.replace(/\s/g,''))
+
+        if (input.value.replace(/\s/g,'') === txtValue.replace(/\s/g,'')) {
+          tr[i].style.display = "";
+        } else if (input.value.replace(/\s/g,'') === 'All') {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
 @endsection
