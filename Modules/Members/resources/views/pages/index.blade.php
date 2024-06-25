@@ -76,7 +76,7 @@
                             <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                           </span>
                         </a>
-                        <a href="{{ route('members.destroy', $member->id) }}" class="table-link danger">
+                        <a href="leden/verwijder/{{ $member->id }}" class="table-link danger" onclick="return confirm('Weet je zeker dat je gebruiker {{ $member->name }} wilt verwijderen?');">
                           <span class="fa-stack" style="font-size: 1rem;">
                             <i class="fa fa-square fa-stack-2x"></i>
                             <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
