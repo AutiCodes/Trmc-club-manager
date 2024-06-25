@@ -17,7 +17,9 @@ class MembersController extends Controller
      */
     public function index()
     {
-        $members = Member::orderBy('name', 'asc')->get();
+        $members = Member::orderBy('name', 'asc')
+                    ->where('club_status', '!=', \Modules\Members\Enums\ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
+                    ->get();
 
         return view('members::pages.index', compact('members'));
     }
@@ -39,7 +41,7 @@ class MembersController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:40', 'unique:Members'],
+            'name' => ['required', 'string', 'max:40'],
             'birthdate' => ['required', 'date'],
             'address' => ['required', 'string', 'max:100'],
             'postcode' => ['required', 'string', 'max:10'],
@@ -48,7 +50,7 @@ class MembersController extends Controller
             'rdw_number' => ['required', 'integer', 'unique:Members', 'digits:10'],
             'knvvl' => ['required', 'integer', 'unique:Members'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:Members'],
-            'club_status' => ['required', 'integer', 'max:3'],
+            'club_status' => ['required', 'integer', 'max:4'],
             'instruct' => ['required', 'integer', 'max:1'],
         ]);
 
@@ -108,7 +110,7 @@ class MembersController extends Controller
             'rdw_number' => ['required', 'integer', 'digits:10'],
             'knvvl' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'club_status' => ['required', 'integer', 'max:3'],
+            'club_status' => ['required', 'integer', 'max:4'],
             'instruct' => ['required', 'integer', 'max:1'],
         ]);
 
@@ -132,9 +134,18 @@ class MembersController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param int $id
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
+        // Find member by $id
         $member = Member::findOrFail($id);
+
+        // Put Member om non active to hide it from the member list
+        $member->update([
+            'club_status' => \Modules\Members\Enums\ClubStatus::REMOVED_MEMBER->value,
+        ]);
+
+        return redirect(route('members.index'))->with('success', 'Het lid is verwijderd! Hij staat nog in de database maar is op non actief gezet.');
     }
 }

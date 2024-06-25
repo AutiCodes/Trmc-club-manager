@@ -70,7 +70,7 @@
           <option value=3 selected>Bestuur</option>
         @else
           <option value=3>Bestuur</option>
-        @endif
+        @endif          
       </select>
     </div> 
 
