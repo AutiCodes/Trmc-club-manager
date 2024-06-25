@@ -41,7 +41,7 @@ class MembersController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:40', 'unique:Members'],
+            'name' => ['required', 'string', 'max:40'],
             'birthdate' => ['required', 'date'],
             'address' => ['required', 'string', 'max:100'],
             'postcode' => ['required', 'string', 'max:10'],
