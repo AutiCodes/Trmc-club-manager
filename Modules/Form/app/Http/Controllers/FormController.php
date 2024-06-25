@@ -51,7 +51,13 @@ class FormController extends Controller
             'model_type' => ['required'],	
             'power_type_select' => ['integer'],
             'lipo_count_select' => ['integer'],
+            'rechapcha_custom' => ['integer', 'required'],
         ]);
+
+        // Check if rechapcha is correct, if not do nothing and return error
+        if ($validated['rechapcha_custom'] != env('RECAPTCHA_CUSTOM_VALUE')) {
+            return back()->with('error', 'Oh oh ik denk dat je een robot bent! Bliep bloop probeer het opnieuw!');
+        }
         
         $form = Form::create([
             'name' => $validated['name'],
