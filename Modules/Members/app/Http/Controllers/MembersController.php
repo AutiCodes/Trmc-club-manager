@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Members\Models\Member;
 use Carbon\Carbon;
+use Modules\Members\Enums\ClubStatus;
 
 class MembersController extends Controller
 {
@@ -18,7 +19,7 @@ class MembersController extends Controller
     public function index()
     {
         $members = Member::orderBy('name', 'asc')
-                    ->where('club_status', '!=', \Modules\Members\Enums\ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
+                    ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
                     ->get();
 
         return view('members::pages.index', compact('members'));
@@ -143,7 +144,7 @@ class MembersController extends Controller
 
         // Put Member om non active to hide it from the member list
         $member->update([
-            'club_status' => \Modules\Members\Enums\ClubStatus::REMOVED_MEMBER->value,
+            'club_status' => ClubStatus::REMOVED_MEMBER->value,
         ]);
 
         return redirect(route('members.index'))->with('success', 'Het lid is verwijderd! Hij staat nog in de database maar is op non actief gezet.');
