@@ -12,6 +12,7 @@ use Modules\Form\Enums\ModelTypeEnum;
 use Modules\Members\Models\Member;
 use Modules\Form\Models\SubmittedModel;
 use Illuminate\Validation\Rule;
+use Modules\Members\Enums\ClubStatus;
 
 class FormController extends Controller
 {
@@ -22,7 +23,10 @@ class FormController extends Controller
     public function index()
     {
         // Get current members
-        $members = Member::orderby('name', 'DESC')->get();
+        $members = Member::orderby('name', 'DESC')
+                            ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)
+                            ->get();
+
         // Return form view
         return view('form::pages.reg_new_flight', ['members' => $members]);	
     }
