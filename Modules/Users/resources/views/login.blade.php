@@ -19,11 +19,11 @@
         </div>
       @endif
       <!-- LOGIN -->
-      <div class="container bg-dark mt-4 w-25">
+      <div class="container bg-dark mt-4 mb-4">
         <h3 class="text-white text-center pt-3">Login TRMC club manager</h3>
         <img src="/media/images/TRMC_LOGO_PNG.ico" class="rounded mx-auto d-block" alt="Responsive image">
 
-        <form action="/authenticatie-login-post" method="POST">
+        <form class="col-lg-6 offset-lg-3 pt-4 pb-4" action="/authenticatie-login-post" method="POST">
           @csrf
           <div class="form-group">
             <label for="username" class="text-white">Gebruikersnaam</label>
