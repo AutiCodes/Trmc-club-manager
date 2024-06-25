@@ -71,6 +71,11 @@
         @else
           <option value=3>Bestuur</option>
         @endif          
+        @if ($member->club_status == \Modules\Members\Enums\ClubStatus::DONOR->value)
+          <option value=5 selected>Donateur</option>
+        @else
+          <option value=5>Donateur</option>
+        @endif
       </select>
     </div> 
 

@@ -59,6 +59,7 @@
         <option value=1>Aspirant lid</option>
         <option value=2>Lid</option>
         <option value=3>Bestuur</option>
+        <option value=5>Donateur</option>
       </select>
     </div> 
 
@@ -66,7 +67,7 @@
       <label for="instruct" class="text-white font-weight-bold">Instructeur</label>
       <select class="form-control" id="instruct" name="instruct" required>
         <option value=0 selected>Nee</option>
-        <option valu=1>Ja</option>
+        <option value=1>Ja</option>
       </select>
     </div> 
 
