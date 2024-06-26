@@ -10,12 +10,70 @@ use Illuminate\Http\Response;
 class VersionsController extends Controller
 {
     /**
-     * Get pull requests from the Githup API
-     * 
+     * Display a listing of the resource.
      */
-    public function getPullRequests()
+    public function index()
     {
-        $url = 'https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/pulls?state=all';
+        $prResults = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/pulls?state=all');
+        $latestVersion = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/releases/latest');
+
+        return view('versions::pages.index', compact('prResults', 'latestVersion'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('versions::create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        //
+    }
+
+    /**
+     * Show the specified resource.
+     */
+    public function show($id)
+    {
+        return view('versions::show');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        return view('versions::edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id): RedirectResponse
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    /**
+     * Curl the Github API.
+     * @return JSON
+     */
+    function curlGithub($url)
+    {
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -30,13 +88,9 @@ class VersionsController extends Controller
         curl_setopt($curl, CURLOPT_USERAGENT, 'Chrome/64.0.3282.186 Safari/537.36');
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 
-        $httpcode = curl_getinfo($curl , CURLINFO_HTTP_CODE);
         $result = json_decode(curl_exec($curl));
         curl_close($curl);
 
-        $counter = 0;
-        foreach ($result as $item) {
-            echo $item->number . '. ' . $item->title. '<br>';
-        }
-    }
+        return $result;
+    }    
 }
