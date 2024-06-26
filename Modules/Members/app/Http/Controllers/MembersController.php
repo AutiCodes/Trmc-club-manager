@@ -22,7 +22,11 @@ class MembersController extends Controller
                     ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
                     ->get();
 
-        return view('members::pages.index', compact('members'));
+        $AllMembers = Member::where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)->count();
+        $totalActiveMembers = Member::where('club_status', '=', ClubStatus::MEMBER->value)->count();
+        $totalDonators = Member::where('club_status', '=', ClubStatus::DONOR->value)->count();
+
+        return view('members::pages.index', compact('members', 'AllMembers', 'totalActiveMembers', 'totalDonators'));
     }
 
     /**

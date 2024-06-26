@@ -6,6 +6,22 @@
 <div class="container-fluid">
   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
   <div class="container bootstrap mt-4 pl-0">
+    <div class="row mt-3 mb-4">
+      <div class="col-sm bg-dark ml-2 mr-2 text-center text-white">
+        <h3>Aantal ingeschreven</h3>
+        <h1>{{ $AllMembers ?? 0 }}</h1>
+      </div>
+
+      <div class="col-sm bg-dark ml-2 mr-2 text-center text-white">
+        <h3>Aantal leden</h3>
+        <h1>{{ $totalActiveMembers ?? 0 }}</h1>        
+      </div>
+
+      <div class="col-sm bg-dark ml-2 mr-2 text-center text-white">
+        <h3>Aantal donateurs</h3>
+        <h1>{{ $totalDonators ?? 0 }}</h1>
+      </div>
+     </div>
     <div class="row">
       <div class="col-lg-12">
         <div class="main-box no-header clearfix">
@@ -218,8 +234,7 @@ text-decoration:none;
 
       if (td) {
         txtValue = td.textContent || td.innerText;
-        console.log(input.value.replace(/\s/g,''), txtValue.replace(/\s/g,''))
-
+        
         if (input.value.replace(/\s/g,'') === txtValue.replace(/\s/g,'')) {
           tr[i].style.display = "";
         } else if (input.value.replace(/\s/g,'') === 'All') {
