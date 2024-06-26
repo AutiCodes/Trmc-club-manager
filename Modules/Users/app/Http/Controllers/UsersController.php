@@ -91,23 +91,23 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect(route('users.index'))->with('error', 'Gebruiker niet gevonden!');
+        }
+
         $validated = $request->validate([
-            'name' => ['required','string','max:40', 'unique:Users'],
-            'username' => ['required','string','max:40', 'unique:Users'],
             'password' => ['required','string','max:40'],
         ]);
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'username' => $validated['username'],
+        $user->update([
             'password' => Hash::make($validated['password']),
         ]);
 
-        if (!$user) {
-            return redirect(route('admin.index'))->with('error', 'Er is iets fout gegaan!');
-        } 
 
-        return redirect(route('admin.index'))->with('success', 'Gebruiker toegevoegd!');
+
+        return redirect(route('admin.index'))->with('success', 'Gebruiker gewijzigd!');
     }
 
     /**
