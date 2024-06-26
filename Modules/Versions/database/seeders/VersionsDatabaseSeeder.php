@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Versioning\Database\Seeders;
+namespace Modules\Versions\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class VersioningDatabaseSeeder extends Seeder
+class VersionsDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Versioning\Http\Controllers\VersioningController;
+use Modules\Versions\Http\Controllers\VersionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +15,5 @@ use Modules\Versioning\Http\Controllers\VersioningController;
 */
 
 Route::group([], function () {
-    Route::resource('versioning', VersioningController::class)->names('versioning');
+    Route::resource('versions', VersionsController::class)->names('versions');
 });

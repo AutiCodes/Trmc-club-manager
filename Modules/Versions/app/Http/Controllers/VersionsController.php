@@ -1,20 +1,20 @@
 <?php
 
-namespace Modules\Versioning\Http\Controllers;
+namespace Modules\Versions\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class VersioningController extends Controller
+class VersionsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('versioning::index');
+        return view('versions::index');
     }
 
     /**
@@ -22,7 +22,7 @@ class VersioningController extends Controller
      */
     public function create()
     {
-        return view('versioning::create');
+        return view('versions::create');
     }
 
     /**
@@ -38,7 +38,7 @@ class VersioningController extends Controller
      */
     public function show($id)
     {
-        return view('versioning::show');
+        return view('versions::show');
     }
 
     /**
@@ -46,7 +46,7 @@ class VersioningController extends Controller
      */
     public function edit($id)
     {
-        return view('versioning::edit');
+        return view('versions::edit');
     }
 
     /**

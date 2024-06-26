@@ -1,15 +1,15 @@
 <?php
 
-namespace Modules\Versioning\Providers;
+namespace Modules\Versions\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class VersioningServiceProvider extends ServiceProvider
+class VersionsServiceProvider extends ServiceProvider
 {
-    protected string $moduleName = 'Versioning';
+    protected string $moduleName = 'Versions';
 
-    protected string $moduleNameLower = 'versioning';
+    protected string $moduleNameLower = 'versions';
 
     /**
      * Boot the application events.

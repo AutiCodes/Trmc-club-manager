@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Versioning\Http\Controllers\VersioningController;
+use Modules\Versions\Http\Controllers\VersionsController;
 
 /*
  *--------------------------------------------------------------------------
@@ -15,5 +15,5 @@ use Modules\Versioning\Http\Controllers\VersioningController;
 */
 
 Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('versioning', VersioningController::class)->names('versioning');
+    Route::apiResource('versions', VersionsController::class)->names('versions');
 });

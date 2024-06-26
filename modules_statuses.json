@@ -7,5 +7,6 @@
     "Models": true,
     "RcModels": true,
     "Members": true,
-    "Versioning": true
+    "Versioning": true,
+    "Versions": true
 }

@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/versioning",
+    "name": "nwidart/versions",
     "description": "",
     "authors": [
         {
@@ -17,14 +17,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Versioning\\": "app/",
-            "Modules\\Versioning\\Database\\Factories\\": "database/factories/",
-            "Modules\\Versioning\\Database\\Seeders\\": "database/seeders/"
+            "Modules\\Versions\\": "app/",
+            "Modules\\Versions\\Database\\Factories\\": "database/factories/",
+            "Modules\\Versions\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Modules\\Versioning\\Tests\\": "tests/"
+            "Modules\\Versions\\Tests\\": "tests/"
         }
     }
 }
