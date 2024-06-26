@@ -45,14 +45,14 @@
                     <tr>
                       <!-- User -->
                       <td>
-                       {{ $member->name }}
+                       {{ $member->name ?? 'Niet ingevuld' }}
                       </td>
                       <!-- KNVvl -->
-                      <td>{{ $member->KNVvl }}</td>
+                      <td>{{ $member->KNVvl ?? 'Niet ingevuld'}}</td>
                       <!-- Birthday -->
-                      <td>{{ $member->birthdate }}</td>
+                      <td>{{ $member->birthdate ?? 'Niet ingevuld' }}</td>
                       <!-- Living address -->
-                      <td>{{ $member->address }}</td>
+                      <td>{{ $member->address ?? 'Niet ingevuld' }}</td>
                       <!-- Club status -->
                       @if ($member->club_status == \Modules\Members\Enums\ClubStatus::ASPIRANT_MEMBER->value)
                         <td class="text-center">
@@ -72,12 +72,12 @@
                         </td>
                       @endif
                       <!-- RDW number -->
-                      <td>{{ $member->rdw_number }}</td>                    
+                      <td>{{ $member->rdw_number ?? 'Niet ingevuld' }}</td>                    
                       <!-- Phone number -->
-                      <td>{{ $member->phone }}</td>
+                      <td>{{ $member->phone ?? 'Niet ingevuld' }}</td>
                       <!-- Email -->
                       <td>
-                        <a href="#">{{ $member->email }}</a>
+                        <a href="#">{{ $member->email ?? 'Niet ingevuld' }}</a>
                       </td>
                       <!-- View, edit, delete buttons -->
                       <td style="width: 20%;">

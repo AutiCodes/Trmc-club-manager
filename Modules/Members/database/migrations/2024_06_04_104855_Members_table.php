@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('phone')->nullable();
             $table->integer('club_status')->nullable();
-            $table->string('rdw_number')->unique();
+            $table->string('rdw_number')->unique()->nullable();
             $table->integer('instruct')->nullable();
             $table->timestamps();
         });
