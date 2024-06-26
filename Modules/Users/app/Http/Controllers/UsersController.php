@@ -17,7 +17,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('users::index');
+        $users = User::all()->sortBy('name');
+
+        return view('users::pages.index', compact('users'));
     }
 
     /**
@@ -37,7 +39,7 @@ class UsersController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required','string','max:40', 'unique:Users'],
+            'name' => ['required','string','max:40'],
             'username' => ['required','string','max:40', 'unique:Users'],
             'password' => ['required','string','max:40'],
         ]);
@@ -52,7 +54,7 @@ class UsersController extends Controller
             return redirect(route('admin.index'))->with('error', 'Er is iets fout gegaan!');
         } 
 
-        return redirect(route('admin.index'))->with('success', 'Gebruiker toegevoegd!');
+        return redirect(route('users.index'))->with('success', 'Gebruiker toegevoegd!');
     }
 
     /**
@@ -72,7 +74,13 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('users::pages.edit_profile');
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect(route('users.index'))->with('error', 'Gebruiker niet gevonden!');
+        }
+
+        return view('users::pages.edit_profile', compact('user'));
     }
 
     /**
@@ -109,6 +117,14 @@ class UsersController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect(route('admin.index'))->with('error', 'Gebruiker niet gevonden!');
+        }
+
+        $user->delete();
+
+        return redirect(route('users.index'))->with('success', 'Gebruiker verwijderd!');
     }
 }
