@@ -39,12 +39,12 @@
     
     <div class="form-group">
       <label for="rdw_number"  class="text-white font-weight-bold">RDW nummer</label>
-      <input type="text" class="form-control" id="rdw_number" name="rdw_number" placeholder="A34hjhdwqjkwqa" required>
+      <input type="text" class="form-control" id="rdw_number" name="rdw_number" placeholder="A34hjhdwqjkwqa">
     </div>    
 
     <div class="form-group">
       <label for="knvvl"  class="text-white font-weight-bold">KNVvl nummer</label>
-      <input type="text" class="form-control" id="knvvl" name="knvvl" placeholder="1234567" required>
+      <input type="text" class="form-control" id="knvvl" name="knvvl" placeholder="1234567">
     </div>   
     
     <div class="form-group">

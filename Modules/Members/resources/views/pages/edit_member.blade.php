@@ -40,12 +40,12 @@
     
     <div class="form-group">
       <label for="rdw_number"  class="text-white font-weight-bold">RDW nummer</label>
-      <input type="text" class="form-control" id="rdw_number" name="rdw_number" placeholder="A34hjhdwqjkwqa" required value="{{ $member->rdw_number }}">
+      <input type="text" class="form-control" id="rdw_number" name="rdw_number" placeholder="A34hjhdwqjkwqa" value="{{ $member->rdw_number }}">>
     </div>    
 
     <div class="form-group">
       <label for="knvvl"  class="text-white font-weight-bold">KNVvl nummer</label>
-      <input type="text" class="form-control" id="knvvl" name="knvvl" placeholder="1234567" required value="{{ $member->KNVvl }}">
+      <input type="text" class="form-control" id="knvvl" name="knvvl" placeholder="1234567" value="{{ $member->KNVvl }}">
     </div>   
     
     <div class="form-group">
