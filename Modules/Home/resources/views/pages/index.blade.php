@@ -26,4 +26,16 @@
       </div>
     </div>
   </div>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-sm text-center text-white">
+        <h3>Laatste vluchten:</h3>
+      </div>
+
+      <div class="col-sm text-center text-white">
+        <h3>Laatste site updates:</h3>
+      </div>
+    </div>
+  </div>
 @stop
