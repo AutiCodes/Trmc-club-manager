@@ -8,4 +8,5 @@ enum ClubStatus: int
     case MEMBER = 2;
     case MANAGEMENT = 3;
     case REMOVED_MEMBER = 4;
+    case DONOR = 5;
 }

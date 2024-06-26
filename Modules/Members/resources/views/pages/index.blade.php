@@ -68,6 +68,10 @@
                         <td class="text-center">
                           <span class="badge badge-pill badge-warning" style="font-size: 1rem;">Bestuur</span>
                         </td>
+                      @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::DONOR->value)
+                        <td class="text-center">
+                          <span class="badge badge-pill badge-secondary" style="font-size: 1rem;">Donateur</span>
+                        </td>
                       @endif
                       <!-- RDW number -->
                       <td>{{ $member->rdw_number }}</td>                    

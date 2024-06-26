@@ -51,7 +51,7 @@ class MembersController extends Controller
             'rdw_number' => ['required', 'integer', 'unique:Members', 'digits:10'],
             'knvvl' => ['required', 'integer', 'unique:Members'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:Members'],
-            'club_status' => ['required', 'integer', 'max:4'],
+            'club_status' => ['required', 'integer', 'max:5'],
             'instruct' => ['required', 'integer', 'max:1'],
         ]);
 
@@ -79,7 +79,7 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        return "boobs";
+        //
     }
 
     /**
@@ -111,7 +111,7 @@ class MembersController extends Controller
             'rdw_number' => ['required', 'integer', 'digits:10'],
             'knvvl' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'club_status' => ['required', 'integer', 'max:4'],
+            'club_status' => ['required', 'integer', 'max:5'],
             'instruct' => ['required', 'integer', 'max:1'],
         ]);
 
