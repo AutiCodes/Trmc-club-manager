@@ -14,7 +14,7 @@
 
       <div class="col-sm bg-dark ml-2 mr-2 text-center text-white">
         <h3>Aantal leden</h3>
-        <h1>{{ $totalActiveMembers ?? 0 }}</h1>        
+        <h1>{{ $totalNormalMembers + $totalManagement + $totalAspirantMember ?? 0 }}</h1>        
       </div>
 
       <div class="col-sm bg-dark ml-2 mr-2 text-center text-white">
@@ -234,7 +234,7 @@ text-decoration:none;
 
       if (td) {
         txtValue = td.textContent || td.innerText;
-        
+
         if (input.value.replace(/\s/g,'') === txtValue.replace(/\s/g,'')) {
           tr[i].style.display = "";
         } else if (input.value.replace(/\s/g,'') === 'All') {
