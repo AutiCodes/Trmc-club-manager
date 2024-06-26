@@ -29,13 +29,22 @@
 
   <div class="container mt-4">
     <div class="row">
-      <div class="col-sm text-center text-white">
-        <h3>Laatste vluchten:</h3>
+      <div class="col-sm text-white">
+        <h3>Laatste site updates:</h3>
+        @foreach ($prResults as $pr)
+          @if ($loop->index > 10)
+            @break
+          @endif
+          <p>Nr. {{ $pr->number }} - <a href="{{ $pr->html_url }}/files">{{ $pr->title }}</a></p>
+        @endforeach
       </div>
 
-      <div class="col-sm text-center text-white">
-        <h3>Laatste site updates:</h3>
-      </div>
+      <div class="col-sm text-white">
+        <h3>versie:</h3>
+        <p>
+          <strong>Versie:</strong> {{ $version->tag_name }}<br>
+          <strong>Datum:</strong> {{ $version->published_at }}<br>  
+        </p>
     </div>
   </div>
 @stop

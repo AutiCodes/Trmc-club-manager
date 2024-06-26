@@ -15,5 +15,5 @@ use Modules\Versions\Http\Controllers\VersionsController;
 */
 
 Route::group([], function () {
-    Route::resource('versions', VersionsController::class)->names('versions');
+    Route::get('/versions/get-prs', [VersionsController::class, 'getPullRequests']);
 });
