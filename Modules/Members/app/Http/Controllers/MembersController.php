@@ -23,10 +23,12 @@ class MembersController extends Controller
                     ->get();
 
         $AllMembers = Member::where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)->count();
-        $totalActiveMembers = Member::where('club_status', '=', ClubStatus::MEMBER->value)->count();
+        $totalAspirantMember = Member::where('club_status', '=', ClubStatus::ASPIRANT_MEMBER->value)->count();
+        $totalNormalMembers = Member::where('club_status', '=', ClubStatus::MEMBER->value)->count();
+        $totalManagement = Member::where('club_status', '=', ClubStatus::MANAGEMENT->value)->count();
         $totalDonators = Member::where('club_status', '=', ClubStatus::DONOR->value)->count();
 
-        return view('members::pages.index', compact('members', 'AllMembers', 'totalActiveMembers', 'totalDonators'));
+        return view('members::pages.index', compact('members', 'AllMembers', 'totalAspirantMember', 'totalNormalMembers', 'totalManagement', 'totalDonators'));
     }
 
     /**
