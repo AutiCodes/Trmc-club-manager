@@ -19,13 +19,8 @@
         </div>
       @endif
       <!-- LOGIN -->
-<<<<<<< HEAD
       <div class="container bg-dark mt-4">
-        <h3 class="text-white text-center pt-3">Login TRMC vluchtmanager</h3>
-=======
-      <div class="container bg-dark mt-4 mb-4">
         <h3 class="text-white text-center pt-3">Login TRMC club manager</h3>
->>>>>>> 4c2f54cf5968fecba21cef83d347d0e67fead9f9
         <img src="/media/images/TRMC_LOGO_PNG.ico" class="rounded mx-auto d-block" alt="Responsive image">
 
         <form class="col-lg-6 offset-lg-3 pt-4 pb-4" action="/authenticatie-login-post" method="POST">
@@ -37,7 +32,6 @@
           <div class="form-group">
             <label for="password" class="text-white">Wachtwoord</label>
             <input type="password" class="form-control mb-2" id="password" name="password" placeholder="Wachtwoord" required>
-            <a href="#" class="pt-2">Klik hier om je wachtwoord te resetten</a>
           </div>
           <!--
           <div class="form-check">
