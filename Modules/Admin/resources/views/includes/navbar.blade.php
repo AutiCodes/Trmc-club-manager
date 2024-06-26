@@ -37,6 +37,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('versions.index') }}">Versies</a>
           <a class="dropdown-item" href="{{ route('users.create') }}">Voeg een bestuurslid toe</a>
+          <a class="dropdown-item" href="{{ route('users.index') }}">Alle bestuurleden account</a>
         </div>
       </li>       
     </ul>

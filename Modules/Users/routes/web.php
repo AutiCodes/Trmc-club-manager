@@ -17,6 +17,7 @@ use Modules\Users\Http\Controllers\AuthenticationController;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UsersController::class)->names('users');
+    Route::get('bestuursleden/verwijder/{id}', [UsersController::class, 'destroy']);
 });
 
 Route::group([], function () {
