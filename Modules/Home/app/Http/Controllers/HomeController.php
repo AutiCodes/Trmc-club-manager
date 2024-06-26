@@ -82,6 +82,7 @@ class HomeController extends Controller
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_USERAGENT, 'Chrome/64.0.3282.186 Safari/537.36');
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: ' . env('GITHUB_ACCESS_TOKEN')));
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 
         $result = json_decode(curl_exec($curl));

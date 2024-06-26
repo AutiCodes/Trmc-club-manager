@@ -27,7 +27,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('members.index') }}">Leden overzicht</a>
-          <a class="dropdown-item" href="{{ route('members.create') }}">Lid/bestuur toevoegen</a>
+          <a class="dropdown-item" href="{{ route('members.create') }}">Vlieg lid toevoegen</a>
         </div>
       </li>         
       <li class="nav-item dropdown">
@@ -36,6 +36,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('versions.index') }}">Versies</a>
+          <a class="dropdown-item" href="{{ route('users.create') }}">Voeg een bestuurslid toe</a>
         </div>
       </li>       
     </ul>
@@ -46,7 +47,6 @@
           Welkom {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ route('users.create') }}">Voeg een admin toe</a>
           <a class="dropdown-item" href="{{ route('users.edit', auth()->user()->id) }}">Wijzig je profiel</a>
           <a class="dropdown-item" href="/authenticatie-uitloggen">Log jezelf uit</a>
         </div>
