@@ -1,5 +1,7 @@
 @extends('admin::layouts.master')
 
+@section('title', 'Versie management')
+
 @section('content')
   <div class="container mt-4">
     <div class="row">
@@ -16,8 +18,48 @@
       <div class="col-sm text-white">
         <h3>Versie:</h3>
         <p>
-          <strong>Versie:</strong> <span class="badge badge-primary">{{ $latestVersion->tag_name }}</span><br>
-          <strong>Datum:</strong> {{ $latestVersion->published_at }}<br>  
+
+          <strong>
+            Versie:
+          </strong>
+          <span class="badge badge-primary font-weight-bold">
+              <strong>
+                {{ $latestVersion->tag_name }}
+              </strong>
+          </span>
+          <br>
+
+          <strong>
+            Datum:
+          </strong> 
+          <span class="badge badge-primary">
+            <strong>
+              {{ $latestVersion->published_at }}
+            </strong>
+          </span>
+          <br>  
+
+          <strong>
+            Author:
+          </strong> 
+          <span class="badge badge-primary">
+            <img src="{{ $latestVersion->author->avatar_url }}" style="width: 18px">
+              <strong>
+                {{ $latestVersion->author->login }}
+              </strong>
+            </img>
+          </span>
+          <br>
+
+          <strong>
+            Commit branch:
+          </strong>
+          <span class="badge badge-primary">
+            <strong>
+              {{ $latestVersion->target_commitish }}
+            </strong>
+          </span>
+          <br>
         </p>
     </div>
   </div>
