@@ -5,8 +5,7 @@
 @section('content')
 <div class="container-fluid">
   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-  <hr>
-  <div class="container bootstrap">
+  <div class="container bootstrap mt-4 pl-0">
     <div class="row">
       <div class="col-lg-12">
         <div class="main-box no-header clearfix">
@@ -39,7 +38,6 @@
                     <th><span>Telefoon</span></th>
                     <th><span>Email</span></th>
                     <th>Open, bewerk, verwijder</th>
-                    
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +45,7 @@
                     <tr>
                       <!-- User -->
                       <td>
-                        <a href="#" class="user-link">{{ $member->name }}</a>
+                       {{ $member->name }}
                       </td>
                       <!-- KNVvl -->
                       <td>{{ $member->KNVvl }}</td>
@@ -178,7 +176,7 @@ a {
     font-size: 0.875em;
     vertical-align: middle;
     border-top: 1px solid #e7ebee;
-    padding: 12px 8px;
+    padding: 2px 2px;
 }
 a:hover{
 text-decoration:none;
