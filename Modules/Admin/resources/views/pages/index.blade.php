@@ -13,17 +13,17 @@
         <!-- Total flights -->
         <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
           <h3 class="text-white mt-2">Totaal:</h3>
-          <h1 class="text-white">{{ $totalFlights->total_flights }}</h1>
+          <h1 class="text-white">{{ $totalFlights->total_flights ?? 0 }}</h1>
         </div>
         <!-- This week flights -->
         <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
           <h3 class="text-white mt-2">Deze week:</h3>
-          <h1 class="text-white">{{ $flightsThisWeek->flightsThisWeek }}</h1>
+          <h1 class="text-white">{{ $flightsThisWeek->flightsThisWeek ?? 0 }}</h1>
         </div>
         <!-- Today flights -->
         <div class="col-sm text-center bg-dark rounded ml-2 mr-2 mt-2">
           <h3 class="text-white mt-2">Vandaag:</h3>
-          <h1 class="text-white">{{ $flightsToday->flightsToday }}</h1>
+          <h1 class="text-white">{{ $flightsToday->flightsToday ?? 0 }}</h1>
         </div>                    
       </div>
       <!-- End total cards -->
