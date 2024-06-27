@@ -38,10 +38,22 @@
       background-image: url("/media/images/plane.png");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 100%;
+      background-size: 60%;
       background-attachment: fixed;
-      
+
       background-color: #2f3031;
+    }    
+
+    @media only screen and (max-width: 900px) {
+      body, html {
+        background-image: url("/media/images/plane.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        background-attachment: fixed;
+
+        background-color: #2f3031;
+      }
     }
 
   </style>
