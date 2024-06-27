@@ -13,10 +13,12 @@ class Member extends Model
 {
     use HasFactory;
     protected $table = 'Members';
+
     /**
-     * The attributes that are mass assignable.'
-     * @var string name
-     * @var integer rdw_number
+     * The attributes that are mass assignable.
+     * 
+     * @var string name, first_name, email, password, birthdate, address, postcode, city
+     * @var integer id, KNVvl, club_status, rdw_number, instruct, has_plane_brevet, has_helicopter_brevet, has_glider_brevet, in_memoriam
      */
     protected $fillable = [
         'id',
@@ -40,6 +42,8 @@ class Member extends Model
 
     /**
      * Form to member relationship
+     * 
+     * @return BelongsToMany
      */
     public function form(): BelongsToMany
     {
