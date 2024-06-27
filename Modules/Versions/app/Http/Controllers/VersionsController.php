@@ -93,5 +93,14 @@ class VersionsController extends Controller
         curl_close($curl);
 
         return $result;
-    }    
+    }
+
+
+    /**
+     * Clears route cache
+     */
+    public function clearRouteCache()
+    {
+        \Artisan::call('route:clear');
+    }
 }
