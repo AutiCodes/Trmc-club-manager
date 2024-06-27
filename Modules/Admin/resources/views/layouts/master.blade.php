@@ -55,23 +55,42 @@
   
   <style>
     body, html {
-    background-color: #2f3031;
-  }
-  .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #ffffff;
-  }
+      background-image: url("/media/images/plane.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 60%;
+      background-attachment: fixed;
 
-  .help_icon {
-    position: fixed;
-    bottom:0;
-    right: 0;
-    padding: 10px;
-  }
+      background-color: #2f3031;
+    }    
 
-  input[type="checkbox"] {
-    width: 1.2rem;
-    height: 1.2rem;
-    border-radius: 50%;
-  }
+    @media only screen and (max-width: 900px) {
+      body, html {
+        background-image: url("/media/images/plane.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        background-attachment: fixed;
+
+        background-color: #2f3031;
+      }
+    }
+
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+      background-color: #ffffff;
+    }
+
+    .help_icon {
+      position: fixed;
+      bottom:0;
+      right: 0;
+      padding: 10px;
+    }
+
+    input[type="checkbox"] {
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 50%;
+    }
   </style>
 </body>
