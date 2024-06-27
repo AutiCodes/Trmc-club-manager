@@ -51,16 +51,25 @@
           <!-- NAME -->
           <div class="form-group">
             <label for="name" class="text-white font-weight-bold">Naam modelvlieger:</label>
-            <select id="name" name="name" placeholder="Voornaam Achternaam" required onChange="requiredHideViewer(this)">
-            <option value="">Selecteer een naam</option>
-            @foreach ($members as $member)
-              <option value="{{ $member->id }}">{{ $member->name }}</option>
-            @endforeach
-          </select>              
-          <small id="name" class="form-text text-muted">Staat je naam er niet tussen? Contacteer dan het bestuur om je naam toe te voegen</small>
-          <p class="text-danger" id="name_required" style="display: block;">Naam is vereist!</p>
+            <select id="name" name="name" placeholder="Voornaam Achternaam" required onChange="nameFunction(this)">
+              <option value="">Selecteer een naam</option>
+              @foreach ($members as $member)
+                <option value="{{ $member->id }}">{{ $member->name }}</option>
+              @endforeach
+            </select>              
+           <small id="name" class="form-text text-muted">Staat je naam er niet tussen? Contacteer dan het bestuur om je naam toe te voegen</small>
+           <p class="text-danger" id="name_required" style="display: block;">Naam is vereist!</p>
           </div>
-      
+
+          <!-- User ID -->
+
+          <!-- RDW number -->
+          <div class="form-group" style="display: none;" id="rdw_number_viewer">
+            <label for="rdw_number" class="text-white font-weight-bold">RDW nummer:</label>
+            <input type="text" id="rdw_number" name="rdw_number" class="form-control">
+            <small id="rdw_number" class="form-text text-muted">Dit is een eenmalige stap. Na de 1e keer dit ingevuld te hebben gaat dit automatisch.</small>
+          </div>
+
           <!-- DATE -->
           <div class="form-group">
             <label for="date" class="text-white font-weight-bold">Selecteer een datum:</label>
@@ -341,6 +350,28 @@
           document.getElementById(e.id + '_div').style.display = "none";
           document.getElementById('model_type_required').style.visibility = "visible";
           }
+      }
+
+
+      function nameFunction(e) {
+        $.ajax({
+          url: "lid-vlucht-aanmeldingen-aantal" + '/' + e.value,
+          type: 'GET',
+          dataType: 'json',
+          success: function(response){
+            console.log(response);
+            if (response['has_submitted_club_flight'] != true) {
+              // Show RDW number form
+              document.getElementById('rdw_number_viewer').style.display = "block";
+            } 
+          }
+          });
+
+        if(e.value != '') {
+          document.getElementById(e.id + '_required').style.visibility = "hidden";
+          return;
+        }	
+        document.getElementById(e.id + '_required').style.visibility = "visible";
       }
     </script>
 @stop
