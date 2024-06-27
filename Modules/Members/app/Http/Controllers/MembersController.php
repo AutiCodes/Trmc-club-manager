@@ -14,6 +14,7 @@ class MembersController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
      * @return View
      */
     public function index()
@@ -33,6 +34,7 @@ class MembersController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * 
      * @return View
      */
     public function create()
@@ -42,6 +44,7 @@ class MembersController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
      * @param Request $request
      * @return RedirectResponse
      */
@@ -88,7 +91,8 @@ class MembersController extends Controller
 
     /**
      * Show the specified resource.
-     * @param int $id
+     * 
+     * @param int $id the id of the member
      * @return View
      */
     public function show($id)
@@ -104,7 +108,8 @@ class MembersController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param int $id
+     * 
+     * @param int $id the id of the member
      * @return View
      */
     public function edit($id)
@@ -116,6 +121,7 @@ class MembersController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
      * @param Request $request
      * @return RedirectResponse
      */
@@ -163,7 +169,8 @@ class MembersController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param int $id
+     * 
+     * @param int $id the id of the member
      * @return RedirectResponse
      */
     public function destroy($id)
@@ -181,6 +188,7 @@ class MembersController extends Controller
 
     /**
      * Export members to PDF
+     * 
      * @return PDF
     */
     public function exportPDF()
