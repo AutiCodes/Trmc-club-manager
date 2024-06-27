@@ -11,6 +11,8 @@ class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * @return View
      */
     public function index()
     {
@@ -22,6 +24,8 @@ class HomeController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * 
+     * @return View
      */
     public function create()
     {
@@ -38,6 +42,9 @@ class HomeController extends Controller
 
     /**
      * Show the specified resource.
+     * 
+     * @param int $id the id of the member
+     * @return View
      */
     public function show($id)
     {
@@ -46,6 +53,9 @@ class HomeController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * @param int $id the id of the member
+     * @return View
      */
     public function edit($id)
     {
@@ -54,6 +64,9 @@ class HomeController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param Request $request
+     * @param int $id the id of the member
      */
     public function update(Request $request, $id): RedirectResponse
     {
@@ -62,12 +75,21 @@ class HomeController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * 
+     * @param int $id the id of the member
      */
     public function destroy($id)
     {
         //
     }
 
+
+    /**
+     * Curl the Github API
+     * 
+     * @param string $url the url to curl
+     * @return mixed
+     */
     function curlGithub($url)
     {
         $curl = curl_init();
