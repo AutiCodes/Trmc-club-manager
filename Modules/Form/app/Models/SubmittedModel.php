@@ -26,6 +26,8 @@ class SubmittedModel extends Model
 
     /**
      * Submitted models to form relationship
+     * 
+     * @return BelongsToMany
      */
     public function form(): belongsToMany
     {

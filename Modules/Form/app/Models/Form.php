@@ -17,7 +17,9 @@ class Form extends Model
     
     /**
      * The attributes that are mass assignable.
-     * @var string name, email, password
+     * 
+     * @var string name
+     * @var datetime date_time
      */
     protected $fillable = [
         'name',
@@ -26,6 +28,8 @@ class Form extends Model
 
     /**
      * Form to member relationship
+     * 
+     * @return BelongsToMany
      * TODO: Use HasOne instead BelongsToMany
      */
     public function member(): BelongsToMany
@@ -35,6 +39,8 @@ class Form extends Model
 
     /**
      * Form to submitted models relationship
+     * 
+     * @return BelongsToMany
      */
     public function submittedModels(): BelongsToMany
     {

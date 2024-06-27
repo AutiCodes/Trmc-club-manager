@@ -11,6 +11,8 @@ class VersionsController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * @return View
      */
     public function index()
     {
@@ -36,7 +38,9 @@ class VersionsController extends Controller
 
     /**
      * Curl the Github API.
-     * @return JSON
+     * 
+     * @param string $url The Github API url
+     * @return JSON || 403
      */
     function curlGithub($url)
     {
@@ -69,8 +73,8 @@ class VersionsController extends Controller
     /**
      * Updates this application to the latest version.  
      * 
-     * @return RedirectResponse
-     * @throws \Exception
+     * @throws \Exception If git pull command failed
+     * @return RedirectResponse 
      */
     public function update()
     {
@@ -91,6 +95,7 @@ class VersionsController extends Controller
 
     /**
      * Clears route cache
+     * 
      */
     public function clearRouteCache()
     {
