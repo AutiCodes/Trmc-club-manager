@@ -178,4 +178,16 @@ class MembersController extends Controller
 
         return redirect(route('members.index'))->with('success', 'Het lid is verwijderd! Hij staat nog in de database maar is op non actief gezet.');
     }
+
+    /**
+     * Export members to PDF
+     * @return PDF
+    */
+    public function exportPDF()
+    {
+        $members = Member::where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)->get();
+        $pdf = PDF::loadView('members::pages.export_members_pdf.blade.php', compact('members'));
+
+        return $pdf->stream('vluchten.pdf');
+    }
 }
