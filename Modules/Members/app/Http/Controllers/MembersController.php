@@ -93,7 +93,13 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        //
+        $member = Member::find($id);
+
+        if (!$member) {
+            return redirect(route('members.index'))->with('Lid niet gevonden!');
+        }
+
+        return view('members::pages.show_member', compact('member'));
     }
 
     /**
