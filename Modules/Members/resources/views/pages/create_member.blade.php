@@ -101,21 +101,21 @@
 
           <p class="font-weight-bold text-white mb-0">Brevetten</p>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="PlaneCertCheckbox">
+            <input class="form-check-input" type="checkbox" value=1 id="PlaneCertCheckbox" name="PlaneCertCheckbox">
             <label class="form-check-label text-white" for="PlaneCertCheckbox">
               Motorvliegtuig
             </label>
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="HeliCertCheckbox">
+            <input class="form-check-input" type="checkbox" value=1 id="HeliCertCheckbox" name="HeliCertCheckbox">
             <label class="form-check-label text-white" for="HeliCertCheckbox">
               Helicopter
             </label>
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="gliderCertCheckbox">
+            <input class="form-check-input" type="checkbox" value=1 id="gliderCertCheckbox" name="gliderCertCheckbox">
             <label class="form-check-label text-white" for="gliderCertCheckbox">
               Zweefvliegtuig
             </label>
@@ -123,7 +123,7 @@
 
           <p class="font-weight-bold text-white mb-0 mt-3">Ter herdenking</p>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="inMemorialCheckbox">
+            <input class="form-check-input" type="checkbox" value=1 id="inMemorialCheckbox" name="inMemorialCheckbox"> 
             <label class="form-check-label text-white" for="inMemorialCheckbox">
               In memorial
             </label>

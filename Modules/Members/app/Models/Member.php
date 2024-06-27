@@ -31,6 +31,10 @@ class Member extends Model
         'club_status',
         'rdw_number',
         'instruct',
+        'has_plane_brevet',
+        'has_helicopter_brevet',
+        'has_glider_brevet',
+        'in_memoriam',
     ];
 
     /**

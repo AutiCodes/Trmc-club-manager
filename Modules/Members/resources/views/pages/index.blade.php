@@ -45,6 +45,7 @@
               <table class="table user-list" id="MembersTable">
                 <thead>
                     <tr>
+                    <th><span>Icoon</span></th>
                     <th><span>Vol. naam</span></th>
                     <th><span>KNVvl</span></th>
                     <th><span>Geboortedatum</span></th>
@@ -59,6 +60,14 @@
                 <tbody>
                   @foreach ($members as $member)
                     <tr>
+                      <!-- Icons -->
+                      <td>
+                        @if ($member->in_memoriam == 1)
+                          <img src="/media/images/icons/ribbon.png" alt="" style="width: 35px" class="img-fluid ml-2">
+                        @elseif ($member->has_plane_brevet || $member->has_helicopter_brevet || $member->has_glider_brevet)
+                          <img src="/media/images/icons/quality.png" alt="" style="width: 35px" class="img-fluid ml-2">
+                        @endif
+                      </td>
                       <!-- User -->
                       <td>
                        {{ $member->name ?? 'Niet ingevuld' }}
