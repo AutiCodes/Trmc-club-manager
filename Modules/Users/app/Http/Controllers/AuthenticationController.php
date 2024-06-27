@@ -14,6 +14,7 @@ class AuthenticationController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
      * @return View
      */
     public function loginPage()
@@ -25,10 +26,11 @@ class AuthenticationController extends Controller
      * Checks for a valid login from the login form
      * If so, show admin dashboard
      * If not redirect back to login page
+     * 
      * @param Request $request
      * @return redirect
      */
-    public function login(Request $request)
+    public function login(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'username' => ['required', 'string'],
@@ -45,12 +47,14 @@ class AuthenticationController extends Controller
     /**
      * Logs out the user
      * Redirects to the login page
+     * 
      * @return redirect
      */
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
         Session::flush();
+
         return redirect('/authenticatie-login');
     }
 }
