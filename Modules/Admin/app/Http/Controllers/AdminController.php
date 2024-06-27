@@ -19,6 +19,7 @@ class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
      * @return View
      */
     public function index()
@@ -57,6 +58,7 @@ class AdminController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * 
      * @return View
      */
     public function create()
@@ -66,6 +68,7 @@ class AdminController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
      */
     public function store(Request $request): RedirectResponse
     {
@@ -107,6 +110,7 @@ class AdminController extends Controller
     /**
      * Generates a PDF with all flights from the database
      * and loads it in the browser
+     * 
      * @return PDF
      */
     public function downloadFlightsGov()
