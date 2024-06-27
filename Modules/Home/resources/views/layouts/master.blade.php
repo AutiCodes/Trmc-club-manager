@@ -35,8 +35,15 @@
   <!-- Temp styleing -->
   <style>
     body, html {
+      background-image: url("/media/images/plane.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+      background-attachment: fixed;
+      
       background-color: #2f3031;
     }
+
   </style>
   <!-- Temp JS -->
   <script>
