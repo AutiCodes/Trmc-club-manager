@@ -50,7 +50,7 @@
 
           <!-- NAME -->
           <div class="form-group">
-            <label for="name" class="text-white font-weight-bold">Naam modelvlieger:</label>
+          <label for="name" class="text-white font-weight-bold">Naam modelvlieger:</label>
             <select id="name" name="name" placeholder="Voornaam Achternaam" required onChange="nameFunction(this)">
               <option value="">Selecteer een naam</option>
               @foreach ($members as $member)

@@ -192,7 +192,7 @@ class FormController extends Controller
      */
     public function checkClubFlights($id)
     {
-        $member = Member::where('id', '=', $id)
+        $member = Member::where('id', $id)
                     ->with('form')
                     ->get();
 
