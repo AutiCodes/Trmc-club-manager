@@ -13,6 +13,7 @@ use Modules\Members\Models\Member;
 use Modules\Form\Models\SubmittedModel;
 use Illuminate\Validation\Rule;
 use Modules\Members\Enums\ClubStatus;
+use Modules\Form\Models\SubmittedModels;
 
 class FormController extends Controller
 {
@@ -57,6 +58,16 @@ class FormController extends Controller
             'lipo_count_select' => ['integer'],
             'rechapcha_custom' => ['integer', 'required'],
         ]);
+
+        // Save filled in RDW number on first flight register
+        if ($request->has('rdw_number')) {
+            // Save rdw_number to that user
+            $member = Member::find($validated['name']);
+
+            $member->update([
+                'rdw_number' => $request->input('rdw_number')
+            ]);
+        }
 
         // Check if rechapcha is correct, if not do nothing and return error
         if ($validated['rechapcha_custom'] != env('RECAPTCHA_CUSTOM_VALUE')) {
@@ -171,5 +182,24 @@ class FormController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Check if member has at least one submitted club flight
+     * 
+     * @param int $knvvl
+     * @return JSON
+     */
+    public function checkClubFlights($id)
+    {
+        $member = Member::where('id', '=', $id)
+                    ->with('form')
+                    ->get();
+
+        if (!$member) {
+            abort(404, 'Member not found');
+        }
+
+        return response()->json(['has_submitted_club_flight' => $member[0]->form->count() > 0]);
     }
 }

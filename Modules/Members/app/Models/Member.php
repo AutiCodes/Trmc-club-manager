@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Users\Database\Factories\MemberFactory;
 use Modules\Form\Models\Form;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Member extends Model
 {
@@ -40,8 +41,8 @@ class Member extends Model
     /**
      * Form to member relationship
      */
-    public function form(): HasOne
+    public function form(): BelongsToMany
     {
-        return $this->hasOne(Form::class);
+        return $this->belongsToMany(Form::class);
     }
 }

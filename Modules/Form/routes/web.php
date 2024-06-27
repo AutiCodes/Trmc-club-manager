@@ -16,4 +16,5 @@ use Modules\Form\Http\Controllers\FormController;
 
 Route::group([], function () {
     Route::resource('aanmeld-formulier', FormController::class)->names('form');
+    Route::get('lid-vlucht-aanmeldingen-aantal/{id}', [FormController::class, 'checkClubFlights']);
 });
