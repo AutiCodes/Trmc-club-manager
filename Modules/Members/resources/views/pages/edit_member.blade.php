@@ -156,15 +156,15 @@
             </label>
           </div>
 
-          <p class="font-weight-bold text-white mb-0 mt-3">Ter herdenking</p>
+          <p class="font-weight-bold text-white mb-0 mt-3">Erelid</p>
           <div class="form-check">
             @if ($member->in_memoriam == 1)
-              <input class="form-check-input" type="checkbox" value=1 id="inMemorialCheckbox" name="inMemorialCheckbox" checked>
+              <input class="form-check-input" type="checkbox" value=1 id="honoraryMemberCheckbox" name="honoraryMemberCheckbox" checked>
             @else
-              <input class="form-check-input" type="checkbox" value=1 id="inMemorialCheckbox" name="inMemorialCheckbox">
+              <input class="form-check-input" type="checkbox" value=1 id="honoraryMemberCheckbox" name="honoraryMemberCheckbox">
             @endif
-            <label class="form-check-label text-white" for="inMemorialCheckbox">
-              In memorial
+            <label class="form-check-label text-white" for="honoraryMemberCheckbox">
+              Erelid
             </label>
           </div>
 

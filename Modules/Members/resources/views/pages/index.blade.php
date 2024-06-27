@@ -183,9 +183,9 @@
               <hr>
 
               <div class="col-md-12">
-                <h4>Ter herinnering</h4>
+                <h4>Overig:</h4>
                 <p class="font-weight-bold">
-                  Overleden:
+                  Erelid:
                   @if ($member->in_memorial == 1)
                     <span class="badge badge-pill badge-success">Ja</span>
                   @else
