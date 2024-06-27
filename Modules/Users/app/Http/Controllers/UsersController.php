@@ -13,6 +13,7 @@ class UsersController extends Controller
 {
     /**
      * Display a listing of the users.
+     * 
      * @return View
      */
     public function index()
@@ -24,6 +25,7 @@ class UsersController extends Controller
 
     /**
      * Show the form for creating a new user
+     * 
      * @return View
      */
     public function create()
@@ -33,6 +35,7 @@ class UsersController extends Controller
 
     /**
      * Store a newly created user in storage.
+     * 
      * @param Request $request
      * @return RedirectResponse
      */
@@ -59,6 +62,7 @@ class UsersController extends Controller
 
     /**
      * Show the specified user.
+     * 
      * @param int $id
      * @return View
      */
@@ -69,6 +73,7 @@ class UsersController extends Controller
 
     /**
      * Show the form for editing the specified user.
+     * 
      * @param int $id
      * @return view
      */
@@ -85,8 +90,9 @@ class UsersController extends Controller
 
     /**
      * Update the specified user in storage.
+     * 
      * @param Request $request
-     * @param int $id
+     * @param int $id the user id
      * @return RedirectResponse
      */
     public function update(Request $request, $id): RedirectResponse
@@ -105,14 +111,13 @@ class UsersController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-
-
         return redirect(route('admin.index'))->with('success', 'Gebruiker gewijzigd!');
     }
 
     /**
      * Remove the specified user from storage.
-     * @param int $id
+     * 
+     * @param int $id the user id
      * @return RedirectResponse
      */
     public function destroy($id): RedirectResponse

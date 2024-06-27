@@ -14,7 +14,7 @@ class VersionsController extends Controller
      * 
      * @return View
      */
-    public function index(): View
+    public function index()
     {
         $prResults = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/pulls?state=all');
         $latestRelease = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/releases/latest');
