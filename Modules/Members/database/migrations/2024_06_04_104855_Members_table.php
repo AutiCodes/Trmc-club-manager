@@ -26,6 +26,10 @@ return new class extends Migration
             $table->integer('club_status')->nullable();
             $table->string('rdw_number')->unique()->nullable();
             $table->integer('instruct')->nullable();
+            $table->integer('has_plane_brevet')->nullable();
+            $table->integer('has_helicopter_brevet')->nullable();
+            $table->integer('has_glider_brevet')->nullable();
+            $table->integer('in_memoriam')->nullable();	
             $table->timestamps();
         });
     }

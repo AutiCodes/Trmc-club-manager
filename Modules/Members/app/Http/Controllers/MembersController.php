@@ -59,6 +59,10 @@ class MembersController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:Members'],
             'club_status' => ['required', 'integer', 'max:5'],
             'instruct' => ['required', 'integer', 'max:1'],
+            'PlaneCertCheckbox' => ['nullable'],
+            'HeliCertCheckbox' => ['nullable'],
+            'gliderCertCheckbox' => ['nullable'],
+            'inMemorialCheckbox' => ['nullable'],            
         ]);
 
         $member = Member::create([
@@ -73,6 +77,10 @@ class MembersController extends Controller
             'email' => $validated['email'],
             'club_status' => $validated['club_status'],
             'instruct' => $validated['instruct'],
+            'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
+            'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
+            'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
+            'in_memoriam' => $validated['inMemorialCheckbox'] ?? 0,
         ]);
 
         return redirect(route('members.index'))->with('success', 'Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken!');
@@ -85,7 +93,13 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        //
+        $member = Member::find($id);
+
+        if (!$member) {
+            return redirect(route('members.index'))->with('Lid niet gevonden!');
+        }
+
+        return view('members::pages.show_member', compact('member'));
     }
 
     /**
@@ -119,6 +133,11 @@ class MembersController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             'club_status' => ['required', 'integer', 'max:5'],
             'instruct' => ['required', 'integer', 'max:1'],
+            'PlaneCertCheckbox' => ['nullable'],
+            'HeliCertCheckbox' => ['nullable'],
+            'gliderCertCheckbox' => ['nullable'],
+            'inMemorialCheckbox' => ['nullable'],
+
         ]);
 
         $member = Member::findOrFail($id)->update([
@@ -133,6 +152,10 @@ class MembersController extends Controller
             'email' => $validated['email'],
             'club_status' => $validated['club_status'],
             'instruct' => $validated['instruct'],
+            'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
+            'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
+            'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
+            'in_memoriam' => $validated['inMemorialCheckbox'] ?? 0,            
         ]);
 
         return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        

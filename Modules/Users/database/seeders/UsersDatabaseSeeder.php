@@ -16,7 +16,7 @@ class UsersDatabaseSeeder extends Seeder
     {
         User::create([
             'name' => 'Default user',
-            'username' => 'Admin',
+            'username' => 'admin',
             'password' => Hash::make('Admin'),
             'remember_token' => Str::random(10),
         ]);
