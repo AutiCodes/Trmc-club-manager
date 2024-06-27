@@ -6,7 +6,7 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col-sm text-white">
-        <h3>Laatste site updates:</h3>
+        <h3>Laatste Github repo updates:</h3>
         @foreach ($prResults as $pr)
           @if ($loop->index > 10)
             @break
@@ -24,7 +24,7 @@
           </strong>
           <span class="badge badge-primary font-weight-bold">
               <strong>
-                {{ $latestVersion->tag_name }}
+                {{ $latestRelease->tag_name }}
               </strong>
           </span>
           <br>
@@ -34,7 +34,7 @@
           </strong> 
           <span class="badge badge-primary">
             <strong>
-              {{ $latestVersion->published_at }}
+              {{ $latestRelease->published_at }}
             </strong>
           </span>
           <br>  
@@ -45,7 +45,7 @@
           <span class="badge badge-primary">
             <img src="{{ $latestVersion->author->avatar_url }}" style="width: 18px">
               <strong>
-                {{ $latestVersion->author->login }}
+                {{ $latestRelease->author->login }}
               </strong>
             </img>
           </span>
@@ -56,7 +56,7 @@
           </strong>
           <span class="badge badge-primary">
             <strong>
-              {{ $latestVersion->target_commitish }}
+              {{ $latestRelease->target_commitish }}
             </strong>
           </span>
           <br>

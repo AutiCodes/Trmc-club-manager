@@ -15,57 +15,23 @@ class VersionsController extends Controller
     public function index()
     {
         $prResults = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/pulls?state=all');
-        $latestVersion = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/releases/latest');
+        $latestRelease = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/releases/latest');
 
-        return view('versions::pages.index', compact('prResults', 'latestVersion'));
-    }
+        // Return error message if Github API rate is exceeded
+        if ($prResults === 403 || $latestRelease === 403) {
+            return '<h1>Je Github API rate is uitgeput!</h1>';
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('versions::create');
-    }
+        $latestVersion = str_replace('v', '', $latestRelease->tag_name);
+        $currentVersion = env('CURRENT_VERSION');	
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        //
-    }
+        if (intval($latestVersion) >= intval($currentVersion)) {
+            return '<h1>Je versie is up-to-date!</h1>';
+        }
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('versions::show');
-    }
+        return '<h1>Je versie is out-of-date!</h1>';
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('versions::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
+        return view('versions::pages.index', compact('prResults', 'latestRelease'));
     }
 
     /**
@@ -90,11 +56,38 @@ class VersionsController extends Controller
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 
         $result = json_decode(curl_exec($curl));
+        $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
         curl_close($curl);
 
+        if ($httpcode == 403) {
+            return $httpcode;
+        }
         return $result;
     }
 
+    /**
+     * Updates this application to the latest version.  
+     * 
+     * @return RedirectResponse
+     * @throws \Exception
+     */
+    public function update()
+    {
+        // Get and pull latest code from Github repo 
+        $gitPullCommand = shell_exec('cd /home/trmc/domains/club.trmc.nl/public_html && git clone https://github.com/kelvincodesstuff/trmc-club-manager.git');
+
+        // Throw exception if git pull command failed
+        if ($gitPullCommand === false || $gitPull === null) {
+            throw new \Exception('Could not pull latest code from Github repo!');
+        }
+        
+        // Clean up caches
+        \Artisan::call('config:cache');
+        \Artisan::call('route:cache');
+        \Artisan::call('view:cache');
+        \Artisan::call('cache:clear');
+    }
 
     /**
      * Clears route cache
