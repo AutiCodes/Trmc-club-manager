@@ -62,7 +62,7 @@ class MembersController extends Controller
             'PlaneCertCheckbox' => ['nullable'],
             'HeliCertCheckbox' => ['nullable'],
             'gliderCertCheckbox' => ['nullable'],
-            'inMemorialCheckbox' => ['nullable'],            
+            'honoraryMemberCheckbox' => ['nullable'],            
         ]);
 
         $member = Member::create([
@@ -80,7 +80,7 @@ class MembersController extends Controller
             'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
             'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
             'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
-            'in_memoriam' => $validated['inMemorialCheckbox'] ?? 0,
+            'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,
         ]);
 
         return redirect(route('members.index'))->with('success', 'Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken!');
@@ -136,7 +136,7 @@ class MembersController extends Controller
             'PlaneCertCheckbox' => ['nullable'],
             'HeliCertCheckbox' => ['nullable'],
             'gliderCertCheckbox' => ['nullable'],
-            'inMemorialCheckbox' => ['nullable'],
+            'honoraryMemberCheckbox' => ['nullable'],
 
         ]);
 
@@ -155,7 +155,7 @@ class MembersController extends Controller
             'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
             'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
             'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
-            'in_memoriam' => $validated['inMemorialCheckbox'] ?? 0,            
+            'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,            
         ]);
 
         return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        
