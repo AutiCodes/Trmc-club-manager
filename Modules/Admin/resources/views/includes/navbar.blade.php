@@ -1,7 +1,7 @@
 <!-- NAVBAR -->
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-dark">
   <a class="navbar-brand text-white" href="/">
-    <img src="/media/images/TRMC_LOGO_PNG.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+    <img src="/media/images/TRMC_LOGO_PNG.ico" width="30" height="30" class="d-inline-block align-top ms-2" alt="">
     TRMC club manager
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
 
     </ul>
 
-    <ul class="navbar-nav ml-auto"> 
+    <ul class="navbar-nav ms-auto me-2"> 
       <li class="nav-item dropdown mr-3">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Welkom {{ Auth::user()->name }}
