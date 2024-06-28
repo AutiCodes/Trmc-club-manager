@@ -87,7 +87,7 @@ class MembersController extends Controller
             'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,
         ]);
 
-        Log::channel('user_activity')->info('Member '. $member->name . 'is added by '. auth()->user()->name);
+        Log::channel('user_activity')->info('Member '. $validated['name'] . 'has been added by '. auth()->user()->name);
 
         return redirect(route('members.index'))->with('success', 'Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken!');
     }
@@ -167,7 +167,7 @@ class MembersController extends Controller
             'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,            
         ]);
 
-        Log::channel('user_activity')->info('Member '. $member->name . 'is updated by '. auth()->user()->name);
+        Log::channel('user_activity')->info('Member '. $validated['name'] . ' has been updated by '. auth()->user()->name);
 
         return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        
     }
@@ -188,7 +188,7 @@ class MembersController extends Controller
             'club_status' => ClubStatus::REMOVED_MEMBER->value,
         ]);
 
-        Log::channel('user_activity')->info('Member '. $member->name . 'is removed by '. auth()->user()->name);
+        Log::channel('user_activity')->info('Member '. $member->name . 'has been removed by '. auth()->user()->name);
 
         return redirect(route('members.index'))->with('success', 'Het lid is verwijderd! Hij staat nog in de database maar is op non actief gezet.');
     }
