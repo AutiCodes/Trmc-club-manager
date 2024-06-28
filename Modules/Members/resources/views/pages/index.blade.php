@@ -166,24 +166,24 @@
                 <p class="font-weight-bold">
                   Motorvliegtuig:
                   @if ($member->has_plane_brevet == 1)
-                    <span class="badge badge-pill badge-success">Ja</span>
+                    <span class="badge rounded-pill bg-success">Ja</span>
                   @else
-                    <span class="badge badge-pill badge-danger">Nee</span>
+                    <span class="badge rounded-pill bg-danger">Nee</span>
                   @endif
 
                   <br>
                   Helicopter:
                   @if ($member->has_helicopter_brevet == 1)
-                    <span class="badge badge-pill badge-success">Ja</span>
+                    <span class="badge rounded-pill bg-success">Ja</span>
                   @else
-                    <span class="badge badge-pill badge-danger">Nee</span>
+                    <span class="badge rounded-pill bg-danger">Nee</span>
                   @endif
                   <br>
                   Zweefvliegtuig:
                   @if ($member->has_glider_brevet == 1)
-                    <span class="badge badge-pill badge-success">Ja</span>
+                    <span class="badge rounded-pill bg-success">Ja</span>
                   @else
-                    <span class="badge badge-pill badge-danger">Nee</span>
+                    <span class="badge rounded-pill bg-danger">Nee</span>
                   @endif
                 </p>
               </div>
@@ -194,10 +194,10 @@
                 <h4>Overig:</h4>
                 <p class="font-weight-bold">
                   Erelid:
-                  @if ($member->in_memorial == 1)
-                    <span class="badge badge-pill badge-success">Ja</span>
+                  @if ($member->in_memoriam == 1)
+                    <span class="badge badge-pill bg-success">Ja</span>
                   @else
-                    <span class="badge badge-pill badge-danger">Nee</span>
+                    <span class="badge badge-pill bg-danger">Nee</span>
                   @endif
                 </p>
               </div>
