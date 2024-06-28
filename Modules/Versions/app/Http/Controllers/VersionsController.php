@@ -27,7 +27,7 @@ class VersionsController extends Controller
         $latestVersion = str_replace('v', '', $latestRelease->tag_name);
         $currentVersion = env('CURRENT_VERSION');	
 
-        return view('versions::pages.index', compact('prResults', 'latestRelease'));
+        return view('versions::pages.index', compact('prResults', 'latestRelease', 'latestVersion', 'currentVersion'));
     }
 
     /**

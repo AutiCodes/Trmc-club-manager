@@ -18,7 +18,6 @@
       <div class="col-sm text-white">
         <h3>Versie:</h3>
         <p>
-
           <strong>
             Versie:
           </strong>
@@ -43,7 +42,7 @@
             Author:
           </strong> 
           <span class="badge badge-primary">
-            <img src="{{ $latestVersion->author->avatar_url }}" style="width: 18px">
+            <img src="{{ $latestRelease->author->avatar_url }}" style="width: 18px">
               <strong>
                 {{ $latestRelease->author->login }}
               </strong>
