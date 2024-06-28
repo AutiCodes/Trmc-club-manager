@@ -14,7 +14,12 @@ class LogsController extends Controller
      */
     public function index()
     {
-        return view('logs::index');
+        $laravelLogs = array_reverse(file(storage_path('logs/laravel.log')));
+        $userActivityLogs = array_reverse(file(storage_path('logs/user_activity.log')));
+        $memberActivityLogs = array_reverse(file(storage_path('logs/member_activity.log')));
+        $accessLogs = array_reverse(file(storage_path('logs/access.log')));
+
+        return view('logs::pages.index', compact('laravelLogs', 'userActivityLogs','memberActivityLogs', 'accessLogs'));
     }
 
     /**

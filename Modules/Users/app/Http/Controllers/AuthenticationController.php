@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Modules\Users\Entities\User;
 use Auth;
 use Session;
+use Log;
 
 class AuthenticationController extends Controller
 {
@@ -17,8 +18,8 @@ class AuthenticationController extends Controller
      * 
      * @return View
      */
-    public function loginPage()
-    {
+    public function loginPage(Request $request)
+    {        
         return view('users::login');
     }
 
@@ -38,8 +39,12 @@ class AuthenticationController extends Controller
         ]);
 
         if (!Auth::attempt($validated)) {
+            Log::channel('access')->error('ip ' . $request->ip().' tried to login with wrong credentials. Username used: ' . $validated['username']);
+
             return redirect('/authenticatie-login')->with('error', 'Login is verkeerd!');
         }
+
+        Log::channel('access')->info('User ' . $validated['username'].' has logged in on ip '. $request->ip());
 
         return redirect(route('admin.index'));
     }
@@ -52,6 +57,8 @@ class AuthenticationController extends Controller
      */
     public function logout(): RedirectResponse
     {
+        Log::channel('access')->info('User ' . Auth()->user()->username.' has logged out!');
+
         Auth::logout();
         Session::flush();
 

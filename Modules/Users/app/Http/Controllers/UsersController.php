@@ -57,8 +57,6 @@ class UsersController extends Controller
             return redirect(route('admin.index'))->with('error', 'Er is iets fout gegaan!');
         } 
 
-        
-
         return redirect(route('users.index'))->with('success', 'Gebruiker toegevoegd!');
     }
 
