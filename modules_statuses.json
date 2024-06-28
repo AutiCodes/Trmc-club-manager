@@ -8,5 +8,6 @@
     "RcModels": true,
     "Members": true,
     "Versioning": true,
-    "Versions": true
+    "Versions": true,
+    "Logging": true
 }

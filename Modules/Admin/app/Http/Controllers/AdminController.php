@@ -14,6 +14,8 @@ use Modules\Members\Models\Member;
 use Modules\Form\Models\SubmittedModels;
 use DB;
 use Modules\Members\Enums\ClubStatus;
+use Illuminate\Support\Facades\Log;
+Use Auth;
 
 class AdminController extends Controller
 {
@@ -24,6 +26,8 @@ class AdminController extends Controller
      */
     public function index()
     {
+        Log::channel('user_activity')->info('User ' . Auth::user()->name . ' has accessed admin dashboard');
+
         $formSubmissions = Form::orderBy('id', 'desc')
                                 ->with('member')
                                 ->with('submittedModels')
@@ -115,6 +119,8 @@ class AdminController extends Controller
      */
     public function downloadFlightsGov()
     {
+        Log::channel('user_activity')->info('User ' . Auth::user()->name . ' has exported all club flights to PDF');
+
         // TODO: Get current signed in user
         // Get data
         $flights = Form::orderBy('id', 'desc')
@@ -130,10 +136,9 @@ class AdminController extends Controller
                                 ->select(DB::raw('SUM(lipo_count) AS total_flights'))
                                 ->first();
         
-        //TODO fix getting current signed in user
         $pdf = PDF::loadView('admin::pdf', [
             'flights' => $flights,
-            'currentUser' => 'Kelvin de Reus',
+            'currentUser' => Auth::user()->name,
             'totalFlights' => $countTotalFlights
         ]); 
 
