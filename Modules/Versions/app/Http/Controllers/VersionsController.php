@@ -16,8 +16,15 @@ class VersionsController extends Controller
     {
         $prResults = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/pulls?state=all');
         $latestVersion = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/releases/latest');
+        $newversion = str_replace('v', '', $latestVersion->tag_name);
+        
+        if (!$newversion >= env('CURRENT_VERSION')) {
+            $needsUpdate = 0;
+        } else {
+            $needsUpdate = 1;
+        }
 
-        return view('versions::pages.index', compact('prResults', 'latestVersion'));
+        return view('versions::pages.index', compact('prResults', 'latestVersion', 'newversion', 'needsUpdate'));
     }
 
     /**
@@ -94,4 +101,22 @@ class VersionsController extends Controller
 
         return $result;
     }    
+
+    /** 
+     * Update application
+     *      
+     */
+    public function updateApplication()
+    {
+        $update = shell_exec('cd /home/trmc/domains/club.trmc.nl/public_html && git pull origin main');
+
+        // CLear caches
+        \Artisan::call('cache:clear');
+        \Artisan::call('config:cache');
+        \Artisan::call('route:cache');
+        \Artisan::call('view:clear');
+        \Artisan::call('optimize');
+
+        return redirect()->route('versions.index')->with('success', 'Application updated! Response: '. $update);
+    }
 }

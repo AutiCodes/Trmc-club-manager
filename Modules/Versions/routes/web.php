@@ -16,4 +16,5 @@ use Modules\Versions\Http\Controllers\VersionsController;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('versions', VersionsController::class)->names('versions');
+    Route::get('update-application', [VersionsController::class, 'updateApplication'])->name('update-application');
 });

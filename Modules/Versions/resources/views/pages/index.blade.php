@@ -24,7 +24,7 @@
           </strong>
           <span class="badge badge-primary font-weight-bold">
               <strong>
-                {{ $latestVersion->tag_name }}
+                {{ env('CURRENT_VERSION') }}
               </strong>
           </span>
           <br>
@@ -60,6 +60,12 @@
             </strong>
           </span>
           <br>
+          @if ($needsUpdate == 1)
+            <form action="/update-application" method="get">
+              @csrf
+              <button type="submit" class="btn btn-primary">Update (Naar versie {{ $latestVersion->tag_name }})</button>
+            </form>
+          @endif
         </p>
     </div>
   </div>
