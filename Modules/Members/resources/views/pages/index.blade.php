@@ -66,6 +66,8 @@
                             <img src="/media/images/icons/ribbon.png" alt="" style="width: 35px" class="img-fluid ml-2">
                           @elseif ($member->has_plane_brevet || $member->has_helicopter_brevet || $member->has_glider_brevet)
                             <img src="/media/images/icons/quality.png" alt="" style="width: 35px" class="img-fluid ml-2">
+                          @else
+                            <img src="/media/images/icons/user.png" alt="" style="width: 35px" class="img-fluid ml-2">
                           @endif
                         </td>
                         <!-- User -->
