@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('Members', function (Blueprint $table) {
             $table->id();
             $table->integer('nr')->unique()->nullable();
-            $table->bigInteger('KNVvl')->unique()->nullable();
+            $table->string('KNVvl')->unique()->nullable();
             $table->string('name')->unique();
             $table->string('first_name')->nullable();
             $table->string('email')->unique()->nullable();
