@@ -46,10 +46,10 @@
           @foreach ($formSubmissions as $formSubmission)
             <tbody>
               <tr>
-                <th scope="row">{{ $formSubmission->id }}</th>
-                <td>{{ $formSubmission->member[0]->name }}</td>
-                <td>{{ $formSubmission->date_time }}</td>
-                <td>
+                <th scope="row" class="text-white">{{ $formSubmission->id }}</th>
+                <td  class="text-white">{{ $formSubmission->member[0]->name }}</td>
+                <td  class="text-white">{{ $formSubmission->date_time }}</td>
+                <td  class="text-white">
                   @foreach ($formSubmission->submittedModels as $model)
                     <p class="mt-0 mb-0">
                       Model {{ $loop->iteration }}: {{$model->model_type}}. Lipo aantal: {{ $model->lipo_count }}. Model-vermogen: {{ $model->class }}
@@ -79,10 +79,10 @@
           @foreach($members as $member)
             <tbody>
               <tr>
-                <th scope="row">{{ $member->id }}</th>
-                <td>{{ $member->name }}</td>
-                <td>{{ $member->rdw_number }}</td>
-                <td>{{ $member->created_at }}</td>
+                <th scope="row"  class="text-white">{{ $member->id }}</th>
+                <td  class="text-white">{{ $member->name }}</td>
+                <td  class="text-white">{{ $member->rdw_number ?? 'Niet ingevuld' }}</td>
+                <td  class="text-white">{{ $member->created_at }}</td>
                 </tr>  
             </tbody>
           @endforeach
