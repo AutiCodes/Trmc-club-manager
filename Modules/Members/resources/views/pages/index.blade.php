@@ -69,11 +69,11 @@
                         <!-- Icons -->
                         <td>
                           @if ($member->in_memoriam == 1)
-                            <img src="/media/images/icons/ribbon.png" alt="" style="width: 35px" class="img-fluid ml-2">
+                            <img src="/media/images/icons/ribbon.png" alt="" style="width: 35px" class="img-fluid ms-2">
                           @elseif ($member->has_plane_brevet || $member->has_helicopter_brevet || $member->has_glider_brevet)
-                            <img src="/media/images/icons/quality.png" alt="" style="width: 35px" class="img-fluid ml-2">
+                            <img src="/media/images/icons/quality.png" alt="" style="width: 35px" class="img-fluid ms-2">
                           @else
-                            <img src="/media/images/icons/user.png" alt="" style="width: 35px" class="img-fluid ml-2">
+                            <img src="/media/images/icons/user.png" alt="" style="width: 35px" class="img-fluid ms-2">
                           @endif
                         </td>
                         <!-- User -->
@@ -89,19 +89,19 @@
                         <!-- Club status -->
                         @if ($member->club_status == \Modules\Members\Enums\ClubStatus::ASPIRANT_MEMBER->value)
                           <td class="text-center">
-                            <span class="badge badge-pill badge-info" style="font-size: 1rem;">Aspirant lid</span>
+                            <span class="badge badge-pill bg-info" style="font-size: 1rem;">Aspirant lid</span>
                           </td>
                         @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::MEMBER->value)
                           <td class="text-center">
-                            <span class="badge badge-pill badge-primary" style="font-size: 1rem;">Lid</span>
+                            <span class="badge badge-pill bg-primary" style="font-size: 1rem;">Lid</span>
                           </td>
                         @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::MANAGEMENT->value)
                           <td class="text-center">
-                            <span class="badge badge-pill badge-warning" style="font-size: 1rem;">Bestuur</span>
+                            <span class="badge badge-pill bg-warning" style="font-size: 1rem;">Bestuur</span>
                           </td>
                         @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::DONOR->value)
                           <td class="text-center">
-                            <span class="badge badge-pill badge-secondary" style="font-size: 1rem;">Donateur</span>
+                            <span class="badge badge-pill bg-secondary" style="font-size: 1rem;">Donateur</span>
                           </td>
                         @endif
                         <!-- RDW number -->
