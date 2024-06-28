@@ -9,5 +9,6 @@
     "Members": true,
     "Versioning": true,
     "Versions": true,
-    "Logging": true
+    "Logging": true,
+    "Logs": true
 }
