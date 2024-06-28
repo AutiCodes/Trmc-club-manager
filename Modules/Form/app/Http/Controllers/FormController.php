@@ -14,6 +14,7 @@ use Modules\Form\Models\SubmittedModel;
 use Illuminate\Validation\Rule;
 use Modules\Members\Enums\ClubStatus;
 use Modules\Form\Models\SubmittedModels;
+use Log;
 
 class FormController extends Controller
 {
@@ -72,8 +73,11 @@ class FormController extends Controller
             ]);
         }
 
+
         // Check if rechapcha is correct, if not do nothing and return error
-        if ($validated['rechapcha_custom'] != env('RECAPTCHA_CUSTOM_VALUE')) {
+        if (intval($validated['rechapcha_custom']) != 4) {
+            Log::channel('member_activity')->warning('Member ' . $member->name. ' has submitted a new flight form with invalid rechapcha!');
+
             return back()->with('error', 'Oh oh ik denk dat je een robot bent! Bliep bloop probeer het opnieuw!');
         }
         
@@ -84,6 +88,8 @@ class FormController extends Controller
 
         // Attach form to member with relationship
         $form->member()->attach(intval($validated['name']));
+
+        Log::channel('member_activity')->info('Member ' . $member->name . ' has submitted a new flight form!');
 
         // Add submitted models to model table
         foreach($validated['model_type'] as $model) {

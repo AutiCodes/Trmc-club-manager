@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Modules\Members\Models\Member;
 use Carbon\Carbon;
 use Modules\Members\Enums\ClubStatus;
+use Log;
 
 class MembersController extends Controller
 {
@@ -86,6 +87,8 @@ class MembersController extends Controller
             'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,
         ]);
 
+        Log::channel('user_activity')->info('Member '. $validated['name'] . 'has been added by '. auth()->user()->name);
+
         return redirect(route('members.index'))->with('success', 'Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken!');
     }
 
@@ -146,7 +149,7 @@ class MembersController extends Controller
 
         ]);
 
-        $member = Member::findOrFail($id)->update([
+        $member = Member::find($id)->update([
             'name' => $validated['name'],
             'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
             'address' => $validated['address'],
@@ -163,6 +166,8 @@ class MembersController extends Controller
             'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
             'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,            
         ]);
+
+        Log::channel('user_activity')->info('Member '. $validated['name'] . ' has been updated by '. auth()->user()->name);
 
         return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        
     }
@@ -182,6 +187,8 @@ class MembersController extends Controller
         $member->update([
             'club_status' => ClubStatus::REMOVED_MEMBER->value,
         ]);
+
+        Log::channel('user_activity')->warning('Member '. $member->name . ' has been removed by '. auth()->user()->name);
 
         return redirect(route('members.index'))->with('success', 'Het lid is verwijderd! Hij staat nog in de database maar is op non actief gezet.');
     }

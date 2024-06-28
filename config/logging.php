@@ -127,6 +127,26 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'user_activity' => [
+            'driver' =>'single',
+            'path' => storage_path('logs/user_activity.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'ignore_exceptions' => true,
+        ],
+
+        'member_activity' => [
+            'driver' =>'single',
+            'path' => storage_path('logs/member_activity.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'ignore_exceptions' => true,
+        ],
+        
+        'access' => [
+            'driver' =>'single',
+            'path' => storage_path('logs/access.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'ignore_exceptions' => true,
+        ],        
     ],
 
 ];
