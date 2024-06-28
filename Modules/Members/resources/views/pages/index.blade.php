@@ -54,8 +54,6 @@
                       <th><span>Icoon</span></th>
                       <th><span>Vol. naam</span></th>
                       <th><span>KNVvl</span></th>
-                      <th><span>Geboortedatum</span></th>
-                      <th><span>Adres</span></th>
                       <th class="text-center"><span>Club status</span></th>
                       <th><span>RDW nmr.</span></th>
                       <th><span>Telefoon</span></th>
@@ -82,10 +80,6 @@
                         </td>
                         <!-- KNVvl -->
                         <td>{{ $member->KNVvl ?? 'Niet ingevuld'}}</td>
-                        <!-- Birthday -->
-                        <td>{{ $member->birthdate ?? 'Niet ingevuld' }}</td>
-                        <!-- Living address -->
-                        <td>{{ $member->address ?? 'Niet ingevuld' }}</td>
                         <!-- Club status -->
                         @if ($member->club_status == \Modules\Members\Enums\ClubStatus::ASPIRANT_MEMBER->value)
                           <td class="text-center">
@@ -161,9 +155,20 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-12">
+                <h4>Persoonlijke gegevens:</h4>
+                
+                <p class="">
+                  <strong>Naam:</strong> {{ $member->name }}<br>
+                  <strong>Geboortedatum:</strong> {{ $member->birthdate }}<br>
+                  <strong>Adres:</strong> {{ $member->address }}<br>
+                  <strong>Postcode:</strong> {{ $member->postcode }}<br>
+                  <strong>Stad:</strong> {{ $member->city }}<br>
+                </p>
+              </div>
+              <div class="col-md-12">
                 <h4>Brevetten:</h4>
 
-                <p class="font-weight-bold">
+                <p class="fw-bold">
                   Motorvliegtuig:
                   @if ($member->has_plane_brevet == 1)
                     <span class="badge rounded-pill bg-success">Ja</span>
@@ -192,8 +197,8 @@
 
               <div class="col-md-12">
                 <h4>Overig:</h4>
-                <p class="font-weight-bold">
-                  Erelid:
+                <p class="">
+                  </strong>Erelid:</strong>
                   @if ($member->in_memoriam == 1)
                     <span class="badge badge-pill bg-success">Ja</span>
                   @else
