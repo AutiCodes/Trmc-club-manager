@@ -27,12 +27,6 @@ class VersionsController extends Controller
         $latestVersion = str_replace('v', '', $latestRelease->tag_name);
         $currentVersion = env('CURRENT_VERSION');	
 
-        if (intval($latestVersion) >= intval($currentVersion)) {
-            return '<h1>Je versie is up-to-date!</h1>';
-        }
-
-        return '<h1>Je versie is out-of-date!</h1>';
-
         return view('versions::pages.index', compact('prResults', 'latestRelease'));
     }
 
