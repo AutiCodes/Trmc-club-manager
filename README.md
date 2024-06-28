@@ -24,4 +24,5 @@ It's also using the following programming (and styling) languages:
 - JS
 
 ## Wanna support my work? Please buy me a beer :)
-<a href="https://www.buymeacoffee.com/kelvincodes" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Beer" height="41" width="174"></a>
+
+<a href="https://www.buymeacoffee.com/kelvincodes"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=😄&slug=kelvincodes&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
