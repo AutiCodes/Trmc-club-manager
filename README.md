@@ -1,4 +1,4 @@
-## Twente Radio Modelvlieg Club flight manager
+## Twentse Radio Modelvlieg Club club manager
 
 An custom solution build for [TRMC](https://trmc.nl). It allows for club members to register their flights easily to [TRMC](https://trmc.nl). Management from TRMC can then view the flights, export them for them for the local authority and more. Currently it has these features:
 
