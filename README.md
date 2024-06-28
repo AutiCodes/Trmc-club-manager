@@ -22,7 +22,3 @@ It's also using the following programming (and styling) languages:
 - CSS
 - PHP
 - JS
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within this project, please send an e-mail to Kelvin de Reus via [sec@kelvincodes.nl](mailto:sec@kelvincodes.nl). All security vulnerabilities will be promptly addressed.
