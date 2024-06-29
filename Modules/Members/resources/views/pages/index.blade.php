@@ -81,7 +81,11 @@
                         <!-- KNVvl -->
                         <td>{{ $member->KNVvl ?? 'Niet ingevuld'}}</td>
                         <!-- Club status -->
-                        @if ($member->club_status == \Modules\Members\Enums\ClubStatus::ASPIRANT_MEMBER->value)
+                        @if ($member->club_status == \Modules\Members\Enums\ClubStatus::JUNIOR_MEMBER->value)
+                          <td class="text-center">
+                            <span class="badge badge-pill bg-success" style="font-size: 1rem;">Jeugd lid</span>
+                          </td>
+                        @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::ASPIRANT_MEMBER->value)
                           <td class="text-center">
                             <span class="badge badge-pill bg-info" style="font-size: 1rem;">Aspirant lid</span>
                           </td>

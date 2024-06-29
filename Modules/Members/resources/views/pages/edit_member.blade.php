@@ -78,6 +78,11 @@
           <div class="form-group">
             <label for="club_status" class="text-white font-weight-bold">Club status</label>
             <select class="form-control" id="club_status" name="club_status" required>
+              @if ($member->club_status == \Modules\Members\Enums\ClubStatus::JUNIOR_MEMBER->value)
+                <option value=6 selected>Jeugd lid</option>
+              @else   
+                <option value=6>Jeugd lid</option>
+              @endif
               @if ($member->club_status == \Modules\Members\Enums\ClubStatus::ASPIRANT_MEMBER->value)
                 <option value=1 selected>Aspirant lid</option>
               @else
