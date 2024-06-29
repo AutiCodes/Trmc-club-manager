@@ -83,19 +83,19 @@
                         <!-- Club status -->
                         @if ($member->club_status == \Modules\Members\Enums\ClubStatus::ASPIRANT_MEMBER->value)
                           <td class="text-center">
-                            <span class="badge badge-pill badge-info" style="font-size: 1rem;">Aspirant lid</span>
+                            <span class="badge badge-pill bg-info" style="font-size: 1rem;">Aspirant lid</span>
                           </td>
                         @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::MEMBER->value)
                           <td class="text-center">
-                            <span class="badge badge-pill badge-primary" style="font-size: 1rem;">Lid</span>
+                            <span class="badge badge-pill bg-primary" style="font-size: 1rem;">Lid</span>
                           </td>
                         @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::MANAGEMENT->value)
                           <td class="text-center">
-                            <span class="badge badge-pill badge-warning" style="font-size: 1rem;">Bestuur</span>
+                            <span class="badge badge-pill bg-warning" style="font-size: 1rem;">Bestuur</span>
                           </td>
                         @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::DONOR->value)
                           <td class="text-center">
-                            <span class="badge badge-pill badge-secondary" style="font-size: 1rem;">Donateur</span>
+                            <span class="badge badge-pill bg-secondary" style="font-size: 1rem;">Donateur</span>
                           </td>
                         @endif
                         <!-- RDW number -->

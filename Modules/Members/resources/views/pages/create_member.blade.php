@@ -10,6 +10,7 @@
     <div class="row">
       <div class="col-sm">
         <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+          <h4 class="font-weight-bold text-white mb-0">Persoonlijke informatie</h4>
           <div class="form-group">
             <label for="name" class="text-white font-weight-bold">Volledige naam</label>
             <input type="text" class="form-control" id="name" name="name" aria-describedby="fullname" placeholder="Voornaam achternaam" required>
@@ -25,6 +26,7 @@
 
       <div class="col-sm">
         <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+          <h4 class="font-weight-bold text-white mb-0">Woon gegevens</h4>
           <div class="form-group">
             <label for="address"  class="text-white font-weight-bold">Adres</label>
             <input type="text" class="form-control" id="address" name="address" placeholder="Straatnaam nummer" required>
@@ -44,6 +46,7 @@
 
       <div class="col-sm">
         <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+          <h4 class="font-weight-bold text-white mb-0">Contact</h4>
           <div class="form-group">
             <label for="phone"  class="text-white font-weight-bold">Telefoon</label>
             <input type="text" class="form-control" id="phone" name="phone" placeholder="0612343455 (nummer zonder streepje!)" required>
@@ -61,6 +64,7 @@
     <div class="row">
       <div class="col-sm">
         <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+          <h4 class="font-weight-bold text-white mb-0">Nummers</h4>
           <div class="form-group">
             <label for="rdw_number"  class="text-white font-weight-bold">RDW nummer</label>
             <input type="text" class="form-control" id="rdw_number" name="rdw_number" placeholder="A34hjhdwqjkwqa">
@@ -75,6 +79,7 @@
 
       <div class="col-sm">
         <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+          <h4 class="font-weight-bold text-white mb-0">Statussen</h4>
           <div class="form-group">
             <label for="club_status" class="text-white font-weight-bold">Club status</label>
             <select class="form-control" id="club_status" name="club_status" required>
@@ -98,8 +103,7 @@
       
       <div class="col-sm">
         <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
-
-          <p class="font-weight-bold text-white mb-0">Brevetten</p>
+          <h4 class="font-weight-bold text-white mb-0">Brevetten</h4>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value=1 id="PlaneCertCheckbox" name="PlaneCertCheckbox">
             <label class="form-check-label text-white" for="PlaneCertCheckbox">
@@ -128,7 +132,34 @@
               Erelid
             </label>
           </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-sm">
+          <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded w-50">
+            <h4 class="font-weight-bold text-white mb-0">Drone certificaten</h4>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value=1 id="droneA1Checkbox" name="droneA1Checkbox">
+              <label class="form-check-label text-white" for="droneA1Checkbox">
+                A1
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value=1 id="droneA2Checkbox" name="droneA2Checkbox">
+              <label class="form-check-label text-white" for="droneA2Checkbox">
+                A2
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value=1 id="droneA3Checkbox" name="droneA3Checkbox">
+              <label class="form-check-label text-white" for="droneA3Checkbox">
+                A3
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
