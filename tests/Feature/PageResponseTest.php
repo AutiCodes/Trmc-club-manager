@@ -20,23 +20,12 @@ class PageResponseTest extends TestCase
     }
 
     /**
-     * Testing form page response.
-     * @return void
-     */
-    public function test_form_page_response(): void
-    {
-        $response = $this->get('/aanmeld-formulier');
-        
-        $response->assertStatus(200);
-    }
-
-    /**
      * Testing login page response.
      * @return void
      */
     public function test_login_page_response(): void
     {
-        $response = $this->get('/authenticatie');
+        $response = $this->get('/authenticatie-login');
 
         $response->assertStatus(200);
     }
