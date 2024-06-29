@@ -1,4 +1,4 @@
-## Twente Radio Modelvlieg Club flight manager
+## Twentse Radio Modelvlieg Club club manager
 
 An custom solution build for [TRMC](https://trmc.nl). It allows for club members to register their flights easily to [TRMC](https://trmc.nl). Management from TRMC can then view the flights, export them for them for the local authority and more. Currently it has these features:
 
@@ -23,9 +23,6 @@ It's also using the following programming (and styling) languages:
 - PHP
 - JS
 
-## Security Vulnerabilities
+## Wanna support my work? Please buy me a beer :)
 
-If you discover a security vulnerability within this project, please send an e-mail to Kelvin de Reus via [sec@kelvincodes.nl](mailto:sec@kelvincodes.nl). All security vulnerabilities will be promptly addressed.
-
-## License
-This project is OSS (Open Source Software) licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<a href="https://www.buymeacoffee.com/kelvincodes"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=😄&slug=kelvincodes&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
