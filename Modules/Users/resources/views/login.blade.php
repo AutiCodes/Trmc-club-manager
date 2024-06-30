@@ -7,11 +7,15 @@
 		<!-- Page title -->
     <title>TRMC club manager</title>
 	  <!-- Bootstrap CSS -->
-	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 	  <!-- tab icon -->
 	  <link rel="icon" href="/media/images/TRMC_LOGO_PNG.ico" type="image/x-icon">
   </head>
-	<body>
+
+	<body onload="init()">
 		<main>
       @if (session()->has('error'))
         <div class="alert alert-success" role="alert">
@@ -42,9 +46,19 @@
           <button type="submit" class="btn btn-primary mb-4">Inloggen</button>
         </form>
       </div>
-
 		</main>
-
+    
+    <div class="cookie_banner text-center" id="cookie_banner">
+      <p class="text-dark pt-2">  
+        Deze website gebruikt 
+        <img src="/media/images/icons/cookie.png" style="width: 25px"></img> 
+        (cookies).
+        Door deze website te gebruiken ga je hier akkoord mee.
+        <a href="#" class="btn btn-success" onclick="cookie_choice()">
+          Akkoord
+        </a>
+      </p>
+    </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -59,17 +73,30 @@
       body, html {
         background-color: #2f3031;
       }
+
+      .cookie_banner {
+        position: fixed;
+        bottom: 0;
+        padding-top: 5px;
+        width: 100%;
+        background: #FFFF00;
+        color: #fff;
+      }
     </style>
-    <!-- Temp JS -->
+
     <script>
-      function requiredHideViewer(e) {
-        if(e.value != ''){
-          document.getElementById(e.id + '_required').style.visibility = "hidden";
-          return;
-        }	
-        document.getElementById(e.id + '_required').style.visibility = "visible";
+      function init() {
+        console.log('init');	
+        if (localStorage.getItem('cookie_choice') == 'true') {
+          document.getElementById('cookie_banner').style.display = 'none';
+        }
+      }
+
+      function cookie_choice() {
+        document.getElementById('cookie_banner').style.display = 'none';
+
+        localStorage.setItem('cookie_choice', 'true');
       }
     </script>
-
 	</body>
-</html>l>
+</html>
