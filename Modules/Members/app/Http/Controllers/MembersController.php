@@ -66,7 +66,10 @@ class MembersController extends Controller
             'PlaneCertCheckbox' => ['nullable'],
             'HeliCertCheckbox' => ['nullable'],
             'gliderCertCheckbox' => ['nullable'],
-            'honoraryMemberCheckbox' => ['nullable'],            
+            'honoraryMemberCheckbox' => ['nullable'], 
+            'droneA1Checkbox' => ['nullable'],
+            'droneA2Checkbox' => ['nullable'],
+            'droneA3Checkbox' => ['nullable'],
         ]);
 
         $member = Member::create([
@@ -85,6 +88,9 @@ class MembersController extends Controller
             'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
             'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
             'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,
+            'has_drone_a1' => $validated['droneA1Checkbox'] ?? 0,
+            'has_drone_a2' => $validated['droneA2Checkbox'] ?? 0,
+            'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,
         ]);
 
         Log::channel('user_activity')->info('Member '. $validated['name'] . 'has been added by '. auth()->user()->name);
@@ -146,7 +152,9 @@ class MembersController extends Controller
             'HeliCertCheckbox' => ['nullable'],
             'gliderCertCheckbox' => ['nullable'],
             'honoraryMemberCheckbox' => ['nullable'],
-
+            'droneA1Checkbox' => ['nullable'],
+            'droneA2Checkbox' => ['nullable'],
+            'droneA3Checkbox' => ['nullable'],            
         ]);
 
         $member = Member::find($id)->update([
@@ -164,7 +172,10 @@ class MembersController extends Controller
             'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
             'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
             'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
-            'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,            
+            'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,      
+            'has_drone_a1' => $validated['droneA1Checkbox'] ?? 0,
+            'has_drone_a2' => $validated['droneA2Checkbox'] ?? 0,
+            'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,      
         ]);
 
         Log::channel('user_activity')->info('Member '. $validated['name'] . ' has been updated by '. auth()->user()->name);
