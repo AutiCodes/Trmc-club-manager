@@ -37,6 +37,7 @@
                 <div class="w-25 mb-4 me-4 float-end">
                   <select class="form-control form-control-lg" id="clubstatus_filter" onchange="clubStatusFilter()">
                     <option value="All" selected>Alle club statussen</option>
+                    <option value="Jeugdlid">Jeugd lid</option>
                     <option value="Aspirantlid">Aspirant lid</option>
                     <option value="Lid">Lid</option>
                     <option value="Bestuur">Bestuur</option>
@@ -169,6 +170,9 @@
                   <strong>Stad:</strong> {{ $member->city }}<br>
                 </p>
               </div>
+
+              <hr>
+
               <div class="col-md-12">
                 <h4>Brevetten:</h4>
 
@@ -200,9 +204,36 @@
               <hr>
 
               <div class="col-md-12">
+                <h4>Drone certificaten:</h4>
+                <p class="">
+                  <strong>A1:</strong>
+                  @if ($member->has_drone_a1 == 1)
+                    <span class="badge rounded-pill bg-success">Ja</span>
+                  @else
+                    <span class="badge rounded-pill bg-danger">Nee</span>
+                  @endif
+
+                  <strong>A2:</strong>
+                  @if ($member->has_drone_a2 == 1)
+                  <span class="badge rounded-pill bg-success">Ja</span>
+                  @else
+                    <span class="badge rounded-pill bg-danger">Nee</span>
+                  @endif
+
+                  <strong>A3:</strong>
+                  @if ($member->has_drone_a3 == 1)
+                    <span class="badge rounded-pill bg-success">Ja</span>
+                  @else
+                    <span class="badge rounded-pill bg-danger">Nee</span>
+                  @endif                                    
+              </div>
+
+              <hr>
+
+              <div class="col-md-12">
                 <h4>Overig:</h4>
                 <p class="">
-                  </strong>Erelid:</strong>
+                  <strong>Erelid:</strong>
                   @if ($member->in_memoriam == 1)
                     <span class="badge badge-pill bg-success">Ja</span>
                   @else
