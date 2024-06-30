@@ -23,18 +23,14 @@
   {{-- {{ module_vite('build-home', 'resources/assets/sass/app.scss') }} --}}
 </head>
 
-<body onload="init()">
+<body>
   @include('home::includes.navbar')
 
   <main>
     @yield('content')
 
-
     @include('home::includes.footer')
-
   </main>
-
-  @include('home::includes.cookie_banner')
 
   <!-- Temp styleing -->
   <style>
@@ -59,15 +55,6 @@
         background-color: #2f3031;
       }
     }
-    
-    .cookie_banner {
-        position: fixed;
-        bottom: 0;
-        padding-top: 5px;
-        width: 100%;
-        background: #FFFF00;
-        color: #fff;
-    }
 
   </style>
   <!-- Temp JS -->
@@ -79,21 +66,10 @@
       }	
       document.getElementById(e.id + '_required').style.visibility = "visible";
     }
-
-    function init() {
-        console.log('init');	
-        if (localStorage.getItem('cookie_choice_home') == 'true') {
-          document.getElementById('cookie_banner').style.display = 'none';
-        }
-    }
-
-    function cookie_choice() {
-      document.getElementById('cookie_banner').style.display = 'none';
-
-      localStorage.setItem('cookie_choice_home', 'true');
-    }
-
   </script>  
+
+
+
 
   <!-- Google reCCHAPTA -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
