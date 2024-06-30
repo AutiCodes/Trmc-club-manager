@@ -172,9 +172,36 @@
               Erelid
             </label>
           </div>
-
         </div>
       </div>
+
+      <div class="row">
+      <div class="col-sm">
+        <div class="bg-dark pt-2 pb-2 ps-2 pe-2 mb-2 mt-2 rounded w-25">
+          <h4 class="font-weight-bold text-white mb-0">Drone certificaten</h4>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value=1 id="droneA1Checkbox" name="droneA1Checkbox" @if ($member->has_drone_a1 == 1) checked @endif>
+            <label class="form-check-label text-white" for="droneA1Checkbox">
+              A1
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value=1 id="droneA2Checkbox" name="droneA2Checkbox" @if ($member->has_drone_a1 == 1) checked @endif>
+            <label class="form-check-label text-white" for="droneA2Checkbox">
+              A2
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value=1 id="droneA3Checkbox" name="droneA3Checkbox" @if ($member->has_drone_a1 == 1) checked @endif>
+            <label class="form-check-label text-white" for="droneA3Checkbox">
+              A3
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
 
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
