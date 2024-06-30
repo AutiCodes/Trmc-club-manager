@@ -187,14 +187,14 @@
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value=1 id="droneA2Checkbox" name="droneA2Checkbox" @if ($member->has_drone_a1 == 1) checked @endif>
+            <input class="form-check-input" type="checkbox" value=1 id="droneA2Checkbox" name="droneA2Checkbox" @if ($member->has_drone_a2 == 1) checked @endif>
             <label class="form-check-label text-white" for="droneA2Checkbox">
               A2
             </label>
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value=1 id="droneA3Checkbox" name="droneA3Checkbox" @if ($member->has_drone_a1 == 1) checked @endif>
+            <input class="form-check-input" type="checkbox" value=1 id="droneA3Checkbox" name="droneA3Checkbox" @if ($member->has_drone_a3 == 1) checked @endif>
             <label class="form-check-label text-white" for="droneA3Checkbox">
               A3
             </label>
