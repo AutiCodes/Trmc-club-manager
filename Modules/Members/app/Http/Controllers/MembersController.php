@@ -10,6 +10,7 @@ use Modules\Members\Models\Member;
 use Carbon\Carbon;
 use Modules\Members\Enums\ClubStatus;
 use Log;
+use Modules\Members\Models\UserSync;
 
 class MembersController extends Controller
 {
@@ -18,7 +19,7 @@ class MembersController extends Controller
      * 
      * @return View
      */
-    public function index()
+    public function index()    
     {
         $members = Member::orderBy('name', 'asc')
                     ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
@@ -93,9 +94,18 @@ class MembersController extends Controller
             'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,
         ]);
 
+        if (!$member) {
+            return redirect(route('members.index'))->with('error', 'Er is iets misgegaan tijdens het toevoegen van het lid.');
+        }
+
+        $usernameWP = strtok($validated['name'], ' ');
+        $userPasswordWP = bin2hex(random_bytes(10));
+
+        UserSync::syncNewUser($usernameWP, $userPasswordWP, $validated['name'], $validated['email'], $validated['name']);
+        
         Log::channel('user_activity')->info('Member '. $validated['name'] . 'has been added by '. auth()->user()->name);
 
-        return redirect(route('members.index'))->with('success', 'Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken!');
+        return redirect(route('members.index'))->with('success', "Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken! Login gegevens voor WP: Gebruikersnaam: $usernameWP, wachtwoord: $userPasswordWP");
     }
 
     /**
@@ -134,7 +144,7 @@ class MembersController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:40'],
@@ -157,6 +167,8 @@ class MembersController extends Controller
             'droneA3Checkbox' => ['nullable'],            
         ]);
 
+        $memberOldData = Member::find($id);
+
         $member = Member::find($id)->update([
             'name' => $validated['name'],
             'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
@@ -178,6 +190,13 @@ class MembersController extends Controller
             'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,      
         ]);
 
+        if (!$member) {
+            return redirect(route('members.index'))->with('error', 'Er is iets misgegaan tijdens het bewerken van het lid.');
+        }
+
+        // Update user in Wordpress
+        UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
+        
         Log::channel('user_activity')->info('Member '. $validated['name'] . ' has been updated by '. auth()->user()->name);
 
         return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        
@@ -199,9 +218,11 @@ class MembersController extends Controller
             'club_status' => ClubStatus::REMOVED_MEMBER->value,
         ]);
 
+        UserSync::deleteUser($member->name);
+
         Log::channel('user_activity')->warning('Member '. $member->name . ' has been removed by '. auth()->user()->name);
 
-        return redirect(route('members.index'))->with('success', 'Het lid is verwijderd! Hij staat nog in de database maar is op non actief gezet.');
+        return redirect(route('members.index'))->with('success', 'Het lid is verwijderd! Hij staat nog in de database maar is op non actief gezet. Ook is hij verwijderd uit de database van WP.');
     }
 
     /**
