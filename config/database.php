@@ -59,6 +59,26 @@ return [
             ]) : [],
         ],
 
+        'wordpress_MySQL' => [
+            'driver' => 'mysql',
+            'url' => env('DB_WP_URL'),
+            'host' => env('DB_WP_HOST', '127.0.0.1'),
+            'port' => env('DB_WP_PORT', '3306'),
+            'database' => env('DB_WP_DATABASE'),
+            'username' => env('DB_WP_USERNAME'),
+            'password' => env('DB_WP_PASSWORD', ''),
+            'unix_socket' => env('DB_WP_SOCKET', ''),
+            'charset' => env('DB_WP_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_WP_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+        
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
