@@ -12,6 +12,8 @@ use Modules\Members\Enums\ClubStatus;
 use Log;
 use Modules\Members\Models\UserSync;
 use App\Mail\MembersContact;
+use App\Mail\MembersClubStatusChange;
+use App\Mail\MembersHonorary;
 use Illuminate\Support\Facades\Mail;
 
 class MembersController extends Controller
@@ -192,7 +194,7 @@ class MembersController extends Controller
             'PlaneCertCheckbox' => ['nullable'],
             'HeliCertCheckbox' => ['nullable'],
             'gliderCertCheckbox' => ['nullable'],
-            'honoraryMemberCheckbox' => ['nullable'],
+            'honoraryMemberCheckbox' => ['nullable'] ?? 0,
             'droneA1Checkbox' => ['nullable'],
             'droneA2Checkbox' => ['nullable'],
             'droneA3Checkbox' => ['nullable'],            
@@ -200,34 +202,52 @@ class MembersController extends Controller
 
         $memberOldData = Member::find($id);
 
-        try {
-            $member = Member::find($id)->update([
-                'name' => $validated['name'],
-                'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
-                'address' => $validated['address'],
-                'postcode' => $validated['postcode'],
-                'city' => $validated['city'],
-                'phone' => $validated['phone'],
-                'rdw_number' => $validated['rdw_number'],
-                'KNVvl' => $validated['knvvl'],
-                'email' => $validated['email'],
-                'club_status' => $validated['club_status'],
-                'instruct' => $validated['instruct'],
-                'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
-                'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
-                'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
-                'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,      
-                'has_drone_a1' => $validated['droneA1Checkbox'] ?? 0,
-                'has_drone_a2' => $validated['droneA2Checkbox'] ?? 0,
-                'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,      
-            ]);
-        } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
+        Member::find($id)->update([
+            'name' => $validated['name'],
+            'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
+            'address' => $validated['address'],
+            'postcode' => $validated['postcode'],
+            'city' => $validated['city'],
+            'phone' => $validated['phone'],
+            'rdw_number' => $validated['rdw_number'],
+            'KNVvl' => $validated['knvvl'],
+            'email' => $validated['email'],
+            'club_status' => $validated['club_status'],
+            'instruct' => $validated['instruct'],
+            'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
+            'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
+            'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
+            'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,      
+            'has_drone_a1' => $validated['droneA1Checkbox'] ?? 0,
+            'has_drone_a2' => $validated['droneA2Checkbox'] ?? 0,
+            'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,      
+        ]);
 
-            return redirect()
-                        ->back()
-                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
+        // Club status mail
+        if ($validated['club_status'] != $memberOldData['club_status']) {
+            // Send email to member
+            Mail::to($validated['email'])->send(new MembersClubStatusChange($validated['name'], $memberOldData['club_status'], $validated['club_status']));
+        }  
+
+        // Honorary member mail added
+        if ($memberOldData['in_memoriam'] == 0) {
+            // Send email to honarary member
+            Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $type='erelid'));
         }
+
+        // Honorary member mail removed
+        if ($memberOldData['in_memoriam'] == 1) {
+            // Send email to honarary member
+            Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $type='geen erelid'));
+        }
+
+        
+            // //Log::error($exception->getMessage());
+
+            // return redirect()
+            //             ->back()
+            //             ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
+        
 
         // Update user in Wordpress
         try {
