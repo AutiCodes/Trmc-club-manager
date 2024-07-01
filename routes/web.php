@@ -9,5 +9,5 @@ Route::get('/welcome', function () {
 });
 
 Route::get('send-test-mail', function () {
-    return Mail::to('prive@kelvincodes.nl')->send(new MembersContact());
+    Mail::to('prive@kelvincodes.nl')->send(new MembersContact());
 });
