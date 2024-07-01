@@ -75,38 +75,49 @@ class MembersController extends Controller
             'droneA3Checkbox' => ['nullable'],
         ]);
 
-        $member = Member::create([
-            'name' => $validated['name'],
-            'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
-            'address' => $validated['address'],
-            'postcode' => $validated['postcode'],
-            'city' => $validated['city'],
-            'phone' => $validated['phone'],
-            'rdw_number' => $validated['rdw_number'],
-            'KNVvl' => $validated['knvvl'],
-            'email' => $validated['email'],
-            'club_status' => $validated['club_status'],
-            'instruct' => $validated['instruct'],
-            'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
-            'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
-            'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
-            'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,
-            'has_drone_a1' => $validated['droneA1Checkbox'] ?? 0,
-            'has_drone_a2' => $validated['droneA2Checkbox'] ?? 0,
-            'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,
-        ]);
+        try {
+            $member = Member::create([
+                'name' => $validated['name'],
+                'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
+                'address' => $validated['address'],
+                'postcode' => $validated['postcode'],
+                'city' => $validated['city'],
+                'phone' => $validated['phone'],
+                'rdw_number' => $validated['rdw_number'],
+                'KNVvl' => $validated['knvvl'],
+                'email' => $validated['email'],
+                'club_status' => $validated['club_status'],
+                'instruct' => $validated['instruct'],
+                'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
+                'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
+                'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
+                'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,
+                'has_drone_a1' => $validated['droneA1Checkbox'] ?? 0,
+                'has_drone_a2' => $validated['droneA2Checkbox'] ?? 0,
+                'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,
+            ]);
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
 
-        if (!$member) {
-            return redirect(route('members.index'))->with('error', 'Er is iets misgegaan tijdens het toevoegen van het lid.');
+            return redirect()
+                        ->back()
+                        ->withErrors(['error' => 'Iets ging er mis! Contacteer Kelvin voor meer informatie.']);
         }
+        
 
         $usernameWP = strtok($validated['name'], ' ');
         $userPasswordWP = bin2hex(random_bytes(10));
 
-        UserSync::syncNewUser($usernameWP, $userPasswordWP, $validated['name'], $validated['email'], $validated['name']);
-        
-        Log::channel('user_activity')->info('Member '. $validated['name'] . 'has been added by '. auth()->user()->name);
+        try {
+            UserSync::syncNewUser($usernameWP, $userPasswordWP, $validated['name'], $validated['email'], $validated['name']);
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            return redirect()
+                    ->back()
+                    ->withErrors(['error' => 'Iets ging er mis! Contacteer Kelvin voor meer informatie.']);
+        }
 
+        Log::channel('user_activity')->info('Member '. $validated['name'] . 'has been added by '. auth()->user()->name);
 
         switch ($validated['club_status']) {
             case ClubStatus::ASPIRANT_MEMBER->value:
@@ -189,34 +200,46 @@ class MembersController extends Controller
 
         $memberOldData = Member::find($id);
 
-        $member = Member::find($id)->update([
-            'name' => $validated['name'],
-            'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
-            'address' => $validated['address'],
-            'postcode' => $validated['postcode'],
-            'city' => $validated['city'],
-            'phone' => $validated['phone'],
-            'rdw_number' => $validated['rdw_number'],
-            'KNVvl' => $validated['knvvl'],
-            'email' => $validated['email'],
-            'club_status' => $validated['club_status'],
-            'instruct' => $validated['instruct'],
-            'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
-            'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
-            'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
-            'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,      
-            'has_drone_a1' => $validated['droneA1Checkbox'] ?? 0,
-            'has_drone_a2' => $validated['droneA2Checkbox'] ?? 0,
-            'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,      
-        ]);
+        try {
+            $member = Member::find($id)->update([
+                'name' => $validated['name'],
+                'birthdate' => Carbon::parse($validated['birthdate'])->format('Y-m-d'),	
+                'address' => $validated['address'],
+                'postcode' => $validated['postcode'],
+                'city' => $validated['city'],
+                'phone' => $validated['phone'],
+                'rdw_number' => $validated['rdw_number'],
+                'KNVvl' => $validated['knvvl'],
+                'email' => $validated['email'],
+                'club_status' => $validated['club_status'],
+                'instruct' => $validated['instruct'],
+                'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
+                'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
+                'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
+                'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,      
+                'has_drone_a1' => $validated['droneA1Checkbox'] ?? 0,
+                'has_drone_a2' => $validated['droneA2Checkbox'] ?? 0,
+                'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,      
+            ]);
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
 
-        if (!$member) {
-            return redirect(route('members.index'))->with('error', 'Er is iets misgegaan tijdens het bewerken van het lid.');
+            return redirect()
+                        ->back()
+                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
         }
 
         // Update user in Wordpress
-        UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
-        
+        try {
+            UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+
+            return redirect()
+                        ->back()
+                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
+        }
+
         Log::channel('user_activity')->info('Member '. $validated['name'] . ' has been updated by '. auth()->user()->name);
 
         return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        
@@ -233,12 +256,20 @@ class MembersController extends Controller
         // Find member by $id
         $member = Member::findOrFail($id);
 
-        // Put Member om non active to hide it from the member list
-        $member->update([
-            'club_status' => ClubStatus::REMOVED_MEMBER->value,
-        ]);
+        try {
+            // Put Member om non active to hide it from the member list
+            $member->update([
+                'club_status' => ClubStatus::REMOVED_MEMBER->value,
+            ]);
 
-        UserSync::deleteUser($member->name);
+            UserSync::deleteUser($member->name);
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+
+            return redirect()
+                        ->back()
+                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
+        }
 
         Log::channel('user_activity')->warning('Member '. $member->name . ' has been removed by '. auth()->user()->name);
 
