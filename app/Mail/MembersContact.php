@@ -14,12 +14,20 @@ class MembersContact extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $name;
+    public $club_status;
+    public $username;
+    public $password;
+    
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($name, $club_status, $username, $password)
     {
-        //
+        $this->name = $name;
+        $this->club_status = $club_status;
+        $this->username = $username;
+        $this->password = $password;
     }
 
     /**
@@ -39,9 +47,12 @@ class MembersContact extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.test-email',
+            view: 'mail.new_member_mail',
             with: [
-                'name' => 'Test name',
+                'name' => $this->name,
+                'club_status' => $this->club_status,
+                'username' => $this->username,
+                'password' => $this->password,
             ]
         );
     }

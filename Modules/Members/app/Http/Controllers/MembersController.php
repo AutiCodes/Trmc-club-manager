@@ -11,6 +11,8 @@ use Carbon\Carbon;
 use Modules\Members\Enums\ClubStatus;
 use Log;
 use Modules\Members\Models\UserSync;
+use App\Mail\MembersContact;
+use Illuminate\Support\Facades\Mail;
 
 class MembersController extends Controller
 {
@@ -104,6 +106,24 @@ class MembersController extends Controller
         UserSync::syncNewUser($usernameWP, $userPasswordWP, $validated['name'], $validated['email'], $validated['name']);
         
         Log::channel('user_activity')->info('Member '. $validated['name'] . 'has been added by '. auth()->user()->name);
+
+
+        switch ($validated['club_status']) {
+            case ClubStatus::ASPIRANT_MEMBER->value:
+                $club_status = 'Aspirant lid';
+                break;
+            case ClubStatus::MEMBER->value:
+                $club_status = 'lid';
+                break;
+            case ClubStatus::MANAGEMENT->value:
+                $club_status = 'Bestuur';
+                break;
+            case ClubStatus::DONOR->value:
+                $club_status = 'Donateur';
+                break;
+        }
+
+        Mail::to($validated['email'])->send(new MembersContact($validated['name'], $club_status, $usernameWP, $userPasswordWP));
 
         return redirect(route('members.index'))->with('success', "Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken! Login gegevens voor WP: Gebruikersnaam: $usernameWP, wachtwoord: $userPasswordWP");
     }
