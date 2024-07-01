@@ -10,5 +10,6 @@
     "Versioning": true,
     "Versions": true,
     "Logging": true,
-    "Logs": true
+    "Logs": true,
+    "Mail": true
 }
