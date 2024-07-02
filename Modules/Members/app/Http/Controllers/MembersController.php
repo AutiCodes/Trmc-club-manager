@@ -235,27 +235,13 @@ class MembersController extends Controller
 
         if ($validated['honoraryMemberCheckbox'] != $memberOldData['in_memoriam']) {
             // Send email to member
-            Mail::to($validated['email'])->send(new MembersMemoriam($validated['name'], $memberOldData['in_memoriam']));
+            Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $memberOldData['in_memoriam']));
         }
 
         if ($memberOldData['in_memoriam'] != $validated['honoraryMemberCheckbox']) {
             // Send email to member
-            Mail::to($validated['email'])->send(new MembersMemoriam($validated['name'], $memberOldData['in_memoriam']));
+            Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $memberOldData['in_memoriam']));
         }
-        // // Honorary member mail added
-        // if ($memberOldData['in_memoriam'] == 0) {
-        //     // Send email to honarary member
-        //     Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $type='erelid'));
-        // }
-
-        // // Honorary member mail removed
-        // if ($memberOldData['in_memoriam'] == 1) {
-        //     // Send email to honarary member
-        //     Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $type='geen erelid'));
-        // }
-
-        
-            //Log::error($exception->getMessage());
 
         // Update user in Wordpress
         try {
