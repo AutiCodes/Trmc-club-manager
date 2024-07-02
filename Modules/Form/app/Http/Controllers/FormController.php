@@ -14,6 +14,7 @@ use Modules\Form\Models\SubmittedModel;
 use Illuminate\Validation\Rule;
 use Modules\Members\Enums\ClubStatus;
 use Modules\Form\Models\SubmittedModels;
+use Illuminate\Support\Facades\Cache;
 use Log;
 
 class FormController extends Controller
@@ -25,10 +26,12 @@ class FormController extends Controller
      */
     public function index()
     {
-        // Get current members
-        $members = Member::orderby('name', 'DESC')
+        // Get current members and cache them for 1 hour
+        $members = Cache::remember('club_members_form', 3600, function () {
+            return Member::orderby('name', 'DESC')
                             ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)
                             ->get();
+        });
 
         // Return form view
         return view('form::pages.reg_new_flight', ['members' => $members]);	
