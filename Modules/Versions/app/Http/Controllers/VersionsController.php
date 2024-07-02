@@ -73,10 +73,10 @@ class VersionsController extends Controller
     public function update()
     {
         // Get and pull latest code from Github repo 
-        $gitPullCommand = shell_exec('cd /home/trmc/domains/club.trmc.nl/public_html && git clone https://github.com/kelvincodesstuff/trmc-club-manager.git');
+        $gitPullCommand = shell_exec('cd /home/trmc/domains/club.trmc.nl/public_html && git pull origin main');
 
         // Throw exception if git pull command failed
-        if ($gitPullCommand === false || $gitPull === null) {
+        if ($gitPullCommand === false || $gitPullCommand === null) {
             throw new \Exception('Could not pull latest code from Github repo!');
         }
         
@@ -85,6 +85,8 @@ class VersionsController extends Controller
         \Artisan::call('route:cache');
         \Artisan::call('view:cache');
         \Artisan::call('cache:clear');
+
+        return redirect()->back()->with('success', 'Succesvol geupdate!');
     }
 
     /**
