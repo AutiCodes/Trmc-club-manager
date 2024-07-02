@@ -264,7 +264,8 @@ class MembersController extends Controller
 
         // Update user in Wordpress
         try {
-            UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
+            echo 'temp';
+            //UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
