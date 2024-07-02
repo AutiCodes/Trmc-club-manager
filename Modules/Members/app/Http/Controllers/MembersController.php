@@ -194,7 +194,7 @@ class MembersController extends Controller
             'PlaneCertCheckbox' => ['nullable'],
             'HeliCertCheckbox' => ['nullable'],
             'gliderCertCheckbox' => ['nullable'],
-            'honoraryMemberCheckbox' => ['nullable'] ?? 0,
+            'honoraryMemberCheckbox' => ['nullable'],
             'droneA1Checkbox' => ['nullable'],
             'droneA2Checkbox' => ['nullable'],
             'droneA3Checkbox' => ['nullable'],            
@@ -229,24 +229,37 @@ class MembersController extends Controller
             Mail::to($validated['email'])->send(new MembersClubStatusChange($validated['name'], $memberOldData['club_status'], $validated['club_status']));
         }  
 
-        // Honorary member mail added
-        if ($memberOldData['in_memoriam'] == 0) {
-            // Send email to honarary member
-            Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $type='erelid'));
+        if (!array_key_exists('honoraryMemberCheckbox', $validated)) {
+            $validated['honoraryMemberCheckbox'] = 0;
         }
 
-        // Honorary member mail removed
-        if ($memberOldData['in_memoriam'] == 1) {
-            // Send email to honarary member
-            Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $type='geen erelid'));
+        if ($validated['honoraryMemberCheckbox'] != $memberOldData['in_memoriam']) {
+            // Send email to member
+            Mail::to($validated['email'])->send(new MembersMemoriam($validated['name'], $memberOldData['in_memoriam']));
         }
+
+        if ($memberOldData['in_memoriam'] != $validated['honoraryMemberCheckbox']) {
+            // Send email to member
+            Mail::to($validated['email'])->send(new MembersMemoriam($validated['name'], $memberOldData['in_memoriam']));
+        }
+        // // Honorary member mail added
+        // if ($memberOldData['in_memoriam'] == 0) {
+        //     // Send email to honarary member
+        //     Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $type='erelid'));
+        // }
+
+        // // Honorary member mail removed
+        // if ($memberOldData['in_memoriam'] == 1) {
+        //     // Send email to honarary member
+        //     Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $type='geen erelid'));
+        // }
 
         
-            // //Log::error($exception->getMessage());
+            //Log::error($exception->getMessage());
 
-            // return redirect()
-            //             ->back()
-            //             ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
+            return redirect()
+                        ->back()
+                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
         
 
         // Update user in Wordpress
