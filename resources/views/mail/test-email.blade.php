@@ -14,7 +14,7 @@
           <!-- Header -->
           <tr>
             <td class="header" style=" text-align: center; color: black; font-size: 40px;">
-                <img src="https://club.trmc.nl/media/images/TRMC_LOGO_PNG.ico" style="padding-top: 20px; width: 110px;"></img><br>
+                <img src="{{ URL::asset('/media/images/TRMC_LOGO.png') }}" style="padding-top: 20px; width: 110px;"></img><br>
                 Twentse Radio Modelvlieg Club
             </td>
           </tr>
