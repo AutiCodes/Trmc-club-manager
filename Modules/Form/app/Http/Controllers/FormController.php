@@ -26,8 +26,8 @@ class FormController extends Controller
      */
     public function index()
     {
-        // Get current members and cache them for 10 minutes
-        $members = Cache::remember('club_members_form', 600, function () {
+        // Get current members and cache them for 1 hour
+        $members = Cache::remember('club_members_form', 3600, function () {
             return Member::orderby('name', 'DESC')
                             ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)
                             ->get();
