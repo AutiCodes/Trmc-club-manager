@@ -58,7 +58,9 @@
               {{ $latestRelease->target_commitish }}
             </strong>
           </span>
+
           <br>
+          <a href="/update" class="btn btn-primary">Update (alleen voor Kelvin!)</a>
         </p>
     </div>
   </div>
