@@ -257,10 +257,10 @@ class MembersController extends Controller
         
             //Log::error($exception->getMessage());
 
-            return redirect()
-                        ->back()
-                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
-        
+        return redirect()
+                    ->back()
+                    ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
+    
 
         // Update user in Wordpress
         try {
