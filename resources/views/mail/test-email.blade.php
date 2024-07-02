@@ -22,7 +22,15 @@
           <!-- Body -->
           <tr>
             <td class="body" style="padding: 40px; text-align: left; font-size: 18px; line-height: 1.6;">
-             Hoi!
+                Beste {{ $name }},<br>
+                Je bent zojuist toegevoegd aan de Twentse Radio Modelvlieg Club als {{ $club_status }}!
+                <br><br>
+                Je hebt logingegevens gekregen om in te loggen op <a href="https://trmc.nl">trmc.nl</a>:<br><br>
+                <strong>Gebruikersnaam:</strong> {{ $username }}<br>
+                <strong>Wachtwoord:</strong> {{ $password }}<br>
+                <small style="color: red">Wijzig je wachtwoord direct!</small><br><br>
+
+                We wensen je veel plezier toe als lid van TRMC!
             </td>
           </tr>
 
