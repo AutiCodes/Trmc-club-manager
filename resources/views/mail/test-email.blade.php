@@ -13,8 +13,8 @@
         <table class="content" width="600" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: 1px solid #cccccc;">
           <!-- Header -->
           <tr>
-            <td class="header" style=" text-align: center; color: black; font-size: 40px;">
-                <img src="{{ URL::asset('/media/images/TRMC_LOGO.png') }}" style="padding-top: 20px; width: 110px;"></img><br>
+            <td class="header" style=" text-align: center; color: black; font-size: 34px;">
+                <img src="{{ URL::asset('/media/images/TRMC_LOGO.png') }}" style="padding-top: 20px;" width="120" height="120"></img><br>
                 Twentse Radio Modelvlieg Club
             </td>
           </tr>
@@ -22,7 +22,7 @@
           <!-- Body -->
           <tr>
             <td class="body" style="padding: 40px; text-align: left; font-size: 18px; line-height: 1.6;">
-             hjoi
+             Hoi!
             </td>
           </tr>
 
