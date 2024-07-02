@@ -257,15 +257,9 @@ class MembersController extends Controller
         
             //Log::error($exception->getMessage());
 
-        return redirect()
-                    ->back()
-                    ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
-    
-
         // Update user in Wordpress
         try {
-            echo 'temp';
-            //UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
+            UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
