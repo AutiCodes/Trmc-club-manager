@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 
-@section('title', 'Admin home')
+@section('title', 'Vluchten')
 
 @section('content')
   <main>
@@ -33,7 +33,7 @@
 
     <!-- Table last flights -->
     <div class="container">
-      <h1 class="mt-4 text-white">Laatste 5 vluchten</h1>
+      <h1 class="mt-4 text-white">Laatste 15 vluchten</h1>
       <div class="table-responsive">
         <table class="table table-striped table-hover text-white ml-2 mr-2">
           <thead>
@@ -52,9 +52,11 @@
                 <td  class="text-white">{{ $formSubmission->date_time }}</td>
                 <td  class="text-white">
                   @foreach ($formSubmission->submittedModels as $model)
-                    <p class="mt-0 mb-0">
-                      Model {{ $loop->iteration }}: {{$model->model_type}}. Lipo aantal: {{ $model->lipo_count }}. Model-vermogen: {{ $model->class }}
-                    </p>
+                    @if ($loop->iteration < 16)
+                      <p class="mt-0 mb-0">
+                        Model {{ $loop->iteration }}: {{$model->model_type}}. Lipo aantal: {{ $model->lipo_count }}. Model-vermogen: {{ $model->class }}
+                      </p>
+                    @endif
                   @endforeach 
                 </td>
             </tbody>
@@ -64,33 +66,6 @@
     </div>
 
     <hr>
-
-    <!-- Table members -->
-    <div class="container">
-      <h1 class="mt-4 text-white">Leden</h1>
-      <div class="table-responsive">
-        <table class="table table-striped table-hover text-white ml-2 mr-2">
-          <thead>
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">Naam</th>
-              <th scope="col">RDW nummer</th>
-              <th scope="col">Tijd aangemaakt</th>
-            </tr>
-          </thead>
-          @foreach($members as $member)
-            <tbody>
-              <tr>
-                <th scope="row"  class="text-white">{{ $member->id }}</th>
-                <td  class="text-white">{{ $member->name }}</td>
-                <td  class="text-white">{{ $member->rdw_number ?? 'Niet ingevuld' }}</td>
-                <td  class="text-white">{{ $member->created_at }}</td>
-                </tr>  
-            </tbody>
-          @endforeach
-        </table>
-      </div>
-    </div>
 
     <!-- HELP ICON -->
     <a class="help_icon text-white mr-3" data-toggle="modal" data-target="#helpModal" >
