@@ -116,14 +116,6 @@ class MembersController extends Controller
                 'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,
             ]);
 
-            // Clear cache
-            Cache::forget('club_members_form');
-            Cache::forget('members_list');
-            Cache::forget('AllMembers');
-            Cache::forget('totalAspirantMember');
-            Cache::forget('totalNormalMembers');
-            Cache::forget('totalManagement');
-            Cache::forget('totalDonators');
 
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -164,6 +156,8 @@ class MembersController extends Controller
         }
 
         Mail::to($validated['email'])->send(new MembersContact($validated['name'], $club_status, $usernameWP, $userPasswordWP));
+
+        // Clear cache
 
         return redirect(route('members.index'))->with('success', "Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken! Login gegevens voor WP: Gebruikersnaam: $usernameWP, wachtwoord: $userPasswordWP");
     }
@@ -282,6 +276,8 @@ class MembersController extends Controller
         }
 
         Log::channel('user_activity')->info('Member '. $validated['name'] . ' has been updated by '. auth()->user()->name);
+
+        Cache::flush();
 
         return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        
     }
