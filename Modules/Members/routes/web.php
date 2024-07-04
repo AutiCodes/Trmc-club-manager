@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Members\Http\Controllers\MembersController;
+use Modules\Members\Http\Controllers\NewMembersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,6 @@ use Modules\Members\Http\Controllers\MembersController;
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('leden', MembersController::class)->names('members');
     Route::get('leden/verwijder/{id}', [MembersController::class, 'destroy']);
+    Route::resource('nieuwe-leden', NewMembersController::class)->names('newMembers');
 });
 
