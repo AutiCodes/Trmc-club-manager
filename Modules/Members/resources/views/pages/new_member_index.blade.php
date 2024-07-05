@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')	
+@extends('admin::layouts.master')
 
 @section('content')
 
@@ -15,7 +15,7 @@
               <th scope="col">Adres</th>
               <th scope="col">Email</th>
               <th scope="col">Wil lid worden op</th>
-              <th scope="col">-></th>
+              <th scope="col">Open</th>
             </tr>
           </thead>
           <tbody>
@@ -43,7 +43,7 @@
                   <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
                 </svg>
               </a>
-              </td>              
+              </td>
             </tr>
             <tr>
             <th scope="row">Kelvin de Reus</th>
@@ -56,7 +56,7 @@
                   <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
                 </svg>
               </a>
-              </td>              
+              </td>
             </tr>
           </tbody>
         </table>
@@ -79,7 +79,7 @@
 
         <div class="col-md-12">
               <h4>Beheer lidmaatschap aanmelding</h4>
-              
+
               <div class="row mb-2">
                 <p>Aanmelding status: <span class="badge bg-danger">Wachten op betaling</span></p>
                 <div class="col">
@@ -87,7 +87,7 @@
                   <option selected>Open this select menu</option>
                   <option value="1">Wachten op betaling</option>
                   <option value="2">Wachten op nader contact</option>
-                </select>                  
+                </select>
                 </div>
               </div>
 
@@ -98,16 +98,16 @@
                 </div>
                 <div class="col">
                   <button type="button" class="btn btn-danger" onclick="return confirm('Weet je zeker dat je deze aanmelding wilt afwijzen?')">Afwijzen</button>
-                </div>                
+                </div>
               </div>
-            </div>   
+            </div>
 
           <hr>
 
           <div class="row">
             <div class="col-md-12">
               <h4>Persoonlijke gegevens:</h4>
-              
+
               <p class="">
                 <strong>Naam:</strong> <br>
                 <strong>Geboortedatum:</strong> <br>
@@ -146,8 +146,8 @@
                 <strong>Zo ja, KNVvl registratienummer:</strong> <br>
                 <strong>Wilt lid worden per:</strong> <br>
               </p>
-            </div>    
-            
+            </div>
+
           </div>
         </div>
         <div class="modal-footer">
