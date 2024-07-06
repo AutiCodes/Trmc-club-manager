@@ -16,7 +16,7 @@ class GetLogs
     }
 
     /**
-     * Gets the Laravel log file
+     * Gets the user activity log file
      * 
      * @author KelvinCodes
      * @return array logs
@@ -27,7 +27,7 @@ class GetLogs
     }
 
     /**
-     * Gets the Laravel log file
+     * Gets the members activity log file
      * 
      * @author KelvinCodes
      * @return array logs
@@ -38,7 +38,7 @@ class GetLogs
     }
 
     /**
-     * Gets the Laravel log file
+     * Gets the access log file
      * 
      * @author KelvinCodes
      * @return array logs
