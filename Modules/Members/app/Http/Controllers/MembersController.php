@@ -22,6 +22,7 @@ class MembersController extends Controller
     /**
      * Display a listing of the resource.
      * 
+     * @author KelvinCodes
      * @return View
      */
     public function index()    
@@ -33,26 +34,29 @@ class MembersController extends Controller
                 ->get();
         });
 
-        // TODO: Refactor below to use less querys
-        $AllMembers = Cache::remember('AllMembers', 3600, function () {
-            return Member::orderBy('name', 'asc')
-                ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
-                ->count();
-        });
-        $totalAspirantMember = Cache::remember('totalAspirantMember', 3600, function () {
-            return Member::where('club_status', '=', ClubStatus::ASPIRANT_MEMBER->value)->count();
-        });
-        $totalNormalMembers = Cache::remember('totalNormalMembers', 3600, function () {
-            return Member::where('club_status', '=', ClubStatus::MEMBER->value)->count();
-        });
-        $totalManagement = Cache::remember('totalManagement', 3600, function () {
-            return Member::where('club_status', '=', ClubStatus::MANAGEMENT->value)->count();
-        });
-        $totalDonators = Cache::remember('totalDonators', 3600, function () {
-            return Member::where('club_status', '=', ClubStatus::DONOR->value)->count();
-        });
+        $totalAspirantMember = 0;
+        $totalNormalMembers = 0;
+        $totalManagement = 0;
+        $totalDonators = 0;
 
-        return view('members::pages.index', compact('members', 'AllMembers', 'totalAspirantMember', 'totalNormalMembers', 'totalManagement', 'totalDonators'));
+        foreach ($members as $member) {
+            switch ($member->club_status) {
+                case ClubStatus::ASPIRANT_MEMBER->value:
+                    $totalAspirantMember++;
+                    break;
+                case ClubStatus::MEMBER->value:
+                    $totalNormalMembers++;
+                    break;
+                case ClubStatus::MANAGEMENT->value:
+                    $totalManagement++;
+                    break;
+                case ClubStatus::DONATOR->value:
+                    $totalDonators++;
+                    break;
+            }
+        }
+
+        return view('members::pages.index', compact('members', 'totalAspirantMember', 'totalNormalMembers', 'totalManagement', 'totalDonators'));
     }
 
     /**
@@ -69,6 +73,7 @@ class MembersController extends Controller
      * Store a newly created resource in storage.
      * 
      * @param Request $request
+     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
@@ -116,16 +121,14 @@ class MembersController extends Controller
                 'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,
             ]);
 
-
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
             return redirect()
                         ->back()
-                        ->withErrors(['error' => 'Iets ging er mis! Contacteer Kelvin voor meer informatie.']);
+                        ->withErrors(['error' => 'Iets ging er mis! Contacteer Kelvin voor meer informatie. Foutmelding: ' . $exception->getMessage()]);
         }
         
-
         $usernameWP = strtok($validated['name'], ' ');
         $userPasswordWP = bin2hex(random_bytes(10));
 
@@ -135,7 +138,7 @@ class MembersController extends Controller
             Log::error($exception->getMessage());
             return redirect()
                     ->back()
-                    ->withErrors(['error' => 'Iets ging er mis! Contacteer Kelvin voor meer informatie.']);
+                    ->withErrors(['error' => 'Iets ging er mis! Contacteer Kelvin voor meer informatie. Foutmelding: ' . $exception->getMessage()]);
         }
 
         Log::channel('user_activity')->info('Member '. $validated['name'] . 'has been added by '. auth()->user()->name);
@@ -158,14 +161,16 @@ class MembersController extends Controller
         Mail::to($validated['email'])->send(new MembersContact($validated['name'], $club_status, $usernameWP, $userPasswordWP));
 
         // Clear cache
+        Cache::flush();
 
-        return redirect(route('members.index'))->with('success', "Je bent toegevoegd! Je kunt je vlucht(en) nu aanmaken! Login gegevens voor WP: Gebruikersnaam: $usernameWP, wachtwoord: $userPasswordWP");
+        return redirect(route('members.index'))->with('success', "De gebruiker is toegevoegd! Login gegevens voor WP: Gebruikersnaam: $usernameWP, wachtwoord: $userPasswordWP");
     }
 
     /**
      * Show the specified resource.
      * 
      * @param int $id the id of the member
+     * @author KelvinCodes
      * @return View
      */
     public function show($id)
@@ -183,11 +188,16 @@ class MembersController extends Controller
      * Show the form for editing the specified resource.
      * 
      * @param int $id the id of the member
+     * @author KelvinCodes
      * @return View
      */
     public function edit($id)
     {
-        $member = Member::findOrFail($id);
+        $member = Member::find($id);
+
+        if (!$member) {
+            return redirect(route('members.index'))->with('error', 'Lid niet gevonden!');
+        }
 
         return view('members::pages.edit_member', compact('member'));
     }
@@ -196,6 +206,7 @@ class MembersController extends Controller
      * Update the specified resource in storage.
      * 
      * @param Request $request
+     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function update(Request $request, $id)
@@ -222,6 +233,10 @@ class MembersController extends Controller
         ]);
 
         $memberOldData = Member::find($id);
+
+        if (!$memberOldData) {
+            return redirect(route('members.index'))->with('error', 'Lid niet gevonden!');
+        }
 
         Member::find($id)->update([
             'name' => $validated['name'],
@@ -272,11 +287,12 @@ class MembersController extends Controller
 
             return redirect()
                         ->back()
-                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
+                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie. Foutcode: ' . $exception->getCode()]);
         }
 
         Log::channel('user_activity')->info('Member '. $validated['name'] . ' has been updated by '. auth()->user()->name);
 
+        // Flush cache
         Cache::flush();
 
         return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        
@@ -286,12 +302,17 @@ class MembersController extends Controller
      * Remove the specified resource from storage.
      * 
      * @param int $id the id of the member
+     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function destroy($id)
     {
         // Find member by $id
-        $member = Member::findOrFail($id);
+        $member = Member::find($id);
+
+        if (!$member) {
+            return redirect(route('members.index'))->with('error', 'Lid niet gevonden!');
+        }
 
         try {
             // Put Member om non active to hide it from the member list
@@ -299,16 +320,17 @@ class MembersController extends Controller
                 'club_status' => ClubStatus::REMOVED_MEMBER->value,
             ]);
 
+            // Delete user in Wordpress
             UserSync::deleteUser($member->name);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
             return redirect()
                         ->back()
-                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie']);
+                        ->withErrors(['error' => 'Er ging iets mis! Contacteer Kelvin voor meer informatie. Foutcode:' . $exception->getMessage()]);
         }
 
-        Log::channel('user_activity')->warning('Member '. $member->name . ' has been removed by '. auth()->user()->name);
+        Log::channel('user_activity')->warning('Member '. $member->name . ' has been removed by ' . auth()->user()->name);
 
         return redirect(route('members.index'))->with('success', 'Het lid is verwijderd! Hij staat nog in de database maar is op non actief gezet. Ook is hij verwijderd uit de database van WP.');
     }
@@ -316,6 +338,7 @@ class MembersController extends Controller
     /**
      * Export members to PDF
      * 
+     * @author KelvinCodes
      * @return PDF
     */
     public function exportPDF()
