@@ -121,7 +121,8 @@ class MembersController extends Controller
                 'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,
             ]);
 
-        } catch (\Exception $exception) {
+        } 
+        catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
             return redirect()
@@ -134,7 +135,8 @@ class MembersController extends Controller
 
         try {
             UserSync::syncNewUser($usernameWP, $userPasswordWP, $validated['name'], $validated['email'], $validated['name']);
-        } catch (\Exception $exception) {
+        } 
+        catch (\Exception $exception) {
             Log::error($exception->getMessage());
             return redirect()
                     ->back()
@@ -282,7 +284,8 @@ class MembersController extends Controller
         // Update user in Wordpress
         try {
             UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
-        } catch (\Exception $exception) {
+        } 
+        catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
             return redirect()
@@ -322,7 +325,8 @@ class MembersController extends Controller
 
             // Delete user in Wordpress
             UserSync::deleteUser($member->name);
-        } catch (\Exception $exception) {
+        } 
+        catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
             return redirect()
