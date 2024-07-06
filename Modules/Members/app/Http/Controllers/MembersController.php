@@ -128,6 +128,9 @@ class MembersController extends Controller
                         ->back()
                         ->withErrors(['error' => 'Iets ging er mis! Contacteer Kelvin voor meer informatie. Foutmelding: ' . $exception->getMessage()]);
         }
+
+        // Clear cache
+        Cache::flush();
         
         $usernameWP = strtok($validated['name'], ' ');
         $userPasswordWP = bin2hex(random_bytes(10));
@@ -159,9 +162,6 @@ class MembersController extends Controller
         }
 
         Mail::to($validated['email'])->send(new MembersContact($validated['name'], $club_status, $usernameWP, $userPasswordWP));
-
-        // Clear cache
-        Cache::flush();
 
         return redirect(route('members.index'))->with('success', "De gebruiker is toegevoegd! Login gegevens voor WP: Gebruikersnaam: $usernameWP, wachtwoord: $userPasswordWP");
     }

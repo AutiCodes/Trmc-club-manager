@@ -56,8 +56,7 @@
                 <option value="{{ $member->id }}">{{ $member->name }}</option>
               @endforeach
             </select>              
-           <small id="name" class="form-text text-muted">Staat je naam er niet tussen? Contacteer dan het bestuur om je naam toe te voegen</small>
-           <p class="text-danger" id="name_required" style="display: block;">Naam is vereist!</p>
+           <small id="name" class="form-text text-muted">Staat je naam er niet tussen? Contacteer dan het bestuur om je naam toe te voegen.</small>
           </div>
 
           <!-- User ID -->
@@ -73,14 +72,12 @@
           <div class="form-group">
             <label for="date" class="text-white font-weight-bold">Selecteer een datum:</label>
             <input type="date" id="date" name="date" class="form-control" required onchange="requiredHideViewer(this)">  
-            <p class="text-danger" id="date_required" style="display: block;">Datum is vereist!</p>
           </div>					
 
           <!-- TIME -->
           <div class="form-group">
             <label for="time" class="text-white font-weight-bold">Selecteer een tijd:</label>
             <input type="time" id="time" name="time" class="form-control" required onchange="requiredHideViewer(this)">  
-            <p class="text-danger" id="time_required" style="display: block;">Tijd is vereist!</p>
           </div>
 
           <!-- WHAT MODELS -->
@@ -114,7 +111,6 @@
               </label>
             </div>    
             <hr>
-            <p class="text-danger" id="model_type_required" style="display: block;">Model type(s) is vereist!</p>
           </div>
 
           <!-- PLANE -->
@@ -123,18 +119,17 @@
             <!-- POWER TYPE -->
             <div class="form-group">
               <label for="power_type_select_plane" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
-              <select class="form-control" id="power_type_select_plane" name="power_type_select_plane" onchange="requiredHideViewer(this)">
+              <select class="form-control" id="power_type_select_plane" name="power_type_select_plane">
                 <option disabled selected>Selecteer</option>
                 <option value="<300W">< 300W</option>
                 <option value="300W-1200W">300W-1200W</option>
                 <option value="1200W-3000W">1200W-3000W</option>
               </select>
-              <p class="text-danger" id="power_type_select_plane_required" style="display: block;">Klasse is vereist!</p>
             </div>
             <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select_plane" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
-              <select class="form-control" id="lipo_count_select_plane" name="lipo_count_select_plane" onchange="requiredHideViewer(this)">
+              <select class="form-control" id="lipo_count_select_plane" name="lipo_count_select_plane">
                 <option disabled selected>Selecteer</option>
                 <option value=1>1</option>
                 <option value=2>2</option>
@@ -145,7 +140,6 @@
                 <option value=7>7</option>
                 <option value=8>8</option>
               </select>
-              <p class="text-danger" id="lipo_count_select_plane_required" style="display: block;">Lipo aantal is vereist!</p>
             </div>
           </div>
 
@@ -155,18 +149,17 @@
             <!-- POWER TYPE -->
             <div class="form-group">
               <label for="power_type_select_glider" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
-              <select class="form-control" id="power_type_select_glider" name="power_type_select_glider" onchange="requiredHideViewer(this)">
+              <select class="form-control" id="power_type_select_glider" name="power_type_select_glider">
                 <option disabled selected>Selecteer</option>
                 <option value="<300W">< 300W</option>
                 <option value="300W-1200W">300W-1200W</option>
                 <option value="1200W-3000W">1200W-3000W</option>
               </select>
-              <p class="text-danger" id="power_type_select_glider_required" style="display: block;">Klasse is vereist!</p>
             </div>
             <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select_glider" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
-              <select class="form-control" id="lipo_count_select_glider" name="lipo_count_select_glider" onchange="requiredHideViewer(this)">
+              <select class="form-control" id="lipo_count_select_glider" name="lipo_count_select_glider">
                 <option disabled selected>Selecteer</option>
                 <option value=1>1</option>
                 <option value=2>2</option>
@@ -177,7 +170,6 @@
                 <option value=7>7</option>
                 <option value=8>8</option>
               </select>
-              <p class="text-danger" id="lipo_count_select_glider_required" style="display: block;">Lipo aantal is vereist!</p>
             </div>
           </div>
           
@@ -187,18 +179,17 @@
             <!-- POWER TYPE -->
             <div class="form-group">
               <label for="power_type_select_helicopter" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
-              <select class="form-control" id="power_type_select_helicopter" name="power_type_select_helicopter" onchange="requiredHideViewer(this)">
+              <select class="form-control" id="power_type_select_helicopter" name="power_type_select_helicopter">
                 <option disabled selected>Selecteer</option>
                 <option value="<300W">< 300W</option>
                 <option value="300W-1200W">300W-1200W</option>
                 <option value="1200W-3000W">1200W-3000W</option>
               </select>
-              <p class="text-danger" id="power_type_select_helicopter_required" style="display: block;">Klasse is vereist!</p>
             </div>
             <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select_helicopter" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
-              <select class="form-control" id="lipo_count_select_helicopter" name="lipo_count_select_helicopter" onchange="requiredHideViewer(this)">
+              <select class="form-control" id="lipo_count_select_helicopter" name="lipo_count_select_helicopter">
                 <option disabled selected>Selecteer</option>
                 <option value=1>1</option>
                 <option value=2>2</option>
@@ -209,7 +200,6 @@
                 <option value=7>7</option>
                 <option value=8>8</option>
               </select>
-              <p class="text-danger" id="lipo_count_select_helicopter_required" style="display: block;">Lipo aantal is vereist!</p>
             </div>              
           </div>
           
@@ -219,18 +209,17 @@
             <!-- POWER TYPE -->
             <div class="form-group">
               <label for="power_type_select_drone" class="text-white font-weight-bold">Onder welke klasse ga je vliegen?</label>
-              <select class="form-control" id="power_type_select_drone" name="power_type_select_drone" onchange="requiredHideViewer(this)">
+              <select class="form-control" id="power_type_select_drone" name="power_type_select_drone">
                 <option disabled selected>Selecteer</option>
                 <option value="<300W">< 300W</option>
                 <option value="300W-1200W">300W-1200W</option>
                 <option value="1200W-3000W">1200W-3000W</option>
               </select>
-              <p class="text-danger" id="power_type_select_drone_required" style="display: block;">Klasse is vereist!</p>
             </div>
             <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
-              <select class="form-control" id="lipo_count_select_drone" name="lipo_count_select_drone" onchange="requiredHideViewer(this)">
+              <select class="form-control" id="lipo_count_select_drone" name="lipo_count_select_drone">
                 <option disabled selected>Selecteer</option>
                 <option value=1>1</option>
                 <option value=2>2</option>
@@ -241,7 +230,6 @@
                 <option value=7>7</option>
                 <option value=8>8</option>
               </select>
-              <p class="text-danger" id="lipo_count_select_drone_required" style="display: block;">Lipo aantal is vereist!</p>
             </div>
           </div>           
         </div>
@@ -249,7 +237,7 @@
         <!-- reCAPTCHA -->
         <div class="form-group">
           <label for="text" class="Text-white font-weight-bold">Geheime vraag om te kiekn of je geen bot bent</label>
-          <input type="text" class="form-control" id="rechapcha_custom" name="rechapcha_custom" placeholder="Wat is 2 + 2?">
+          <input type="text" class="form-control" id="rechapcha_custom" name="rechapcha_custom" placeholder="Wat is 2 + 2?" required>
         </div>
 
         <!--
@@ -330,14 +318,6 @@
     </style>
 
     <script>
-      function requiredHideViewer(e) {
-        if(e.value != '') {
-          document.getElementById(e.id + '_required').style.visibility = "hidden";
-          return;
-        }	
-        document.getElementById(e.id + '_required').style.visibility = "visible";
-      }
-
       function checkBoxes(e) {
         if (e.checked) {
           document.getElementById(e.id + '_div').style.display = "block";
@@ -349,24 +329,38 @@
       }
 
       function nameFunction(e) {
+        // Check if name is already stored in local storage
+        if(localStorage.getItem('name_id') == null) {
+          // Store name in local storage
+          localStorage.setItem('name_id', e.value);
+        } 
+
         $.ajax({
           url: "lid-vlucht-aanmeldingen-aantal" + '/' + e.value,
           type: 'GET',
           dataType: 'json',
           success: function(response){
-            console.log(response);
             if (response['has_submitted_club_flight'] != true) {
               // Show RDW number form
               document.getElementById('rdw_number_viewer').style.display = "block";
-            } 
+            } else {
+              // Hide RDW number form
+              document.getElementById('rdw_number_viewer').style.display = "none";
+            }
           }
-          });
+        });
+      }	
+      
+      document.addEventListener('DOMContentLoaded', async () => {
+        // Do nothing if browser doesn't support local storage
+        if(typeof Storage === 'undefined') return;
 
-        if(e.value != '') {
-          document.getElementById(e.id + '_required').style.visibility = "hidden";
-          return;
-        }	
-        document.getElementById(e.id + '_required').style.visibility = "visible";
-      }
+        // Check if user has a name_id in local storage
+        const user = localStorage.getItem('name_id');
+        // If not, do nothing
+        if(!user) return;
+
+        document.getElementById('name').value = user;
+      });
     </script>
 @stop

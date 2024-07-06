@@ -15,6 +15,7 @@ use Illuminate\Validation\Rule;
 use Modules\Members\Enums\ClubStatus;
 use Modules\Form\Models\SubmittedModels;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 use Log;
 
 class FormController extends Controller
