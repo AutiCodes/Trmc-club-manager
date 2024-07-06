@@ -126,7 +126,6 @@
 
       <div class="col-sm">
         <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
-
           <p class="font-weight-bold text-white mb-0">Brevetten</p>
           <div class="form-check">
             @if ($member->has_plane_brevet == 1)
@@ -204,7 +203,7 @@
     </div>
 
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Update</button>
   </form>
 </div>
 @endsection

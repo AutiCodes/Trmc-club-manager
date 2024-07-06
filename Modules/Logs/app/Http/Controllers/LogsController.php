@@ -6,20 +6,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Helpers\GetLogs;
 
 class LogsController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * @author KelvinCodes
+     * @return View
      */
     public function index()
     {
-        $laravelLogs = array_reverse(file(storage_path('logs/laravel.log')));
-        $userActivityLogs = array_reverse(file(storage_path('logs/user_activity.log')));
-        $memberActivityLogs = array_reverse(file(storage_path('logs/member_activity.log')));
-        $accessLogs = array_reverse(file(storage_path('logs/access.log')));
-
-        return view('logs::pages.index', compact('laravelLogs', 'userActivityLogs','memberActivityLogs', 'accessLogs'));
+        return view('logs::pages.index', [
+            'laravelLogs' => GetLogs::laravel(),
+            'userActivityLogs' => GetLogs::userActivity(),
+            'memberActivityLogs' => GetLogs::memberActivity(),
+            'accessLogs' => GetLogs::access(),
+        ]);
     }
 
     /**

@@ -16,6 +16,4 @@ use Modules\Versions\Http\Controllers\VersionsController;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('versions', VersionsController::class)->names('versions');
-    Route::get('/update', [VersionsController::class, 'update']);
-    Route::get('/clear-route-cache', [VersionsController::class, 'clearRouteCache']);
 });

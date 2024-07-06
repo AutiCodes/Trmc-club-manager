@@ -1,4 +1,3 @@
-<!-- NAVBAR -->
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-dark">
   <a class="navbar-brand text-white" href="/">
     <img src="/media/images/TRMC_LOGO_PNG.ico" width="30" height="30" class="d-inline-block align-top ms-2" alt="">
@@ -30,7 +29,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('members.index') }}">Leden overzicht</a>
           <a class="dropdown-item" href="{{ route('members.create') }}">Lid toevoegen</a>
-          <a class="dropdown-item" href="#">Leden exporteren</a>
         </div>
       </li>         
       <li class="nav-item dropdown">
@@ -68,4 +66,3 @@
     </ul> 
   </div>
 </nav>
-<!-- END NAVBAR -->

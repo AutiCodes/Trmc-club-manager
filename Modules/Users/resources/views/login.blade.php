@@ -2,7 +2,7 @@
 <html lang="nl">
 	<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<!-- Page title -->
     <title>TRMC club manager</title>
@@ -19,11 +19,11 @@
         </div>
       @endif
       <!-- LOGIN -->
-      <div class="container bg-dark mt-4">
-        <h3 class="text-white text-center pt-3">Login TRMC club manager</h3>
-        <img src="/media/images/TRMC_LOGO_PNG.ico" class="rounded mx-auto d-block" alt="Responsive image">
+      <div class="container mt-5" style="max-width: 400px;">
+        <img src="/media/images/TRMC_LOGO.png" class="rounded mx-auto d-block" alt="" style="width: 150px;">
+        <h2 class="text-white text-center pt-3">Inloggen</h2>
 
-        <form class="col-lg-6 offset-lg-3 pt-4 pb-4" action="/authenticatie-login-post" method="POST">
+        <form class="col-auto pt-4 pb-4 mw-50" action="/authenticatie-login-post" method="POST">
           @csrf
           <div class="form-group">
             <label for="username" class="text-white">Gebruikersnaam</label>
@@ -39,12 +39,36 @@
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
           </div>
           -->
-          <button type="submit" class="btn btn-primary mb-4">Inloggen</button>
+          <button type="submit" class="btn mb-4" style="background-color: #d10014; color: #FFFFFF;">Inloggen</button>
         </form>
-      </div>
 
+        @include('admin::includes.footer')
+      </div>
 		</main>
 
+    <style>
+      body, html {
+        background-image: url("/media/images/plane.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 60%;
+        background-attachment: fixed;
+
+        background-color: #2f3031;
+      }    
+
+      @media only screen and (max-width: 900px) {
+        body, html {
+          background-image: url("/media/images/plane.png");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100%;
+          background-attachment: fixed;
+
+          background-color: #2f3031;
+        }
+      }
+    </style>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -52,24 +76,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Google reCCHAPTA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-
-    <!-- Temp styleing -->
-    <style>
-      body, html {
-        background-color: #2f3031;
-      }
-    </style>
-    <!-- Temp JS -->
-    <script>
-      function requiredHideViewer(e) {
-        if(e.value != ''){
-          document.getElementById(e.id + '_required').style.visibility = "hidden";
-          return;
-        }	
-        document.getElementById(e.id + '_required').style.visibility = "visible";
-      }
-    </script>
-
 	</body>
-</html>l>
+</html>

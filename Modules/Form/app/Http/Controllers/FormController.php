@@ -22,6 +22,7 @@ class FormController extends Controller
     /**
      * Display a listing of the resource.
      * 
+     * @author KelvinCodes
      * @return View
      */
     public function index()
@@ -33,7 +34,7 @@ class FormController extends Controller
                             ->get();
         });
 
-        // Return form view
+        // Return form view with members
         return view('form::pages.reg_new_flight', ['members' => $members]);	
     }
 
@@ -51,6 +52,7 @@ class FormController extends Controller
      * Store a newly created resource in storage.
      * 
      * @param Request $request
+     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function store(Request $request)
@@ -68,7 +70,6 @@ class FormController extends Controller
 
         // Save filled in RDW number on first flight register
         if ($request->has('rdw_number')) {
-            // Save rdw_number to that user
             $member = Member::find($validated['name']);
 
             $member->update([
@@ -76,8 +77,8 @@ class FormController extends Controller
             ]);
         }
 
-
         // Check if rechapcha is correct, if not do nothing and return error
+        // TODO: Use env variable for rechapcha secret key
         if (intval($validated['rechapcha_custom']) != 4) {
             Log::channel('member_activity')->warning('Member ' . $member->name. ' has submitted a new flight form with invalid rechapcha!');
 
@@ -96,58 +97,43 @@ class FormController extends Controller
 
         // Add submitted models to model table
         foreach($validated['model_type'] as $model) {
-            // TODO: Use Enum and switch case
-            if ($model == 1) {
-                $validated = $request->validate([
-                    'power_type_select_plane' => ['required', 'string', 'max:24'], // TODO: Fix check if in array (Rule::in)
-                    'lipo_count_select_plane' => ['required', 'integer', 'max: 8'],
-                ]);
+            switch ($model) {
+                case ModelTypeEnum::PLANE->value:
+                    $powerType = 'power_type_select_plane';
+                    $lipoCount = 'lipo_count_select_plane';
+                    $modelType = 'Vliegtuig';
+                    break;
 
-                $model = SubmittedModel::create([
-                    'model_type' => 'Vliegtuig',
-                    'class' => $validated['power_type_select_plane'], 
-                    'lipo_count' => $validated['lipo_count_select_plane'],
-                ]);
+                case ModelTypeEnum::HELICOPTER->value:
+                    $powerType = 'power_type_select_glider';
+                    $lipoCount = 'lipo_count_select_glider';
+                    $modelType = 'Zweefvliegtuig';
+                    break;
+
+                case ModelTypeEnum::GLIDER->value:
+                    $powerType = 'power_type_select_helicopter';
+                    $lipoCount = 'lipo_count_select_helicopter';
+                    $modelType = 'Helicopter';
+                    break;
+
+                case ModelTypeEnum::DRONE->value:
+                    $powerType = 'power_type_select_drone';
+                    $lipoCount = 'lipo_count_select_drone';
+                    $modelType = 'Drone';
+                    break;
             }
 
-            elseif ($model == 2) {
-                $validated = $request->validate([
-                    'power_type_select_glider' => ['required', 'string', 'max:24'],
-                    'lipo_count_select_glider' => ['required', 'integer', 'max: 8'],
-                ]);
+            $validated = $request->validate([
+                $powerType => ['required', 'string', 'max:24'],
+                $lipoCount => ['required', 'integer', 'max:8'],
+            ]);
 
-                $model = SubmittedModel::create([
-                    'model_type' => 'Zweefvliegtuig',
-                    'class' => $validated['power_type_select_glider'],
-                    'lipo_count' => $validated['lipo_count_select_glider'],
-                ]);                
-            }
+            $model = SubmittedModel::create([
+                'model_type' => $modelType,
+                'class' => $validated[$powerType],
+                'lipo_count' => $validated[$lipoCount],
+            ]);
 
-            elseif ($model == 3) {
-                $validated = $request->validate([
-                    'power_type_select_helicopter' => ['required', 'string', 'max:24'],
-                    'lipo_count_select_helicopter' => ['required', 'integer', 'max: 8'],
-                ]);
-
-                $model = SubmittedModel::create([
-                    'model_type' => 'Helicopter',
-                    'class' => $validated['power_type_select_helicopter'],
-                    'lipo_count' => $validated['lipo_count_select_helicopter'],
-                ]);                
-            }
-
-            elseif ($model == 4) {
-                $validated = $request->validate([
-                    'power_type_select_drone' => ['required', 'string', 'max:24'],
-                    'lipo_count_select_drone' => ['required', 'integer', 'max: 8'],
-                ]);
-
-                $model = SubmittedModel::create([
-                    'model_type' => 'Drone',
-                    'class' => $validated['power_type_select_drone'],
-                    'lipo_count' => $validated['lipo_count_select_drone'],
-                ]);
-            }
             // Attach submitted models to submitted form
             $form->submittedModels()->attach($model->id);
         }
@@ -203,6 +189,7 @@ class FormController extends Controller
      * Check if member has at least one submitted club flight
      * 
      * @param int $id the id of the member
+     * @author KelvinCodes
      * @return JSON
      */
     public function checkClubFlights($id)

@@ -29,7 +29,6 @@
       <!-- End total cards -->
     </div>
 
-
     <!-- Table last flights -->
     <div class="container">
       <h1 class="mt-4 text-white">Laatste 5 vluchten</h1>
@@ -62,11 +61,9 @@
       </div>
     </div>
 
-
     <!-- Administratie -->
     <div class="container mb-4">
       <h1 class="text-white mt-2">Administratie</h1>
-
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle bg-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Exporteer vluchten
@@ -78,7 +75,6 @@
         </div>
       </div>
     </div>
-
 
     <!-- Table members -->
     <div class="container">
@@ -123,10 +119,8 @@
             </button>
           </div>
           <div class="modal-body">
-            <!-- -->
             <h4>Uitleg voor het gebruiken van de admin pagina:</h4>
             <p>wip</p>
-            <!-- -->
             <span aria-hidden="true"></span>
             <h4>Errors en contact:</h4>
             <p>Is er een error of lukt iets niet? Neem dan contact met ons op via Email: <a href="mailto:webmaster@kelvincodes.nl">webmaster@kelvincodes.nl</a></p>
