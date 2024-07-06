@@ -50,7 +50,11 @@ class UsersController extends Controller
         ]);
 
         try { 
-            User::create($validated);
+            User::create([
+                'name' => $validated['name'],
+                'username' => $validated['username'],
+                'password' => Hash::make($validated['password']),
+            ]);    
         } 
         catch (\Exception $exception) {
             return redirect(route('users.index'))->with('error', 'Er is iets fout gegaan! Foutmelding: ' . $exception->getMessage());
