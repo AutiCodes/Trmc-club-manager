@@ -2,23 +2,22 @@
 
 @section('title', 'Voeg een admin toe aan de vlucht manager')
 
-
 @section('content')
   @if ($errors->any())
-      <div class="alert alert-danger">
-        <h1>Oeps!</h1>
-        <ul>
-          @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
-    @if (session()->has('success'))
-      <div class="alert alert-success" role="alert">
-          {{ session('success') }}
-      </div>
-    @endif
+    <div class="alert alert-danger">
+      <h1>Oeps!</h1>
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+  @if (session()->has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+  @endif
 
   <!-- Add new member -->
   <div class="container bg-dark mt-4 w-25">
@@ -44,13 +43,12 @@
     </form>
   </div>
 
-  <!-- Temp styleing -->
   <style>
     body, html {
       background-color: #2f3031;
     }
   </style>
-  <!-- Temp JS -->
+
   <script>
     function requiredHideViewer(e) {
       if(e.value != ''){
@@ -60,4 +58,4 @@
       document.getElementById(e.id + '_required').style.visibility = "visible";
     }
   </script>
-  @endsection
+@endsection

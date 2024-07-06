@@ -2,7 +2,7 @@
 <html lang="nl">
 	<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<!-- Page title -->
     <title>TRMC club manager</title>
@@ -42,9 +42,7 @@
           <button type="submit" class="btn btn-primary mb-4">Inloggen</button>
         </form>
       </div>
-
 		</main>
-
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -53,14 +51,12 @@
     <!-- Google reCCHAPTA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-
-    <!-- Temp styleing -->
     <style>
       body, html {
         background-color: #2f3031;
       }
     </style>
-    <!-- Temp JS -->
+
     <script>
       function requiredHideViewer(e) {
         if(e.value != ''){
@@ -70,6 +66,5 @@
         document.getElementById(e.id + '_required').style.visibility = "visible";
       }
     </script>
-
 	</body>
-</html>l>
+</html>
