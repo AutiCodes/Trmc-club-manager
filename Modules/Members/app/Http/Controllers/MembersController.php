@@ -50,7 +50,7 @@ class MembersController extends Controller
                 case ClubStatus::MANAGEMENT->value:
                     $totalManagement++;
                     break;
-                case ClubStatus::DONATOR->value:
+                case ClubStatus::DONOR->value:
                     $totalDonators++;
                     break;
             }
