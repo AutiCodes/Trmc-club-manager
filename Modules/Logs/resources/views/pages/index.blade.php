@@ -29,6 +29,7 @@
         </button>
       </li>      
     </ul>
+
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">       
         @foreach ($memberActivityLogs as $memberActivityLog)
@@ -45,6 +46,7 @@
           <hr>
         @endforeach
       </div>
+
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         @foreach ($userActivityLogs as $userActivityLog)
           @if (str_contains($userActivityLog, 'INFO') == true)
@@ -57,6 +59,7 @@
           <hr>
         @endforeach        
       </div>
+      
       <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
         @foreach ($laravelLogs as $laravelLog)
           @if ($loop->index > 50)
@@ -72,6 +75,7 @@
           <hr>
         @endforeach   
       </div>
+
       <div class="tab-pane fade" id="access-logs" role="tabpanel" aria-labelledby="access-logs-tab">
         @foreach ($accessLogs as $accessLog)
           @if ($loop->index > 50)
