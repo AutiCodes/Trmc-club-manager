@@ -3,7 +3,6 @@
 @section('title', 'TRMC club manager')
 
 @section('content')
-
   <h1 class="text-center text-white font-weight-bold mt-4 mb-4">In ontwikkeling!</h1>
   <div class="container mt-4">
     <div class="row">	
