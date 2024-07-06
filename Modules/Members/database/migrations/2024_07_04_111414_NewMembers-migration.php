@@ -27,6 +27,7 @@ return new class extends Migration {
             $table->integer("rdw_reg_number")->nullable();
             $table->integer("member_of_another_rc_club")->nullable();
             $table->date("want_be_member_at")->nullable();
+            $table->timestamps();
         });
     }
 

@@ -19,5 +19,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('leden', MembersController::class)->names('members');
     Route::get('leden/verwijder/{id}', [MembersController::class, 'destroy']);
     Route::resource('nieuwe-leden', NewMembersController::class)->names('newMembers');
+    Route::get('nieuwe-lid-form', [NewMembersController::class, 'create']);
 });
 
