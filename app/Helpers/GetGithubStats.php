@@ -4,9 +4,10 @@ namespace App\Helpers;
 class GetGithubStats
 {
     /**
-     * Curl the Github API
+     * Curl the Github API and return the results
      * 
      * @param string $url the url to curl
+     * @author KelvinCodes
      * @return mixed
      */
     public static function get($url)
@@ -30,5 +31,17 @@ class GetGithubStats
         curl_close($curl);
 
         return $result;
+    }
+
+    /**
+     * Get latest version on Github
+     * 
+     * @author KelvinCodes
+     * @return string version
+     */
+    public static function getLatestVersion()
+    {
+        $latestRelease = Self::get('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/releases/latest');
+        return str_replace('v', '', $latestRelease->tag_name);
     }
 }
