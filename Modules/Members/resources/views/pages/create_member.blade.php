@@ -57,7 +57,6 @@
       </div>
     </div>
 
-
     <div class="row">
       <div class="col-sm">
         <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
@@ -99,9 +98,8 @@
       
       <div class="col-sm">
         <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
-
-        <h4 class="font-weight-bold text-white mb-0">Brevetten</h4>
-        <div class="form-check">
+          <h4 class="font-weight-bold text-white mb-0">Brevetten</h4>
+          <div class="form-check">
             <input class="form-check-input" type="checkbox" value=1 id="PlaneCertCheckbox" name="PlaneCertCheckbox">
             <label class="form-check-label text-white" for="PlaneCertCheckbox">
               Motorvliegtuig

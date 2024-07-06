@@ -25,7 +25,6 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="main-box no-header clearfix bg-dark bg-opacity-50">
-
             <div class="row">
               <div class="col ml-2">
                 <div class="w-25 float-start mb-4 ms-4">
@@ -51,7 +50,7 @@
               <div class="table-responsive">
                 <table class="table user-list" id="MembersTable">
                   <thead class="text-white">
-                      <tr>
+                    <tr>
                       <th><span>Icoon</span></th>
                       <th><span>Vol. naam</span></th>
                       <th><span>KNVvl</span></th>
@@ -60,7 +59,7 @@
                       <th><span>Telefoon</span></th>
                       <th><span>Email</span></th>
                       <th>Open, bewerk, verwijder</th>
-                      </tr>
+                    </tr>
                   </thead>
                   <tbody class="text-white">
                     @foreach ($members as $member)
@@ -136,7 +135,6 @@
                     @endforeach               
                   </tbody>
                 </table
-
               </div>
             </div>
           </div>
@@ -161,7 +159,6 @@
             <div class="row">
               <div class="col-md-12">
                 <h4>Persoonlijke gegevens:</h4>
-                
                 <p class="">
                   <strong>Naam:</strong> {{ $member->name }}<br>
                   <strong>Geboortedatum:</strong> {{ $member->birthdate }}<br>
@@ -175,7 +172,6 @@
 
               <div class="col-md-12">
                 <h4>Brevetten:</h4>
-
                 <p class="fw-bold">
                   Motorvliegtuig:
                   @if ($member->has_plane_brevet == 1)
@@ -252,71 +248,71 @@
   @endforeach
 
   <style>
-  body{
-      background:#eee;    
-  }
-  .main-box.no-header {
-      padding-top: 20px;
-  }
-  .main-box {
-      -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
-      -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
-      -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
-      -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
-      box-shadow: 1px 1px 2px 0 #CCCCCC;
-      margin-bottom: 16px;
-      -webikt-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-  }
-  .table a.table-link.danger {
-      color: #e74c3c;
-  }
-  .label {
-      border-radius: 3px;
-      font-size: 0.875em;
-      font-weight: 600;
-  }
-  .user-list tbody td .user-subhead {
-      font-size: 0.875em;
-      font-style: italic;
-  }
-  .user-list tbody td .user-link {
-      display: block;
-      font-size: 1.25em;
-      padding-top: 3px;
-      margin-left: 0px;
-  }
-  a {
-      color: #ffffff;
-      outline: none!important;
-  }
-  .user-list tbody td>img {
-      position: relative;
-      max-width: 50px;
-      float: left;
-      margin-right: 15px;
-  }
+    body{
+        background:#eee;    
+    }
+    .main-box.no-header {
+        padding-top: 20px;
+    }
+    .main-box {
+        -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
+        -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
+        -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
+        -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
+        box-shadow: 1px 1px 2px 0 #CCCCCC;
+        margin-bottom: 16px;
+        -webikt-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+    .table a.table-link.danger {
+        color: #e74c3c;
+    }
+    .label {
+        border-radius: 3px;
+        font-size: 0.875em;
+        font-weight: 600;
+    }
+    .user-list tbody td .user-subhead {
+        font-size: 0.875em;
+        font-style: italic;
+    }
+    .user-list tbody td .user-link {
+        display: block;
+        font-size: 1.25em;
+        padding-top: 3px;
+        margin-left: 0px;
+    }
+    a {
+        color: #ffffff;
+        outline: none!important;
+    }
+    .user-list tbody td>img {
+        position: relative;
+        max-width: 50px;
+        float: left;
+        margin-right: 15px;
+    }
 
-  .table thead tr th {
-      text-transform: uppercase;
-      font-size: 0.875em;
-  }
-  .table thead tr th {
-  }
-  .table tbody tr td:first-child {
-      font-size: 1.125em;
-      font-weight: 300;
-  }
-  .table tbody tr td {
-      font-size: 0.875em;
-      vertical-align: middle;
-      border-top: 1px solid #e7ebee;
-      padding: 2px 2px;
-  }
-  a:hover{
-  text-decoration:none;
-  }
+    .table thead tr th {
+        text-transform: uppercase;
+        font-size: 0.875em;
+    }
+    .table thead tr th {
+    }
+    .table tbody tr td:first-child {
+        font-size: 1.125em;
+        font-weight: 300;
+    }
+    .table tbody tr td {
+        font-size: 0.875em;
+        vertical-align: middle;
+        border-top: 1px solid #e7ebee;
+        padding: 2px 2px;
+    }
+    a:hover{
+    text-decoration:none;
+    }
   </style>
 
   <script>
@@ -340,7 +336,6 @@
         }
       }
     }
-
 
     function clubStatusFilter() {
       var input, filter, table, tr, td, i, txtValue;
