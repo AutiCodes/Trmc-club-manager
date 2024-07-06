@@ -14,6 +14,7 @@ class UsersController extends Controller
     /**
      * Display a listing of the users.
      * 
+     * @author KelvinCodes
      * @return View
      */
     public function index()
@@ -37,6 +38,7 @@ class UsersController extends Controller
      * Store a newly created user in storage.
      * 
      * @param Request $request
+     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
@@ -47,15 +49,12 @@ class UsersController extends Controller
             'password' => ['required','string','max:40'],
         ]);
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'username' => $validated['username'],
-            'password' => Hash::make($validated['password']),
-        ]);
-
-        if (!$user) {
-            return redirect(route('admin.index'))->with('error', 'Er is iets fout gegaan!');
+        try { 
+            User::create($validated);
         } 
+        catch (\Exception $exception) {
+            return redirect(route('users.index'))->with('error', 'Er is iets fout gegaan! Foutmelding: ' . $exception->getMessage());
+        }
 
         return redirect(route('users.index'))->with('success', 'Gebruiker toegevoegd!');
     }
@@ -75,6 +74,7 @@ class UsersController extends Controller
      * Show the form for editing the specified user.
      * 
      * @param int $id
+     * @author KelvinCodes
      * @return view
      */
     public function edit($id)
@@ -93,6 +93,7 @@ class UsersController extends Controller
      * 
      * @param Request $request
      * @param int $id the user id
+     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function update(Request $request, $id): RedirectResponse
@@ -111,13 +112,14 @@ class UsersController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return redirect(route('admin.index'))->with('success', 'Gebruiker gewijzigd!');
+        return redirect(route('users.index'))->with('success', 'Gebruiker gewijzigd!');
     }
 
     /**
      * Remove the specified user from storage.
      * 
      * @param int $id the user id
+     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function destroy($id): RedirectResponse
@@ -125,7 +127,7 @@ class UsersController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return redirect(route('admin.index'))->with('error', 'Gebruiker niet gevonden!');
+            return redirect(route('users.index'))->with('error', 'Gebruiker niet gevonden!');
         }
 
         $user->delete();
