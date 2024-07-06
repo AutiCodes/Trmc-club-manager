@@ -332,6 +332,9 @@ class MembersController extends Controller
 
         Log::channel('user_activity')->warning('Member '. $member->name . ' has been removed by ' . auth()->user()->name);
 
+        // Flush cache
+        Cache::flush();
+
         return redirect(route('members.index'))->with('success', 'Het lid is verwijderd! Hij staat nog in de database maar is op non actief gezet. Ook is hij verwijderd uit de database van WP.');
     }
 
