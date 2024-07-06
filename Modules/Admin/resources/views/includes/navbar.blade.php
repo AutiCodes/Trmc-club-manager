@@ -1,4 +1,3 @@
-<!-- NAVBAR -->
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-dark">
   <a class="navbar-brand text-white" href="/">
     <img src="/media/images/TRMC_LOGO_PNG.ico" width="30" height="30" class="d-inline-block align-top ms-2" alt="">
@@ -68,4 +67,3 @@
     </ul> 
   </div>
 </nav>
-<!-- END NAVBAR -->
