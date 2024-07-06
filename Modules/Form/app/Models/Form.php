@@ -30,7 +30,6 @@ class Form extends Model
      * Form to member relationship
      * 
      * @return BelongsToMany
-     * TODO: Use HasOne instead BelongsToMany
      */
     public function member(): BelongsToMany
     {

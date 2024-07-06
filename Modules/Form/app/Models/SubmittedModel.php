@@ -14,7 +14,8 @@ class SubmittedModel extends Model
     protected $table = 'model';
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable
+     * 
      * @var int id, model_type, class, lipo_count
      */
     protected $fillable = [
