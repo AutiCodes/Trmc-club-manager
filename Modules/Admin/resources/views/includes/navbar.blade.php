@@ -29,7 +29,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('members.index') }}">Leden overzicht</a>
           <a class="dropdown-item" href="{{ route('members.create') }}">Lid toevoegen</a>
-          <a class="dropdown-item" href="#">Leden exporteren</a>
         </div>
       </li>         
       <li class="nav-item dropdown">
