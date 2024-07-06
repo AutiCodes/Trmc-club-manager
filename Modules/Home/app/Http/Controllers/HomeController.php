@@ -13,10 +13,12 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      * 
+     * @author KelvinCodes
      * @return View
      */
     public function index()
     {
+        
         $prResults = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/pulls?state=all');
         $version = Self::curlGithub('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/releases/latest');
         
