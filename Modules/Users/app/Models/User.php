@@ -15,6 +15,7 @@ class User extends Model
      * The attributes that are mass assignable.
      * 
      * @var string name, username, email, password
+     * @author KelvinCodes
      */
     protected $fillable = [
         'name',
