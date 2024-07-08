@@ -121,25 +121,20 @@ class AdminController extends Controller
     {
         Log::channel('user_activity')->info('User ' . Auth::user()->name . ' has exported all club flights to PDF');
 
-        // TODO: Get current signed in user
-        // Get data
         $flights = Form::orderBy('id', 'desc')
-                                ->whereBetween('created_at', [
-                                    Carbon::now()->startOfYear(),
-                                    Carbon::now()->endOfYear()]
-                                )
+                                ->whereBetween('created_at',
+                                [
+                                    Carbon::now()->startOfMonth(), 
+                                    Carbon::now()->endOfMonth()
+                                ])
                                 ->with('member')
                                 ->with('submittedModels')
                                 ->get();        
         
-        $countTotalFlights = DB::table('model')
-                                ->select(DB::raw('SUM(lipo_count) AS total_flights'))
-                                ->first();
-        
         $pdf = PDF::loadView('admin::pdf', [
             'flights' => $flights,
             'currentUser' => Auth::user()->name,
-            'totalFlights' => $countTotalFlights
+            'flightsDate' => Carbon::now()->startOfMonth()->format('d-m-Y') . " tot " . Carbon::now()->endOfMonth()->format('d-m-Y'),
         ]); 
 
         return $pdf->stream('vluchten.pdf');
