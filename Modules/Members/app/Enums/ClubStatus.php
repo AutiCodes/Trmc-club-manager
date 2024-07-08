@@ -17,4 +17,5 @@ enum ClubStatus: int
     case REMOVED_MEMBER = 4;
     case DONOR = 5;
     case JUNIOR_MEMBER = 6;
+    case NOT_YET_MEMBER = 7;
 }

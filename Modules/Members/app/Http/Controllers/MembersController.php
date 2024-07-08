@@ -88,7 +88,7 @@ class MembersController extends Controller
             'rdw_number' => ['nullable'],
             'knvvl' => ['nullable'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:Members'],
-            'club_status' => ['required', 'integer', 'max:6'],
+            'club_status' => ['required', 'integer', 'max:7'],
             'instruct' => ['required', 'integer', 'max:1'],
             'PlaneCertCheckbox' => ['nullable'],
             'HeliCertCheckbox' => ['nullable'],
@@ -161,9 +161,12 @@ class MembersController extends Controller
                 break;
         }
 
-        Mail::to($validated['email'])->send(new MembersContact($validated['name'], $club_status, $usernameWP, $userPasswordWP));
+        if ($validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {
+            Mail::to($validated['email'])->send(new MembersContact($validated['name'], $club_status, $usernameWP, $userPasswordWP));
+            return redirect(route('members.index'))->with('success', "Het lid is toegevoegd! Login gegevens voor WP: Gebruikersnaam: $usernameWP, wachtwoord: $userPasswordWP");
+        }
 
-        return redirect(route('members.index'))->with('success', "De gebruiker is toegevoegd! Login gegevens voor WP: Gebruikersnaam: $usernameWP, wachtwoord: $userPasswordWP");
+        return redirect(route('members.index'))->with('success', "Het lid is toegevoegd! Account op Wordpress is aangemaakt maar de gegevens zijn niet gedeeld. Ook is er geen mail verzonden.");
     }
 
     /**
@@ -221,12 +224,12 @@ class MembersController extends Controller
             'rdw_number' => ['nullable'],
             'knvvl' => ['nullable'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'club_status' => ['required', 'integer', 'max:6'],
+            'club_status' => ['required', 'integer', 'max:7'],
             'instruct' => ['required', 'integer', 'max:1'],
             'PlaneCertCheckbox' => ['nullable'],
             'HeliCertCheckbox' => ['nullable'],
             'gliderCertCheckbox' => ['nullable'],
-            'honoraryMemberCheckbox' => ['nullable'],
+            'honoraryMemberCheckbox' => ['nullable'] ?? 0,
             'droneA1Checkbox' => ['nullable'],
             'droneA2Checkbox' => ['nullable'],
             'droneA3Checkbox' => ['nullable'],            
@@ -259,22 +262,26 @@ class MembersController extends Controller
             'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,      
         ]);
 
-        // Club status mail
-        if ($validated['club_status'] != $memberOldData['club_status']) {
-            // Send email to member
-            Mail::to($validated['email'])->send(new MembersClubStatusChange($validated['name'], $memberOldData['club_status'], $validated['club_status']));
-        }  
-
         if (!array_key_exists('honoraryMemberCheckbox', $validated)) {
             $validated['honoraryMemberCheckbox'] = 0;
         }
 
-        if ($validated['honoraryMemberCheckbox'] != $memberOldData['in_memoriam']) {
+        // Club status mail
+        if ($validated['club_status'] != $memberOldData['club_status'] && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {	
+            // Send email to member
+            Mail::to($validated['email'])->send(new MembersClubStatusChange($validated['name'], $memberOldData['club_status'], $validated['club_status']));
+        }  
+
+        if (!array_key_exists('honoraryMemberCheckbox', $validated) && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {
+            $validated['honoraryMemberCheckbox'] = 0;
+        }
+
+        if ($validated['honoraryMemberCheckbox'] != $memberOldData['in_memoriam'] && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {
             // Send email to member
             Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $memberOldData['in_memoriam']));
         }
 
-        if ($memberOldData['in_memoriam'] != $validated['honoraryMemberCheckbox']) {
+        if ($memberOldData['in_memoriam'] != $validated['honoraryMemberCheckbox'] && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {
             // Send email to member
             Mail::to($validated['email'])->send(new MembersHonorary($validated['name'], $memberOldData['in_memoriam']));
         }

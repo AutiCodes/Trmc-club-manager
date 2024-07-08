@@ -41,6 +41,7 @@
                     <option value="Lid">Lid</option>
                     <option value="Bestuur">Bestuur</option>
                     <option value="Donateur">Donateur</option>
+                    <option value="Noggeenlid">Nog geen lid</option>
                   </select>
                 </div>
               </div>
@@ -100,6 +101,10 @@
                         @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::DONOR->value)
                           <td class="text-center">
                             <span class="badge badge-pill bg-secondary" style="font-size: 1rem;">Donateur</span>
+                          </td>
+                        @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::NOT_YET_MEMBER->value)
+                          <td class="text-center">
+                            <span class="badge badge-pill bg-danger" style="font-size: 1rem;">Nog geen lid</span>
                           </td>
                         @endif
                         <!-- RDW number -->
