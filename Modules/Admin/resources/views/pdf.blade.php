@@ -6,28 +6,28 @@
   <main>
     <h1>Twente Radio Modelvlieg Club</h1>
     <hr
-    <h2>Vluchten 2024:</h2>
+    <h4>Vluchten van: {{ $flightsDate }}</h4>
 
     <table class="table">
       <thead>
       <tr>
-        <th scope="col">Nummer</th>
+        <th scope="col">#</th>
         <th scope="col">RDW nummer</th>
         <th scope="col">Datum en tijd</th>
-        <th scope="col">Model type(s)</th>
+        <th scope="col">Model</th>
       </tr>
       </thead>
       <tbody>
       
       @foreach ($flights as $flight)
       <tr> 
-        <th scope="row">{{ $flight->id }}</th>
-        <td>{{ $flight->member[0]->rdw_number }}</td>
+        <th scope="row">{{ $loop->iteration }}</th>
+        <td>{{ $flight->member[0]->rdw_number ?? 'Nog niet ingevuld' }}</td>
         <td>{{ $flight->date_time }}</td>
         <td>
           @foreach ($flight->submittedModels as $model)
           <p>
-            {{ $loop->iteration }}: {{ $model->model_type }}. Vluchten met model: {{ $model->lipo_count }}
+            <strong>{{ $loop->iteration }}:</strong> {{ $model->model_type }}. Klasse: {{ $model->class }}. Vluchten met model: {{ $model->lipo_count }}
           </p>
           @endforeach
         </td>
@@ -36,10 +36,8 @@
       </tbody>
     </table>
 
-
-    <h3 class="mb-4"> Totaal aantal vluchten: {{ $totalFlights->total_flights }}</h3>
     <footer class="text-center">
-        <p>PDF gegenereerd op {{ date('d-m-Y') }}  door {{ $currentUser }}</p>
+        <p>Vluchten rapportage gegenereerd op {{ date('d-m-Y') }}  door {{ $currentUser }}</p>
         <p>&copy; {{ date('Y') }} Twente Radio Modelvlieg Club</p>
     </footer>
 
