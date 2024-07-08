@@ -103,6 +103,11 @@
               @else
                 <option value=5>Donateur</option>
               @endif
+              @if ($member->club_status == \Modules\Members\Enums\ClubStatus::NOT_YET_MEMBER->value)
+                <option value=7 selected>Nog geen lid</option>
+              @else 
+                <option value=7>Nog geen lid</option>
+              @endif
             </select>
           </div> 
 

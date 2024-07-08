@@ -78,11 +78,13 @@
             <label for="club_status" class="text-white font-weight-bold">Club status</label>
             <select class="form-control" id="club_status" name="club_status" required>
               <option selected disabled>selecteer...</option>
+              <!-- TODO: add ENUM -->
               <option value=6>Jeugd lid</option>
               <option value=1>Aspirant lid</option>
               <option value=2>Lid</option>
               <option value=3>Bestuur</option>
               <option value=5>Donateur</option>
+              <option value=7>Nog geen lid</option>
             </select>
           </div> 
 
