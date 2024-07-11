@@ -14,6 +14,7 @@ use Modules\Members\Models\UserSync;
 use App\Mail\MembersContact;
 use App\Mail\MembersClubStatusChange;
 use App\Mail\MembersHonorary;
+use App\Mail\AcceptedMember;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 
@@ -264,6 +265,31 @@ class MembersController extends Controller
 
         if (!array_key_exists('honoraryMemberCheckbox', $validated)) {
             $validated['honoraryMemberCheckbox'] = 0;
+        }
+
+        // If not member goes to any other member, send mail and update Wordpress login
+        if ($memberOldData['club_status'] == ClubStatus::NOT_YET_MEMBER->value && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {
+            // Generate random password
+            $userPasswordWP = bin2hex(random_bytes(10));
+            
+            try {
+                // Update Wordpress login
+                UserSync::updateUserPassword($validated['email'], $userPasswordWP);
+            }
+            catch (\Exception $e) {
+                Log::channel('user_activity')->error($e->getMessage());
+                return redirect(route('members.index'))->with('error', 'Er is een fout opgetreden bij het aanpassen van het lid. Neem contact op met de beheerder.');
+            }
+
+            // Send email to member
+            Mail::to($validated['email'])->send(new AcceptedMember($validated['name'], $validated['club_status'], $validated['email'], $userPasswordWP));
+
+            Log::channel('user_activity')->info('Member '. $validated['name'] . ' has been updated by '. auth()->user()->name);
+
+            // Flush cache
+            Cache::flush();
+    
+            return redirect(route('members.index'))->with('success', 'Het lid is nu geaccepteerd binnen T.R.M.C! Hij krijgt nu een email.');        
         }
 
         // Club status mail
