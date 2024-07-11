@@ -29,14 +29,15 @@
                 je bent nu lid van de T.R.M.C, gefeliciteed!
                 <br>
                 <br>
-                U kunt nu ook gebruik gebruik maken van aspirant leden / leden functionaliteiten:
-                - Inloggen op <a href="https://trmc.nl">trmc.nl</a> om extra content te bekijken.
-                - Vluchten aanmelden in de club manager: <a href="https://club.trmc.nl/aanmeld-formulier">vlucht aanmelden</a> 
+                U kunt nu ook gebruik gebruik maken van aspirant leden / leden functionaliteiten:<br>
+                - Inloggen op <a href="https://trmc.nl">trmc.nl</a> om extra content te bekijken.<br>
+                - Vluchten aanmelden in de club manager: <a href="https://club.trmc.nl/aanmeld-formulier">vlucht aanmelden</a>
                 <br>
                 De login gegevens van <a href="https://trmc.nl">trmc.nl</a> zijn:
                 - <strong>Email:</strong> {{ $email }}
                 - <strong>Wachtwoord:</strong> {{ $password }}
-
+                <br>  
+                <br>
                 Het bestuur van T.R.M.C wenst u veel vlieg plezier!
               </p>
             </td>
