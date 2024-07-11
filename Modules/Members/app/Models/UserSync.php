@@ -31,6 +31,7 @@ class UserSync extends Model
      * Syncs newly added users to the TRMC.nl site
      * 
      * @var string $userLogin, $userPass, $userNiceName, $userEmail, $userDisplayName
+     * @author KelvinCodes
      * @return DB
      */
     public static function syncNewUser($userLogin, $userPass, $userNicename, $userEmail, $userDisplayName)
@@ -70,6 +71,7 @@ class UserSync extends Model
      * Updates an user from Laravel to Wordpress
      * 
      * @var $oldName, $userNicename, $userEmail, $userDisplayName
+     * @author KelvinCodes
      * @return bool
      */
     public static function updateUser($oldName, $userNicename, $userEmail, $userDisplayName): bool
@@ -96,15 +98,40 @@ class UserSync extends Model
     }
 
     /**
+     * Updates an user password on Wordpress
+     * 
+     * @var $email, $password
+     * @author KelvinCodes
+     * @return bool
+     */
+    public static function updateUserPassword($email, $password): bool
+    {
+        $query = DB::connection('wordpress_MySQL')->statement(
+            "UPDATE wp_users SET
+                user_pass = MD5('$password')
+            WHERE user_email = '$email'
+            "
+        );
+
+        if (!$query) {
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /**
      * Deletes an user from Laravel to Wordpress
      * 
      * @var $name
+     * @author KelvinCodes
      * @return bool
      */
     public static function deleteUser($name): bool
     {
         $userDeletion = DB::connection('wordpress_MySQL')->statement(
-            " DELETE FROM wp_users
+            "DELETE FROM wp_users
             WHERE user_nicename = '$name'
             "
         );
