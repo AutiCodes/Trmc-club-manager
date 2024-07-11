@@ -32,9 +32,9 @@
                 U kunt nu ook gebruik gebruik maken van aspirant leden / leden functionaliteiten:<br>
                 - Inloggen op <a href="https://trmc.nl">trmc.nl</a> om extra content te bekijken.<br>
                 - Vluchten aanmelden in de club manager: <a href="https://club.trmc.nl/aanmeld-formulier">vlucht aanmelden</a>
-                <br>
-                De login gegevens van <a href="https://trmc.nl">trmc.nl</a> zijn:
-                - <strong>Email:</strong> {{ $email }}
+                <br><br>
+                De login gegevens van <a href="https://trmc.nl">trmc.nl</a> zijn:<br>
+                - <strong>Email:</strong> {{ $email }}<br>
                 - <strong>Wachtwoord:</strong> {{ $password }}
                 <br>  
                 <br>
