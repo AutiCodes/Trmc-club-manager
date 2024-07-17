@@ -53,7 +53,7 @@
                   <thead class="text-white">
                     <tr>
                       <th><span>Icoon</span></th>
-                      <th><span>Vol. naam</span></th>
+                      <th><span>Voornaam <a onclick="sortFirstName()"> &#x25be</a> achternaam <a onclick="sortLastName()"> &#x25be</a></span></th>
                       <th><span>KNVvl</span></th>
                       <th class="text-center"><span>Club status</span></th>
                       <th><span>RDW nmr.</span></th>
@@ -365,5 +365,41 @@
         }
       }
     }
+
+    function sortFirstName() {
+      const table = document.getElementById('MembersTable');
+      console.log('sortFirstName');
+    }
+
+    function sortLastName() {
+      console.log('sortLastName');
+      const table = document.getElementById('MembersTable');
+      var switching = true;
+
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          
+          x = rows[i].getElementsByTagName("TD")[1];
+          console.log(x.innerHTML.toLowerCase());
+
+          y = rows[i + 1].getElementsByTagName("TD")[1];
+          
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+      }
+    }
+
   </script>
 @endsection
