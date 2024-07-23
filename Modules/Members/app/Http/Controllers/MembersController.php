@@ -89,7 +89,7 @@ class MembersController extends Controller
             'rdw_number' => ['nullable'],
             'knvvl' => ['nullable'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:Members'],
-            'club_status' => ['required', 'integer', 'max:7'],
+            'club_status' => ['required', 'integer', 'max:8'],
             'instruct' => ['required', 'integer', 'max:1'],
             'PlaneCertCheckbox' => ['nullable'],
             'HeliCertCheckbox' => ['nullable'],
@@ -162,11 +162,17 @@ class MembersController extends Controller
                 break;
         }
 
+        // If the member is a member, send a mail to the member
         if ($validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {
             Mail::to($validated['email'])->send(new MembersContact($validated['name'], $club_status, $usernameWP, $userPasswordWP));
             return redirect(route('members.index'))->with('success', "Het lid is toegevoegd! Login gegevens voor WP: Gebruikersnaam: $usernameWP, wachtwoord: $userPasswordWP");
         }
+        // If the member is not a new registration, send a mail to the member
+        if ($validated['club_status'] != ClubStatus::NEW_REGISTRATION->value) {
+            return redirect(route('members.index'))->with('success', "Het lid is toegevoegd! Account op Wordpress is aangemaakt maar de gegevens zijn niet gedeeld. Ook is er geen mail verzonden.");
+        }
 
+        // If the member is a new registration or not yet member, redirect back with text
         return redirect(route('members.index'))->with('success', "Het lid is toegevoegd! Account op Wordpress is aangemaakt maar de gegevens zijn niet gedeeld. Ook is er geen mail verzonden.");
     }
 
@@ -225,7 +231,7 @@ class MembersController extends Controller
             'rdw_number' => ['nullable'],
             'knvvl' => ['nullable'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'club_status' => ['required', 'integer', 'max:7'],
+            'club_status' => ['required', 'integer', 'max:8'],
             'instruct' => ['required', 'integer', 'max:1'],
             'PlaneCertCheckbox' => ['nullable'],
             'HeliCertCheckbox' => ['nullable'],
@@ -292,7 +298,32 @@ class MembersController extends Controller
             return redirect(route('members.index'))->with('success', 'Het lid is nu geaccepteerd binnen T.R.M.C! Hij krijgt nu een email.');        
         }
 
-        // Club status mail
+        // If new registration goes to any other member, send mail and update Wordpress login TODO: Fix replicated code
+        if ($memberOldData['club_status'] == ClubStatus::NEW_REGISTRATION->value && $validated['club_status'] != ClubStatus::NEW_REGISTRATION->value) {
+            // Generate random password
+            $userPasswordWP = bin2hex(random_bytes(10));
+            
+            try {
+                // Update Wordpress login
+                UserSync::updateUserPassword($validated['email'], $userPasswordWP);
+            }
+            catch (\Exception $e) {
+                Log::channel('user_activity')->error($e->getMessage());
+                return redirect(route('members.index'))->with('error', 'Er is een fout opgetreden bij het aanpassen van het lid. Neem contact op met de beheerder.');
+            }
+
+            // Send email to member
+            Mail::to($validated['email'])->send(new AcceptedMember($validated['name'], $validated['club_status'], $validated['email'], $userPasswordWP));
+
+            Log::channel('user_activity')->info('Member '. $validated['name'] . ' has been updated by '. auth()->user()->name);
+
+            // Flush cache
+            Cache::flush();
+    
+            return redirect(route('members.index'))->with('success', 'Het lid is nu geaccepteerd binnen T.R.M.C! Hij krijgt nu een email.');        
+        }        
+
+        // Club status mail TODO: Cleaner code
         if ($validated['club_status'] != $memberOldData['club_status'] && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {	
             // Send email to member
             Mail::to($validated['email'])->send(new MembersClubStatusChange($validated['name'], $memberOldData['club_status'], $validated['club_status']));
@@ -315,7 +346,8 @@ class MembersController extends Controller
         // Update user in Wordpress
         try {
             UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
-        } catch (\Exception $exception) {
+        } 
+        catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
             return redirect()
@@ -355,7 +387,8 @@ class MembersController extends Controller
 
             // Delete user in Wordpress
             UserSync::deleteUser($member->name);
-        } catch (\Exception $exception) {
+        } 
+        catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
             return redirect()

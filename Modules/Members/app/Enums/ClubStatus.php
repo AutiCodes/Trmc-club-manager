@@ -6,7 +6,7 @@ namespace Modules\Members\Enums;
  * Enum for the different types of club status.
  * 
  * @package Modules\Members\Enums
- * @author KelvinCodes
+ * @author AutiCodes
  * @return int
  */
 enum ClubStatus: int
