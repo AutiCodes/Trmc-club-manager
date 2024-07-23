@@ -51,6 +51,7 @@ class AdminController extends Controller
                                 ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)
                                 ->get();
 
+
         return view('admin::pages.index', [
             'formSubmissions' => $formSubmissions,
             'totalFlights' => $totalFlightCount,

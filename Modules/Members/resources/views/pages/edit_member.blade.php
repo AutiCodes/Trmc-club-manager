@@ -108,6 +108,11 @@
               @else 
                 <option value=7>Nog geen lid</option>
               @endif
+              @if ($member->club_status == \Modules\Members\Enums\ClubStatus::NEW_REGISTRATION->value)
+                <option value=8 selected>Nieuwe aanmelding</option>
+              @else 
+                <option value=8>Nieuwe aanmelding</option>
+              @endif              
             </select>
           </div> 
 

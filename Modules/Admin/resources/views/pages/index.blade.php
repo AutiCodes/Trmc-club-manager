@@ -46,20 +46,21 @@
           </thead>
           @foreach ($formSubmissions as $formSubmission)
             <tbody>
-              <tr>
-                <th scope="row" class="text-white">{{ $formSubmission->id }}</th>
-                <td  class="text-white">{{ $formSubmission->member[0]->name }}</td>
-                <td  class="text-white">{{ $formSubmission->date_time }}</td>
-                <td  class="text-white">
-                  @foreach ($formSubmission->submittedModels as $model)
-                    @if ($loop->iteration < 16)
-                      <p class="mt-0 mb-0">
-                        Model {{ $loop->iteration }}: {{$model->model_type}}. Lipo aantal: {{ $model->lipo_count }}. Model-vermogen: {{ $model->class }}
-                      </p>
-                    @endif
-                  @endforeach 
-                </td>
-            </tbody>
+                <tr>
+                  <th scope="row" class="text-white">{{ $formSubmission->id }}</th>
+                  <td  class="text-white">{{ $formSubmission->member[0]->name }}</td>
+                  <td  class="text-white">{{ $formSubmission->date_time }}</td>
+                  <td  class="text-white">
+                    @foreach ($formSubmission->submittedModels as $model)
+                      @if ($loop->iteration < 16)
+                        <p class="mt-0 mb-0">
+                          Model {{ $loop->iteration }}: {{$model->model_type}}. Lipo aantal: {{ $model->lipo_count }}. Model-vermogen: {{ $model->class }}
+                        </p>
+                      @endif
+                    @endforeach 
+                  </td>
+              </tbody>              
+              <p>Er zijn geen vluchten gevonden.</p>
           @endforeach
         </table>
       </div>

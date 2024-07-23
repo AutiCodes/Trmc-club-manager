@@ -106,7 +106,11 @@
                           <td class="text-center">
                             <span class="badge badge-pill bg-danger" style="font-size: 1rem;">Nog geen lid</span>
                           </td>
-                        @endif
+                        @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::NEW_REGISTRATION->value)
+                          <td class="text-center">
+                            <span class="badge badge-pill bg-danger" style="font-size: 1rem;">Nieuwe aanmelding</span>
+                          </td>                          
+                        @endif        
                         <!-- RDW number -->
                         <td>{{ $member->rdw_number ?? 'Niet ingevuld' }}</td>                    
                         <!-- Phone number -->

@@ -6,7 +6,7 @@ namespace Modules\Members\Enums;
  * Enum for the different types of club status.
  * 
  * @package Modules\Members\Enums
- * @author KelvinCodes
+ * @author AutiCodes
  * @return int
  */
 enum ClubStatus: int
@@ -18,4 +18,5 @@ enum ClubStatus: int
     case DONOR = 5;
     case JUNIOR_MEMBER = 6;
     case NOT_YET_MEMBER = 7;
+    case NEW_REGISTRATION = 8;
 }
