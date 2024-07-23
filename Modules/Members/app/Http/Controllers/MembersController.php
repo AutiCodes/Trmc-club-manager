@@ -29,11 +29,10 @@ class MembersController extends Controller
     public function index()    
     {
         // Get members and cache them for 1 hour
-        $members = Cache::remember('members_list', 3600, function () {
-            return Member::orderBy('name', 'asc')
-                ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
-                ->get();
-        });
+        $members = Member::orderBy('name', 'asc')
+            ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
+            ->get();
+    
 
         $totalAspirantMember = 0;
         $totalNormalMembers = 0;
