@@ -11,5 +11,6 @@
     "Versions": true,
     "Logging": true,
     "Logs": true,
-    "Mail": true
+    "Mail": true,
+    "Settings": true
 }
