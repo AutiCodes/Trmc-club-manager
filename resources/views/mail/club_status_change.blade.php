@@ -29,7 +29,6 @@
               <br>
               <br>
               <strong>Oude status:</strong>
-              // TODO: use the enum value here
               @switch ($oldClubStatus)
                 @case (6)
                   Junior lid
