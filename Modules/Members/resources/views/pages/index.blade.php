@@ -42,6 +42,7 @@
                     <option value="Bestuur">Bestuur</option>
                     <option value="Donateur">Donateur</option>
                     <option value="Noggeenlid">Nog geen lid</option>
+                    <option value="Nieuweaanmelding">Nieuwe aanmeldingen</option>
                   </select>
                 </div>
               </div>
