@@ -46,6 +46,7 @@
           Systeem
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('settings.index') }}">Instellingen</a>
           <a class="dropdown-item" href="{{ route('versions.index') }}">Versies</a>
           <a class="dropdown-item" href="{{ route('logs.index') }}">Logs</a>
         </div>
