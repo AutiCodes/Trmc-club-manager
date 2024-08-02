@@ -245,7 +245,7 @@
         <span id="captcha" style="color:red"></span> 
         -->
         <!-- SEND FORM BUTTON -->
-        <button type="submit" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#exampleModalCenter">Verzenden</button>
+        <button type="submit" class="btn btn-success font-weight-bold mt-3" data-toggle="modal" data-target="#exampleModalCenter">Verzenden</button>
       </form>
       </div>
 
@@ -278,7 +278,7 @@
               <!-- -->
               <span aria-hidden="true"></span>
               <h4>Errors en contact:</h4>
-              <p>Lukt het aanmelden nog niet of komt er een error? Neem dan contact met ons op via Email: <a href="mailto:webmaster@kelvincodes.nl">webmaster@kelvincodes.nl</a></p>
+              <p>Lukt het aanmelden nog niet of komt er een error? Neem dan contact met ons op via Email: <a href="mailto:webmaster@trmc.nl">webmaster@trmc.nl</a></p>
 
             </div>
 
