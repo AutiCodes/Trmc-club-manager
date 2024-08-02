@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Users\Http\Controllers\UsersController;
 use Modules\Users\Http\Controllers\AuthenticationController;
+use Modules\Users\Http\Controllers\PasswordResetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,10 @@ Route::group([], function () {
     Route::post('authenticatie-login-post', [AuthenticationController::class, 'login']);
     Route::get('authenticatie-login', [AuthenticationController::class, 'loginPage'])->name('login');
     Route::get('authenticatie-uitloggen', [AuthenticationController::class, 'logout']);
+});
+
+Route::group([], function () {
+    Route::get('password/reset', [PasswordResetController::class, 'index']);
+    Route::post('password/post-reset', [PasswordResetController::class, 'handlePasswordResetRequest']);
+    Route::get('password/change-password', [PasswordResetController::class, 'newPasswordIndex']);
 });
