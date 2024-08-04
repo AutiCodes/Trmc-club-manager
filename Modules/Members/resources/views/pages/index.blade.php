@@ -14,7 +14,7 @@
 
         <div class="col-sm  ml-2 mr-2 text-center text-white">
           <h3>Aantal leden</h3>
-          <h1>{{ $totalNormalMembers + $totalManagement + $totalAspirantMember ?? 0 }}</h1>
+          <h1>{{ $totalNormalMembers + $totalManagement + $totalAspirantMember ?? 0 }}</h1>        
         </div>
 
         <div class="col-sm  ml-2 mr-2 text-center text-white">
@@ -30,7 +30,7 @@
                 <div class="w-25 float-start mb-4 ms-4">
                   <input type="text" id="name_search" onkeyup="nameFilter()" placeholder="Zoek naam" class="form-control rounded">
                 </div>
-              </div>
+              </div>  
 
               <div class="col mr-2">
                 <div class="w-25 mb-4 me-4 float-end">
@@ -110,10 +110,10 @@
                         @elseif ($member->club_status == \Modules\Members\Enums\ClubStatus::NEW_REGISTRATION->value)
                           <td class="text-center">
                             <span class="badge badge-pill bg-danger" style="font-size: 1rem;">Nieuwe aanmelding</span>
-                          </td>
-                        @endif
+                          </td>                          
+                        @endif        
                         <!-- RDW number -->
-                        <td>{{ $member->rdw_number ?? 'Niet ingevuld' }}</td>
+                        <td>{{ $member->rdw_number ?? 'Niet ingevuld' }}</td>                    
                         <!-- Phone number -->
                         <td>{{ $member->phone ?? 'Niet ingevuld' }}</td>
                         <!-- Email -->
@@ -129,7 +129,7 @@
                             </span>
                           </a>
                           <a href="{{ route('members.edit', $member->id) }}" class="table-link text-info">
-                            <span class="fa-stack" style="font-size: 1rem;">
+                            <span class="fa-stack" style="font-size: 1rem;">	
                               <i class="fa fa-square fa-stack-2x"></i>
                               <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                             </span>
@@ -142,7 +142,7 @@
                           </a>
                         </td>
                       </tr>
-                    @endforeach
+                    @endforeach               
                   </tbody>
                 </table
               </div>
@@ -231,7 +231,7 @@
                     <span class="badge rounded-pill bg-success">Ja</span>
                   @else
                     <span class="badge rounded-pill bg-danger">Nee</span>
-                  @endif
+                  @endif                                    
               </div>
 
               <hr>
@@ -257,15 +257,9 @@
     </div>
   @endforeach
 
-  <div id="context-menu">
-    <div class="item"><a href="#" class="text-dark">Weergeven</a></div>
-    <div class="item"><a href="#" class="text-dark">Bewerken</a></div>
-    <div class="item"><a href="#" class="text-dark">Verwijderen</a></div>
-  </div>
-
   <style>
     body{
-        background:#eee;
+        background:#eee;    
     }
     .main-box.no-header {
         padding-top: 20px;
@@ -329,17 +323,6 @@
     a:hover{
     text-decoration:none;
     }
-
-    #context-menu {
-     background-color: #ffffff;
-     box-shadow: 0 0 20px rgba(37, 40, 42, 0.22);
-     color: #1f194c;
-     width: 10em;
-     padding: 0.3em;
-     font-size: 1.3rem;
-     position: fixed;
-     visibility: hidden;
-    }
   </style>
 
   <script>
@@ -387,99 +370,5 @@
         }
       }
     }
-
-    // Context menu code
-    //Events for desktop and touch
-    let events = ["contextmenu", "touchstart"];
-
-    //initial declaration
-    var timeout;
-
-    //for double tap
-    var lastTap = 0;
-
-    //refer menu div
-    let contextMenu = document.getElementById("context-menu");
-
-    //same function for both events
-//event type is a data structure that defines the data contained in an event
-    events.forEach((eventType) => {
-      document.addEventListener(
-        eventType,
-        (e) => {
-//preventDefault() method stops the default action of a selected element from happening by a user
-          e.preventDefault();
-          //x and y position of mouse or touch
-//mouseX represents the x-coordinate of the mouse
-          let mouseX = e.clientX || e.touches[0].clientX;
-//mouseY represents the y-coordinate of the mouse.
-          let mouseY = e.clientY || e.touches[0].clientY;
-          //height and width of menu
-//getBoundingClientRect() method returns the size of an element and its position relative to the viewport
-          let menuHeight = contextMenu.getBoundingClientRect().height;
-          let menuWidth = contextMenu.getBoundingClientRect().width;
-          //width and height of screen
-//innerWidth returns the interior width of the window in pixels
-          let width = window.innerWidth;
-          let height = window.innerHeight;
-          //If user clicks/touches near right corner
-          if (width - mouseX <= 200) {
-            contextMenu.style.borderRadius = "5px 0 5px 5px";
-            contextMenu.style.left = width - menuWidth + "px";
-            contextMenu.style.top = mouseY + "px";
-            //right bottom
-            if (height - mouseY <= 200) {
-              contextMenu.style.top = mouseY - menuHeight + "px";
-              contextMenu.style.borderRadius = "5px 5px 0 5px";
-            }
-          }
-          //left
-          else {
-            contextMenu.style.borderRadius = "0 5px 5px 5px";
-            contextMenu.style.left = mouseX + "px";
-            contextMenu.style.top = mouseY + "px";
-            //left bottom
-            if (height - mouseY <= 200) {
-              contextMenu.style.top = mouseY - menuHeight + "px";
-              contextMenu.style.borderRadius = "5px 5px 5px 0";
-            }
-          }
-          //display the menu
-          contextMenu.style.visibility = "visible";
-        },
-        { passive: false }
-      );
-    });
-
-    //for double tap(works on touch devices)
-    document.addEventListener("touchend", function (e) {
-      //current time
-      var currentTime = new Date().getTime();
-      //gap between two gaps
-      var tapLength = currentTime - lastTap;
-      //clear previous timeouts(if any)
-//The clearTimeout() method clears a timer set with the setTimeout() method.
-      clearTimeout(timeout);
-      //if user taps twice in 500ms
-      if (tapLength < 500 && tapLength > 0) {
-        //hide menu
-        contextMenu.style.visibility = "hidden";
-        e.preventDefault();
-      } else {
-        //timeout if user doesn't tap after 500ms
-        timeout = setTimeout(function () {
-          clearTimeout(timeout);
-        }, 500);
-      }
-      //lastTap set to current time
-      lastTap = currentTime;
-    });
-
-    //click outside the menu to close it (for click devices)
-    document.addEventListener("click", function (e) {
-      if (!contextMenu.contains(e.target)) {
-        contextMenu.style.visibility = "hidden";
-      }
-    });
   </script>
 @endsection
