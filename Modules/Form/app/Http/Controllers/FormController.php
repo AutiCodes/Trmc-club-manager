@@ -69,6 +69,8 @@ class FormController extends Controller
             "rechapcha_custom" => ["integer", "required"],
         ]);
 
+        $member = Member::find($validated["name"]);
+
         // Check if rechapcha is correct, if not do nothing and return error
         // TODO: Use env variable for rechapcha secret key
         if (intval($validated["rechapcha_custom"]) != 4) {
