@@ -1,0 +1,11 @@
+{
+    "name": "Flights",
+    "alias": "flights",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Flights\\Providers\\FlightsServiceProvider"
+    ],
+    "files": []
+}
