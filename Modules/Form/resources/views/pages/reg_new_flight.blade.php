@@ -7,7 +7,7 @@
 
 @section('title', 'Vlucht aanmelden')
 
-<main>
+<main>      
   @section('content')
     <div class="container mt-4 mb-4">
       <!-- Error or success reporting -->
@@ -38,7 +38,7 @@
           <!-- TOP TEXT AND IMAGE -->
           <img src="/media/images/field.jpg" class="img-fluid rounded mt-3">
           <h2 class="text-white text-center pt-3 pb-3">Registratie aanvang modelvliegen TRMC</h2>
-
+          
           <script>
             $(document).ready(function () {
               $('select').selectize({
@@ -55,7 +55,7 @@
               @foreach ($members as $member)
                 <option value="{{ $member->id }}">{{ $member->name }}</option>
               @endforeach
-            </select>
+            </select>              
            <small id="name" class="form-text text-muted">Staat je naam er niet tussen? Contacteer dan het bestuur om je naam toe te voegen.</small>
           </div>
 
@@ -71,13 +71,13 @@
           <!-- DATE -->
           <div class="form-group">
             <label for="date" class="text-white font-weight-bold">Selecteer een datum:</label>
-            <input type="date" id="date" name="date" class="form-control" required onchange="requiredHideViewer(this)">
-          </div>
+            <input type="date" id="date" name="date" class="form-control" required onchange="requiredHideViewer(this)">  
+          </div>					
 
           <!-- TIME -->
           <div class="form-group">
             <label for="time" class="text-white font-weight-bold">Selecteer een tijd:</label>
-            <input type="time" id="time" name="time" class="form-control" required onchange="requiredHideViewer(this)">
+            <input type="time" id="time" name="time" class="form-control" required onchange="requiredHideViewer(this)">  
           </div>
 
           <!-- WHAT MODELS -->
@@ -109,7 +109,7 @@
               <label class="form-check-label text-white font-weight-bold ml-2" for="CheckboxDrone">
                 Drone
               </label>
-            </div>
+            </div>    
             <hr>
           </div>
 
@@ -126,7 +126,7 @@
                 <option value="1200W-3000W">1200W-3000W</option>
               </select>
             </div>
-            <!-- LIPO COUNT -->
+            <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select_plane" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
               <select class="form-control" id="lipo_count_select_plane" name="lipo_count_select_plane">
@@ -156,7 +156,7 @@
                 <option value="1200W-3000W">1200W-3000W</option>
               </select>
             </div>
-            <!-- LIPO COUNT -->
+            <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select_glider" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
               <select class="form-control" id="lipo_count_select_glider" name="lipo_count_select_glider">
@@ -172,7 +172,7 @@
               </select>
             </div>
           </div>
-
+          
           <!-- HELICOPTER -->
           <div id="CheckBoxHelicopter_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
             <h3 class="text-white">Helicopter</h3>
@@ -186,7 +186,7 @@
                 <option value="1200W-3000W">1200W-3000W</option>
               </select>
             </div>
-            <!-- LIPO COUNT -->
+            <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select_helicopter" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
               <select class="form-control" id="lipo_count_select_helicopter" name="lipo_count_select_helicopter">
@@ -200,9 +200,9 @@
                 <option value=7>7</option>
                 <option value=8>8</option>
               </select>
-            </div>
+            </div>              
           </div>
-
+          
           <!-- DRONE -->
           <div id="CheckboxDrone_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
             <h3 class="text-white">Drone</h3>
@@ -216,7 +216,7 @@
                 <option value="1200W-3000W">1200W-3000W</option>
               </select>
             </div>
-            <!-- LIPO COUNT -->
+            <!-- LIPO COUNT --> 
             <div class="form-group">
               <label for="lipo_count_select" class="text-white font-weight-bold">Aantal te verwachten vluchten (aantal Lipo's)</label>
               <select class="form-control" id="lipo_count_select_drone" name="lipo_count_select_drone">
@@ -231,9 +231,9 @@
                 <option value=8>8</option>
               </select>
             </div>
-          </div>
+          </div>           
         </div>
-
+        
         <!-- reCAPTCHA -->
         <div class="form-group">
           <label for="text" class="Text-white font-weight-bold">Geheime vraag om te kiekn of je geen bot bent</label>
@@ -242,14 +242,8 @@
 
         <!--
         <div class="g-recaptcha pb-3" id="rcaptcha" data-sitekey="6Ldwq90pAAAAAJuxavmVQjPKHSpGYoRRx5aUhn9x"></div>
-        <span id="captcha" style="color:red"></span>
+        <span id="captcha" style="color:red"></span> 
         -->
-        <!-- Privacy statement -->
-        <small class="text-white p0 m0 mt-2 mb-2">Door gebruik te maken van deze website ga je akkoord met de T.R.M.C.
-          <a href="/docs/privacy_policy.pdf" target="_blank">
-            privacy verklaring
-          </a>.
-        </small>
         <!-- SEND FORM BUTTON -->
         <button type="submit" class="btn btn-success font-weight-bold mt-3" data-toggle="modal" data-target="#exampleModalCenter">Verzenden</button>
       </form>
@@ -339,7 +333,7 @@
         if(localStorage.getItem('name_id') == null) {
           // Store name in local storage
           localStorage.setItem('name_id', e.value);
-        }
+        } 
 
         $.ajax({
           url: "lid-vlucht-aanmeldingen-aantal" + '/' + e.value,
@@ -355,8 +349,8 @@
             }
           }
         });
-      }
-
+      }	
+      
       document.addEventListener('DOMContentLoaded', async () => {
         // Do nothing if browser doesn't support local storage
         if(typeof Storage === 'undefined') return;
