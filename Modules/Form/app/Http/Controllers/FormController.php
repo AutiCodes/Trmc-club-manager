@@ -84,6 +84,7 @@ class FormController extends Controller
                 "error",
                 "Oh oh ik denk dat je een robot bent! Bliep bloop probeer het opnieuw!"
             );
+            return;
         }
 
         $form = Form::create([
