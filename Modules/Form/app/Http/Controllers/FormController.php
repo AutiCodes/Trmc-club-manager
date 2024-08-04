@@ -69,15 +69,6 @@ class FormController extends Controller
             "rechapcha_custom" => ["integer", "required"],
         ]);
 
-        // Save filled in RDW number on first flight register
-        if ($request->has("rdw_number")) {
-            $member = Member::find($validated["name"]);
-
-            $member->update([
-                "rdw_number" => $request->input("rdw_number"),
-            ]);
-        }
-
         // Check if rechapcha is correct, if not do nothing and return error
         // TODO: Use env variable for rechapcha secret key
         if (intval($validated["rechapcha_custom"]) != 4) {
