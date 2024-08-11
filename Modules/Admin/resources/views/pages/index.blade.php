@@ -24,7 +24,7 @@
         <div class="col-sm text-center ml-2 mr-2 mt-2">
           <h3 class="text-white mt-2">Vandaag:</h3>
           <h1 class="text-white">{{ $flightsToday->flightsToday ?? 0 }}</h1>
-        </div>                    
+        </div>
       </div>
       <!-- End total cards -->
     </div>
@@ -57,10 +57,9 @@
                           Model {{ $loop->iteration }}: {{$model->model_type}}. Lipo aantal: {{ $model->lipo_count }}. Model-vermogen: {{ $model->class }}
                         </p>
                       @endif
-                    @endforeach 
+                    @endforeach
                   </td>
-              </tbody>              
-              <p>Er zijn geen vluchten gevonden.</p>
+              </tbody>
           @endforeach
         </table>
       </div>
