@@ -39,6 +39,13 @@
     </div>
   @endif
 
+  @if (session()->has('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+  @endif
+
+
   @yield('content')
 
   @include('admin::includes.footer')
