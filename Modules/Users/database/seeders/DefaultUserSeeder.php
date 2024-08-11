@@ -8,6 +8,9 @@ class DefaultUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * Creates an default user to sign in to.
+     * 
+     * @author AutiCodes
      */
     public function run(): void
     {
