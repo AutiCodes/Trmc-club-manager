@@ -6,7 +6,7 @@ on:
 
 jobs:
     deploy:
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         steps:
         - uses: actions/checkout@v2
 
@@ -16,4 +16,4 @@ jobs:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
         - name:  Deploy to server
-          run: ssh -o StrictHostKeyChecking=no root@auticodes.nl '/home/trmc/domains/club.trmc.nl/public_html/update_server_files.sh'
+          run: ssh -o StrictHostKeyChecking=no root@10.1.0.3 '/home/trmc/domains/club.trmc.nl/public_html/update_server_files.sh'
