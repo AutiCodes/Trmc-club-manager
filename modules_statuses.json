@@ -12,5 +12,6 @@
     "Logging": true,
     "Logs": true,
     "Mail": true,
-    "Settings": true
+    "Settings": true,
+    "Fail2Ban": true
 }

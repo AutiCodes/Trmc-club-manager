@@ -1,0 +1,11 @@
+{
+    "name": "Fail2Ban",
+    "alias": "fail2ban",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Fail2Ban\\Providers\\Fail2BanServiceProvider"
+    ],
+    "files": []
+}
