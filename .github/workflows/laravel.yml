@@ -8,7 +8,6 @@ on:
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -30,6 +29,8 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+    - name: Run migrations
+      run: php artisan migrate
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
       env:
         DB_CONNECTION: sqlite

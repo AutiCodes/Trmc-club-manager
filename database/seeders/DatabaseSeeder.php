@@ -11,7 +11,10 @@ use Illuminate\Support\Str;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
+     * Creates an default user to sign in to.
+     * 
+     * @author AutiCodes
      */
     public function run(): void
     {
@@ -22,6 +25,6 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $this->call([DatabaseSeeder::class]);
+        $this->call([DefaultUserSeeder::class]);
     }
 }
