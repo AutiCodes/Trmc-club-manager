@@ -14,7 +14,7 @@ class UsersController extends Controller
     /**
      * Display a listing of the users.
      * 
-     * @author KelvinCodes
+     * @author AutiCodes
      * @return View
      */
     public function index()
@@ -27,6 +27,7 @@ class UsersController extends Controller
     /**
      * Show the form for creating a new user
      * 
+     * @author AutiCodes 
      * @return View
      */
     public function create()
@@ -37,8 +38,8 @@ class UsersController extends Controller
     /**
      * Store a newly created user in storage.
      * 
+     * @author AutiCodes
      * @param Request $request
-     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
@@ -77,8 +78,8 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified user.
      * 
+     * @author AutiCodes
      * @param int $id
-     * @author KelvinCodes
      * @return view
      */
     public function edit($id)
@@ -95,12 +96,13 @@ class UsersController extends Controller
     /**
      * Update the specified user in storage.
      * 
+     * @author AutiCodes
      * @param Request $request
      * @param int $id the user id
-     * @author KelvinCodes
+     * 
      * @return RedirectResponse
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         $user = User::find($id);
 
@@ -109,21 +111,38 @@ class UsersController extends Controller
         }
 
         $validated = $request->validate([
-            'password' => ['required','string','max:40'],
+            'name' => ['required', 'max:30'],
+            'username' => ['required', 'string', 'max:20'],
+            'password' => ['nullable'],
+            'password2' => ['nullable'],
         ]);
 
+        // Update name and username no mather what
         $user->update([
-            'password' => Hash::make($validated['password']),
+            'name' => $validated['name'],
+            'username' => $validated['username'],
         ]);
 
-        return redirect(route('users.index'))->with('success', 'Gebruiker gewijzigd!');
+        if ($validated['password'] != NULL && $validated['password2'] != NULL) {
+            if ($validated['password2'] != $validated['password']) {
+                return redirect(route('users.edit', $user->id))->with('error', 'Je wachtwoord was niet gelijk aan elkaar');
+            }
+
+            $user->update([
+                'password' => Hash::make($validated['password']),
+            ]);
+
+            return redirect(route('users.index'))->with('success', 'Profiel geupdated!');
+        }
+
+        return redirect(route('users.index'))->with('success', 'Profiel geupdated!');
     }
 
     /**
      * Remove the specified user from storage.
      * 
+     * @author AutiCodes
      * @param int $id the user id
-     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function destroy($id): RedirectResponse
