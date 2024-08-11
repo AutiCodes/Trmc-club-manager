@@ -16,4 +16,4 @@ jobs:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
         - name:  Deploy to server
-          run: ssh -o StrictHostKeyChecking=no ${{ SSH_USERNAME }}@${{ SSH_SERVER_HOST }} '/home/trmc/domains/club.trmc.nl/public/html'
+          run: ssh -o StrictHostKeyChecking=no ${{ SSH_USERNAME }}@${{ SSH_SERVER_HOST }} '/home/trmc/domains/club.trmc.nl/public_html'
