@@ -15,6 +15,9 @@
 
   @include('admin::includes.head')
   
+  <!-- Favicon -->
+  <link rel="icon" href="/media/images/TRMC_LOGO_PNG.ico" type="image/x-icon">
+
   {{-- Vite CSS --}}
   {{-- {{ module_vite('build-admin', 'resources/assets/sass/app.scss') }} --}}
 </head>
