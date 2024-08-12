@@ -18,12 +18,12 @@ class Fail2BanHelper
      */
     public static function AddFailedLogin($username, $unban_time)
     {
-        $entry = Fail2Ban::where('ip', file_get_contents('https://api.ipify.org'))->first();
+        $entry = Fail2Ban::where('ip', request()->ip())->first();
 
         // If that IP is not in the failed login db
         if (!$entry || $entry == NULL) {
             Fail2Ban::create([
-                'ip' => file_get_contents('https://api.ipify.org'),
+                'ip' => request()->ip(),
                 'username' => $username,
                 'failed_login_count' => 1,
                 'unban_time' => Carbon::now()->addMinutes($unban_time),
@@ -52,7 +52,7 @@ class Fail2BanHelper
      */
     public static function checkIfBanned()
     {
-        $entry = Fail2Ban::where('ip', file_get_contents('https://api.ipify.org'))->first();
+        $entry = Fail2Ban::where('ip', request()->ip())->first();
 
         if (!$entry || $entry == NULL) {
             return false;
@@ -63,18 +63,5 @@ class Fail2BanHelper
         }
 
         return true;
-    }
-
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
-    protected function schedule()
-    {
-        $schedule->call(function () {
-            Fail2Ban::truncate();
-        })->everyMinute();
     }
 }
