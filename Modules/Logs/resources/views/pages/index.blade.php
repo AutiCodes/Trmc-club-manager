@@ -6,28 +6,33 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
-  <div class="container mt-4 mb-4 pb-2 pt-2 text-white bg-dark rounded">
+  <div class="container mt-4 mb-4 pb-2 pt-2 text-white bg-dark bg-opacity-75 rounded">
     <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
-          Leden logs
+          Leden
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-          Bestuur logs
+          Bestuur
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
-          Systeem logs
+          Systeem
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="access-logs-tab" data-bs-toggle="pill" data-bs-target="#access-logs" type="button" role="tab" aria-controls="access-logs" aria-selected="false">
-          Access logs
+          Access
         </button>
       </li>      
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="fail2ban-logs-tab" data-bs-toggle="pill" data-bs-target="#fail2ban-logs" type="button" role="tab" aria-controls="fail2ban-logs" aria-selected="false">
+          Fail2Ban
+        </button>
+      </li>            
     </ul>
 
     <div class="tab-content" id="pills-tabContent">
@@ -91,6 +96,22 @@
           <hr>
         @endforeach           
       </div>      
+
+      <div class="tab-pane fade" id="fail2ban-logs" role="tabpanel" aria-labelledby="fail2ban-logs-tab">
+        @foreach ($Fail2Ban as $Fail2Ban)
+          @if ($loop->index > 50)
+            @break
+          @endif
+          @if (str_contains($Fail2Ban, 'INFO') == true)
+            <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $Fail2Ban }}</p>
+          @elseif (str_contains($Fail2Ban, 'ERROR') == true)
+            <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $Fail2Ban }}</p>
+          @else 
+            <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $Fail2Ban }}</p>
+          @endif
+          <hr>
+        @endforeach           
+      </div>            
     </div>
   </div>
 @endsection

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('ip');
             $table->string('username');
             $table->integer('failed_login_count');
+            $table->datetime('unban_time');
             $table->timestamps();
         });
     }

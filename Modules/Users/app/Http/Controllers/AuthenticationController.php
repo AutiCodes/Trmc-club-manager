@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Users\Entities\User;
+use App\Helpers\Fail2BanHelper;
 use Auth;
 use Session;
 use Log;
@@ -35,13 +36,21 @@ class AuthenticationController extends Controller
      */
     public function login(Request $request): RedirectResponse
     {
+        // If user has more or equal then 4 login tries
+        if (Fail2BanHelper::checkIfBanned()) {
+            abort(401);
+        }
+
         $validated = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
         ]);
 
-        // If authentication fails, redirect back to login page
+        // If authentication fails
         if (!Auth::attempt($validated)) {
+            // Add ip to Fail2Ban
+            Fail2BanHelper::AddFailedLogin($validated['username'], 20);
+
             Log::channel('access')->error('ip ' . $request->ip().' tried to login with wrong credentials. Username used: ' . $validated['username']);
 
             return redirect('/authenticatie-login')->with('error', 'Login is verkeerd!');

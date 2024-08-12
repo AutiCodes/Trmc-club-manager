@@ -18,12 +18,13 @@ class Fail2Ban extends Model
      * @author AutiCodes
      * @var string ip, username
      * @var integer failed_login_count
-     * @var datetime created_at, updated_at
+     * @var datetime unban_time, created_at, updated_at
      */
     protected $fillable = [
         'ip',
         'username',
         'failed_login_count',
+        'unban_time',
         'created_at',
         'updated_at',
     ];

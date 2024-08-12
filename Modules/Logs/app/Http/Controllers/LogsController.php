@@ -23,6 +23,7 @@ class LogsController extends Controller
             'userActivityLogs' => GetLogs::userActivity(),
             'memberActivityLogs' => GetLogs::memberActivity(),
             'accessLogs' => GetLogs::access(),
+            'Fail2Ban' => GetLogs::fail2ban(),
         ]);
     }
 
