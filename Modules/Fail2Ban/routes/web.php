@@ -16,4 +16,5 @@ use Modules\Fail2Ban\Http\Controllers\Fail2BanController;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('fail2ban', Fail2BanController::class)->names('fail2ban');
+    Route::get('fail2ban/delete/{ip}', [Fail2BanController::class, 'destroy']);
 });

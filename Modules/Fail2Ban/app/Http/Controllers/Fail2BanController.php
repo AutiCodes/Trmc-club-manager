@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Helpers\Fail2BanHelper;
+use Modules\Fail2Ban\Models\Fail2Ban;
 
 class Fail2BanController extends Controller
 {
@@ -15,7 +16,9 @@ class Fail2BanController extends Controller
      */
     public function index(Request $request)
     {
-        return dd(Fail2BanHelper::addOrCheckFailedLogin($request, 'root'));
+        $bans = Fail2Ban::where('failed_login_count', '>=', '4')->get();
+
+        return view('fail2ban::pages.index', compact('bans'));
     }
 
     /**
@@ -60,9 +63,19 @@ class Fail2BanController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * 
+     * @author AutiCodes
+     * @param string ip
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($ip): RedirectResponse
     {
-        //
+        $bannedIP = Fail2Ban::where('ip', "$ip")->first();
+
+        $bannedIP->delete();
+
+        return redirect()->back()->with('success', 'Ban is verwijderd!');
     }
+
+
 }
