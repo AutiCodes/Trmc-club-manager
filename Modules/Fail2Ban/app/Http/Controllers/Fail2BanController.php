@@ -6,15 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Helpers\Fail2BanHelper;
 
 class Fail2BanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('fail2ban::index');
+        return dd(Fail2BanHelper::addOrCheckFailedLogin($request, 'root'));
     }
 
     /**

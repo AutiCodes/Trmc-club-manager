@@ -14,6 +14,6 @@ use Modules\Fail2Ban\Http\Controllers\Fail2BanController;
 |
 */
 
-Route::group(['auth' => 'middleware'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('fail2ban', Fail2BanController::class)->names('fail2ban');
 });
