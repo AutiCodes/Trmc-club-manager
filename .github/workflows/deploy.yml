@@ -17,3 +17,6 @@ jobs:
 
         - name:  Deploy to server
           run: ssh -o StrictHostKeyChecking=no root@10.1.0.3 '/home/trmc/domains/club.trmc.nl/public_html/update_server_files.sh'
+        
+        - name: Clean up composer and cache on the server
+          run: ssh -o StrictHostKeyChecking=no root@10.1.0.3 '/home/trmc/domains/club.trmc.nl/public_html/clean_composer_and_cache.sh'
