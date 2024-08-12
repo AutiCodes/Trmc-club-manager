@@ -1,30 +1,24 @@
 <?php
 
-namespace Modules\Logs\Http\Controllers;
+namespace Modules\Fail2Ban\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Helpers\GetLogs;
+use App\Helpers\Fail2BanHelper;
+use Modules\Fail2Ban\Models\Fail2Ban;
 
-class LogsController extends Controller
+class Fail2BanController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
-     * @author KelvinCodes
-     * @return View
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('logs::pages.index', [
-            'laravelLogs' => GetLogs::laravel(),
-            'userActivityLogs' => GetLogs::userActivity(),
-            'memberActivityLogs' => GetLogs::memberActivity(),
-            'accessLogs' => GetLogs::access(),
-            'Fail2Ban' => GetLogs::fail2ban(),
-        ]);
+        $bans = Fail2Ban::where('failed_login_count', '>=', '4')->get();
+
+        return view('fail2ban::pages.index', compact('bans'));
     }
 
     /**
@@ -32,7 +26,7 @@ class LogsController extends Controller
      */
     public function create()
     {
-        return view('logs::create');
+        return view('fail2ban::create');
     }
 
     /**
@@ -48,7 +42,7 @@ class LogsController extends Controller
      */
     public function show($id)
     {
-        return view('logs::show');
+        return view('fail2ban::show');
     }
 
     /**
@@ -56,7 +50,7 @@ class LogsController extends Controller
      */
     public function edit($id)
     {
-        return view('logs::edit');
+        return view('fail2ban::edit');
     }
 
     /**
@@ -69,9 +63,19 @@ class LogsController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * 
+     * @author AutiCodes
+     * @param string ip
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($ip): RedirectResponse
     {
-        //
+        $bannedIP = Fail2Ban::where('ip', "$ip")->first();
+
+        $bannedIP->delete();
+
+        return redirect()->back()->with('success', 'Ban is verwijderd!');
     }
+
+
 }

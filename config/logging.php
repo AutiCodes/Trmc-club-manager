@@ -128,25 +128,32 @@ return [
         ],
 
         'user_activity' => [
-            'driver' =>'single',
+            'driver' => 'single',
             'path' => storage_path('logs/user_activity.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'ignore_exceptions' => true,
         ],
 
         'member_activity' => [
-            'driver' =>'single',
+            'driver' => 'single',
             'path' => storage_path('logs/member_activity.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'ignore_exceptions' => true,
         ],
         
         'access' => [
-            'driver' =>'single',
+            'driver' => 'single',
             'path' => storage_path('logs/access.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'ignore_exceptions' => true,
-        ],        
+        ],     
+        
+        'fail2ban' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/Fail2Ban.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'ignore_exceptions' => true,            
+        ],
     ],
 
 ];

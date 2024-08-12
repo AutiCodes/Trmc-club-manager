@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/fail2ban",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Fail2Ban\\": "app/",
+            "Modules\\Fail2Ban\\Database\\Factories\\": "database/factories/",
+            "Modules\\Fail2Ban\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Fail2Ban\\Tests\\": "tests/"
+        }
+    }
+}
