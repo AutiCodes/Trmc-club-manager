@@ -187,7 +187,7 @@ class FormController extends Controller
      *
      * @param int $id the id of the form
      */
-    public function destroy($id)
+    public function delete($id)
     {
         //
     }

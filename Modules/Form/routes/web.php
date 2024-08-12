@@ -18,3 +18,7 @@ Route::group([], function () {
     Route::resource('aanmeld-formulier', FormController::class)->names('form');
     Route::get('lid-vlucht-aanmeldingen-aantal/{id}', [FormController::class, 'checkClubFlights']);
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('form/delete/{id}', [FormController::class, 'delete']);
+});
