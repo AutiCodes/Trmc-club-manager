@@ -20,6 +20,7 @@
 
   {{-- Vite CSS --}}
   {{-- {{ module_vite('build-admin', 'resources/assets/sass/app.scss') }} --}}
+  @laravelPWA
 </head>
 
 <body>
