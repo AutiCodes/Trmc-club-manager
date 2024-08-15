@@ -14,6 +14,6 @@ use Modules\NewsLetter\Http\Controllers\NewsLetterController;
 |
 */
 
-Route::group([], function () {
+Route::group(['Middleware' => 'auth'], function () {
     Route::resource('newsletter', NewsLetterController::class)->names('newsletter');
 });
