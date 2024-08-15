@@ -13,5 +13,6 @@
     "Logs": true,
     "Mail": true,
     "Settings": true,
-    "Fail2Ban": true
+    "Fail2Ban": true,
+    "NewsLetter": true
 }
