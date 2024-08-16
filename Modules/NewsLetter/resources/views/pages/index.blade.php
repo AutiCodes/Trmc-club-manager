@@ -70,14 +70,11 @@
       <div class="col m-4">
         <h2 class="text-white mb-2 mt-2">Oude nieuwsbrieven</h2>
 
-        <a href="#">nieuwsbrief-15-8-2024.pdf</a><br>
-        <a href="#">nieuwsbrief-15-8-2024.pdf</a><br>
-        <a href="#">nieuwsbrief-15-8-2024.pdf</a><br>
-        <a href="#">nieuwsbrief-15-8-2024.pdf</a><br>
-        <a href="#">nieuwsbrief-15-8-2024.pdf</a><br>
-        <a href="#">nieuwsbrief-15-8-2024.pdf</a><br>
-        <a href="#">nieuwsbrief-15-8-2024.pdf</a><br>
-        <a href="#">nieuwsbrief-15-8-2024.pdf</a><br>
+        @foreach ($files as $file)
+          @if (str_contains($file, 'pdf'))
+            <a href="{{ $file }}">{{ $file }}</a><br>
+          @endif
+        @endforeach
       </div>
     </div>
   </div>

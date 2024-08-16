@@ -23,7 +23,9 @@ class NewsLetterController extends Controller
      */
     public function index()
     {
-        return view('newsletter::pages.index');
+        $files = scandir(public_path('/newsletter-pdfs'));
+  
+        return view('newsletter::pages.index', compact('files'));
     }
 
     /**
@@ -75,7 +77,7 @@ class NewsLetterController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show($id)
+    public function show($filename)
     {
         return view('newsletter::show');
     }
