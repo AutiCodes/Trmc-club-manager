@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Attachment;
+use Illuminate\Mail\Attachment;
 
 class NewsLetter extends Mailable
 {
@@ -19,7 +19,7 @@ class NewsLetter extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($name, $type)
+    public function __construct($text_editor)
     {
         $this->text_editor = $text_editor;
     }
@@ -40,7 +40,7 @@ class NewsLetter extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'newsletter::pages.newsletter',
+            view: 'newsletter::pdf.newsletter',
             with: [
                 'text_editor' => $this->text_editor,
             ]
@@ -55,9 +55,9 @@ class NewsLetter extends Mailable
     public function attachments(): array
     {
         return [
-            Attachments::fromPath('/public/newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf')
-                            ->as('Nieuwsbrief-' . date('d-m-Y') . '.pdf')
-                            ->withMime('application/pdf'),
+            // Attachment::fromPath('/public/newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf')
+            //                 ->as('Nieuwsbrief-' . date('d-m-Y') . '.pdf')
+            //                 ->withMime('application/pdf'),
         ];
     }
 }

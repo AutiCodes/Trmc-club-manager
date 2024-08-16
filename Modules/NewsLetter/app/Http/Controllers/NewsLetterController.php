@@ -14,6 +14,7 @@ use File;
 use Modules\Members\Models\Member;
 use Modules\Members\Enums\ClubStatus;
 use App\Mail\NewsLetter;
+use Mail;
 
 class NewsLetterController extends Controller
 {
