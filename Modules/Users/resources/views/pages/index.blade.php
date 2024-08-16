@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="container-fluid">
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"> <!-- TODO: fix internal import -->
     <hr>
     <div class="container bootstrap">
       <div class="row">
