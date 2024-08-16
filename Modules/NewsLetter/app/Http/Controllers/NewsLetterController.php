@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class NewsLetterController extends Controller
 {
@@ -14,7 +19,7 @@ class NewsLetterController extends Controller
      */
     public function index()
     {
-        return view('newsletter::index');
+        return view('newsletter::pages.index');
     }
 
     /**
@@ -26,11 +31,34 @@ class NewsLetterController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Creates an PDF
+     * Sends it to the members
+     * Saves it to storage
+     * 
+     * @author AutiCodes
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'checkbox_send_to' => ['required', 'max:10'],
+            'text_editor' => ['required', 'string'],
+        ]);
+
+        try {
+            $pdf = PDF::loadView('newsletter::pdf.newsletter', [
+                'text_editor' => $validated['text_editor'],
+            ]); 
+
+            $pdf->save('newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf');
+            
+            // Mail newsletter
+
+            return redirect()->back()->with('success', 'Nieuwsbrief is verstuurd!');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'er ging iets mis! Foutcode: ' . $e->getMessage());
+        }
     }
 
     /**
