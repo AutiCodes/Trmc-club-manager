@@ -35,7 +35,7 @@
     <div class="container">
       <h1 class="mt-4 text-white">Laatste 15 vluchten</h1>
       <div class="table-responsive">
-        <table class="table table-striped table-hover text-white ml-2 mr-2">
+        <table class="table bg-dark  ml-2 mr-2">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -102,9 +102,6 @@
   <style>
     body, html {
     background-color: #2f3031;
-  }
-  .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #ffffff;
   }
 
   .help_icon {
