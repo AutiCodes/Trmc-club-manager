@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use File;
+use Modules\Members\Models\Member;
+use Modules\Members\Enums\ClubStatus;
+use App\Mail\NewsLetter;
 
 class NewsLetterController extends Controller
 {
@@ -37,9 +40,9 @@ class NewsLetterController extends Controller
      * 
      * @author AutiCodes
      * @param Request $request
-     * @return RedirectResponse
+     * @return// RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)//: RedirectResponse
     {
         $validated = $request->validate([
             'checkbox_send_to' => ['required', 'max:10'],
@@ -53,7 +56,14 @@ class NewsLetterController extends Controller
 
             $pdf->save('newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf');
             
-            // Mail newsletter
+            // Get members and send email
+            foreach ($validated['checkbox_send_to'] as $status) {
+                $members = Member::where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)->where('club_status', '=', $status)->get();
+                
+                foreach ($members as $member) {
+                    Mail::to($member->email)->send(new NewsLetter($validated['text_editor']));
+                }
+            }
 
             return redirect()->back()->with('success', 'Nieuwsbrief is verstuurd!');
         } catch (Exception $e) {
