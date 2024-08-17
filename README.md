@@ -3,21 +3,19 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
-
-
 <!-- Club logo -->
 <br>
 
 <div align="center">
-  <a href="https://github.com/TRMC">
-    <img src="public/media/images/TRMC_LOGO.png" alt="Logo" width="150" height="150">
+  <a href="https://github.com/auticodes">
+    <img src="https://avatars.githubusercontent.com/u/31496522?v=4&size=64" alt="Logo" width="150" height="150">
   </a>
 
   <h3 align="center">RC Plane Club Manager</h3>
   <p align="center">
-    A custom solution to manage fligts, members and more for RC plane clubs.
+    A custom solution build for RC plane clubs... Read below more.
     <br>
-    <a href="#">Explore the docs</a>
+    <a href="#">Explore the docs!</a>
   </p>
 </div>
 
@@ -26,23 +24,27 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About the project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#why-was-this-build">Why was this build?</a></li>
+        <li><a href="#tech-stack">Tech stack</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
       </ul>
     </li>
     <li>
       <a href="#features">Features</a>
       <ul>
-        <li><a href="#member-features">Members</a></li>
-        <li><a href="#management-features">Management</a></li>
-        <li><a href="#other-features">Other</a></li>
+        <li><a href="#member-features">For club members</a></li>
+        <li><a href="#management-features">For management</a></li>
+        <li><a href="#automatisations">Automatisations</a></li>
+        <li><a href="#other-features">Other features</a></li>
       </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#make-default-user">Creating default user</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -52,44 +54,44 @@
   </ol>
 </details>
   
-
-
 <!-- about the project -->
 ## About the project
+### Why was this build?
+An custom solution initially build for [TRMC](https://trmc.nl). It allows for club members to register their flights easily before taking flight on the club field. Management from TRMC can then view the flights, export them for them for the local authority, send newsletters to members and even more...
 
-An custom solution build for [TRMC](https://trmc.nl). It allows for club members to register their flights easily before taking flight on the club field. Management from TRMC can then view the flights, export them for them for the local authority and more.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- built with -->
+### Tech stack
+How this project was built:
 
+* [![Laravel][Laravel.com]][Laravel-url]
+* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![MySQL][MySQL.com]][MySQL.com]
+* ![PHP-shield]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Screenshots -->
+### Screenshots
 <div align="center">
   <img src="public/github-media/club-manager-form.png" alt="Screenshot" width="50%">
 </div>
-
 
 <div align="center">
   <img src="public/github-media/members-index.png" alt="Screenshot" width="50%">
 </div>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- built with -->
-## Built With
-How this project was built:
-
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-* [![MySQL][MySQL.com]][MySQL.com]
+<div align="center">
+  <img src="public/github-media/newsletter.jpg" alt="Screenshot" width="50%">
+</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- features -->
 ## Features
 ### Member features
-- Register a new flight.
+- Register an new flight.
 
 ### Management features
 - View all flights.
@@ -98,29 +100,44 @@ How this project was built:
 - Edit members.
 - Delete members
 - Add management people.
+- View logs (Laravel, access, edit and Fail2Ban logs).
+- Unban Fail2Ban IP.
+- Send newsletter to specific club members (like junior member, member etc).
+- Edit own profile.
+- Manage brevets/certificates for members.
+- Probs forgot something xD.
+
+### Automations
+- Sends an email to an member when his club status changes.
+- Fail2Ban cleans IP bans olden then x minutes.
 
 ### Other
-- Member certification options.
-- Automatic member mailing.
 - Members sync to Wordpress.
 - Logging.
+- Fail2Ban.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- getting started -->
 ## Getting Started
 ### Installation
-T.b.c
+This installation guide isn't very complete yet. 
+- Clone the repository in your'e webhosting folder (like `public_html`).
+- copy `.env.example` to `.env`.
+- Fill in all the database credentials.
+- Run `composer install` in the website root directory.
+- Run `php artisan key:generate` 
 
+### Make the default user
+- Run: `php artisan db:seed`.
+- Go to `www.<youre-url>/authenticatie-login`.
+- Fill in the following credentials: `Admin`, `Admin`.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- usage -->
 ## Usage
 t.b.c
-
-
 
 <!-- roadmap -->
 ## Roadmap
@@ -130,15 +147,11 @@ t.b.c
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- license -->
 ## License
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- Support -->
 ## Wanna support my work? Please buy me a beer ❤️
@@ -147,8 +160,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
@@ -169,3 +180,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [JQuery-url]: https://jquery.com 
 [MySQL.com]: https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white
 [MySQL-url]: https://www.mysql.com/
+[PHP-shield]: https://img.shields.io/badge/PHP-8.2%2B-yellow
