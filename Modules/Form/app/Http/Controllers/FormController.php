@@ -73,7 +73,7 @@ class FormController extends Controller
 
         // Check if rechapcha is correct, if not do nothing and return error
         // TODO: Use env variable for rechapcha secret key
-        if (intval($validated["rechapcha_custom"]) != env('RECAPTCHA_CUSTOM_VALUE')) {
+        if (intval($validated["rechapcha_custom"]) != intval(env('RECAPTCHA_CUSTOM_VALUE'))) {
             Log::channel("member_activity")->warning(
                 "Member " .
                     $member->name .
