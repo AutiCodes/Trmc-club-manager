@@ -17,5 +17,6 @@ use Modules\Admin\Http\Controllers\AdminController;
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin', AdminController::class)->names('admin');
     Route::get('downloadFlightsGov', [AdminController::class, 'downloadFlightsGov']);
+    Route::get('destroy-form/{id}', [AdminController::class, 'destroy']);
 });
 

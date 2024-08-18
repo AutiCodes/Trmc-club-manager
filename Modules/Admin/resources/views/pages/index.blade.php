@@ -3,6 +3,8 @@
 @section('title', 'Vluchten')
 
 @section('content')
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
   <main>
     <!-- Total container-->
     <div class="container">
@@ -42,6 +44,8 @@
               <th scope="col">Naam</th>
               <th scope="col">Datum en tijd</th>
               <th scope="col">Model type(s) met lipo aantallen en vermogens</th>
+              <th scope="col">Bewerk/verwijder</th>
+
             </tr>
           </thead>
           @foreach ($formSubmissions as $formSubmission)
@@ -59,7 +63,21 @@
                       @endif
                     @endforeach
                   </td>
-              </tbody>
+                  <!-- View, edit, delete buttons -->
+                  <td style="width: 20%;">
+                    <a href="{{ route('admin.edit', $formSubmission->id) }}" class="table-link text-info">
+                      <span class="fa-stack" style="font-size: 1rem;">	
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                    <a href="/destroy-form/{{$formSubmission->id}}" class="table-link danger" onclick="return confirm('Weet je zeker dat je dit aanmeld formulier wilt verwijderen?');">
+                      <span class="fa-stack" style="font-size: 1rem;">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                  </td>              </tbody>
           @endforeach
         </table>
       </div>
@@ -89,7 +107,7 @@
             <!-- -->
             <span aria-hidden="true"></span>
             <h4>Errors en contact:</h4>
-            <p>Is er een error of lukt iets niet? Neem dan contact met ons op via Email: <a href="mailto:webmaster@kelvincodes.nl">webmaster@kelvincodes.nl</a></p>
+            <p>Is er een error of lukt iets niet? Neem dan contact met ons op via Email: <a href="mailto:webmaster@auticodes.nl">webmaster@auticodes.nl</a></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
@@ -104,7 +122,7 @@
     background-color: #2f3031;
   }
   .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #ffffff;
+    background-color: #5c3838;
   }
 
   .help_icon {

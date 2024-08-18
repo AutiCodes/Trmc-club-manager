@@ -15,6 +15,7 @@ use Modules\Form\Models\SubmittedModels;
 use DB;
 use Modules\Members\Enums\ClubStatus;
 use Illuminate\Support\Facades\Log;
+use Modules\Form\Models\SubmittedModel;
 Use Auth;
 
 class AdminController extends Controller
@@ -93,7 +94,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        return view('admin::edit');
+        return view('admin::pages.edit_flight');
     }
 
     /**
@@ -109,7 +110,30 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $submittedForm = Form::with('member')
+                                    ->with('submittedModels')
+                                    ->get()
+                                    ->find($id);
+
+
+            // Detach member from form-member pivot table
+            $submittedForm->member()->detach($submittedForm->member[0]->id);
+            
+            // Detach submitted models from form 
+            foreach ($submittedForm->submittedModels as $model) {
+                $submittedForm->submittedModels()->detach($model->id);
+                SubmittedModel::find($model->id)->delete();
+            }
+            
+            // Doing an bye bye
+            Form::find($id)->delete();
+
+            return redirect()->back()->with('succes', 'Vlucht is verwijderd!');
+        } catch (Exception $e) {
+            // TODO: Add error logging
+            return redirect->back()->with('error', 'Er ging iets mis! Foutcode: ' . $e->getMessage());
+        }
     }
 
     /**
