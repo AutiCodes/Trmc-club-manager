@@ -135,6 +135,8 @@ class AdminController extends Controller
             // Doing an bye bye
             Form::find($id)->delete();
 
+            Log::channel('user_activity')->info('User ' . Auth::user()->name . ' has deleted an flight! flight id = ' . $id);
+
             return redirect()->back()->with('succes', 'Vlucht is verwijderd!');
         } catch (Exception $e) {
             // TODO: Add error logging
