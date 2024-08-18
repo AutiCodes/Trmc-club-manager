@@ -7,9 +7,9 @@
   <form class="col-lg-6 offset-lg-3 pt-4 pb-4" action="{{ route('members.store') }}" method="POST">
     @csrf
 
-    <div class="row">
+    <div class="row bg-dark rounded bg-opacity-75">
       <div class="col-sm">
-        <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+        <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <div class="form-group">
             <label for="name" class="text-white font-weight-bold">Volledige naam</label>
             <input type="text" class="form-control" id="name" name="name" aria-describedby="fullname" placeholder="Voornaam achternaam" required>
@@ -24,7 +24,7 @@
       </div>
 
       <div class="col-sm">
-        <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+        <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <div class="form-group">
             <label for="address"  class="text-white font-weight-bold">Adres</label>
             <input type="text" class="form-control" id="address" name="address" placeholder="Straatnaam nummer" required>
@@ -43,7 +43,7 @@
       </div>
 
       <div class="col-sm">
-        <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+        <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <div class="form-group">
             <label for="phone"  class="text-white font-weight-bold">Telefoon</label>
             <input type="text" class="form-control" id="phone" name="phone" placeholder="0612343455 (nummer zonder streepje!)" required>
@@ -57,9 +57,9 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row bg-dark rounded bg-opacity-75 mt-2">
       <div class="col-sm">
-        <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+        <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <div class="form-group">
             <label for="rdw_number"  class="text-white font-weight-bold">RDW nummer</label>
             <input type="text" class="form-control" id="rdw_number" name="rdw_number" placeholder="A34hjhdwqjkwqa">
@@ -73,7 +73,7 @@
       </div>
 
       <div class="col-sm">
-        <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+        <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <div class="form-group">
             <label for="club_status" class="text-white font-weight-bold">Club status</label>
             <select class="form-control" id="club_status" name="club_status" required>
@@ -99,7 +99,7 @@
       </div>
       
       <div class="col-sm">
-        <div class="bg-dark pt-2 pb-2 pl-2 pr-2 mb-2 mt-2 rounded">
+        <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <h4 class="font-weight-bold text-white mb-0">Brevetten</h4>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value=1 id="PlaneCertCheckbox" name="PlaneCertCheckbox">
@@ -122,7 +122,7 @@
             </label>
           </div>
 
-          <p class="font-weight-bold text-white mb-0 mt-3">Erelid</p>
+          <h4 class="font-weight-bold text-white mb-0 mt-2">Speciale status</h4>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value=1 id="honoraryMemberCheckbox" name="honoraryMemberCheckbox"> 
             <label class="form-check-label text-white" for="honoraryMemberCheckbox">
@@ -134,9 +134,9 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row bg-dark rounded bg-opacity-75 mt-2">
       <div class="col-sm">
-        <div class="bg-dark pt-2 pb-2 ps-2 pe-2 mb-2 mt-2 rounded w-25">
+        <div class="pt-2 pb-2 ps-2 pe-2 mb-2 mt-2 w-25">
           <h4 class="font-weight-bold text-white mb-0">Drone certificaten</h4>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value=1 id="droneA1Checkbox" name="droneA1Checkbox">
@@ -160,9 +160,11 @@
           </div>
         </div>
       </div>
+
+      <button type="submit" class="btn btn-success mt-">Lid toevoegen</button>
+
     </div>
 
-    <button type="submit" class="btn btn-primary mt-2">Submit</button>
   </form>
 </div>
 @endsection

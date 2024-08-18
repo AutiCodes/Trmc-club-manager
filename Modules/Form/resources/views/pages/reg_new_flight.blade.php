@@ -66,13 +66,13 @@
           </div>
 
           <!-- TIME -->
-          <div class="form-group">
+          <div class="form-group mt-2">
             <label for="time" class="text-white font-weight-bold">Selecteer een tijd:</label>
             <input type="time" id="time" name="time" class="form-control" required onchange="requiredHideViewer(this)">
           </div>
 
           <!-- WHAT MODELS -->
-          <div class="form-group">
+          <div class="form-group mt-2">
             <label for="time" class="text-white font-weight-bold">Met welke modellen wil je gaan vliegen?</label>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value=1 id="CheckboxPlane" name="model_type[]" onclick="checkBoxes(this)">
@@ -105,7 +105,7 @@
           </div>
 
           <!-- PLANE -->
-          <div id="CheckboxPlane_div" style="display: none;" class="bg-dark rounded pl-2 pr-2">
+          <div id="CheckboxPlane_div" style="display: none;" class="bg-dark rounded p-2 mt-2 bg-opacity-75">
             <h3 class="text-white">Modelvliegtuig</h3>
             <!-- POWER TYPE -->
             <div class="form-group">
@@ -135,7 +135,7 @@
           </div>
 
           <!-- GLIDER -->
-          <div id="CheckboxGlider_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
+          <div id="CheckboxGlider_div" style="display: none;" class="bg-dark mt-3 rounded p-2 bg-opacity-75">
             <h3 class="text-white">Modelzweefvliegtuig</h3>
             <!-- POWER TYPE -->
             <div class="form-group">
@@ -165,7 +165,7 @@
           </div>
 
           <!-- HELICOPTER -->
-          <div id="CheckBoxHelicopter_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
+          <div id="CheckBoxHelicopter_div" style="display: none;" class="bg-dark mt-3 rounded p-2 bg-opacity-75">
             <h3 class="text-white">Helicopter</h3>
             <!-- POWER TYPE -->
             <div class="form-group">
@@ -195,7 +195,7 @@
           </div>
 
           <!-- DRONE -->
-          <div id="CheckboxDrone_div" style="display: none;" class="bg-dark mt-3 rounded pl-2 pr-2">
+          <div id="CheckboxDrone_div" style="display: none;" class="bg-dark mt-3 rounded p-2 bg-opacity-75">
             <h3 class="text-white">Drone</h3>
             <!-- POWER TYPE -->
             <div class="form-group">
@@ -227,14 +227,10 @@
 
         <!-- reCAPTCHA -->
         <div class="form-group">
-          <label for="text" class="Text-white font-weight-bold">Geheime vraag om te kiekn of je geen bot bent</label>
+          <label for="text" class="Text-white font-weight-bold">Geheime vraag om te kijken of je geen robot bent</label>
           <input type="text" class="form-control" id="rechapcha_custom" name="rechapcha_custom" placeholder="Wat is 2 + 2?" required>
         </div>
 
-        <!--
-        <div class="g-recaptcha pb-3" id="rcaptcha" data-sitekey="6Ldwq90pAAAAAJuxavmVQjPKHSpGYoRRx5aUhn9x"></div>
-        <span id="captcha" style="color:red"></span>
-        -->
         <!-- SEND FORM BUTTON -->
         <button type="submit" class="btn btn-success font-weight-bold mt-3" data-toggle="modal" data-target="#exampleModalCenter">Verzenden</button>
       </form>
