@@ -94,7 +94,13 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        return view('admin::pages.edit_flight');
+        $flightSubmittion = Form::orderBy('id', 'desc')
+                                ->with('member')
+                                ->with('submittedModels')
+                                ->get()
+                                ->find($id);      
+    
+        return view('admin::pages.edit_flight', compact('flightSubmittion'));
     }
 
     /**
@@ -125,7 +131,7 @@ class AdminController extends Controller
                 $submittedForm->submittedModels()->detach($model->id);
                 SubmittedModel::find($model->id)->delete();
             }
-            
+
             // Doing an bye bye
             Form::find($id)->delete();
 
