@@ -32,7 +32,12 @@
         <button class="nav-link" id="fail2ban-logs-tab" data-bs-toggle="pill" data-bs-target="#fail2ban-logs" type="button" role="tab" aria-controls="fail2ban-logs" aria-selected="false">
           Fail2Ban
         </button>
-      </li>            
+      </li>        
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="app_error-logs" data-bs-toggle="pill" data-bs-target="#app_error-logs" type="button" role="tab" aria-controls="app_error-logs" aria-selected="false">
+          Applicatie errors
+        </button>
+      </li>              
     </ul>
 
     <div class="tab-content" id="pills-tabContent">
@@ -112,6 +117,23 @@
           <hr>
         @endforeach           
       </div>            
+
+      <div class="tab-pane fade" id="app_error-logs" role="tabpanel" aria-labelledby="app_error-logs-tab">
+        @foreach ($appErrorLogs as $appErrorLogs)
+          @if ($loop->index > 50)
+            @break
+          @endif
+          @if (str_contains($appErrorLogs, 'INFO') == true)
+            <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $appErrorLogs }}</p>
+          @elseif (str_contains($appErrorLogs, 'ERROR') == true)
+            <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $appErrorLogs }}</p>
+          @else 
+            <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $appErrorLogs }}</p>
+          @endif
+          <hr>
+        @endforeach           
+      </div>            
+
     </div>
   </div>
 @endsection

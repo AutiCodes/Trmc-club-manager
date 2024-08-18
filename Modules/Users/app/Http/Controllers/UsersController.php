@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Hash;
 use Modules\Users\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class UsersController extends Controller
 {
@@ -116,6 +117,10 @@ class UsersController extends Controller
             'password' => ['nullable'],
             'password2' => ['nullable'],
         ]);
+
+        if ($validated->errors()) {
+            Log::channel('app_errors')->error('User ' . $user->name . ' validation failed! ' . $validated->error());
+        }
 
         // Update name and username no mather what
         $user->update([
