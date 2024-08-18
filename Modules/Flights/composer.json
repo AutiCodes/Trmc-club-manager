@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/flights",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Flights\\": "app/",
+            "Modules\\Flights\\Database\\Factories\\": "database/factories/",
+            "Modules\\Flights\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Flights\\Tests\\": "tests/"
+        }
+    }
+}
