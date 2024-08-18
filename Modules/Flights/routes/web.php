@@ -15,5 +15,5 @@ use Modules\Flights\Http\Controllers\FlightsController;
 */
 
 Route::group([], function () {
-    Route::resource('flights', FlightsController::class)->names('flights');
+    Route::resource('aanmeld-formulier', FlightsController::class)->names('flights');
 });

@@ -15,7 +15,7 @@
         <a class="nav-link text-white" href="{{ route('home.index') }}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="{{ route('form.index') }}">Vlucht aanmelden</a>
+        <a class="nav-link text-white" href="{{ route('aanmeld-formulier.index') }}">Vlucht aanmelden</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="{{ route('admin.index') }}">Voor het bestuur</a>
