@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Settings\Models\Setting;
 
 class SettingsController extends Controller
 {
@@ -30,7 +31,21 @@ class SettingsController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //
+        try {
+            if ($request->has('debug')) {
+                $setting_name = 'debug';
+            }
+            
+            $validated = $request->validate([
+                $setting_name => ['required', 'integer', 'max:20'],
+            ]);
+
+            Setting::updateSetting($validated['setting_name'], $validated['setting_value']);
+
+            return redirect()->back()->with('success', 'Instelling is geupdated!');
+        } catch (Exception $e) {
+            return reditect()->back()->with('error', 'Er ging iets fout! Foutcode: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -63,5 +78,10 @@ class SettingsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateSetting(Request $request) 
+    {
+
     }
 }

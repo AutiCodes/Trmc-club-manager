@@ -14,6 +14,8 @@ use Modules\Settings\Http\Controllers\SettingsController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('settings', SettingsController::class)->names('settings');
+
+    Route::post('settings/update-setting', [SettingsController::class, 'updateSetting']);
 });
