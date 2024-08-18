@@ -154,6 +154,13 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'ignore_exceptions' => true,            
         ],
+
+        'app_errors' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/Fail2Ban.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'ignore_exceptions' => true,            
+        ],
     ],
 
 ];

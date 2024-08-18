@@ -58,4 +58,14 @@ class GetLogs
     {
         return array_reverse(file(storage_path('logs/Fail2Ban.log')));
     }
+
+    /** Gets the application log file and reverses it
+     * 
+     * @author AutiCodes
+     * @return array logs
+     */
+    public static function app(): array
+    {
+        return array_reverse(file(storage_path('/logs/app_error.log')));
+    }
 }

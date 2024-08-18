@@ -18,12 +18,14 @@ class LogsController extends Controller
      */
     public function index()
     {
-        return view('logs::pages.index', [
+        return view('logs::pages.index', 
+        [
             'laravelLogs' => GetLogs::laravel(),
             'userActivityLogs' => GetLogs::userActivity(),
             'memberActivityLogs' => GetLogs::memberActivity(),
             'accessLogs' => GetLogs::access(),
             'Fail2Ban' => GetLogs::fail2ban(),
+            'appErrorLogs' => GetLogs::app(),
         ]);
     }
 
