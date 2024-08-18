@@ -111,8 +111,8 @@ class UsersController extends Controller
         }
 
         $validated = $request->validate([
-            'name' => ['required', 'max:30'],
-            'username' => ['required', 'string', 'max:20'],
+            'name' => ['required', 'max:40'],
+            'username' => ['required', 'string', 'max:40'],
             'password' => ['nullable'],
             'password2' => ['nullable'],
         ]);
