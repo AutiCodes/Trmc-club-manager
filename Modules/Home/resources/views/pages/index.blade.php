@@ -21,10 +21,6 @@
       </p>
       <p>Email: <a href="mailto:webmaster@trmc.nl">webmaster@trmc.nl</a></p>
       </div>
-      <!-- Image -->
-      <div class="col-sm text-center">
-      <img src="/media/images/Under_Construction_-_Webpage_or_Project_Under_Construction.jpg" alt="" class="img-fluid rounded" height="auto">
-      </div>
     </div>
   </div>
 @stop
