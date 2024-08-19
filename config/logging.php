@@ -157,7 +157,14 @@ return [
 
         'app_errors' => [
             'driver' => 'single',
-            'path' => storage_path('logs/Fail2Ban.log'),
+            'path' => storage_path('logs/app_errors.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'ignore_exceptions' => true,            
+        ],
+
+        'member_contact' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/member_contact.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'ignore_exceptions' => true,            
         ],

@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class MembersHonorary extends Mailable
 {
@@ -47,6 +48,8 @@ class MembersHonorary extends Mailable
      */
     public function content(): Content
     {
+        Log::channel('member_contact')->info('Sended email to: ' . $this->name . ' with subject: ' . 'TRMC erelid wijziging');
+
         return new Content(
             view: 'mail.members_honorary',
             with: [

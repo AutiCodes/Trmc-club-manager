@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class MembersClubStatusChange extends Mailable
 {
@@ -42,6 +43,8 @@ class MembersClubStatusChange extends Mailable
      */
     public function content(): Content
     {
+        Log::channel('member_contact')->info('Sended email to: ' . $this->name . ' with subject: ' . 'TRMC Club Status wijziging');
+
         return new Content(
             view: 'mail.club_status_change',
             with: [

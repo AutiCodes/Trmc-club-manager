@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Attachment;
+use Illuminate\Support\Facades\Log;
 
 class NewsLetter extends Mailable
 {
@@ -39,6 +40,8 @@ class NewsLetter extends Mailable
      */
     public function content(): Content
     {
+        Log::channel('member_contact')->info('Sended newsletter');
+
         return new Content(
             view: 'newsletter::pdf.newsletter',
             with: [

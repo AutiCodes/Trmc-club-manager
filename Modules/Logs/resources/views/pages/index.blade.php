@@ -19,6 +19,11 @@
         </button>
       </li>
       <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contact-logs-tab" data-bs-toggle="pill" data-bs-target="#contact-logs" type="button" role="tab" aria-controls="contact-logs" aria-selected="false">
+          Contact
+        </button>
+      </li>           
+      <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
           Systeem
         </button>
@@ -37,7 +42,7 @@
         <button class="nav-link" id="app_error-logs" data-bs-toggle="pill" data-bs-target="#app_error-logs" type="button" role="tab" aria-controls="app_error-logs" aria-selected="false">
           Applicatie errors
         </button>
-      </li>              
+      </li>                       
     </ul>
 
     <div class="tab-content" id="pills-tabContent">
@@ -133,6 +138,22 @@
           <hr>
         @endforeach           
       </div>            
+
+      <div class="tab-pane fade" id="contact-logs" role="tabpanel" aria-labelledby="contact-logs-tab">
+        @foreach ($memberContact as $contact)
+          @if ($loop->index > 50)
+            @break
+          @endif
+          @if (str_contains($contact, 'INFO') == true)
+            <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $contact }}</p>
+          @elseif (str_contains($contact, 'ERROR') == true)
+            <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $contact }}</p>
+          @else 
+            <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $contact }}</p>
+          @endif
+          <hr>
+        @endforeach           
+      </div>               
 
     </div>
   </div>

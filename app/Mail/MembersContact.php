@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
+use Illuminate\Support\Facades\Log;
 
 class MembersContact extends Mailable
 {
@@ -46,6 +47,9 @@ class MembersContact extends Mailable
      */
     public function content(): Content
     {
+        Log::channel('member_contact')->info('Sended email to: ' . $this->name . ' with subject: ' . 'TRMC leden Contact');
+
+
         return new Content(
             view: 'mail.new_member_mail',
             with: [
