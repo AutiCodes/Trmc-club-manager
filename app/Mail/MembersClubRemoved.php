@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class MembersClubRemoved extends Mailable
 {
@@ -34,10 +35,12 @@ class MembersClubRemoved extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Get the message content definition and add it to log
      */
     public function content(): Content
     {
+        Log::channel('member_contact')->info('Sended email to: ' . $this->name . ' with subject: ' . 'TRMC lid status');
+
         return new Content(
             view: 'view.mail.members_club_removed',
         );

@@ -26,6 +26,7 @@ class LogsController extends Controller
             'accessLogs' => GetLogs::access(),
             'Fail2Ban' => GetLogs::fail2ban(),
             'appErrorLogs' => GetLogs::app(),
+            'memberContact' => GetLogs::member_contact(),
         ]);
     }
 

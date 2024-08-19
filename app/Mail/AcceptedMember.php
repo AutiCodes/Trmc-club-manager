@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class AcceptedMember extends Mailable
 {
@@ -35,10 +36,12 @@ class AcceptedMember extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Get the message content definition and log contact
      */
     public function content(): Content
     {
+        Log::channel('member_contact')->info('Sended email to: ' . $this->name . ' with subject: ' . 'Je bent nu lid van TRMC!');
+
         return new Content(
             view: 'mail.accepted_member',
             with: [
