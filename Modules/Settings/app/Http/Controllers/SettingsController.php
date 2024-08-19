@@ -28,9 +28,9 @@ class SettingsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)//: RedirectResponse
     {
-        //
+        return;
     }
 
     /**
@@ -52,9 +52,9 @@ class SettingsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        //
+    public function update(Request $request, $type)
+    {  
+        return dd($type);
     }
 
     /**
@@ -63,5 +63,10 @@ class SettingsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function saveSetting($type)
+    {
+        return var_dump($type);
     }
 }
