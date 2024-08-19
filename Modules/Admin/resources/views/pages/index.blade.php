@@ -43,7 +43,7 @@
               <th scope="col">#</th>
               <th scope="col">Naam</th>
               <th scope="col">Datum en tijd</th>
-              <th scope="col">Model type(s) met lipo aantallen en vermogens</th>
+              <th scope="col">Vlucht informatie</th>
               <th scope="col">Bewerk/verwijder</th>
 
             </tr>
@@ -58,7 +58,7 @@
                     @foreach ($formSubmission->submittedModels as $model)
                       @if ($loop->iteration < 16)
                         <p class="mt-0 mb-0">
-                          Model {{ $loop->iteration }}: {{$model->model_type}}. Lipo aantal: {{ $model->lipo_count }}. Model-vermogen: {{ $model->class }}
+                          Model {{ $loop->iteration }}: {{$model->model_type}}. Aantal vluchten: {{ $model->lipo_count }}. Model vermogen: {{ $model->class }}
                         </p>
                       @endif
                     @endforeach
