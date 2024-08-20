@@ -1,0 +1,11 @@
+{
+    "name": "ExportFlights",
+    "alias": "exportflights",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ExportFlights\\Providers\\ExportFlightsServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,16 @@
+<?php
+
+namespace Modules\ExportFlights\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class ExportFlightsDatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        // $this->call([]);
+    }
+}
