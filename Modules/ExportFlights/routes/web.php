@@ -14,6 +14,7 @@ use Modules\ExportFlights\Http\Controllers\ExportFlightsController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware', 'auth'], function () {
     Route::resource('exportflights', ExportFlightsController::class)->names('exportflights');
+    Route::post('export-flights/generate-manual-pdf', [ExportFlightsController::class, 'manualGenPDF']); // Hate the naming, sowwy.
 });

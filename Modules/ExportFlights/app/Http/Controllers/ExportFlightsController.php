@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Form\Models\Form;
+use Barryvdh\DomPDF\Facade\Pdf;
+use File;
+use Illuminate\Support\Facades\DB;
 
 class ExportFlightsController extends Controller
 {
@@ -18,50 +22,31 @@ class ExportFlightsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Generates an PDF from the club flights from the manual option
+     * 
+     * @author AutiCodes
      */
-    public function create()
+    public function manualGenPDF(Request $request)
     {
-        return view('exportflights::create');
-    }
+        $validated = $request->validate([
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        //
-    }
+        $flights = Form::whereBetween('date_time', [$validated['start_date'] . ' 00:00:00', $validated['end_date'] . ' 23:59:59'])
+                            ->with('member')
+                            ->with('submittedModels')
+                            ->get();
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('exportflights::show');
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('exportflights::edit');
-    }
+        $pdf = PDF::loadView('exportflights::flight_export_pdf', [
+            'flights' => $flights,
+            'start_date' => date_format(date_create($validated['start_date']), 'd-m-Y'), // format date from Y-m-d to d-m-Y
+            'end_date' => date_format(date_create($validated['end_date']), 'd-m-Y'), // format date from Y-m-d to d-m-Y
+        ]); 
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        //
-    }
+        $pdf->save(public_path('flightExport-pdfs/' . date_format(date_create($validated['start_date']), 'd-m-Y') . '-' . date_format(date_create($validated['end_date']), 'd-m-Y') . '.pdf'));
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
+        return $pdf->download('trmc-vluchten-export-van-' . $validated['start_date'] . '-tot-' . $validated['end_date'] . '.pdf');
     }
 }
