@@ -14,7 +14,7 @@ class ExportFlightsController extends Controller
      */
     public function index()
     {
-        return view('exportflights::index');
+        return view('exportflights::pages.index');
     }
 
     /**

@@ -19,7 +19,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('admin.index') }}">Overzicht</a>
-          <a class="dropdown-item" href="/downloadFlightsGov">Alle vluchten (laatste 365 dagen) voor de gemeente</a>
+          <a class="dropdown-item" href="{{ route('exportflights.index') }}">PDF</a>
         </div>
       </li>
 
