@@ -8,7 +8,7 @@
 
 <div align="center">
   <a href="https://github.com/auticodes">
-    <img src="https://avatars.githubusercontent.com/u/31496522?v=4&size=64" alt="Logo" width="150" height="150">
+    <img src="https://github.com/AutiCodes/Kiyomi/blob/main/Kiyomi_logo.png?raw=true&size=64" alt="Logo" width="250" height="220">
   </a>
 
   <h3 align="center">RC Plane Club Manager</h3>
