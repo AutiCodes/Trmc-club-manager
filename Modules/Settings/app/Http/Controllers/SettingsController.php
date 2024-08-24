@@ -46,6 +46,13 @@ class SettingsController extends Controller
                 Setting::updateValue('test_setting', 0);
             }
 
+            // Security tab
+            if ($request->has('fail2ban')) {
+                Setting::updateValue('fail2ban', 1);
+            } else {
+                Setting::updateValue('fail2ban', 0);
+            }
+
             return redirect()->back()->with('success', 'Instellingen zijn opgeslagen!');
         } catch (Exception $e) {
             Log::channel('app_errors')-error('Error storing settings: ' . $e);

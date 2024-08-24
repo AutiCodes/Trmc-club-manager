@@ -25,6 +25,12 @@ return new class extends Migration
             'label' => 'Test setting',
             'value' => 1,
         ]);
+
+        Setting::create([
+            'key' => 'fail2ban',
+            'label' => 'Fail2Ban',
+            'value' => 1,
+        ]);
     }
 
     /**
