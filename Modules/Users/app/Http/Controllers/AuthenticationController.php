@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Users\Entities\User;
 use App\Helpers\Fail2BanHelper;
+use Modules\Settings\Models\Setting;
 use Auth;
 use Session;
 use Log;
@@ -37,8 +38,10 @@ class AuthenticationController extends Controller
     public function login(Request $request): RedirectResponse
     {
         // If user has more or equal then 4 login tries
-        if (Fail2BanHelper::checkIfBanned()) {
-            abort(401);
+        if (Setting::getValue('fail2ban') == 1) {
+            if (Fail2BanHelper::checkIfBanned()) {
+                abort(401);
+            }
         }
 
         $validated = $request->validate([
@@ -48,8 +51,10 @@ class AuthenticationController extends Controller
 
         // If authentication fails
         if (!Auth::attempt($validated)) {
-            // Add ip to Fail2Ban
-            Fail2BanHelper::AddFailedLogin($validated['username'], 20);
+            if (Setting::getValue('fail2ban') == 1) {
+                // Add ip to Fail2Ban
+                Fail2BanHelper::AddFailedLogin($validated['username'], 20);
+            }
 
             Log::channel('access')->error('ip ' . $request->ip().' tried to login with wrong credentials. Username used: ' . $validated['username']);
 
