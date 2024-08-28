@@ -1,81 +1,50 @@
 @extends('admin::layouts.master')
 
-@section('title', 'Bestuurdleden overzicht')
+@section('title', 'Bestuursleden overzicht')
 
 @section('content')
-  <div class="container-fluid">
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-    <hr>
-    <div class="container bootstrap">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="main-box no-header clearfix">
-            <div class="w-25 float-left mb-4 ml-4">
-              <input type="text" id="name_search" onkeyup="nameFilter()" placeholder="Zoek naam" class="form-control rounded">
-            </div>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
-            <div class="w25 float-right mb-4 mr-4">
-              <select class="form-control form-control-lg" id="clubstatus_filter" onchange="clubStatusFilter()">
-                <option value="All" selected>Alle club statussen</option>
-                <option value="Aspirantlid">Aspirant lid</option>
-                <option value="Lid">Lid</option>
-                <option value="Bestuur">Bestuur</option>
-                <option value="Donateur">Donateur</option>
-              </select>
-            </div>
-            
-            <div class="main-box-body clearfix">
-              <div class="table-responsive">
-                <table class="table user-list" id="MembersTable">
-                  <thead>
-                    <tr>
-                      <th><span>Vol. naam</span></th>
-                      <th><span>Gebruikersnaam</span></th>
-                      <th>Open, bewerk, verwijder</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($users as $user)
-                      <tr>
-                        <!-- User -->
-                        <td>
-                          <a href="#" class="user-link">{{ $user->name }}</a>
-                        </td>
-                        <!-- Username -->
-                        <td>
-                          <a href="#">{{ $user->username }}</a>
-                        </td>
-                        <!-- Email -->
-                        <!-- View, edit, delete buttons -->
-                        <td style="width: 20%;">
-                          <a href="#" class="table-link text-warning">
-                            <span class="fa-stack" style="font-size: 1rem;">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                          <a href="{{ route('users.edit', $user->id) }}" class="table-link text-info">
-                            <span class="fa-stack" style="font-size: 1rem;">	
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                          <a href="bestuursleden/verwijder/{{ $user->id }}" class="table-link danger" onclick="return confirm('Weet je zeker dat je gebruiker {{ $user->name }} wilt verwijderen?');">
-                            <span class="fa-stack" style="font-size: 1rem;">
-                              <i class="fa fa-square fa-stack-2x"></i>
-                              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                            </span>
-                          </a>
-                        </td>
-                      </tr>
-                    @endforeach               
-                  </tbody>
-                </table
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="container bg-dark bg-opacity-75 mt-2 rounded">
+
+    <h3 class="text-white mt-3 mb-3">Bestuursleden</h3>
+
+    <div class="table-responsive">
+      <table class="table align-middle  text-white">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Naam</th>
+            <th scope="col">Email</th>
+            <th scope="col">Gebruikersnaam</th>
+            <th scope="col">Bewerk, verwijder</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($users as $user)
+            <tr>
+              <th scope="row">1</th>
+              <td>Kelvin de Reus</td>
+              <td>prive@auticodes.nl</td>
+              <td>auticodes</td>
+              <td>
+                <a href="{{ route('users.edit', $user->id) }}" class="table-link text-info">
+                  <span class="fa-stack" style="font-size: 1rem;">	
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+                <a href="bestuursleden/verwijder/{{ $user->id }}" class="table-link danger" onclick="return confirm('Weet je zeker dat je gebruiker {{ $user->name }} wilt verwijderen?');">
+                  <span class="fa-stack" style="font-size: 1rem;">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
   </div>
 
