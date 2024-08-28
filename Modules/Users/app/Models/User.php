@@ -23,9 +23,4 @@ class User extends Model
         'email',
         'password',
     ];
-
-    protected static function newFactory(): UserFactory
-    {
-        //return UserFactory::new();
-    }
 }

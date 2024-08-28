@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<!-- Page title -->
-    <title>Login</title>
+    <title>Wachtwoord reset</title>
 	  <!-- Bootstrap CSS -->
 	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	  <!-- tab icon -->
@@ -14,24 +14,26 @@
 	<body>
 		<main>
       @if (session()->has('error'))
-        <div class="alert alert-success" role="alert">
+          <div class="alert alert-error" role="alert">
           {{ session('error') }}
-        </div>
+          </div>
+      @endif
+
+      @if (session()->has('success'))
+      <div class="alert alert-success" role="alert">
+          {{ session('success') }}
+      </div>
       @endif
       <!-- LOGIN -->
       <div class="container mt-5" style="max-width: 400px;">
         <img src="/media/images/TRMC_LOGO.png" class="rounded mx-auto d-block" alt="" style="width: 150px;">
-        <h2 class="text-white text-center pt-3">Inloggen</h2>
+        <h2 class="text-white text-center pt-3">Wachtwoord resetten</h2>
 
-        <form class="col-auto pt-4 pb-4 mw-50" action="/authenticatie-login-post" method="POST">
+        <form class="col-auto pt-4 pb-4 mw-50" action="/password-reset-post" method="POST">
           @csrf
           <div class="form-group">
-            <label for="username" class="text-white">Gebruikersnaam</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="username" placeholder="" required>
-          </div>
-          <div class="form-group">
-            <label for="password" class="text-white">Wachtwoord</label>
-            <input type="password" class="form-control mb-2" id="password" name="password" placeholder="Wachtwoord" required>
+            <label for="email" class="text-white">email</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="email" placeholder="" required>
           </div>
           <!--
           <div class="form-check">
@@ -39,9 +41,7 @@
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
           </div>
           -->
-          <button type="submit" class="btn mb-4" style="background-color: #d10014; color: #FFFFFF;">Inloggen</button>
-
-          <p class="text-white">Klik <a href="/password-reset">hier</a> om je wachtwoord te resetten</p>
+          <button type="submit" class="btn mb-4" style="background-color: #d10014; color: #FFFFFF;">Verstuur</button>
         </form>
 
         @include('admin::includes.footer')

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Users\Http\Controllers\UsersController;
 use Modules\Users\Http\Controllers\AuthenticationController;
+use Modules\Users\Http\Controllers\PasswordResetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,16 @@ use Modules\Users\Http\Controllers\AuthenticationController;
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UsersController::class)->names('users');
     Route::get('bestuursleden/verwijder/{id}', [UsersController::class, 'destroy']);
+    Route::get('authenticatie-uitloggen', [AuthenticationController::class, 'logout']);
 });
 
 Route::group([], function () {
+    // Signin
     Route::post('authenticatie-login-post', [AuthenticationController::class, 'login']);
     Route::get('authenticatie-login', [AuthenticationController::class, 'loginPage'])->name('login');
-    Route::get('authenticatie-uitloggen', [AuthenticationController::class, 'logout']);
+
+    // Password reset
+    Route::get('password-reset', [PasswordResetController::class, 'showPasswordReset']);
+    Route::post('password-reset-post', [PasswordResetController::class, 'HandlePasswordReset']);
+
 });
