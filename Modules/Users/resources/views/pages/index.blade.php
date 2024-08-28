@@ -23,8 +23,8 @@
         <tbody>
           @foreach ($users as $user)
             <tr>
-              <th scope="row">1</th>
-              <td>Kelvin de Reus</td>
+              <th scope="row">{{ $loop->iteration }}</th>
+              <td>{{ $user->name }}</td>
               <td>prive@auticodes.nl</td>
               <td>auticodes</td>
               <td>
