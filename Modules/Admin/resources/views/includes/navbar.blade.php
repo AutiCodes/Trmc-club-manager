@@ -52,7 +52,9 @@
           <a class="dropdown-item" href="{{ route('settings.index') }}">Instellingen</a>
           <a class="dropdown-item" href="{{ route('versions.index') }}">Versies</a>
           <a class="dropdown-item" href="{{ route('logs.index') }}">Logs</a>
-          <a class="dropdown-item" href="{{ route('fail2ban.index') }}">Fail2Ban</a>
+          @if (Modules\Settings\Models\Setting::getValue('fail2ban') == 1)
+            <a class="dropdown-item" href="{{ route('fail2ban.index') }}">Fail2Ban</a>
+          @endif
         </div>
       </li>     
 

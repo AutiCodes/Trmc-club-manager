@@ -6,62 +6,57 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Settings\Models\Setting;
+use Log;
 
 class SettingsController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * @author AutiCodes
      */
     public function index()
     {
-        return view('settings::pages.index');
-    }
+        try {
+            $allSettings = Setting::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('settings::create');
+            return view('settings::pages.index', compact('allSettings'));
+        } catch (Exception $e) {
+            Log::channel('app_errors')->error('Error in getting the settings page: ' . $e);
+            return redirect('/admin')->with('error', 'Er ging iets mis! Foutcode: ' . $e->getMessage());
+        }
     }
 
     /**
      * Store a newly created resource in storage.
+     * TODO: fix loop instead if statements
+     * 
+     * @author AutiCodes
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
     {
-        //
-    }
+        try {
+            // Test setting
+            if ($request->has('test_setting')) {
+                Setting::updateValue('test_setting', 1);
+            } else {
+                Setting::updateValue('test_setting', 0);
+            }
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('settings::show');
-    }
+            // Security tab
+            if ($request->has('fail2ban')) {
+                Setting::updateValue('fail2ban', 1);
+            } else {
+                Setting::updateValue('fail2ban', 0);
+            }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('settings::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
+            return redirect()->back()->with('success', 'Instellingen zijn opgeslagen!');
+        } catch (Exception $e) {
+            Log::channel('app_errors')-error('Error storing settings: ' . $e);
+            return redirect()->back()->with('error', 'Er ging iets mis! Foutcode: ' . $e->getMessage());
+        }
     }
 }
