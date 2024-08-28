@@ -25,8 +25,8 @@
             <tr>
               <th scope="row">{{ $loop->iteration }}</th>
               <td>{{ $user->name }}</td>
-              <td>prive@auticodes.nl</td>
-              <td>auticodes</td>
+              <td>{{ $user->email }}</td>
+              <td>{{ $user->username }}</td>
               <td>
                 <a href="{{ route('users.edit', $user->id) }}" class="table-link text-info">
                   <span class="fa-stack" style="font-size: 1rem;">	

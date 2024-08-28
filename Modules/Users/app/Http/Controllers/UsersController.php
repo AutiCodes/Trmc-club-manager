@@ -46,15 +46,17 @@ class UsersController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required','string','max:40'],
-            'username' => ['required','string','max:40', 'unique:Users'],
-            'password' => ['required','string','max:40'],
+            'name' => ['required', 'string', 'max:40'],
+            'username' => ['required', 'string', 'max:40', 'unique:Users'],
+            'email' => ['required', 'email', 'max:40', 'unique:Users'],
+            'password' => ['required', 'string', 'max:40'],
         ]);
 
         try { 
             User::create([
                 'name' => $validated['name'],
                 'username' => $validated['username'],
+                'email' => $validated['email'],
                 'password' => Hash::make($validated['password']),
             ]);    
         } 
@@ -114,18 +116,16 @@ class UsersController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'max:40'],
             'username' => ['required', 'string', 'max:40'],
+            'email' => ['email', 'max:40'],
             'password' => ['nullable'],
             'password2' => ['nullable'],
         ]);
-
-        if ($validated->errors()) {
-            Log::channel('app_errors')->error('User ' . $user->name . ' validation failed! ' . $validated->error());
-        }
 
         // Update name and username no mather what
         $user->update([
             'name' => $validated['name'],
             'username' => $validated['username'],
+            'email' => $validated['email'],
         ]);
 
         if ($validated['password'] != NULL && $validated['password2'] != NULL) {
