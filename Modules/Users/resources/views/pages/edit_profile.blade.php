@@ -28,6 +28,13 @@
       <input type="username" class="form-control" id="username" name="username" aria-describedby="username" placeholder="" value="{{ $user->username }}">
     </div>
 
+    <!-- Email -->
+    <div class="form-group mt-2">
+      <input type="hidden" id="old_email" name="old_email" value="{{ $user->email }}"> 
+      <label for="email" class="text-white font-weight-bold">Email</label>
+      <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="" value="{{ $user->email }}">
+    </div>
+
     <h6 class="text-white mt-3 pb-0">Wachtwoord</h6>
 
     <!-- Password -->
