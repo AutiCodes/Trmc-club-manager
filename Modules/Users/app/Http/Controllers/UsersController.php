@@ -118,10 +118,6 @@ class UsersController extends Controller
             'password2' => ['nullable'],
         ]);
 
-        if ($validated->errors()) {
-            Log::channel('app_errors')->error('User ' . $user->name . ' validation failed! ' . $validated->error());
-        }
-
         // Update name and username no mather what
         $user->update([
             'name' => $validated['name'],

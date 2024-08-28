@@ -47,3 +47,11 @@ Schedule::call(function () {
         } 
     }
 })->everyMinute();
+
+/**
+ * Makes an automated mail to Wilma (temp) for exports of flights
+ * TODO: fix with new setting system
+ */
+Schedule::call(function () {
+    
+})->lastDayOfMonth('8:00');
