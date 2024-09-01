@@ -53,6 +53,13 @@ class SettingsController extends Controller
                 Setting::updateValue('fail2ban', 0);
             }
 
+            // Automations tab
+            if ($request->has('auto_flight_report_on_mail')) {
+                Setting::updateValue('auto_flight_report_on_mail', 1);
+            } else {
+                Setting::updateValue('auto_flight_report_on_mail', 0);
+            }
+
             return redirect()->back()->with('success', 'Instellingen zijn opgeslagen!');
         } catch (Exception $e) {
             Log::channel('app_errors')-error('Error storing settings: ' . $e);

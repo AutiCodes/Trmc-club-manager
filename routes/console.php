@@ -47,3 +47,9 @@ Schedule::call(function () {
         } 
     }
 })->everyMinute();
+
+/**
+ * Automatic flight reporting that are send to mail
+ * 
+ * @author AutiCodes
+ */

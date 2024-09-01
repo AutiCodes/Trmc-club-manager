@@ -31,6 +31,12 @@ return new class extends Migration
             'label' => 'Fail2Ban',
             'value' => 1,
         ]);
+
+        Setting::create([
+            'key' => 'auto_flight_report_on_mail',
+            'label' => 'Automatic flight reports send to email',
+            'value' => 0,
+        ]);
     }
 
     /**
