@@ -83,7 +83,11 @@
 
                         <div class="form-group">
                           <label for="auto_flight_report_on_mail_date" class="text-white font-weight-bold">Selecteer een datum:</label>
-                          <input type="date" id="auto_flight_report_on_mail_date" name="auto_flight_report_on_mail_date" class="form-control w-sm-50">
+                          <input type="date" id="auto_flight_report_on_mail_date" name="auto_flight_report_on_mail_date" class="form-control w-sm-50"
+                            @if (Modules\Settings\Models\Setting::getValue('auto_flight_report_on_mail_date') != 0)
+                              value="{{ Modules\Settings\Models\Setting::getValue('auto_flight_report_on_mail_date') }}"
+                            @endif
+                          >
                         </div>
 
                         <div class="mb-3">

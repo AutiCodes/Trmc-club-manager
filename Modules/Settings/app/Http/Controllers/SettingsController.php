@@ -54,11 +54,24 @@ class SettingsController extends Controller
             }
 
             // Automations tab
+            // flight report mail
             if ($request->has('auto_flight_report_on_mail')) {
                 Setting::updateValue('auto_flight_report_on_mail', 1);
             } else {
                 Setting::updateValue('auto_flight_report_on_mail', 0);
             }
+
+            if ($request->has('auto_flight_report_on_mail_date')) {
+                Setting::updateValue('auto_flight_report_on_mail', $request->get('auto_flight_report_on_mail_date'));
+            } else {
+                Setting::updateValue('auto_flight_report_on_mail', 0);
+            }
+            
+            if ($request->has('auto_flight_report_on_mail_email')) {
+                Setting::updateValue('auto_flight_report_on_mail', $request->get('auto_flight_report_on_mail_email'));
+            } else {
+                Setting::updateValue('auto_flight_report_on_mail', 0);
+            }            
 
             return redirect()->back()->with('success', 'Instellingen zijn opgeslagen!');
         } catch (Exception $e) {

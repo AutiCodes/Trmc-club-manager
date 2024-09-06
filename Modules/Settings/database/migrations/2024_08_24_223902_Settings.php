@@ -37,6 +37,18 @@ return new class extends Migration
             'label' => 'Automatic flight reports send to email',
             'value' => 0,
         ]);
+
+        Setting::create([
+            'key' => 'auto_flight_report_on_mail_date',
+            'label' => 'Automatic flight reports send to email date',
+            'value' => '00/00/2000',
+        ]);
+        
+        Setting::create([
+            'key' => 'auto_flight_report_on_mail_email',
+            'label' => 'Automatic flight reports send to email - email address',
+            'value' => 'example@example.com',
+        ]);        
     }
 
     /**
