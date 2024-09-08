@@ -12,24 +12,25 @@
       <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Datum en tijd</th>
+        <th scope="col">Datum</th>
+        <th scope="col">Tijd</th>
         <th scope="col">Model</th>
       </tr>
       </thead>
       <tbody>
-      
-      @foreach ($flights as $flight)
-      <tr> 
-        <th scope="row">{{ $loop->iteration }}</th>
-        <td>{{ $flight->date_time }}</td>
-        <td>
-          @foreach ($flight->submittedModels as $model)
-          <p>
-            <strong>{{ $loop->iteration }}:</strong> {{ $model->model_type }}. Klasse: {{ $model->class }}. Vluchten met model: {{ $model->lipo_count }}
-          </p>
-          @endforeach
-        </td>
-        </tr>
+        @foreach ($flights as $flight)
+          <tr> 
+            <th scope="row">{{ $loop->iteration }}</th>
+            <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', explode(' ', $flight->date_time)[0])->format('d-m-Y') }}</td>
+            <td>{{ explode(' ', $flight->date_time)[1] }}</td>
+            <td>
+              @foreach ($flight->submittedModels as $model)
+                <p>
+                  <strong>{{ $loop->iteration }}:</strong> {{ $model->model_type }}. Klasse: {{ $model->class }}. Vluchten met model: {{ $model->lipo_count }}
+                </p>
+              @endforeach
+            </td>
+          </tr>
         @endforeach
       </tbody>
     </table>
