@@ -159,7 +159,7 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/app_errors.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'ignore_exceptions' => true,            
+            'ignore_exceptions' => false,            
         ],
 
         'member_contact' => [

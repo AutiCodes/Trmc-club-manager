@@ -39,10 +39,10 @@
         </button>
       </li>        
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="app_error-logs" data-bs-toggle="pill" data-bs-target="#app_error-logs" type="button" role="tab" aria-controls="app_error-logs" aria-selected="false">
-          Applicatie errors
+        <button class="nav-link" id="apperror-logs-tab" data-bs-toggle="pill" data-bs-target="#apperror-logs" type="button" role="tab" aria-controls="apperror-logs" aria-selected="false">
+          Application errors
         </button>
-      </li>                       
+      </li>          
     </ul>
 
     <div class="tab-content" id="pills-tabContent">
@@ -122,22 +122,22 @@
           <hr>
         @endforeach           
       </div>            
-
-      <div class="tab-pane fade" id="app_error-logs" role="tabpanel" aria-labelledby="app_error-logs-tab">
-        @foreach ($appErrorLogs as $appErrorLogs)
-          @if ($loop->index > 50)
-            @break
-          @endif
-          @if (str_contains($appErrorLogs, 'INFO') == true)
-            <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $appErrorLogs }}</p>
-          @elseif (str_contains($appErrorLogs, 'ERROR') == true)
-            <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $appErrorLogs }}</p>
-          @else 
-            <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $appErrorLogs }}</p>
-          @endif
-          <hr>
-        @endforeach           
-      </div>            
+      
+      <div class="tab-pane fade" id="apperror-logs" role="tabpanel" aria-labelledby="apperror-logs-tab">
+        @foreach ($appErrorLogs as $appErrorLog)
+        @if ($loop->index > 50)
+          @break
+        @endif
+        @if (str_contains($appErrorLog, 'INFO') == true)
+          <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $appErrorLog }}</p>
+        @elseif (str_contains($appErrorLog, 'ERROR') == true)
+          <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $appErrorLog }}</p>
+        @else 
+          <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $appErrorLog }}</p>
+        @endif
+        <hr>
+        @endforeach   
+      </div>               
 
       <div class="tab-pane fade" id="contact-logs" role="tabpanel" aria-labelledby="contact-logs-tab">
         @foreach ($memberContact as $contact)

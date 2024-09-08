@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Settings\Models\Setting;
 use Log;
+use Storage;
 
 class SettingsController extends Controller
 {

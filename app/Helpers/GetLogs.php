@@ -64,9 +64,9 @@ class GetLogs
      * @author AutiCodes
      * @return array logs
      */
-    public static function app(): array
+    public static function app_errors(): array
     {
-        return array_reverse(file(storage_path('/logs/app_error.log')));
+        return array_reverse(file(storage_path('/logs/app_errors.log')));
     }
 
     /** Gets the contact log file and reverses it

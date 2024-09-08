@@ -6,6 +6,9 @@ use Modules\Fail2Ban\Models\Fail2Ban;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Modules\Form\Models\Form;
+use Modules\Settings\Models\Setting;
+use Illuminate\Support\Facades\Storage;
+use App\Mail\automaticFlightExport;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -53,3 +56,42 @@ Schedule::call(function () {
  * 
  * @author AutiCodes
  */
+Schedule::call(function () {
+
+    // If setting is off, do nothing
+    if (Setting::getValue('automatic_flight_report') != 1) {
+        return;
+    }
+
+    // If it isnt the date set in settings, do nothing
+    if (Setting::getValue('automatic_flight_report_date') != date('Y-m-d')) {
+        return;
+    }
+
+    $flights = Form::orderBy('id', 'desc')
+                    ->whereBetween('created_at',
+                        [
+                            Carbon::now()->startOfMonth(), 
+                            Carbon::now()->endOfMonth()
+                        ]
+                    )
+                    ->with('member')
+                    ->with('submittedModels')
+                    ->get();        
+
+    $pdf = PDF::loadView('admin::pdf', [
+                'flights' => $flights,
+                'currentUser' => 'Automatisch gegenereerd',
+                'flightsDate' => Carbon::now()->startOfMonth()->format('d-m-Y') . ' tot ' . Carbon::now()->endOfMonth()->format('d-m-Y'),
+                ]); 
+
+    // Save PDF to local storage
+    Storage::disk('public')->put('pdf/vluchten-' . Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y') . '.pdf', $pdf->output());
+
+    // Send email
+    Mail::to(Setting::getValue('automatic_flight_report_email'))->send(new automaticFlightExport(Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y')));
+    Log::channel('member_contact')->info('Mailed an automatic flight report');
+
+    // Log
+
+})->everyMinute(); // TODO: change to daily before pushing

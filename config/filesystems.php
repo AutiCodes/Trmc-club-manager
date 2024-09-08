@@ -29,7 +29,6 @@ return [
     */
 
     'disks' => [
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -56,6 +55,12 @@ return [
             'throw' => false,
         ],
 
+        'pdf' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/pdf'),
+            'url' => env('APP_URL').'/pdf',
+            'throw' => false,
+        ],        
     ],
 
     /*
