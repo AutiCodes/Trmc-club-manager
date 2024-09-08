@@ -7,7 +7,7 @@
 		<!-- Page title -->
     <title>TRMC club manager</title>
 	  <!-- Bootstrap CSS -->
-	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	  <!-- tab icon -->
 	  <link rel="icon" href="/media/images/TRMC_LOGO_PNG.ico" type="image/x-icon">
   </head>
@@ -19,7 +19,7 @@
         </div>
       @endif
       <!-- LOGIN -->
-      <div class="container mt-5" style="max-width: 400px;">
+      <div class="container mt-5 bg-dark bg-opacity-75 rounded p-2" style="max-width: 400px;">
         <img src="/media/images/TRMC_LOGO.png" class="rounded mx-auto d-block" alt="" style="width: 150px;">
         <h2 class="text-white text-center pt-3">Inloggen</h2>
 
@@ -29,7 +29,7 @@
             <label for="username" class="text-white">Gebruikersnaam</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="username" placeholder="" required>
           </div>
-          <div class="form-group">
+          <div class="form-group mt-2">
             <label for="password" class="text-white">Wachtwoord</label>
             <input type="password" class="form-control mb-2" id="password" name="password" placeholder="Wachtwoord" required>
           </div>
@@ -42,8 +42,9 @@
           <button type="submit" class="btn mb-4" style="background-color: #d10014; color: #FFFFFF;">Inloggen</button>
         </form>
 
-        @include('admin::includes.footer')
       </div>
+      @include('admin::includes.footer')
+
 		</main>
 
     <style>
