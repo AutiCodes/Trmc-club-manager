@@ -55,46 +55,44 @@ Schedule::call(function () {
 
 /**
  * Automatic flight reporting that are send to mail
+ * Only runs if automatic flight reporting is enabled in settings
  * 
  * @author AutiCodes
  */
-Schedule::call(function () {
-    try {
-        // If setting is off, do nothing
-        if (Setting::getValue('automatic_flight_report') != 1) {
-            return;
+if (Setting::getValue('automatic_flight_report') == 1) {
+    Schedule::call(function () {
+        try {
+            // If it isnt the date set in settings, do nothing
+            if (Setting::getValue('automatic_flight_report_date') != date('Y-m-d')) {
+                return;
+            }
+    
+            $flights = Form::orderBy('id', 'desc')
+                            ->whereBetween('created_at',
+                                [
+                                    Carbon::now()->startOfMonth(), 
+                                    Carbon::now()->endOfMonth()
+                                ]
+                            )
+                            ->with('member')
+                            ->with('submittedModels')
+                            ->get();        
+    
+            $pdf = PDF::loadView('admin::pdf', [
+                        'flights' => $flights,
+                        'currentUser' => 'Systeem',
+                        'flightsDate' => Carbon::now()->startOfMonth()->format('d-m-Y') . ' tot ' . Carbon::now()->endOfMonth()->format('d-m-Y'),
+                        ]); 
+    
+            // Save PDF to local storage
+            $pdf->save('public/flight_export_pdf/vluchten-' . Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y') . '.pdf');
+    
+            // Send email
+            Mail::to(Setting::getValue('automatic_flight_report_email'))->send(new automaticFlightExport(Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y')));
+            
+            Log::channel('member_contact')->info('Mailed an automatic flight report');
+        } catch (Exception $e) {
+            Log::channel('app_errors')->error('Error with automatic flight report mailer: ' . $e->getMessage());
         }
-
-        // If it isnt the date set in settings, do nothing
-        if (Setting::getValue('automatic_flight_report_date') != date('Y-m-d')) {
-            return;
-        }
-
-        $flights = Form::orderBy('id', 'desc')
-                        ->whereBetween('created_at',
-                            [
-                                Carbon::now()->startOfMonth(), 
-                                Carbon::now()->endOfMonth()
-                            ]
-                        )
-                        ->with('member')
-                        ->with('submittedModels')
-                        ->get();        
-
-        $pdf = PDF::loadView('admin::pdf', [
-                    'flights' => $flights,
-                    'currentUser' => 'Systeem',
-                    'flightsDate' => Carbon::now()->startOfMonth()->format('d-m-Y') . ' tot ' . Carbon::now()->endOfMonth()->format('d-m-Y'),
-                    ]); 
-
-        // Save PDF to local storage
-        $pdf->save('public/flight_export_pdf/vluchten-' . Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y') . '.pdf');
-
-        // Send email
-        Mail::to(Setting::getValue('automatic_flight_report_email'))->send(new automaticFlightExport(Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y')));
-        
-        Log::channel('member_contact')->info('Mailed an automatic flight report');
-    } catch (Exception $e) {
-        Log::channel('app_errors')->error('Error with automatic flight report mailer: ' . $e->getMessage());
-    }
-})->dailyAt('01:30');
+    })->dailyAt('21:45');
+}

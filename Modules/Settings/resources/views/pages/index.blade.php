@@ -88,6 +88,7 @@
                               value="{{ Modules\Settings\Models\Setting::getValue('automatic_flight_report_date') }}"
                             @endif
                           >
+                          <p class="text-dark">Let op, hij pakt de vluchten van de maand waarop je de datum insteld</p>
                         </div>
 
                         <div class="mb-3">
