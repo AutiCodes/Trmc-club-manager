@@ -68,31 +68,35 @@
                     <!-- Automatic send monthly reports -->
                     <div class="card">
                       <div class="card-header">
-                        Verstuur een maandelijks vlucht report per mail
+                        Verstuur een maandelijkse vlucht report per mail
                       </div>
 
                       <div class="card-body">
                         <div class="form-check form-switch">
-                          <input class="form-check-input" value=1 type="checkbox" id="auto_flight_report_on_mail" name="auto_flight_report_on_mail"
-                            @if (Modules\Settings\Models\Setting::getValue('auto_flight_report_on_mail') == 1)
+                          <input class="form-check-input" value=1 type="checkbox" id="automatic_flight_report" name="automatic_flight_report"
+                            @if (Modules\Settings\Models\Setting::getValue('automatic_flight_report') == 1)
                               checked
                             @endif
                           >
-                          <label class="form-check-label" for="auto_flight_report_on_mail">Uit/Aan</label>
+                          <label class="form-check-label" for="automatic_flight_report">Uit/Aan</label>
                         </div>
 
                         <div class="form-group">
-                          <label for="auto_flight_report_on_mail_date" class="text-white font-weight-bold">Selecteer een datum:</label>
-                          <input type="date" id="auto_flight_report_on_mail_date" name="auto_flight_report_on_mail_date" class="form-control w-sm-50"
-                            @if (Modules\Settings\Models\Setting::getValue('auto_flight_report_on_mail_date') != 0)
-                              value="{{ Modules\Settings\Models\Setting::getValue('auto_flight_report_on_mail_date') }}"
+                          <label for="automatic_flight_report_date" class="text-white font-weight-bold">Selecteer een datum:</label>
+                          <input type="date" id="automatic_flight_report_date" name="automatic_flight_report_date" class="form-control w-sm-50"
+                            @if (Modules\Settings\Models\Setting::getValue('automatic_flight_report_date') != 0)
+                              value="{{ Modules\Settings\Models\Setting::getValue('automatic_flight_report_date') }}"
                             @endif
                           >
                         </div>
 
                         <div class="mb-3">
-                          <label for="auto_flight_report_on_mail_email" class="form-label">Email adres</label>
-                          <input type="email" class="form-control" id="auto_flight_report_on_mail_email" name="auto_flight_report_on_mail_email" aria-describedby="auto_flight_report_on_mail_email">
+                          <label for="automatic_flight_report_email" class="form-label">Email adres</label>
+                          <input type="email" class="form-control" id="automatic_flight_report_email" name="automatic_flight_report_email" aria-describedby="auto_flight_report_on_mail_email"
+                            @if (Modules\Settings\Models\Setting::getValue('automatic_flight_report_email') != 0)
+                              value="{{ Modules\Settings\Models\Setting::getValue('automatic_flight_report_email') }}"                              
+                            @endif
+                          >
                         </div>
                       </div>
                     </div>

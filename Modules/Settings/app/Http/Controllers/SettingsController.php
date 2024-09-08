@@ -36,7 +36,7 @@ class SettingsController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         try {
             // Test setting
@@ -55,22 +55,22 @@ class SettingsController extends Controller
 
             // Automations tab
             // flight report mail
-            if ($request->has('auto_flight_report_on_mail')) {
-                Setting::updateValue('auto_flight_report_on_mail', 1);
+            if ($request->has('automatic_flight_report')) {
+                Setting::updateValue('automatic_flight_report', 1);
             } else {
-                Setting::updateValue('auto_flight_report_on_mail', 0);
+                Setting::updateValue('automatic_flight_report', 0);
             }
 
-            if ($request->has('auto_flight_report_on_mail_date')) {
-                Setting::updateValue('auto_flight_report_on_mail', $request->get('auto_flight_report_on_mail_date'));
+            if ($request->has('automatic_flight_report_date')) {
+                Setting::updateValue('automatic_flight_report_date', $request->get('automatic_flight_report_date'));
             } else {
-                Setting::updateValue('auto_flight_report_on_mail', 0);
+                Setting::updateValue('automatic_flight_report_date', 0);
             }
             
-            if ($request->has('auto_flight_report_on_mail_email')) {
-                Setting::updateValue('auto_flight_report_on_mail', $request->get('auto_flight_report_on_mail_email'));
+            if ($request->has('automatic_flight_report_email')) {
+                Setting::updateValue('automatic_flight_report_email', $request->get('automatic_flight_report_email'));
             } else {
-                Setting::updateValue('auto_flight_report_on_mail', 0);
+                Setting::updateValue('automatic_flight_report_email', 0);
             }            
 
             return redirect()->back()->with('success', 'Instellingen zijn opgeslagen!');
