@@ -23,7 +23,7 @@
           <tr>
             <td class="body" style="padding: 40px; text-align: left; font-size: 18px; line-height: 1.6;">
               <p>
-                Automatische vlucht rapportage van
+                Automatische vlucht rapportage van {{ $startAndEndDate }}
                 <br>
                 <br>
               </p>

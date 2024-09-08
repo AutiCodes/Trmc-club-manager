@@ -12,7 +12,6 @@
       <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">RDW nummer</th>
         <th scope="col">Datum en tijd</th>
         <th scope="col">Model</th>
       </tr>
@@ -22,7 +21,6 @@
       @foreach ($flights as $flight)
       <tr> 
         <th scope="row">{{ $loop->iteration }}</th>
-        <td>{{ $flight->member[0]->rdw_number ?? 'Nog niet ingevuld' }}</td>
         <td>{{ $flight->date_time }}</td>
         <td>
           @foreach ($flight->submittedModels as $model)

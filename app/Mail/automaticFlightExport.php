@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 
 class automaticFlightExport extends Mailable
 {
@@ -16,8 +17,9 @@ class automaticFlightExport extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($startAndEndDate)
     {
+        $this->startAndEndDate = $startAndEndDate;
     }
 
     /**
@@ -37,7 +39,9 @@ class automaticFlightExport extends Mailable
     {
         return new Content(
             view: 'mail.automatic_flight_export',
-        
+            with: [
+                'startAndEndDate' => $this->startAndEndDate,
+            ],
         );
     }
 
@@ -48,6 +52,10 @@ class automaticFlightExport extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromPath(public_path("flight_export_pdf/vluchten-01-09-2024-30-09-2024.pdf"))
+            ->as('vluchten-' . $this->startAndEndDate . '.pdf')
+            ->withMime('application/pdf'),
+        ];
     }
 }

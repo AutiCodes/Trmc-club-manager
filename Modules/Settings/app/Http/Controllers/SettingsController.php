@@ -9,6 +9,10 @@ use Illuminate\Http\Response;
 use Modules\Settings\Models\Setting;
 use Log;
 use Storage;
+// debug
+use App\Mail\automaticFlightExport;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class SettingsController extends Controller
 {

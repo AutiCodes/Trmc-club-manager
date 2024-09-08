@@ -9,6 +9,8 @@ use Modules\Form\Models\Form;
 use Modules\Settings\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\automaticFlightExport;
+use Illuminate\Support\Facades\File;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -81,17 +83,16 @@ Schedule::call(function () {
 
     $pdf = PDF::loadView('admin::pdf', [
                 'flights' => $flights,
-                'currentUser' => 'Automatisch gegenereerd',
+                'currentUser' => 'Systeem',
                 'flightsDate' => Carbon::now()->startOfMonth()->format('d-m-Y') . ' tot ' . Carbon::now()->endOfMonth()->format('d-m-Y'),
                 ]); 
 
     // Save PDF to local storage
-    Storage::disk('public')->put('pdf/vluchten-' . Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y') . '.pdf', $pdf->output());
+    $pdf->save('public/flight_export_pdf/vluchten-' . Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y') . '.pdf');
 
     // Send email
     Mail::to(Setting::getValue('automatic_flight_report_email'))->send(new automaticFlightExport(Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y')));
+    
     Log::channel('member_contact')->info('Mailed an automatic flight report');
-
-    // Log
 
 })->everyMinute(); // TODO: change to daily before pushing
