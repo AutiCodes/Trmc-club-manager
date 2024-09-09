@@ -7,11 +7,11 @@ class GetGithubStats
     /**
      * Curl the Github API and return the results
      * 
+     * @author AutiCodes
      * @param string $url the url to curl
-     * @author KelvinCodes
      * @return mixed
      */
-    public static function get($url)
+    public static function get(string $url): mixed
     {
         $curl = curl_init();
 
@@ -27,22 +27,21 @@ class GetGithubStats
         curl_setopt($curl, CURLOPT_USERAGENT, 'Chrome/64.0.3282.186 Safari/537.36');
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: ' . env('GITHUB_ACCESS_TOKEN')));
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-
-        $result = json_decode(curl_exec($curl));
         curl_close($curl);
 
-        return $result;
+        return json_decode(curl_exec($curl));
     }
 
     /**
      * Get latest version on Github
      * 
-     * @author KelvinCodes
+     * @author AutiCodes
+     * @param string $url
      * @return string version
      */
-    public static function getLatestVersion()
+    public static function getLatestVersion(string $url): string
     {
-        $latestRelease = Self::get('https://api.github.com/repos/kelvincodesstuff/trmc-club-manager/releases/latest');
+        $latestRelease = Self::get($url);
         return str_replace('v', '', $latestRelease->tag_name);
     }
 }
