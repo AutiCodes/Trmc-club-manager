@@ -66,7 +66,7 @@
                 <div class="row m-2 p-2">
                   <div class="col">
                     <!-- Automatic send monthly reports -->
-                    <div class="card">
+                    <div class="card" style="max-width: 400px;">
                       <div class="card-header">
                         Verstuur een maandelijkse vlucht report per mail
                       </div>
