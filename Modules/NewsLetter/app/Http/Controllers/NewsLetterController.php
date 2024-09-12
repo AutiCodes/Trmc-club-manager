@@ -48,7 +48,7 @@ class NewsLetterController extends Controller
     public function store(Request $request)//: RedirectResponse
     {
         $validated = $request->validate([
-            'checkbox_send_to' => ['required', 'max:10'],
+            'checkbox_send_to' => ['max:10'],
             'text_editor' => ['required', 'string'],
         ]);
 
@@ -58,6 +58,11 @@ class NewsLetterController extends Controller
             ]);
 
             $pdf->save('newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf');
+
+            if ($request->input('test_email') != '') {
+                Mail::to($request->input('test_email'))->send(new NewsLetter($validated['text_editor']));
+                return redirect()->back()->with('success', 'Test nieuwsbrief is verstuurd!');
+            }
 
             // Get members and send email
             foreach ($validated['checkbox_send_to'] as $status) {
