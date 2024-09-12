@@ -66,7 +66,7 @@ if (Setting::getValue('automatic_flight_report') == 1) {
             if (Setting::getValue('automatic_flight_report_date') != date('Y-m-d')) {
                 return;
             }
-    
+
             $flights = Form::orderBy('id', 'desc')
                             ->whereBetween('created_at',
                                 [
@@ -76,23 +76,23 @@ if (Setting::getValue('automatic_flight_report') == 1) {
                             )
                             ->with('member')
                             ->with('submittedModels')
-                            ->get();        
-    
+                            ->get();
+
             $pdf = PDF::loadView('admin::pdf', [
                         'flights' => $flights,
                         'currentUser' => 'Systeem',
                         'flightsDate' => Carbon::now()->startOfMonth()->format('d-m-Y') . ' tot ' . Carbon::now()->endOfMonth()->format('d-m-Y'),
-                        ]); 
-    
+                        ]);
+
             // Save PDF to local storage
-            $pdf->save('public/flight_export_pdf/vluchten-' . Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y') . '.pdf');
-    
+            $pdf->save('flight_reports/vluchten-' . Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y') . '.pdf', 'pdf');
+
             // Send email
             Mail::to(Setting::getValue('automatic_flight_report_email'))->send(new automaticFlightExport(Carbon::now()->startOfMonth()->format('d-m-Y') . '-' . Carbon::now()->endOfMonth()->format('d-m-Y')));
-            
+
             Log::channel('member_contact')->info('Mailed an automatic flight report');
         } catch (Exception $e) {
             Log::channel('app_errors')->error('Error with automatic flight report mailer: ' . $e->getMessage());
         }
-    })->dailyAt('21:45');
+    })->everyMinute();//dailyAt('21:45');
 }
