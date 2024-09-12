@@ -53,7 +53,7 @@ class automaticFlightExport extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath(public_path("flight_export_pdf/vluchten-01-09-2024-30-09-2024.pdf"))
+            Attachment::fromPath(public_path('pdf/flight_reports/vluchten-' . $this->startAndEndDate . '.pdf'))
             ->as('vluchten-' . $this->startAndEndDate . '.pdf')
             ->withMime('application/pdf'),
         ];

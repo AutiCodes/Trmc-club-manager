@@ -62,7 +62,7 @@ class NewsLetterController extends Controller
                 return redirect()->back()->with('success', 'Test nieuwsbrief is verstuurd!');
             }
 
-            $pdf->save('Nieuwsbrief-' . date('d-m-Y') . '.pdf', 'pdf');
+            $pdf->save('newsletters/Nieuwsbrief-' . date('d-m-Y') . '.pdf', 'pdf');
 
             // Get members and send email
             foreach ($validated['checkbox_send_to'] as $status) {

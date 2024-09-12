@@ -57,8 +57,8 @@ return [
 
         'pdf' => [
             'driver' => 'local',
-            'root' => public_path('pdf/newsletters'),
-            'url' => env('APP_URL').'/pdf/newsletters',
+            'root' => public_path('pdf'),
+            'url' => env('APP_URL').'/pdf',
             'throw' => false,
         ],
     ],
