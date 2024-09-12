@@ -24,7 +24,7 @@ class NewsLetterController extends Controller
     public function index()
     {
         $files = scandir(public_path('/newsletter-pdfs'));
-  
+
         return view('newsletter::pages.index', compact('files'));
     }
 
@@ -40,7 +40,7 @@ class NewsLetterController extends Controller
      * Creates an PDF
      * Sends it to the members
      * Saves it to storage
-     * 
+     *
      * @author AutiCodes
      * @param Request $request
      * @return// RedirectResponse
@@ -48,21 +48,26 @@ class NewsLetterController extends Controller
     public function store(Request $request)//: RedirectResponse
     {
         $validated = $request->validate([
-            'checkbox_send_to' => ['required', 'max:10'],
+            'checkbox_send_to' => ['max:10'],
             'text_editor' => ['required', 'string'],
         ]);
 
         try {
             $pdf = PDF::loadView('newsletter::pdf.newsletter', [
                 'text_editor' => $validated['text_editor'],
-            ]); 
+            ]);
 
             $pdf->save('newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf');
-            
+
+            if ($request->input('test_email') != '') {
+                Mail::to($request->input('test_email'))->send(new NewsLetter($validated['text_editor']));
+                return redirect()->back()->with('success', 'Test nieuwsbrief is verstuurd!');
+            }
+
             // Get members and send email
             foreach ($validated['checkbox_send_to'] as $status) {
                 $members = Member::where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)->where('club_status', '=', $status)->get();
-                
+
                 foreach ($members as $member) {
                     Mail::to($member->email)->send(new NewsLetter($validated['text_editor']));
                 }

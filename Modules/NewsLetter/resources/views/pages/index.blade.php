@@ -39,17 +39,22 @@
               Donateurs
             </label>
           </div>
-          
+
           <div class="form-check mb-2">
             <input class="form-check-input" type="checkbox" value=3 id="management" name="checkbox_send_to[]">
             <label class="form-check-label text-white" for="management">
               Bestuur
             </label>
           </div>
-          
+
+          <div class="mb-3">
+            <label for="test_email" class="form-label text-white">Om te testen</label>
+            <input type="email" class="form-control" id="test_email" name="test_email">
+          </div>
+
           <!-- Place the first <script> tag in your HTML's <head> -->
           <script src="/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-      
+
           <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
           <script>
             tinymce.init({
