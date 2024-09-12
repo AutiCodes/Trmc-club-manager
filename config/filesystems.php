@@ -57,10 +57,10 @@ return [
 
         'pdf' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/pdf'),
-            'url' => env('APP_URL').'/pdf',
+            'root' => public_path('pdf/newsletters'),
+            'url' => env('APP_URL').'/pdf/newsletters',
             'throw' => false,
-        ],        
+        ],
     ],
 
     /*

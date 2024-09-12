@@ -23,7 +23,7 @@ class NewsLetterController extends Controller
      */
     public function index()
     {
-        $files = scandir(public_path('/newsletter-pdfs'));
+        $files = scandir(public_path('pdf/newsletters/'));
 
         return view('newsletter::pages.index', compact('files'));
     }
@@ -58,7 +58,7 @@ class NewsLetterController extends Controller
             ]);
 
 
-            $pdf->save('newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf', 'public');
+            $pdf->save('Nieuwsbrief-' . date('d-m-Y') . '.pdf', 'pdf');
             //Storage::disk('local')->put('test.pdf', 'pdf');
 
             if ($request->input('test_email') != '') {
