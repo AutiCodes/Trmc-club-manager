@@ -140,34 +140,33 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'ignore_exceptions' => true,
         ],
-        
+
         'access' => [
             'driver' => 'single',
             'path' => storage_path('logs/access.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'ignore_exceptions' => true,
-        ],     
-        
+        ],
+
         'fail2ban' => [
             'driver' => 'single',
             'path' => storage_path('logs/Fail2Ban.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'ignore_exceptions' => true,            
+            'ignore_exceptions' => true,
         ],
 
         'app_errors' => [
             'driver' => 'single',
             'path' => storage_path('logs/app_errors.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'ignore_exceptions' => false,            
+            'ignore_exceptions' => false,
         ],
 
         'member_contact' => [
             'driver' => 'single',
             'path' => storage_path('logs/member_contact.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'ignore_exceptions' => true,            
+            'ignore_exceptions' => true,
         ],
     ],
-
 ];
