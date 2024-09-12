@@ -12,13 +12,13 @@
         <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <div class="form-group">
             <label for="name" class="text-white font-weight-bold">Volledige naam</label>
-            <input type="text" class="form-control" id="name" name="name" aria-describedby="fullname" placeholder="Voornaam achternaam" required>
+            <input type="text" class="form-control" id="name" name="name" aria-describedby="fullname" placeholder="Voornaam achternaam" value="{{ old('name') }}" required>
             <!-- <small id="fullname" class="form-text text-muted"></small>-->
           </div>
 
           <div class="form-group">
             <label for="birthdate"  class="text-white font-weight-bold">Geboortedatum</label>
-            <input type="text" class="form-control" id="birthdate" name="birthdate" placeholder="01-01-2024" required>
+            <input type="text" class="form-control" id="birthdate" name="birthdate" placeholder="01-01-2024" value="{{ old('birthdate') }}" required>
           </div>
         </div>        
       </div>
@@ -27,17 +27,17 @@
         <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <div class="form-group">
             <label for="address"  class="text-white font-weight-bold">Adres</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Straatnaam nummer" required>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Straatnaam nummer" value="{{ old('address') }}" required>
           </div>
           
           <div class="form-group">
             <label for="postcode"  class="text-white font-weight-bold">Postcode</label>
-            <input type="text" class="form-control" id="postcode" name="postcode" placeholder="1234AH (zonder spatie!)" required>
+            <input type="text" class="form-control" id="postcode" name="postcode" placeholder="1234AH (zonder spatie!)" value="{{ old('postcode') }}" required>
           </div>
           
           <div class="form-group">
             <label for="city"  class="text-white font-weight-bold">Woonplaats</label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="Woonplaats" required>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Woonplaats" value="{{ old('city') }}" required>
           </div>
         </div>
       </div>
@@ -46,12 +46,12 @@
         <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <div class="form-group">
             <label for="phone"  class="text-white font-weight-bold">Telefoon</label>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="0612343455 (nummer zonder streepje!)" required>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="0612343455 (nummer zonder streepje!)" value="{{ old('phone') }}" required>
           </div>
           
           <div class="form-group">
             <label for="email" class="text-white font-weight-bold">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="mail@provider.nl" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="mail@provider.nl" value="{{ old('email') }}" required>
           </div>   
         </div>
       </div>
@@ -62,12 +62,12 @@
         <div class="pt-2 pb-2 pl-2 pr-2 mb-2 mt-2">
           <div class="form-group">
             <label for="rdw_number"  class="text-white font-weight-bold">RDW nummer</label>
-            <input type="text" class="form-control" id="rdw_number" name="rdw_number" placeholder="A34hjhdwqjkwqa">
+            <input type="text" class="form-control" id="rdw_number" name="rdw_number" placeholder="A34hjhdwqjkwqa" value="{{ old('rdw_number') }}">
           </div>    
 
           <div class="form-group">
             <label for="knvvl"  class="text-white font-weight-bold">KNVvl nummer</label>
-            <input type="text" class="form-control" id="knvvl" name="knvvl" placeholder="1234567">
+            <input type="text" class="form-control" id="knvvl" name="knvvl" placeholder="1234567" value="{{ old('name') }}">
           </div>   
         </div>
       </div>
