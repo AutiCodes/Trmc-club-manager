@@ -57,7 +57,9 @@ class NewsLetterController extends Controller
                 'text_editor' => $validated['text_editor'],
             ]);
 
-            $pdf->save('newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf');
+
+            $pdf->save('newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf', 'public');
+            //Storage::disk('local')->put('test.pdf', 'pdf');
 
             if ($request->input('test_email') != '') {
                 Mail::to($request->input('test_email'))->send(new NewsLetter($validated['text_editor']));

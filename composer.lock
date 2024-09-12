@@ -4310,16 +4310,16 @@
         },
         {
             "name": "spatie/laravel-pdf",
-            "version": "1.5.1",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-pdf.git",
-                "reference": "93a6c0bb741df557e9c517f7dcd82953a6d30946"
+                "reference": "fadf23c6249c491fd4924f8ec37166a283269966"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-pdf/zipball/93a6c0bb741df557e9c517f7dcd82953a6d30946",
-                "reference": "93a6c0bb741df557e9c517f7dcd82953a6d30946",
+                "url": "https://api.github.com/repos/spatie/laravel-pdf/zipball/fadf23c6249c491fd4924f8ec37166a283269966",
+                "reference": "fadf23c6249c491fd4924f8ec37166a283269966",
                 "shasum": ""
             },
             "require": {
@@ -4389,9 +4389,9 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-pdf/issues",
-                "source": "https://github.com/spatie/laravel-pdf/tree/1.5.1"
+                "source": "https://github.com/spatie/laravel-pdf/tree/1.5.2"
             },
-            "time": "2024-05-08T08:00:53+00:00"
+            "time": "2024-07-16T07:42:10+00:00"
         },
         {
             "name": "spatie/temporary-directory",
