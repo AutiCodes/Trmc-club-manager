@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')	
+@extends('admin::layouts.master')
 
 @section('title', 'Instellingen')
 
@@ -16,13 +16,13 @@
                 </button>
                 <button class="nav-link" id="nav-security-tab" data-bs-toggle="tab" data-bs-target="#nav-security" type="button" role="tab" aria-controls="nav-security" aria-selected="true">
                   Security
-                </button>    
+                </button>
                 <button class="nav-link" id="nav-automations-tab" data-bs-toggle="tab" data-bs-target="#nav-automations" type="button" role="tab" aria-controls="nav-automations" aria-selected="true">
                   Automatiseringen
-                </button>                            
+                </button>
                 <button class="nav-link" id="nav-other-tab" data-bs-toggle="tab" data-bs-target="#nav-other" type="button" role="tab" aria-controls="nav-other" aria-selected="true">
                   Testing
-                </button>                
+                </button>
               </div>
             </nav>
 
@@ -31,7 +31,7 @@
               <div class="tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
                 <div class="row m-2 p-2">
                   <div class="col">
-                    
+
                   </div>
                 </div>
               </div>
@@ -41,7 +41,7 @@
                 <div class="row m-2 p-2">
                   <div class="col">
                     <!-- Fail2Ban  -->
-                    <div class="card">
+                    <div class="card" style="max-width: 200px;">
                       <div class="card-header">
                         Zet de Fail2Ban beveiliging uit/aan
                       </div>
@@ -66,7 +66,7 @@
                 <div class="row m-2 p-2">
                   <div class="col">
                     <!-- Automatic send monthly reports -->
-                    <div class="card">
+                    <div class="card" style="max-width: 400px;">
                       <div class="card-header">
                         Verstuur een maandelijkse vlucht report per mail
                       </div>
@@ -104,7 +104,7 @@
                     <!-- End  -->
                   </div>
                 </div>
-              </div>              
+              </div>
 
               <!-- Testing -->
               <div class="tab-pane fade " id="nav-other" role="tabpanel" aria-labelledby="nav-other-tab">
@@ -129,7 +129,7 @@
                     <!-- End test setting -->
                   </div>
                 </div>
-              </div>              
+              </div>
             </div>
 
             @csrf

@@ -22,7 +22,7 @@
         <button class="nav-link" id="contact-logs-tab" data-bs-toggle="pill" data-bs-target="#contact-logs" type="button" role="tab" aria-controls="contact-logs" aria-selected="false">
           Contact
         </button>
-      </li>           
+      </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
           Systeem
@@ -32,17 +32,17 @@
         <button class="nav-link" id="access-logs-tab" data-bs-toggle="pill" data-bs-target="#access-logs" type="button" role="tab" aria-controls="access-logs" aria-selected="false">
           Access
         </button>
-      </li>      
+      </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="fail2ban-logs-tab" data-bs-toggle="pill" data-bs-target="#fail2ban-logs" type="button" role="tab" aria-controls="fail2ban-logs" aria-selected="false">
           Fail2Ban
         </button>
-      </li>        
+      </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="apperror-logs-tab" data-bs-toggle="pill" data-bs-target="#apperror-logs" type="button" role="tab" aria-controls="apperror-logs" aria-selected="false">
           Application errors
         </button>
-      </li>          
+      </li>
     </ul>
 
     <div class="tab-content" id="pills-tabContent">
@@ -50,15 +50,14 @@
         @foreach ($memberActivityLogs as $memberActivityLog)
           @if ($loop->index > 50)
             @break
-          @endif 
+          @endif
           @if (str_contains($memberActivityLog, 'INFO') == true)
             <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $memberActivityLog }}</p>
           @elseif (str_contains($memberActivityLog, 'ERROR') == true)
             <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $memberActivityLog }}</p>
-          @else 
+          @else
             <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $memberActivityLog }}</p>
           @endif
-          <hr>
         @endforeach
       </div>
 
@@ -68,13 +67,12 @@
             <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $userActivityLog }}</p>
           @elseif (str_contains($userActivityLog, 'ERROR') == true)
             <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $userActivityLog }}</p>
-          @else 
+          @else
             <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $userActivityLog }}</p>
           @endif
-          <hr>
-        @endforeach        
+        @endforeach
       </div>
-      
+
       <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
         @foreach ($laravelLogs as $laravelLog)
           @if ($loop->index > 50)
@@ -84,11 +82,10 @@
             <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $laravelLog }}</p>
           @elseif (str_contains($laravelLog, 'ERROR') == true)
             <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $laravelLog }}</p>
-          @else 
+          @else
             <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $laravelLog }}</p>
           @endif
-          <hr>
-        @endforeach   
+        @endforeach
       </div>
 
       <div class="tab-pane fade" id="access-logs" role="tabpanel" aria-labelledby="access-logs-tab">
@@ -100,12 +97,11 @@
             <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $accessLog }}</p>
           @elseif (str_contains($accessLog, 'ERROR') == true)
             <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $accessLog }}</p>
-          @else 
+          @else
             <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $accessLog }}</p>
           @endif
-          <hr>
-        @endforeach           
-      </div>      
+        @endforeach
+      </div>
 
       <div class="tab-pane fade" id="fail2ban-logs" role="tabpanel" aria-labelledby="fail2ban-logs-tab">
         @foreach ($Fail2Ban as $Fail2Ban)
@@ -116,28 +112,26 @@
             <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $Fail2Ban }}</p>
           @elseif (str_contains($Fail2Ban, 'ERROR') == true)
             <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $Fail2Ban }}</p>
-          @else 
+          @else
             <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $Fail2Ban }}</p>
           @endif
-          <hr>
-        @endforeach           
-      </div>            
-      
+        @endforeach
+      </div>
+
       <div class="tab-pane fade" id="apperror-logs" role="tabpanel" aria-labelledby="apperror-logs-tab">
         @foreach ($appErrorLogs as $appErrorLog)
-        @if ($loop->index > 50)
-          @break
-        @endif
-        @if (str_contains($appErrorLog, 'INFO') == true)
-          <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $appErrorLog }}</p>
-        @elseif (str_contains($appErrorLog, 'ERROR') == true)
-          <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $appErrorLog }}</p>
-        @else 
-          <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $appErrorLog }}</p>
-        @endif
-        <hr>
-        @endforeach   
-      </div>               
+          @if ($loop->index > 50)
+            @break
+          @endif
+          @if (str_contains($appErrorLog, 'INFO') == true)
+            <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $appErrorLog }}</p>
+          @elseif (str_contains($appErrorLog, 'ERROR') == true)
+            <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $appErrorLog }}</p>
+          @else
+            <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $appErrorLog }}</p>
+          @endif
+        @endforeach
+      </div>
 
       <div class="tab-pane fade" id="contact-logs" role="tabpanel" aria-labelledby="contact-logs-tab">
         @foreach ($memberContact as $contact)
@@ -148,12 +142,11 @@
             <p class="mt-1 mb-1 bg-info text-dark pl-2 pr-2 rounded">{{ $contact }}</p>
           @elseif (str_contains($contact, 'ERROR') == true)
             <p class="mt-1 mb-1 bg-danger text-dark pl-2 pr-2 rounded">{{ $contact }}</p>
-          @else 
+          @else
             <p class="mt-1 mb-1 bg-warning text-dark pl-2 pr-2 rounded">{{ $contact }}</p>
           @endif
-          <hr>
-        @endforeach           
-      </div>               
+        @endforeach
+      </div>
 
     </div>
   </div>

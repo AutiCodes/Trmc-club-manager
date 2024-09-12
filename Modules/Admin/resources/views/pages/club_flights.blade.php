@@ -104,10 +104,11 @@
     </div>
 
     <!-- HELP ICON -->
+    <!--
     <a class="help_icon text-white mr-3" data-toggle="modal" data-target="#helpModal" >
       <img class="img-fluid" src="/media/images/help.ico" alt="help" style="width: 50px;"></img>
     </a>
-
+    -->
     <!-- HELP MODAL -->
     <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
