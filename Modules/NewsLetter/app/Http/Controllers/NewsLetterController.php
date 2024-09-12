@@ -24,7 +24,7 @@ class NewsLetterController extends Controller
     public function index()
     {
         $files = scandir(public_path('/newsletter-pdfs'));
-  
+
         return view('newsletter::pages.index', compact('files'));
     }
 
@@ -40,7 +40,7 @@ class NewsLetterController extends Controller
      * Creates an PDF
      * Sends it to the members
      * Saves it to storage
-     * 
+     *
      * @author AutiCodes
      * @param Request $request
      * @return// RedirectResponse
@@ -55,14 +55,14 @@ class NewsLetterController extends Controller
         try {
             $pdf = PDF::loadView('newsletter::pdf.newsletter', [
                 'text_editor' => $validated['text_editor'],
-            ]); 
+            ]);
 
             $pdf->save('newsletter-pdfs/Nieuwsbrief-' . date('d-m-Y') . '.pdf');
-            
+
             // Get members and send email
             foreach ($validated['checkbox_send_to'] as $status) {
                 $members = Member::where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value)->where('club_status', '=', $status)->get();
-                
+
                 foreach ($members as $member) {
                     Mail::to($member->email)->send(new NewsLetter($validated['text_editor']));
                 }
