@@ -77,7 +77,7 @@
 
         @foreach ($files as $file)
           @if (str_contains($file, 'pdf'))
-            <a href="{{ $file }}">{{ $file }}</a><br>
+            <a href="/pdf/newsletters/{{ $file }}">{{ $file }}</a><br>
           @endif
         @endforeach
       </div>
