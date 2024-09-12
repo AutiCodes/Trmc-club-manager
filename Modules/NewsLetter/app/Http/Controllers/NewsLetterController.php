@@ -57,14 +57,12 @@ class NewsLetterController extends Controller
                 'text_editor' => $validated['text_editor'],
             ]);
 
-
-            $pdf->save('Nieuwsbrief-' . date('d-m-Y') . '.pdf', 'pdf');
-            //Storage::disk('local')->put('test.pdf', 'pdf');
-
             if ($request->input('test_email') != '') {
                 Mail::to($request->input('test_email'))->send(new NewsLetter($validated['text_editor']));
                 return redirect()->back()->with('success', 'Test nieuwsbrief is verstuurd!');
             }
+
+            $pdf->save('Nieuwsbrief-' . date('d-m-Y') . '.pdf', 'pdf');
 
             // Get members and send email
             foreach ($validated['checkbox_send_to'] as $status) {
@@ -78,6 +76,7 @@ class NewsLetterController extends Controller
             return redirect()->back()->with('success', 'Nieuwsbrief is verstuurd!');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'er ging iets mis! Foutcode: ' . $e->getMessage());
+            Log::channel('app_errors')->error('Error when sending newsletter: ' . $e->getMessage());
         }
     }
 
