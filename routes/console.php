@@ -94,5 +94,5 @@ if (Setting::getValue('automatic_flight_report') == 1) {
         } catch (Exception $e) {
             Log::channel('app_errors')->error('Error with automatic flight report mailer: ' . $e->getMessage());
         }
-    })->dailyAt('21:45');
+    })->lastDayOfMonth('23:00')->timezone('Europe/Amsterdam');
 }
