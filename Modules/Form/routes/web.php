@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Form\Http\Controllers\FormController;
+use Modules\Form\Http\Controllers\FlightReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,8 @@ use Modules\Form\Http\Controllers\FormController;
 Route::group([], function () {
     Route::resource('aanmeld-formulier', FormController::class)->names('form');
     Route::get('lid-vlucht-aanmeldingen-aantal/{id}', [FormController::class, 'checkClubFlights']);
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('vluchten-rapporten', FlightReportController::class)->names('flight-reports');
 });

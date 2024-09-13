@@ -162,8 +162,8 @@ class AdminController extends Controller
                                 ])
                                 ->with('member')
                                 ->with('submittedModels')
-                                ->get();        
-        
+                                ->get();
+
         $pdf = PDF::loadView('admin::pdf', [
             'flights' => $flights,
             'currentUser' => Auth::user()->name,
