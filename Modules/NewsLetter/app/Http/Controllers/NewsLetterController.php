@@ -58,6 +58,7 @@ class NewsLetterController extends Controller
             ]);
 
             if ($request->input('test_email') != '') {
+                $pdf->save('newsletters/TEST-nieuwsbrief-' . date('d-m-Y') . '.pdf', 'pdf');
                 Mail::to($request->input('test_email'))->send(new NewsLetter($validated['text_editor']));
                 return redirect()->back()->with('success', 'Test nieuwsbrief is verstuurd!');
             }
