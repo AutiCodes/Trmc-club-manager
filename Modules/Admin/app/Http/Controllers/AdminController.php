@@ -29,7 +29,7 @@ class AdminController extends Controller
     {
         Log::channel('user_activity')->info('User ' . Auth::user()->name . ' has accessed admin dashboard');
 
-        $formSubmissions = Form::orderBy('id', 'desc')
+        $formSubmissions = Form::orderBy('date_time', 'desc')
                                 ->with('member')
                                 ->with('submittedModels')
                                 ->get();
