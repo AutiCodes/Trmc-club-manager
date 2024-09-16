@@ -33,14 +33,15 @@
 
     <!-- Table last flights -->
     <div class="container bg-dark bg-opacity-75 rounded">
-      <h1 class="mt-4 text-white">Laatste 15 vluchten</h1>
+      <h1 class="mt-4 text-white">Vluchten</h1>
       <div class="table-responsive">
         <table class="table table-striped table-hover text-white ml-2 mr-2">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">ID</th>
               <th scope="col">Naam</th>
-              <th scope="col">Datum en tijd</th>
+              <th scope="col">Datum</th>
+              <th scope="col">Tijd</th>
               <th scope="col">Vlucht informatie</th>
               <th scope="col">Bewerk/verwijder</th>
 
@@ -51,8 +52,9 @@
                 <tr>
                   <th scope="row" class="text-white">{{ $formSubmission->id }}</th>
                   <td  class="text-white">{{ $formSubmission->member[0]->name }}</td>
-                  <td  class="text-white">{{ $formSubmission->date_time }}</td>
-                  <td  class="text-white">
+                  <td class="text-white">{{ \Carbon\Carbon::createFromFormat('Y-m-d', explode(' ', $formSubmission->date_time)[0])->format('d-m-Y') }}</td>
+                  <td class="text-white">{{ explode(' ', $formSubmission->date_time)[1] }}</td>
+                  <td class="text-white">
                     @foreach ($formSubmission->submittedModels as $model)
                       @if ($loop->iteration < 16)
                         <p class="mt-0 mb-0">
