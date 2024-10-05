@@ -26,13 +26,13 @@ class MembersController extends Controller
      * @author KelvinCodes
      * @return View
      */
-    public function index()    
+    public function index()
     {
         // Get members and cache them for 1 hour
         $members = Member::orderBy('name', 'asc')
             ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
             ->get();
-    
+
 
         $totalAspirantMember = 0;
         $totalNormalMembers = 0;
@@ -131,7 +131,7 @@ class MembersController extends Controller
 
         // Clear cache
         Cache::flush();
-        
+
         $usernameWP = strtok($validated['name'], ' ');
         $userPasswordWP = bin2hex(random_bytes(10));
 
@@ -177,7 +177,7 @@ class MembersController extends Controller
 
     /**
      * Show the specified resource.
-     * 
+     *
      * @param int $id the id of the member
      * @author KelvinCodes
      * @return View
@@ -213,7 +213,7 @@ class MembersController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * 
+     *
      * @param Request $request
      * @author KelvinCodes
      * @return RedirectResponse
@@ -301,7 +301,7 @@ class MembersController extends Controller
         if ($memberOldData['club_status'] == ClubStatus::NEW_REGISTRATION->value && $validated['club_status'] != ClubStatus::NEW_REGISTRATION->value) {
             // Generate random password
             $userPasswordWP = bin2hex(random_bytes(10));
-            
+
             try {
                 // Update Wordpress login
                 UserSync::updateUserPassword($validated['email'], $userPasswordWP);
@@ -318,15 +318,15 @@ class MembersController extends Controller
 
             // Flush cache
             Cache::flush();
-    
+
             return redirect(route('members.index'))->with('success', 'Het lid is nu geaccepteerd binnen T.R.M.C! Hij krijgt nu een email.');        
-        }        
+        }
 
         // Club status mail TODO: Cleaner code
         if ($validated['club_status'] != $memberOldData['club_status'] && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {	
             // Send email to member
             Mail::to($validated['email'])->send(new MembersClubStatusChange($validated['name'], $memberOldData['club_status'], $validated['club_status']));
-        }  
+        }
 
         if (!array_key_exists('honoraryMemberCheckbox', $validated) && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {
             $validated['honoraryMemberCheckbox'] = 0;
@@ -345,7 +345,7 @@ class MembersController extends Controller
         // Update user in Wordpress
         try {
             UserSync::updateUser($memberOldData['name'], $validated['name'], $validated['email'], $validated['name']);
-        } 
+        }
         catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
@@ -364,7 +364,7 @@ class MembersController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * 
+     *
      * @param int $id the id of the member
      * @author KelvinCodes
      * @return RedirectResponse
@@ -386,7 +386,7 @@ class MembersController extends Controller
 
             // Delete user in Wordpress
             UserSync::deleteUser($member->name);
-        } 
+        }
         catch (\Exception $exception) {
             Log::error($exception->getMessage());
 
