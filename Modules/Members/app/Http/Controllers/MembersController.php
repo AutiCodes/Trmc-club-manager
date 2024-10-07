@@ -238,7 +238,7 @@ class MembersController extends Controller
             'honoraryMemberCheckbox' => ['nullable'] ?? 0,
             'droneA1Checkbox' => ['nullable'],
             'droneA2Checkbox' => ['nullable'],
-            'droneA3Checkbox' => ['nullable'],            
+            'droneA3Checkbox' => ['nullable'],
         ]);
 
         $memberOldData = Member::find($id);
@@ -260,12 +260,12 @@ class MembersController extends Controller
             'club_status' => $validated['club_status'],
             'instruct' => $validated['instruct'],
             'has_plane_brevet' => $validated['PlaneCertCheckbox'] ?? 0,
-            'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,	
+            'has_helicopter_brevet' => $validated['HeliCertCheckbox'] ?? 0,
             'has_glider_brevet' => $validated['gliderCertCheckbox'] ?? 0,
-            'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,      
+            'in_memoriam' => $validated['honoraryMemberCheckbox'] ?? 0,
             'has_drone_a1' => $validated['droneA1Checkbox'] ?? 0,
             'has_drone_a2' => $validated['droneA2Checkbox'] ?? 0,
-            'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,      
+            'has_drone_a3' => $validated['droneA3Checkbox'] ?? 0,
         ]);
 
         if (!array_key_exists('honoraryMemberCheckbox', $validated)) {
@@ -276,7 +276,7 @@ class MembersController extends Controller
         if ($memberOldData['club_status'] == ClubStatus::NOT_YET_MEMBER->value && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {
             // Generate random password
             $userPasswordWP = bin2hex(random_bytes(10));
-            
+
             try {
                 // Update Wordpress login
                 UserSync::updateUserPassword($validated['email'], $userPasswordWP);
@@ -293,15 +293,15 @@ class MembersController extends Controller
 
             // Flush cache
             Cache::flush();
-    
-            return redirect(route('members.index'))->with('success', 'Het lid is nu geaccepteerd binnen T.R.M.C! Hij krijgt nu een email.');        
+
+            return redirect(route('members.index'))->with('success', 'Het lid is nu geaccepteerd binnen T.R.M.C! Hij krijgt nu een email.');
         }
 
         // If new registration goes to any other member, send mail and update Wordpress login TODO: Fix replicated code
         if ($memberOldData['club_status'] == ClubStatus::NEW_REGISTRATION->value && $validated['club_status'] != ClubStatus::NEW_REGISTRATION->value) {
             // Generate random password
             $userPasswordWP = bin2hex(random_bytes(10));
-            
+
             try {
                 // Update Wordpress login
                 UserSync::updateUserPassword($validated['email'], $userPasswordWP);
@@ -318,15 +318,15 @@ class MembersController extends Controller
 
             // Flush cache
             Cache::flush();
-    
+
             return redirect(route('members.index'))->with('success', 'Het lid is nu geaccepteerd binnen T.R.M.C! Hij krijgt nu een email.');        
-        }        
+        }
 
         // Club status mail TODO: Cleaner code
         if ($validated['club_status'] != $memberOldData['club_status'] && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {	
             // Send email to member
             Mail::to($validated['email'])->send(new MembersClubStatusChange($validated['name'], $memberOldData['club_status'], $validated['club_status']));
-        }  
+        }
 
         if (!array_key_exists('honoraryMemberCheckbox', $validated) && $validated['club_status'] != ClubStatus::NOT_YET_MEMBER->value) {
             $validated['honoraryMemberCheckbox'] = 0;
@@ -359,7 +359,7 @@ class MembersController extends Controller
         // Flush cache
         Cache::flush();
 
-        return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');        
+        return redirect(route('members.index'))->with('success', 'Het lid is bewerkt!');
     }
 
     /**
