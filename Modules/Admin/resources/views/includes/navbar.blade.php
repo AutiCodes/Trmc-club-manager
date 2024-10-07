@@ -39,8 +39,9 @@
           Bestuur
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ route('users.index') }}">Alle bestuurleden accounts</a>
+          <a class="dropdown-item" href="{{ route('users.index') }}">Bestuursleden overzicht</a>
           <a class="dropdown-item" href="{{ route('users.create') }}">Voeg een bestuurslid toe</a>
+          <a class="dropdown-item" href="{{ route('managementContact.index') }}">Contact</a>
         </div>
       </li>       
 

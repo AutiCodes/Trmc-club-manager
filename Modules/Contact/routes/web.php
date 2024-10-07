@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Contact\Http\Controllers\ContactController;
+use Modules\Contact\Http\Controllers\ManagementContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,10 @@ use Modules\Contact\Http\Controllers\ContactController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('contact', ContactController::class)->names('contact');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('managementContact', ManagementContactController::class)->names('managementContact');
 });
