@@ -29,21 +29,19 @@ class MembersController extends Controller
      */
     public function index()
     {
-        return view('members::pages.index',
-            [
-                'members' => Member::orderBy('name', 'asc')
-                                        ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) 
-                                        ->get(),
-                'totalAspirantMember' => Member::where('club_status', '=', ClubStatus::ASPIRANT_MEMBER->value)
-                                                    ->count(),
-                'totalNormalMembers' => Member::where('club_status', '=', ClubStatus::MEMBER->value)
-                                                    ->count(),
-                'totalManagement' => Member::where('club_status', '=', ClubStatus::MANAGEMENT->value)
+        return view('members::pages.index', [
+            'members' => Member::orderBy('name', 'asc')
+                                    ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) 
+                                    ->get(),
+            'totalAspirantMember' => Member::where('club_status', '=', ClubStatus::ASPIRANT_MEMBER->value)
                                                 ->count(),
-                'totalDonators' => Member::where('club_status', '=', ClubStatus::DONOR->value)
+            'totalNormalMembers' => Member::where('club_status', '=', ClubStatus::MEMBER->value)
                                                 ->count(),
-            ]
-        );
+            'totalManagement' => Member::where('club_status', '=', ClubStatus::MANAGEMENT->value)
+                                            ->count(),
+            'totalDonators' => Member::where('club_status', '=', ClubStatus::DONOR->value)
+                                            ->count(),
+        ]);
     }
 
     /**
@@ -58,9 +56,9 @@ class MembersController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * 
+     *
+     * @author AutiCodes
      * @param Request $request
-     * @author KelvinCodes
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
@@ -116,9 +114,6 @@ class MembersController extends Controller
                         ->withErrors(['error' => 'Iets ging er mis! Contacteer Kelvin voor meer informatie. Foutmelding: ' . $exception->getMessage()]);
         }
 
-        // Clear cache
-        Cache::flush();
-        
         $usernameWP = strtok($validated['name'], ' ');
         $userPasswordWP = bin2hex(random_bytes(10));
 
