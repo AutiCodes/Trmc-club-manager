@@ -22,41 +22,28 @@ class MembersController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
-     * @author KelvinCodes
+     * Gets and count members
+     *
+     * @author AutiCodes
      * @return View
      */
-    public function index()    
+    public function index()
     {
-        // Get members and cache them for 1 hour
-        $members = Member::orderBy('name', 'asc')
-            ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) // If member is removed, don't show him
-            ->get();
-    
-
-        $totalAspirantMember = 0;
-        $totalNormalMembers = 0;
-        $totalManagement = 0;
-        $totalDonators = 0;
-
-        foreach ($members as $member) {
-            switch ($member->club_status) {
-                case ClubStatus::ASPIRANT_MEMBER->value:
-                    $totalAspirantMember++;
-                    break;
-                case ClubStatus::MEMBER->value:
-                    $totalNormalMembers++;
-                    break;
-                case ClubStatus::MANAGEMENT->value:
-                    $totalManagement++;
-                    break;
-                case ClubStatus::DONOR->value:
-                    $totalDonators++;
-                    break;
-            }
-        }
-
-        return view('members::pages.index', compact('members', 'totalAspirantMember', 'totalNormalMembers', 'totalManagement', 'totalDonators'));
+        return view('members::pages.index',
+            [
+                'members' => Member::orderBy('name', 'asc')
+                                        ->where('club_status', '!=', ClubStatus::REMOVED_MEMBER->value) 
+                                        ->get(),
+                'totalAspirantMember' => Member::where('club_status', '=', ClubStatus::ASPIRANT_MEMBER->value)
+                                                    ->count(),
+                'totalNormalMembers' => Member::where('club_status', '=', ClubStatus::MEMBER->value)
+                                                    ->count(),
+                'totalManagement' => Member::where('club_status', '=', ClubStatus::MANAGEMENT->value)
+                                                ->count(),
+                'totalDonators' => Member::where('club_status', '=', ClubStatus::DONOR->value)
+                                                ->count(),
+            ]
+        );
     }
 
     /**
